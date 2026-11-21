@@ -18,3 +18,6 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-20 | Let the player name their character and receive an in-game laptop after Chapter 1 | Personalize the introduction and provide a computer for future learning and software components. |
 | 2026-11-20 | Deliver chapter software components on in-game thumb drives | The player plugs each drive into the laptop to build the app over the campaign. |
 | 2026-11-21 | Use Python for Chapter 2 programming fundamentals | Give beginners a practical language for hands-on examples in a simulated terminal. |
+| 2026-11-21 | Plan database lessons for Chapter 3 and rearrange later chapters before designing it | Keep Chapter 2 focused on programming and revisit the campaign sequence together. |
+| 2026-11-21 | Chapter 2 boss time extension forfeits the perfect bonus | Make finishing within the initial deadline part of the boss's perfect finish while preserving progress and the standard reward. |
+| 2026-11-21 | End the Chapter 2 boss timer with unlimited completion time when it expires | Preserve the player's work and standard reward while the initial deadline remains part of a perfect finish. |

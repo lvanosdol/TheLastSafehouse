@@ -150,7 +150,7 @@ Each chapter's earned component arrives on a separate in-game thumb drive. The p
 - No engine or implementation architecture has been selected yet; decide those after the game design is sufficiently drafted.
 ## 13. Cybersecurity curriculum ideas
 
-**Status: Mixed.** The previous Chapter 2 networking and Python draft is superseded; Chapter 2 is being redesigned around the user's programming and database reference material. The exact topics and chapter assignments below remain candidates, not approved requirements. Keep the curriculum beginner-friendly and connect each concept to a story problem, a safe simulation, and a clear learning check. Avoid turning the game into a glossary.
+**Status: Mixed.** The previous Chapter 2 networking and Python draft is superseded; Chapter 2 is being redesigned around programming fundamentals, with database lessons planned for Chapter 3. Other topics and chapter assignments below remain candidates, not approved requirements. Keep the curriculum beginner-friendly and connect each concept to a story problem, a safe simulation, and a clear learning check. Avoid turning the game into a glossary.
 
 ### Strong candidates for the core learning path
 
@@ -214,11 +214,11 @@ The previous endings based on joining Mara's Sentinel partnership or rejecting h
 The campaign aims for a beginner-to-practical pathway in IT, networking, databases, troubleshooting, and task-appropriate automation. It teaches foundations and evidence-based judgment rather than trying to cover every specialization.
 
 1. **Computer and Workshop restoration:** Begin by learning the components and rebuilding the broken PC, then use it to learn computing basics, operating systems, Windows navigation, files and permissions, device protection, and software choices. The boss uses file sorting, evidence preservation, permissions, and a simulated Windows Security alert; the story introduces the apparent Echo threat and the first signs of Mara's deception.
-2. **Programming and database fundamentals:** Working direction based on the user's reference material; lesson topics, depth, and order remain open. See the [Chapter 2 design](Chapter%202/Chapter-2-Design.md).
-3. **Network hardware and addressing:** Network devices, IP addressing, routing, switching, and wireless.
-4. **Network services and protocols:** DNS, DHCP, NAT, ports, TCP/UDP, HTTP, and HTTPS.
-5. **Databases:** Schemas, keys, SQL CRUD, queries, joins, and data integrity.
-6. **Troubleshooting, logs, backups, and automation:** Diagnostics, documentation, recovery, and task-appropriate scripting, including Python when suitable.
+2. **Programming fundamentals:** See the [Chapter 2 design](Chapter%202/Chapter-2-Design.md).
+3. **Databases:** Database lessons are planned here; their detailed scope remains open.
+4. **Later chapters:** The remaining chapter assignments will be rearranged before work begins on Chapter 3. Previous candidates include network hardware and addressing; network services and protocols; and troubleshooting, logs, backups, and automation.
+5. **Later chapter:** Assignment to be decided.
+6. **Later chapter:** Assignment to be decided.
 7. **IT capstone and identity resolution:** Apply the curriculum, discover that the player is The Echo (`E.C.H.O_Thread_01`), learn that Echo destroyed Mara's lab to save its subjects, and uncover Mara's manipulation. Final choices and endings remain open.
 
 Pace each chapter in manageable steps with practice and meaningful checks. Some topics need extensive lessons and reading to teach important information thoroughly; do not make brevity or interactivity a reason to leave it out. The campaign need not attempt to teach every specialization.
