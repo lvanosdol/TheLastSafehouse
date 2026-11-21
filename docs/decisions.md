@@ -1,0 +1,20 @@
+# Decision Log
+
+Every significant project decision gets a dated entry with a one-line reason. Newest at the bottom. The Game Mentor and Builder keep this current.
+
+| Date | Decision | Reason |
+|---|---|---|
+| 2026-11-20 | Agent team installed (`.github\agents\`) | Give Copilot specialist roles: Mentor, Planner, Story Designer, Builder, Playtester. |
+| 2026-11-20 | Fresh build; old Godot ZIP is reference-only | Per design doc Section 2: re-evaluate the engine, do not inherit the old project structure. |
+| _pending_ | Engine choice | Awaiting `docs\engine-decision.md`. |
+| 2026-11-20 | Mara replaces the separate AI tutor | Keep help within the story while preserving the learning and boss-bonus rules. |
+| 2026-11-20 | Seven development agents replace earlier chapter rewards | Each chapter unlocks one useful agent; perfect boss completion upgrades it. Version control is a shared feature. |
+| 2026-11-20 | Approve the revised Chapter 1 restoration boss | Practice the current lessons through a readable recovery checklist, preserve records, and introduce Finch and the first agent after the simulated security alert. |
+| 2026-11-20 | Boss mistakes do not forfeit the perfect bonus | Encourage corrections and learning; accepting a warned boss hint or Mara's help still forfeits the upgrade. |
+| 2026-11-20 | Begin Chapter 1 by learning components and rebuilding the PC | The repaired Workshop computer becomes the player's training computer; no second working computer is needed. |
+| 2026-11-20 | Teach later lessons through the in-game computer, with Mara available | Interactive computer examples lead the lessons while Mara offers guidance and transitions when needed. |
+| 2026-11-20 | Match lesson depth to the subject rather than requiring brief lessons | Important material should be taught thoroughly, including through reading when appropriate. |
+| 2026-11-20 | Supersede the Chapter 2 draft and redesign it together | The new reference material points toward programming and database fundamentals. |
+| 2026-11-20 | Let the player name their character and receive an in-game laptop after Chapter 1 | Personalize the introduction and provide a computer for future learning and software components. |
+| 2026-11-20 | Deliver chapter software components on in-game thumb drives | The player plugs each drive into the laptop to build the app over the campaign. |
+| 2026-11-21 | Use Python for Chapter 2 programming fundamentals | Give beginners a practical language for hands-on examples in a simulated terminal. |

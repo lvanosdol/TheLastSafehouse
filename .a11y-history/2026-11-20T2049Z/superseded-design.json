@@ -1,0 +1,12 @@
+{
+  "skill": "markdown-scanner",
+  "scope": [
+    "G:\\The Last Safehouse NEWWW\\Design\\Superseded\\Superseded-Design-Sections.md"
+  ],
+  "findings": [],
+  "notes": [
+    "No Critical or Serious findings were identified across the nine domains.",
+    "Lower-severity findings are omitted per the selected profile.",
+    "Markdownlint was not run because it is not installed."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "skill": "markdown-scanner",
+  "scope": [
+    "G:\\The Last Safehouse NEWWW\\Design\\The-Last-Safehouse-Design.md"
+  ],
+  "findings": [],
+  "notes": [
+    "No Critical or Serious findings were identified.",
+    "The scanner used the installed accessibility-agents schema."
+  ]
+}

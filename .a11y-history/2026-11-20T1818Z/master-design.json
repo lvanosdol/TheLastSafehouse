@@ -1,0 +1,10 @@
+{
+  "skill": "markdown-scanner",
+  "scope": [
+    "G:\\The Last Safehouse NEWWW\\Design\\The-Last-Safehouse-Design.md"
+  ],
+  "findings": [],
+  "notes": [
+    "The user-selected scan profile reports Critical and Serious findings only. Moderate and Minor findings were not included in this scan."
+  ]
+}
