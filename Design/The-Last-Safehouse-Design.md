@@ -54,6 +54,14 @@ Accept alternate valid solutions unless a specific technique is the learning obj
 
 Lesson checkpoints have unlimited retries and no penalty. Lesson hints/retries do not affect the Console Repair bonus.
 
+### Sticky notes
+
+The in-game computer includes a sticky note app. Players can create as many notes as they want for different lessons, write and edit them, highlight important text, and delete notes they no longer need. Notes appear like small sticky notes above the in-game computer screen so players can see and edit them while working. Provide keyboard access and make highlighting identifiable without relying on color alone.
+
+Lesson notes save automatically as the player writes and persist across chapters and sessions. Closing the app hides notes without deleting them; reopening it lets the player continue where they left off.
+
+Players can use separate sticky notes during a boss, but cannot see their lesson notes until afterward. Notes created during a boss are removed when that boss ends. Using the player's own notes is not a boss hint and does not forfeit a perfect bonus. In the timed Chapter 2 boss, the countdown continues while a sticky note is open or being edited.
+
 ### Progressive hints
 
 Hints are available immediately. Use three levels:

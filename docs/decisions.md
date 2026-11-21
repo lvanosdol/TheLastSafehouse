@@ -10,7 +10,7 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-20 | Mara replaces the separate AI tutor | Keep help within the story while preserving the learning and boss-bonus rules. |
 | 2026-11-20 | Seven development agents replace earlier chapter rewards | Each chapter unlocks one useful agent; perfect boss completion upgrades it. Version control is a shared feature. |
 | 2026-11-20 | Approve the revised Chapter 1 restoration boss | Practice the current lessons through a readable recovery checklist, preserve records, and introduce Finch and the first agent after the simulated security alert. |
-| 2026-11-20 | Boss mistakes do not forfeit the perfect bonus | Encourage corrections and learning; accepting a warned boss hint or Mara's help still forfeits the upgrade. |
+| 2026-11-20 | Boss mistakes normally do not forfeit the perfect bonus | Encourage corrections and learning; accepting a warned boss hint or Mara's help still forfeits the upgrade. Chapter 2 has a later run-specific exception. |
 | 2026-11-20 | Begin Chapter 1 by learning components and rebuilding the PC | The repaired Workshop computer becomes the player's training computer; no second working computer is needed. |
 | 2026-11-20 | Teach later lessons through the in-game computer, with Mara available | Interactive computer examples lead the lessons while Mara offers guidance and transitions when needed. |
 | 2026-11-20 | Match lesson depth to the subject rather than requiring brief lessons | Important material should be taught thoroughly, including through reading when appropriate. |
@@ -21,3 +21,5 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-21 | Plan database lessons for Chapter 3 and rearrange later chapters before designing it | Keep Chapter 2 focused on programming and revisit the campaign sequence together. |
 | 2026-11-21 | Chapter 2 boss time extension forfeits the perfect bonus | Make finishing within the initial deadline part of the boss's perfect finish while preserving progress and the standard reward. |
 | 2026-11-21 | End the Chapter 2 boss timer with unlimited completion time when it expires | Preserve the player's work and standard reward while the initial deadline remains part of a perfect finish. |
+| 2026-11-21 | Add persistent lesson sticky notes and separate temporary boss notes | Let players keep their own reminders while keeping lesson notes unavailable during bosses. |
+| 2026-11-21 | Type unlocked Chapter 2 boss words and allow one free run | Give players placement feedback while making a later incorrect run forfeit the perfect bonus. |
