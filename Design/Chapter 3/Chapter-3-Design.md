@@ -303,3 +303,426 @@ The report shows the offline devices, including the Habitat Ventilation Controll
 > **Finch:** "Right. Still, I'll keep the record."
 
 The discovery remains unexplained. The player moves on to Lesson 4, where they learn how to change records safely. Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+
+## Lesson 4: Adding and changing records
+
+### Opening
+
+Finch compares the registry with recovered maintenance notes and finds that some information needs correcting.
+
+> **Finch:** "The report helped, but some of these records don't match the maintenance notes. Can we fix them without making things worse?"
+>
+> **Mara:** "Yes. Review each change before applying it, and make sure you know which record you're changing."
+
+### Lesson pages
+
+The player uses **Next** and **Back** and can review the pages during the checkpoint. All records and changes are simulated within the game.
+
+#### Page 1: Changing a database
+
+In Lesson 3, `SELECT` retrieved information without changing it. SQL can also change records:
+
+- `INSERT` adds a new record.
+- `UPDATE` changes an existing record.
+- `DELETE` removes a record.
+
+Changes deserve care. The player will preview each checkpoint change before deciding whether to apply it.
+
+#### Page 2: Add a record with `INSERT`
+
+```sql
+INSERT INTO devices (device_id, device_name, room, online, priority, status)
+VALUES ('DEV-99', 'Test Sensor', 'Workshop', FALSE, 2, 'Active');
+```
+
+`INSERT INTO` names the table and fields. `VALUES` supplies a value for each field in the same order. Text values use single quotes; `FALSE` is a true/false value and `2` is a number.
+
+This is an example, not a checkpoint instruction. The Device ID must be unique because of the primary-key rule established in Lesson 2.
+
+#### Page 3: Change a record with `UPDATE`
+
+```sql
+UPDATE devices
+SET room = 'Workshop'
+WHERE device_id = 'DEV-99';
+```
+
+`UPDATE` names the table. `SET` identifies the field and new value. `WHERE` identifies which record to change.
+
+Without a `WHERE` condition, an update can change **every record** in the table. Check the condition and preview the affected record before applying the change.
+
+#### Page 4: Remove a record with `DELETE`
+
+```sql
+DELETE FROM devices
+WHERE device_id = 'DEV-99';
+```
+
+`DELETE FROM` names the table, and `WHERE` identifies the record to remove. Without a `WHERE` condition, the command can remove **every record** in the table.
+
+Deleting is different from archiving: an archived record stays in the database with a status showing it is archived. Delete only when the task clearly calls for removal.
+
+#### Page 5: Preview before applying
+
+For this simulated lesson, pressing **Preview** shows the records a statement would add, change, or remove. The player can cancel the preview and edit their statement. Selecting **Apply** confirms the change; the player can undo an applied checkpoint change if they need to correct it.
+
+> **Finch:** "A chance to look before we change anything? I approve of this system."
+
+### Checkpoint: Correct the registry
+
+There is no separate practice activity. Finch shows the player a few relevant records. The `status` field describes whether a record is Active or Archived; it is separate from the device's true/false `online` field.
+
+| device_id | device_name | room | online | priority | status |
+|---|---|---|---|---|---|
+| `DEV-07` | Coolant Monitor | Storage | TRUE | 1 | Active |
+| `DEV-10` | Temporary Test Entry | Workshop | FALSE | 3 | Active |
+| `DEV-11` | Habitat Pressure Sensor | Habitat 02 | FALSE | 2 | Archived |
+
+The rest of the registry remains in place. The notes provide these instructions:
+
+1. **Add:** Device `DEV-09` is a Pump Sensor in the Workshop. It is offline, has priority `2`, and its record is Active. Its ID is not already in use.
+2. **Update:** The Coolant Monitor (`DEV-07`) was moved from Storage to the Workshop. Correct its room.
+3. **Delete:** `DEV-10` is a temporary test entry, not a real device record. Remove it.
+4. **Preserve:** Leave the archived `DEV-11` record unchanged. Its Archived status was deliberately set in an earlier record, but the notes do not explain why.
+
+The player writes each SQL statement, previews the affected record, and applies it when satisfied. They can cancel a preview or undo an applied checkpoint change. Successful completion requires all three requested changes and the archived record to remain intact.
+
+**Expected statements:**
+
+```sql
+INSERT INTO devices (device_id, device_name, room, online, priority, status)
+VALUES ('DEV-09', 'Pump Sensor', 'Workshop', FALSE, 2, 'Active');
+
+UPDATE devices
+SET room = 'Workshop'
+WHERE device_id = 'DEV-07';
+
+DELETE FROM devices
+WHERE device_id = 'DEV-10';
+```
+
+Equivalent valid statements and formatting can be accepted when they produce the requested changes without altering other records.
+
+### Feedback and hints
+
+A syntax error identifies the part of the statement that needs attention without providing the full answer. The preview shows what would change before anything is applied. If a statement targets the wrong records or produces the wrong values, Finch explains what needs review. The player's statement remains editable. Hints and retries are unlimited and penalty-free.
+
+Finch offers three hint levels:
+
+1. "Use the maintenance notes to decide which record to add, change, or remove. Leave the archived record alone."
+2. "Use `INSERT` for the new device, `UPDATE` for the room correction, and `DELETE` for the temporary entry. Check the preview each time."
+3. "For changes to existing records, use the device ID in a `WHERE` condition so you target the right record. For the new record, match the values to the listed fields in order."
+
+### Completion
+
+The registry reflects the maintenance notes, while the archived Habitat record remains preserved.
+
+> **Finch:** "The corrections are in place. And that Habitat record is still here, just marked Archived."
+>
+> **Mara:** "Archived records aren't always useful. Leave it for now."
+>
+> **Finch:** "All right. I'd still like to know why someone kept it."
+
+This leads into Lesson 5, where the player learns how device, room, and maintenance records relate to one another. Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+
+## Lesson 5: Relationships and joins
+
+### Opening
+
+The corrected registry contains device records, but Finch also finds separate lists of rooms and maintenance events.
+
+> **Finch:** "The devices are in one list, the rooms are in another, and the maintenance notes have their own list. I'm beginning to understand why this took so long."
+>
+> **Mara:** "The lists are connected. Learn how to follow those connections, and you can bring the information together."
+
+### Lesson pages
+
+The player uses **Next** and **Back** and can review the pages during the checkpoint. All records and queries are simulated within the game.
+
+#### Page 1: Why use separate tables?
+
+A database can keep different kinds of information in separate tables. The registry uses:
+
+- **`devices`:** Information about each device.
+- **`rooms`:** Information about each room.
+- **`maintenance_events`:** Records of maintenance performed on devices.
+
+Separate tables help organize related information without repeating every room detail in every device record.
+
+For this lesson, the registry has been organized so each device's existing room is represented by a `room_id`. The room names are still preserved in the `rooms` table. The player does not need to perform this reorganization.
+
+#### Page 2: Primary and foreign keys
+
+In Lesson 2, the player learned that a **primary key** identifies each record in a table. A **foreign key** is a field that connects a record to a record in another table.
+
+For example:
+
+- `rooms.room_id` identifies a room in the `rooms` table.
+- `devices.room_id` refers to that room's ID.
+- `devices.device_id` identifies a device in the `devices` table.
+- `maintenance_events.device_id` refers to the device associated with an event.
+
+The notation `devices.room_id` means the `room_id` field in the `devices` table. A foreign key helps the database keep relationships valid: a device's room ID should refer to a room that exists.
+
+#### Page 3: Joining devices and rooms
+
+A **join** combines related information from tables in a query result. It does not merge or change the stored tables.
+
+```sql
+SELECT devices.device_name, rooms.room_name
+FROM devices
+JOIN rooms ON devices.room_id = rooms.room_id;
+```
+
+- `JOIN rooms` adds the rooms table to the query.
+- `ON` explains how the records match.
+- `devices.room_id = rooms.room_id` matches each device's room ID with the corresponding room record.
+
+The result shows device names alongside room names. This is an **inner join**: only records with matching values in both tables appear.
+
+#### Page 4: Adding maintenance events
+
+A query can join another table by adding another `JOIN` and `ON` condition:
+
+```sql
+SELECT devices.device_id, maintenance_events.event_description
+FROM devices
+JOIN rooms ON devices.room_id = rooms.room_id
+JOIN maintenance_events ON devices.device_id = maintenance_events.device_id;
+```
+
+The first join connects devices to rooms. The second connects devices to their maintenance events. A device with several matching events appears once for each event. A device with no matching event does not appear in this inner-join result.
+
+This lesson shows **matching events**. It does not ask the player to find the latest event.
+
+#### Page 5: Choosing fields from joined tables
+
+After joining tables, `SELECT` can include fields from any of them. Use the table name and a period before each field, such as `devices.device_name` or `rooms.room_name`, to make it clear where the field comes from.
+
+> **Finch:** "So the tables stay separate, but the report can still show their information together. That's much tidier than the pile of notes I found."
+
+### Checkpoint: Build a maintenance report
+
+There is no separate practice activity. The registry shows these records:
+
+**`rooms`**
+
+| room_id | room_name |
+|---|---|
+| `RM-01` | Workshop |
+| `RM-02` | Storage |
+| `RM-03` | Habitat 02 |
+
+**`devices`**
+
+| device_id | device_name | room_id |
+|---|---|---|
+| `DEV-07` | Coolant Monitor | `RM-01` |
+| `DEV-08` | Habitat Ventilation Controller | `RM-03` |
+| `DEV-09` | Pump Sensor | `RM-01` |
+| `DEV-11` | Habitat Pressure Sensor | `RM-03` |
+
+The Coolant Monitor's room reflects the correction from Lesson 4. The archived Habitat Pressure Sensor record is still preserved.
+
+**`maintenance_events`**
+
+| event_id | device_id | event_description |
+|---|---|---|
+| `EVT-01` | `DEV-07` | Coolant level checked |
+| `EVT-02` | `DEV-08` | Ventilation filter inspected |
+| `EVT-03` | `DEV-08` | Airflow sensor tested |
+| `EVT-04` | `DEV-11` | Pressure sensor calibrated |
+
+**Player tasks:**
+
+1. Identify `devices.room_id` as the field that connects a device to a room, and `maintenance_events.device_id` as the field that connects an event to a device.
+2. Write and run a query joining all three tables. Show each matching device's ID, name, room name, and event description.
+
+**Expected query:**
+
+```sql
+SELECT devices.device_id, devices.device_name, rooms.room_name,
+       maintenance_events.event_description
+FROM devices
+JOIN rooms ON devices.room_id = rooms.room_id
+JOIN maintenance_events ON devices.device_id = maintenance_events.device_id;
+```
+
+**Expected report:**
+
+| Device ID | Device name | Room | Maintenance event |
+|---|---|---|---|
+| `DEV-07` | Coolant Monitor | Workshop | Coolant level checked |
+| `DEV-08` | Habitat Ventilation Controller | Habitat 02 | Ventilation filter inspected |
+| `DEV-08` | Habitat Ventilation Controller | Habitat 02 | Airflow sensor tested |
+| `DEV-11` | Habitat Pressure Sensor | Habitat 02 | Pressure sensor calibrated |
+
+`DEV-09` does not appear because it has no matching maintenance event in these records. The result order is not required; equivalent valid queries and formatting can be accepted.
+
+### Feedback and hints
+
+Correct field selections are marked **Correct**; incorrect selections are marked **Try again**. When the player runs the query, syntax feedback identifies what needs attention without providing the full answer. If the result is incomplete or contains incorrect matches, feedback points the player toward the fields or join conditions to review. The query stays editable. Hints and retries are unlimited and penalty-free.
+
+Finch offers three hint levels:
+
+1. "Start with devices and rooms, then connect the maintenance events to their devices."
+2. "Match the room ID fields for the first join. For the second, look for the field shared by devices and maintenance events."
+3. "Each `JOIN` needs an `ON` condition. Select the requested fields from all three tables, and remember that a device can have more than one matching event."
+
+### Completion
+
+The report shows several maintenance events associated with Habitat 02, including the archived pressure sensor's event.
+
+> **Finch:** "There are several maintenance records for Habitat 02. Someone was checking equipment there."
+>
+> **Mara:** "It was an unused training area. Those must be old records."
+>
+> **Finch:** "Maybe. I'll keep them with the rest of the report."
+
+The records raise questions but do not yet establish what happened in Habitat 02. The player moves on to Lesson 6 to verify the registry's integrity. Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+
+## Lesson 6: Data integrity and verification
+
+### Opening
+
+Finch's maintenance report is complete, but Mara wants to make sure the recovered records can be trusted before other systems use them.
+
+> **Mara:** "A report is only as useful as the information behind it. Before we rely on this registry, we need to check it."
+>
+> **Finch:** "Please tell me there's a way to do that without reading every record out loud."
+>
+> **Mara:** "There is. We can test the rules and investigate anything that fails."
+
+### Lesson pages
+
+The player uses **Next** and **Back** and can review the pages during the checkpoint. All records, checks, and changes are simulated within the game.
+
+#### Page 1: What is data integrity?
+
+**Data integrity** means keeping information accurate and consistent according to the rules it is supposed to follow.
+
+For the registry, useful checks include:
+
+- Are required values present?
+- Are device IDs unique?
+- Do foreign keys point to records that exist?
+- Do queries return the records and fields we expect?
+
+A successful check gives evidence that a rule is being followed. It does not prove that every detail in the database is true.
+
+#### Page 2: Required values
+
+Some fields must contain a value. For example, a maintenance event needs a description so someone can tell what was done.
+
+In this lesson, a missing value is shown as `NULL`. It means the value is absent or unknown; it is not the same as the text `'NULL'`.
+
+If a required value is missing, find reliable information before filling it in. Don't guess just to make a check pass.
+
+#### Page 3: Checking keys and relationships
+
+A primary key must be present and unique. The device registry uses `device_id` to distinguish devices.
+
+A foreign key connects records across tables. For example, `devices.room_id` should refer to a room that exists in `rooms`. A device pointing to a nonexistent room would have an invalid relationship.
+
+The player can test these rules with isolated simulated attempts. The test does not change the actual registry.
+
+#### Page 4: Checking query results
+
+A query can run without an error and still return the wrong information. Compare its results against the task and the records:
+
+- Are the requested fields present?
+- Are the right records included?
+- Do joined records match through the correct keys?
+- Is any important information missing?
+
+For example, a report showing a device and room is not complete if the requested maintenance description is missing.
+
+#### Page 5: Correct, then check again
+
+When a check finds a problem:
+
+1. Identify what failed.
+2. Look for evidence that tells you the correct value.
+3. Preview and apply the correction.
+4. Run the checks again.
+
+> **Finch:** "So a failed check isn't the end of the world. It tells us where to look."
+>
+> **Mara:** "Exactly. Correcting a problem is part of verification."
+
+### Checkpoint: Verify the recovered records
+
+There is no separate practice activity. Finch adds a newly recovered maintenance event to the records under review. Its description is missing:
+
+**`maintenance_events`**
+
+| event_id | device_id | event_description |
+|---|---|---|
+| `EVT-05` | `DEV-09` | `NULL` |
+
+From Lesson 4, `DEV-09` is the Pump Sensor in the Workshop. A recovered maintenance note says:
+
+```text
+Event: EVT-05
+Device: DEV-09
+Work completed: Pump sensor inspected
+```
+
+The verification screen checks:
+
+1. **Required value:** Every maintenance event must have a non-missing description. This check initially fails for `EVT-05`.
+2. **Duplicate prevention:** An isolated test tries to add another device with the existing ID `DEV-07`. The test passes if the duplicate is rejected; it does not add a record to the registry.
+3. **Valid relationships:** An isolated test tries to assign a device to nonexistent room `RM-99`. The test passes if the invalid relationship is rejected; it does not change the registry.
+4. **Query result:** After the correction, a report for `EVT-05` must show its device ID, device name, room name, and maintenance description.
+
+**Player tasks:**
+
+1. Run the checks and identify the missing description.
+2. Use the recovered note to write an `UPDATE` statement for `EVT-05`. Preview the change and apply it.
+3. Run the checks again, including the isolated duplicate and relationship tests.
+4. Write and run the joined report for `EVT-05`, then verify its result.
+
+**Expected correction:**
+
+```sql
+UPDATE maintenance_events
+SET event_description = 'Pump sensor inspected'
+WHERE event_id = 'EVT-05';
+```
+
+**Expected report query:**
+
+```sql
+SELECT devices.device_id, devices.device_name, rooms.room_name,
+       maintenance_events.event_description
+FROM devices
+JOIN rooms ON devices.room_id = rooms.room_id
+JOIN maintenance_events ON devices.device_id = maintenance_events.device_id
+WHERE maintenance_events.event_id = 'EVT-05';
+```
+
+**Expected result:** `DEV-09` | Pump Sensor | Workshop | Pump sensor inspected.
+
+The recovered event is being checked before its description requirement is enforced. Once the value is corrected, the checkpoint can confirm that the required-value rule is in place and would reject another missing description. Equivalent valid statements and formatting can be accepted when they produce the requested result without changing other records.
+
+### Feedback and hints
+
+Each check reports **Pass** or **Needs attention** and identifies the rule involved. A preview shows what the correction would change before the player applies it; the player can cancel or undo the checkpoint change. Query feedback identifies syntax errors or discrepancies without providing the complete answer. The player's statements remain editable. Hints and retries are unlimited and penalty-free.
+
+Finch offers three hint levels:
+
+1. "Start with the check that needs attention, then compare that record with the recovered note."
+2. "The maintenance event's description is missing. Use its event ID to target the correction, then rerun the checks."
+3. "A joined report needs the device-to-room and device-to-event connections from Lesson 5. Filter by the event ID to review just the recovered event."
+
+### Completion
+
+The corrected records pass the checks, and the recovered registry section becomes available to Finch's auxiliary monitor.
+
+> **Finch:** "The checks passed, and the monitor can use the recovered records now."
+>
+> **Mara:** "Good. Keep the report ready. There may be more of the registry to restore."
+>
+> **Finch:** "I'll keep the Habitat records, too. They passed the checks, even if we still don't know their whole story."
+
+The player moves toward the boss recovery operation. The checks verify this recovered section; they do not finish the larger registry restoration or resolve the Habitat mystery. Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
