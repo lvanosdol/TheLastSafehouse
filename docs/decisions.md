@@ -23,3 +23,4 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-21 | End the Chapter 2 boss timer with unlimited completion time when it expires | Preserve the player's work and standard reward while the initial deadline remains part of a perfect finish. |
 | 2026-11-21 | Add persistent lesson sticky notes and separate temporary boss notes | Let players keep their own reminders while keeping lesson notes unavailable during bosses. |
 | 2026-11-21 | Type unlocked Chapter 2 boss words and allow one free run | Give players placement feedback while making a later incorrect run forfeit the perfect bonus. |
+| 2026-11-21 | Use the standard Chapter 2 boss timer with pause and resume behavior | Keep the timed challenge while preserving progress and remaining time when the player leaves. |

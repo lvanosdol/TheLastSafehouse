@@ -37,11 +37,13 @@ These are different representations of the same value, not different programming
 
 The lesson shows an eight-bit reference chart and explains that a `1` contributes its position's value while a `0` contributes nothing. For example:
 
-| Position value | 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
+| Position | 8 | 7 | 6 | 5 | 4 | 3 | 2 | 1 |
 |---|---|---|---|---|---|---|---|---|
-| Example binary | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 1 |
+| Bit | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 1 |
+| Base | 2⁷ | 2⁶ | 2⁵ | 2⁴ | 2³ | 2² | 2¹ | 2⁰ |
+| Value | 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
 
-The example's decimal value is 32 + 4 + 1 = **37**. Present the chart as readable text, not color alone.
+Explain that each base entry is a power of two: for example, 2³ means multiplying three 2s together, giving 8, and 2⁰ equals 1. Each value doubles moving left. Add the values under the `1` bits; in this example, 32 + 4 + 1 = **37**. Present the chart as readable text, not color alone.
 
 **Checkpoint — Binary conversions:** The Workshop's monitoring console detects three devices, but an old diagnostic report displays their numeric identifiers in binary. Mara asks the player to convert the identifiers to decimal so they can be matched to the Workshop's inventory.
 
@@ -56,6 +58,8 @@ The player converts three different eight-digit binary numbers to decimal by add
 These numbers identify devices; they are not temperature or battery readings.
 
 The reference chart remains available throughout; all three answers must be correct to complete the checkpoint. Teach and demonstrate the method before testing it. Mara remains available for help, and the three hint levels and retries are unlimited and penalty-free.
+
+**Checkpoint hints:** For each identifier: (1) remind the player that a `1` contributes its place value and a `0` contributes nothing; (2) point to the chart positions above that identifier's `1` digits; (3) show how to convert a different binary number. A wrong answer allows a retry without revealing the answer; a correct answer reveals the device name.
 
 ## Lesson 2: Types of computer languages
 
@@ -84,6 +88,8 @@ The player chooses an appropriate kind of language for each task. As the player 
 | Inspect processor-level behavior | Assembly language |
 
 The player is choosing tools, not creating the page, database query, script, or diagnostic. This prepares them for later work on the monitoring script. Mara is available for help, and the three hint levels and retries remain unlimited and penalty-free.
+
+**Checkpoint hints:** (1) Remind the player that language types serve different purposes: structuring content, working with stored information, giving instructions, or working close to a processor; (2) point them to the task's goal and the lesson's language descriptions; (3) show a separate example, such as using HTML to organize an article's headings, without completing the restoration plan. Wrong choices can be corrected without penalty.
 
 ## Lesson 3: Data, variables, and the terminal
 
@@ -178,6 +184,8 @@ print("Charging:", charging)
 
 Running a correct solution displays the Workshop location, a **60%** battery reading, and `True` for charging. The readout is fictional and does not change a battery. The tasks also check identifying data types in the record and recognizing a value intended to remain constant. Teach and practice the required syntax first, including addition and displaying values; accept different correct answers where possible, provide clear feedback, and preserve the player's work. Mara is available for help; three levels of hints and retries remain unlimited and penalty-free. No code runs on the player's real computer.
 
+**Checkpoint hints:** Adapt the hint to the blank: (1) remind the player of the relevant concept, such as text, Boolean values, assignment, or addition; (2) point to the matching part of Finch's request and the code line involved; (3) show a different example, such as starting at `30`, adding `5`, and producing `35`. Feedback explains what needs attention without supplying the missing answer.
+
 ## Lesson 4: Program logic and decisions
 
 **Depth:** Teach these foundations thoroughly through reading, examples, and guided practice. Divide the material into manageable sections rather than omitting important concepts for brevity.
@@ -226,6 +234,8 @@ ____:
 ```
 
 The pieces include `20`, `if`, `<=`, and `else`. The existing charging value remains in the readout but does not need its own condition. Test **60%** for a normal message and **15%** and **20%** for a warning. The simulation supplies each separate current test reading after the Lesson 3 calculation but before the readout and warning run, so the earlier `+ 15` does not alter it. Validate behavior and meaning rather than requiring exact message wording. Preserve the player's work, give clear feedback, and provide three levels of hints and unlimited penalty-free retries. The exercise remains fictional and runs only in the game's simulation.
+
+**Checkpoint hints:** (1) Remind the player that `if` checks a condition and `else` runs when it is false; (2) point to the comparison with the named limit and remind them that the warning includes the limit itself; (3) show a separate sensor example using `<=` and explain its two branches. Feedback identifies which test reading did not produce the expected type of message without placing pieces for the player.
 
 **Cutscene — After the checkpoint:** Finch sighs in relief and says:
 
@@ -349,6 +359,8 @@ The expected report marks **60%, 42%, and 55%** as okay and **15% and 18%** as l
 
 Accept equivalent correct solutions and status messages that communicate the right result rather than requiring exact wording. Preserve the player's work, give clear feedback, and provide three levels of hints and unlimited penalty-free retries. The code and report remain inside the game's simulation. Do not require dictionaries, nested lists, or multiple functions for this checkpoint.
 
+**Checkpoint hints:** Focus on the list, function, decision, or loop the player is working on: (1) explain the relevant idea, such as a loop visiting each item; (2) point to the section that holds readings, checks a reading, or repeats the work; (3) show a different short example, such as a loop displaying a list, without filling in the report. Feedback identifies the part needing attention and lets the player move pieces and retry.
+
 **Story result:** After the report succeeds, the console saves it as the **Workshop Overnight Battery Report**. Finch sees that the battery reached a low level twice, rather than having only one isolated dip.
 
 > **Finch:** "Two low readings. Thank you for organizing my concerns so efficiently."
@@ -367,7 +379,26 @@ Next, demonstrate a `NameError` with `battery = 60` followed by `print(batery)`.
 
 Explain that a program can run without an error and still produce a wrong result. The intended battery warning is **20% or below**; `< 20` fails at exactly 20, while `<= 20` includes it. Demonstrate testing **15%, 20%, and 60%** for a low reading, the boundary, and a normal reading. After the explanation, the player practices finding a wrong result and correcting a comparison.
 
-**Checkpoint — Repair the battery report:** Finch gives the player a broken copy of the overnight report with both a misspelled variable and an incorrect threshold comparison. The player can freely edit the code in the simulated terminal, run it, and test **60%, 20%, and 15%**. Show relevant errors and test results without revealing the fix. Preserve work and accept equivalent correct solutions that produce the intended behavior. The exact code and misspelling remain to be designed.
+**Checkpoint — Repair the battery report:** Finch gives the player this broken copy of the overnight report:
+
+```python
+LOW_BATTERY_LIMIT = 20
+battery_readings = [60, 20, 15]
+
+def get_battery_status(battery):
+    if battery < LOW_BATTERY_LIMIT:
+        return "Warning: low battery"
+    else:
+        return "Battery level is okay"
+
+for battery in battery_readings:
+    status = get_battery_status(batery)
+    print("Battery:", battery, "% -", status)
+```
+
+The code contains both a misspelled variable (`batery`) and an incorrect threshold comparison (`<` instead of `<=`). The player can freely edit the code in the simulated terminal, run it, and test **60%, 20%, and 15%**. The intended result is a normal status at 60 and warnings at 20 and 15. Show relevant errors and test results without revealing the fix. Preserve work and accept equivalent correct solutions that produce the intended behavior.
+
+**Checkpoint hints:** Adapt to the error or incorrect test result: (1) remind the player that an error is a clue and a program can run but give a wrong result; (2) point to the line named in the error or the comparison when the result at the limit is wrong; (3) show a separate misspelled variable example or a different threshold comparison without correcting the player's code.
 
 Mara is available for help, with three levels of hints and unlimited penalty-free retries. The exercise remains inside the simulated computer.
 
@@ -385,21 +416,109 @@ The countdown begins after the cutscene and boss instructions, not during Finch'
 
 After main power fails, the player repairs a program on Finch's simulated system to restore power and the auxiliary monitor.
 
+**Screen reference:** Use the supplied [boss-screen image](Boss-Screen-Reference.png) as a visual reference. The large Workshop monitor shows the code terminal on the left, the word bank and output on the right, the timer at the top, and a Run button inside the code window. A smaller laptop screen in front shows a binary puzzle and the eight-bit place-value chart. Mara's hint and sticky-note controls are accessible from the screen.
+
+The reference image's terminal text and word bank are illustrative; use the Python program and puzzle defined below. Its displayed time is also illustrative; the initial timer is approximately 25 minutes. Keep controls keyboard-accessible and make status understandable without relying on color or faintness alone.
+
 **Binary puzzle and repair:** The program is significantly unfinished, but enough code remains to provide structure. `#` comments above each code section explain its purpose. The missing words appear with faint letters.
 
-1. The player uses the eight-bit reference chart to convert a binary number to decimal.
+1. The player uses the eight-bit reference chart to convert a binary number to decimal, entering the place-value contributions and their total as described below.
 2. The game automatically darkens the corresponding letter everywhere it appears in the missing words. One correct conversion unlocks all occurrences of that letter; the player does not need to learn a letter-to-number key.
 3. When all the letters in a word are unlocked, the player can type the word into a blank in the terminal.
 4. The player can type an unlocked word into any blank, using the code, comments, and earlier lessons to work out where it belongs rather than being told its position.
-5. Once all words are entered, the player presses **Run**. The word list marks correctly placed words green and incorrectly placed words red. The player can edit the code and run it again; all words must be correctly placed for the repair to succeed.
+5. Once all words are entered, the player presses **Run**. The word list marks correctly placed words green and incorrectly placed words red, with **Correct** and **Incorrect** text labels so the feedback does not depend on color alone. The player can edit the code and run it again; all words must be correctly placed for the repair to succeed.
 
 The first run is free and does not forfeit the perfect bonus. If the player runs the code again and any words are still in the wrong places, the perfect bonus is forfeited, even if different words are wrong. The player keeps their progress and can continue correcting the code to earn the standard reward. Explain this rule before the boss begins.
 
 The comments are part of the task, not optional boss hints. Code and system interactions remain inside the game's simulation.
 
-**Timer and rewards:** The initial limit is approximately 25 minutes, subject to playtesting, and starts after the opening cutscene and instructions. Give the player calm warnings at **15 minutes** and **5 minutes** remaining during the initial countdown. Explain before the countdown that letting time run out forfeits the perfect bonus.
+### Binary screen and navigation
 
-If time runs out, Finch says he will shut down unnecessary Workshop lights to give the player more time. The player keeps their progress and has unlimited time to finish, with no second countdown. They forfeit the perfect bonus but can still complete the chapter and receive the standard agent. Accepting a boss hint or Mara's help also forfeits the bonus, but only after a warning and confirmation; cancelling preserves eligibility.
+Keep the Workshop appearance of the screen reference, but arrange the chart like the Lesson 1 chart: rows for **Position** (8 through 1), **Bit**, **Base** (2⁷ through 2⁰), and **Value** (128 through 1). Underneath, provide an entry for each position and a field for the decimal total.
+
+The player enters the position's value beneath each `1`. Beneath a `0`, either a blank entry or `0` is correct. The player adds the contributions, enters the total, and submits. A correct submission unlocks its letter; an incorrect submission marks the entries or total needing attention without revealing the answers. Preserve entries for revision. Incorrect submissions do not count as a boss Run or affect the perfect bonus.
+
+Show one binary puzzle at a time with a **Skip** button. Skip moves past the current puzzle without solving it or counting as a Run; skipped, unsolved puzzles return in the cycle. Solved puzzles stay solved, and partially entered answers remain when the player returns. The timer continues during puzzle navigation. Playtest the time needed to enter all place-value contributions.
+
+### Boss program
+
+The unfinished program checks saved battery readings, sets the fictional main-power status, and displays the recovered diagnostics:
+
+```python
+LOW_BATTERY_LIMIT = 20
+battery_readings = [60, 15, 42, 18, 55]
+
+# Decide whether one battery reading needs a warning.
+____ get_battery_status(battery):
+    ____ battery <= LOW_BATTERY_LIMIT:
+        ____ "WARNING: Backup battery low"
+    ____:
+        return "Backup battery level is okay"
+
+# Check each saved reading and display its status.
+____ reading in battery_readings:
+    status = get_battery_status(reading)
+    ____("Battery:", reading, "% -", status)
+
+# Restore main power in Finch's simulated system.
+main_power_online = ____
+
+# Display the recovered diagnostic information.
+if main_power_online:
+    print("AUXILIARY MONITOR: ONLINE")
+    print("CHARGING RELAY: DISCONNECTED")
+    print("NON ESSENTIAL POWER LOADS: IDENTIFIED")
+    print("LOCAL CONTROL: AVAILABLE")
+    print("REMOTE ACCESS: DENIED")
+    print("SAFEGUARD: ECHO-02")
+```
+
+The missing words are `def`, `if`, `return`, `else`, `for`, `print`, and `True`. Python capitalization matters when typing, including the capital `T` in `True`. The power variable is fictional: the game simulation responds to a correctly completed program; it does not control real power.
+
+### Binary conversions
+
+Use one conversion per distinct letter. When the player enters the correct decimal answer, the game darkens that letter everywhere it appears in the missing-word list, regardless of letter case. The player does not need to learn the mapping below; it defines the game's automatic unlocks.
+
+| Binary | Decimal | Letter unlocked |
+|---|---:|---|
+| `00000100` | 4 | D |
+| `00000101` | 5 | E |
+| `00000110` | 6 | F |
+| `00001001` | 9 | I |
+| `00001100` | 12 | L |
+| `00001110` | 14 | N |
+| `00001111` | 15 | O |
+| `00010000` | 16 | P |
+| `00010010` | 18 | R |
+| `00010011` | 19 | S |
+| `00010100` | 20 | T |
+| `00010101` | 21 | U |
+
+Incorrect conversions can be retried and do not count as a Run. Playtest whether the 12 conversions fit comfortably within the initial timer.
+
+### Hints
+
+The player chooses whether they need help with a binary conversion or a code gap. Each hint has three levels:
+
+| Level | Binary puzzle | Code placement |
+|---|---|---|
+| 1: Reminder | Remind the player that each `1` contributes its place value. | Remind them what kind of task the code section performs. |
+| 2: Where to look | Point to the relevant positions on the eight-bit chart. | Point to the `#` comment above the section. |
+| 3: Similar example | Show how to convert a different binary number. | Show a similar, separate Python example without completing the boss code. |
+
+Before revealing any hint, warn that using it forfeits the perfect bonus. Confirmation reveals it and forfeits the bonus; cancelling preserves eligibility. The first Run's placement feedback is not a hint and remains free.
+
+**Timer and rewards:** Use the standard timer only, without separate extended-time or no-timer settings. The initial limit is approximately 25 minutes, subject to playtesting, and starts after the opening cutscene and instructions. Give the player calm warnings at **15 minutes** and **5 minutes** remaining during the initial countdown. Explain before the countdown that letting time run out forfeits the perfect bonus.
+
+> **Finch, at 15 minutes:** "We have fifteen minutes left. Power use hasn't changed."
+>
+> **Finch, at 5 minutes:** "Five minutes until safe mode. Take a breath—we're getting closer."
+>
+> **Finch, when time runs out:** "I'm shutting down the unnecessary Workshop lights. That should give you the time you need."
+
+If time runs out, the game clearly reports that the perfect bonus has been forfeited. The player keeps their progress and has unlimited time to finish, with no second countdown. They can still complete the chapter and receive the standard agent. Accepting a boss hint or Mara's help also forfeits the bonus, but only after a warning and confirmation; cancelling preserves eligibility.
+
+The countdown pauses during cutscenes, the pause menu, and displayed hints. Closing the game stops the countdown; reopening resumes with the remaining time. Restore solved puzzles, partial answers, code, boss sticky notes, remaining time, Run history, and perfect-bonus eligibility so closing the game does not reset the attempt. Boss sticky notes are still removed when the boss ends.
 
 The [sticky note app](../The-Last-Safehouse-Design.md#sticky-notes) is available during the boss, but lesson notes are hidden and boss notes are removed when the boss ends. The timer continues while a note is open or being edited.
 
@@ -425,5 +544,3 @@ Finch uses the monitor to disconnect nonessential loads and restore local chargi
 > **Finch:** "One more thing survived the outage. I believe you've earned it."
 
 Inside is a thumb drive containing the Design Agent. Mara hands the drive to the player, who plugs it into their laptop and installs the agent. If the player earned the perfect boss bonus, the drive contains the upgraded Design Agent instead.
-
-The exact program, missing words, binary values, timer pause behavior, and additional timer accessibility options remain to be designed together.
