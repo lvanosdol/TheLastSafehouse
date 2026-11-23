@@ -726,3 +726,217 @@ The corrected records pass the checks, and the recovered registry section become
 > **Finch:** "I'll keep the Habitat records, too. They passed the checks, even if we still don't know their whole story."
 
 The player moves toward the boss recovery operation. The checks verify this recovered section; they do not finish the larger registry restoration or resolve the Habitat mystery. Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+
+## Boss: The Registry Investigation
+
+### Opening
+
+Finch has recovered another batch of registry information, but some records are incomplete or conflict with the existing database.
+
+> **Finch:** "There's more of the registry here, but I don't think we can trust it yet. One of these device IDs is already in use."
+>
+> **Mara:** "Then investigate it. Use the records and the evidence to restore what you can, and verify your work before the other systems rely on it."
+>
+> **Finch:** "I'll keep the recovered notes available. The rest is up to you."
+
+### How the boss works
+
+The player investigates the registry using a **SQL console**, recovered evidence, and the database tables. They write most of the SQL themselves and decide what changes the evidence supports.
+
+Two aids remain visible in opposite top corners:
+
+- **SQL reference key:** Brief reminders of what the SQL keywords do.
+- **Current objective:** A short description of what the player should investigate or accomplish next.
+
+Neither provides a completed answer.
+
+#### SQL reference key
+
+| Keyword | Reminder |
+|---|---|
+| `SELECT` | Choose fields to show |
+| `FROM` | Choose the table to read |
+| `WHERE` | Filter records |
+| `ORDER BY` | Sort results |
+| `ASC` / `DESC` | Sort ascending / descending |
+| `INSERT INTO` | Add a record |
+| `VALUES` | Supply values for a new record |
+| `UPDATE` | Choose a table to change |
+| `SET` | Specify the new value |
+| `DELETE FROM` | Remove records |
+| `JOIN` / `ON` | Connect tables using matching fields |
+
+### Investigation records
+
+These are the records relevant to the boss. Previously recovered records, including `DEV-04`, remain in the registry.
+
+#### Rooms
+
+| room_id | room_name |
+|---|---|
+| `RM-01` | Workshop |
+| `RM-02` | Storage |
+| `RM-03` | Habitat 02 |
+
+#### Devices
+
+| device_id | device_name | room_id | online | priority | status |
+|---|---|---|---|---|---|
+| `DEV-05` | Water Sensor | `RM-02` | FALSE | 2 | Active |
+| `DEV-06` | Ventilation Sensor | `RM-01` | FALSE | 3 | Active |
+| `DEV-07` | Coolant Monitor | `RM-01` | TRUE | 1 | Active |
+| `DEV-08` | Habitat Ventilation Controller | `RM-03` | FALSE | 1 | Active |
+| `DEV-09` | Pump Sensor | `RM-01` | FALSE | 2 | Active |
+| `DEV-11` | Habitat Pressure Sensor | `RM-03` | FALSE | 2 | Archived |
+| `DEV-14` | Temporary Test Entry | `RM-01` | FALSE | 3 | Active |
+
+#### Maintenance events
+
+| event_id | device_id | event_description |
+|---|---|---|
+| `EVT-01` | `DEV-07` | Coolant level checked |
+| `EVT-02` | `DEV-08` | Ventilation filter inspected |
+| `EVT-03` | `DEV-08` | Airflow sensor tested |
+| `EVT-04` | `DEV-11` | Pressure sensor calibrated |
+| `EVT-05` | `DEV-09` | Pump sensor inspected |
+
+### Objective 1: Inspect the evidence
+
+The player examines the table structures and identifies the kinds of information they hold. For example, a device ID is text, a priority is a number, and online status is true/false. They identify `device_id` as the device table's primary key and see how room IDs connect devices to rooms.
+
+One recovered device record is waiting to be added:
+
+| device_id | device_name | room_id | online | priority | status |
+|---|---|---|---|---|---|
+| `DEV-06` | Airflow Relay | `RM-01` | FALSE | 2 | Active |
+
+But `DEV-06` is already assigned to the Ventilation Sensor. A recovered label says:
+
+```text
+Equipment: Airflow Relay
+Assigned ID: DEV-12
+Room: Workshop (RM-01)
+```
+
+The player compares the label with the registry and corrects the recovered record's ID **before adding it**. The existing primary-key protection stays in place.
+
+### Objective 2: Find offline devices
+
+The player writes a query to show the ID, name, and priority of offline devices, sorted from most urgent to least urgent.
+
+**Expected result:**
+
+- `DEV-08` appears first at priority 1.
+- `DEV-05`, `DEV-09`, and `DEV-11` appear at priority 2.
+- `DEV-06` and `DEV-14` appear at priority 3.
+- Records with the same priority can appear in either order.
+- The online Coolant Monitor does not appear.
+
+The report includes the archived record and the temporary test entry because both are offline.
+
+### Objective 3: Repair the registry
+
+The recovered evidence gives the player three jobs:
+
+1. **Equipment label:** Add the corrected `DEV-12` Airflow Relay record.
+2. **Maintenance note:** Change the Ventilation Sensor's (`DEV-06`) priority from `3` to `2`.
+3. **Cleanup note:** Delete `DEV-14`, a temporary test entry. Preserve `DEV-11`, a real historical record marked Archived.
+
+The player writes an `INSERT`, an `UPDATE`, and a `DELETE`, previewing each change before applying it.
+
+**Expected final state:** `DEV-12` is added in `RM-01`, offline, priority 2, and Active; `DEV-06` has priority 2; `DEV-14` is removed; and `DEV-11` remains unchanged and Archived.
+
+### Objective 4: Investigate Habitat 02
+
+The player writes a report joining **devices**, **rooms**, and **maintenance events**. The report shows each matching device's ID, name, room name, and event description.
+
+It includes the five maintenance events listed above:
+
+- `DEV-08` appears twice because it has two events.
+- The archived `DEV-11` event remains in the report.
+- `DEV-09` includes the event corrected in Lesson 6.
+- `DEV-12` has no matching event in this batch, so it does not appear in the inner-join report.
+
+The player is looking for **matching events**, not the latest event.
+
+### Objective 5: Verify the recovery
+
+The player checks that:
+
+- Required maintenance descriptions are present.
+- Device IDs are unique.
+- Room references point to existing rooms.
+- The joined report matches the recovered records.
+
+Isolated tests attempt to add a duplicate ID and assign an invalid room. Those attempts should be rejected and do not change the registry.
+
+Once the checks pass, the player produces the final report:
+
+```text
+ASSET REGISTRY: VERIFIED
+WORKSHOP DEVICES: RECOVERED
+HABITAT 02: RECORDS PRESERVED
+LAST SAFEGUARD UPDATE: E.C.H.O_Thread_01
+REMOTE ACCESS: DENIED
+```
+
+### Feedback, hints, and bonus
+
+- The player can run and revise queries freely. Syntax feedback identifies what needs attention without supplying the answer.
+- **Preview** shows which records a change would affect. The player can cancel or undo a change.
+- Verification checks identify failed rules without fixing problems automatically.
+- There is **no timer**.
+- Mistakes, retries, previews, the reference key, and objective guidance do not affect the perfect bonus.
+- Accepting an optional hint forfeits the perfect bonus. The player receives a warning and can cancel first.
+
+#### Optional hint levels
+
+**Inspect the evidence**
+
+1. "Compare the recovered device with the existing registry."
+2. "Check whether the device's ID is already in use."
+3. "The equipment label identifies the Airflow Relay. Compare its assigned ID with the recovered record."
+
+**Find offline devices**
+
+1. "We need the devices that aren't online, with the most urgent first."
+2. "Filter using the online field and sort using priority."
+3. "Offline means `FALSE`. Remember that a smaller priority number is more urgent."
+
+**Repair the registry**
+
+1. "The evidence describes one record to add, one to change, and one temporary entry to remove."
+2. "Use `INSERT`, `UPDATE`, and `DELETE` for those jobs. Keep the archived record."
+3. "For changes to existing records, use the device ID to target the right record. Preview each statement before applying it."
+
+**Investigate Habitat 02**
+
+1. "The device, room, and maintenance information are in separate tables."
+2. "Join devices to rooms by room ID, then connect maintenance events by device ID."
+3. "Each join needs an `ON` condition. A device with multiple events will appear more than once."
+
+**Verify the recovery**
+
+1. "Check the registry's rules and compare the report with the records."
+2. "Look at required descriptions, unique IDs, and room relationships."
+3. "A rejected duplicate or invalid room is the expected result of those isolated tests. Make sure the report still includes the archived device's event."
+
+### Saving progress
+
+Boss progress saves automatically. If the player closes the game, they can resume with their current objective, written SQL, applied repairs, and bonus eligibility intact.
+
+### Ending and reward
+
+After the report appears:
+
+> **Mara:** "Echo must have altered the registry to hide the damage he caused."
+>
+> **Finch:** "Perhaps. But the Habitat records were preserved, and remote access was denied. I don't think the report tells us why."
+>
+> **Mara:** "We have what we need. Move on."
+
+Finch notices an inventory entry for a sealed supply case in the Workshop.
+
+> **Finch:** "There's one more thing. The restored inventory lists a case nearby. It might be worth a look."
+
+The player finds and opens the case, then installs the **Development Setup Agent** from its thumb drive. Completing the boss earns the standard agent; a perfect finish earns the upgraded version. The agent helps compare development tools, while the user chooses and installs them.
