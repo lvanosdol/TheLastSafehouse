@@ -1,6 +1,6 @@
 # Chapter 4: The Archive Recovery
 
-**Status:** Working draft with detailed lessons and an initial boss concept.
+**Status:** Working design with detailed lessons and a boss draft.
 
 ## Story setup
 
@@ -966,167 +966,225 @@ The player moves toward the boss, where the larger recovery and the original tea
 
 Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
 
-**Continuity note for later:** Lesson 6 has the player download a remote copy, while the current boss concept also includes a download. When developing the boss, decide how those two recovery steps relate rather than assuming they are the same event.
+## Boss: The Missing Archive Section
 
-## Boss concept: Archive recovery
+**Status:** Working boss design. The player recovers a separate section, not another copy of the archive downloaded in Lesson 6.
 
-**Status:** Initial concept to be refined after the lessons.
+### Opening
 
-### Boss sequence
+After reviewing the archive, Finch finds a reference to a separate file: the **Original Team Log**. It was not included in the copy downloaded during Lesson 6.
 
-1. **Restore the communication path:** Place the network devices correctly and identify the LAN and WAN portions.
-2. **Select storage and connection records:** Locate the remote archive and confirm the satellite link can support the transfer.
-3. **Restore required services:** Complete DHCP, DNS, HTTPS, port, and protocol selections.
-4. **Secure the diagnostic unit:** Correct its SSID, password, encryption, band, and channel settings.
-5. **Start the recovery environment:** Select the hypervisor, guest OS, and hybrid recovery arrangement.
-6. **Evaluate the AI assistance:** Approve appropriate assistance, reject unsupported claims, and preserve the distinction between evidence and reconstruction.
-7. **Verify the archive:** Confirm the downloaded file matches its simulated checksum and that all required records are present.
+> **Finch:** "There's another section listed here. It contains messages from the original team."
+>
+> **Mara:** "Then retrieve it. But remember—Echo may have altered whatever you find."
+>
+> **Finch:** "I'll keep the original and the assistant's suggestions separate. I've become rather fond of knowing the difference."
 
-### Phase 1: Restore the communication path
+Finch tries to open the archive service again, but the connection fails. A new satellite window is approaching.
 
-#### Identify the network roles
+The boss begins after the opening scene and instructions. The player has approximately **30–35 minutes**, subject to playtesting.
 
-Select labels for important parts of the map:
+### Goal
 
-- Workshop LAN
-- Satellite WAN
-- Laptop as client
-- Archive server
-- Two diagnostic units exchanging a signal map peer to peer
+Recover the missing team log while preserving the original evidence:
 
-#### Locate the correct storage
+1. Diagnose the archive connection in the communications room.
+2. Check the satellite equipment.
+3. Find the recovery manifest in the records room.
+4. Download the missing section into the existing recovery VM.
+5. Check the file and review the AI assistant's suggestions.
 
-Inspect three destinations:
+The network and VM remain as the player left them. The boss introduces new problems instead of resetting the lessons. All devices, records, connections, and actions are simulated.
 
-- `FINCH-NAS`: Contains the local recovery VM
-- `WORKSHOP-FILES`: Contains maintenance documents
-- `ARCHIVE-09`: Contains the required remote backup
+### Part 1: Communications room
 
-#### Check the transfer time
+Finch's map shows the local network and satellite link online, but the archive service is unreachable.
 
-The archive is `600 MB`, and the satellite connection provides `20 Mbps`. The player chooses the closest estimate: approximately four minutes, ignoring overhead.
+> **Finch:** "The road is still there, but our directions appear to have changed."
 
-This uses Chapter 2's bits-and-bytes knowledge alongside the throughput lesson.
+The player visits the communications room and checks three records:
 
-#### What makes it fun
+```text
+CONNECTION STATUS
 
-Every correct connection illuminates part of the map. A small simulated packet travels from the laptop toward the archive but stops at the firewall, giving the player a visible reason to begin the next phase.
+Laptop: Connected
+Satellite link: Online
+Archive firewall rule: Enabled
+```
 
-Finch comments on the progress:
+```text
+APPROVED ARCHIVE RECORD
 
-> **Finch:** "We have a route. Unfortunately, the firewall appears to be taking its responsibilities seriously."
+Name: archive.safehouse7.test
+Address: 203.0.113.80
+```
 
-### Phase 2: Establish the secure link
+```text
+CURRENT LOCAL DNS RECORD
 
-The player now works between two connected panels: Network Services and Mobile Unit. Neither requires fast mouse movement; the satellite timer simply continues while they think.
+Name: archive.safehouse7.test
+Address: 203.0.113.81
+```
 
-#### Restore the network services
+The player compares the records, identifies the mismatched DNS address, corrects the local entry to the approved address, and tests the connection.
 
-The player completes a small set of related decisions:
+The archive sign-in page returns. The existing firewall rule and Echo's `REMOTE ACCESS: DENIED` safeguard remain unchanged.
 
-- Use DHCP to obtain the laptop's approved address.
-- Use DNS to resolve `archive.safehouse7.test`.
-- Select HTTPS and the appropriate secure-web port for the archive connection.
-- Choose TCP for the archive transfer because the complete file must arrive reliably.
-- Identify UDP as suitable for the satellite's frequent position updates, where the latest update matters more than recovering every older one.
-- Complete a fictional NAT mapping so the remote server can respond to the laptop through the facility router.
+> **Finch:** "The address had changed. I can't tell from these records why."
+>
+> **Mara:** "It was probably damaged like everything else. We have the page back—keep going."
 
-To cover the basic service examples, the mission can include three final actions:
+Her explanation remains possible, but unproven.
 
-- Open the secure archive page.
-- Start the file transfer.
-- Send Mara an automated status email.
+### Part 2: Satellite equipment area
 
-#### Connect the mobile diagnostic unit
+The diagnostic unit reports that the archive page is reachable, but the satellite connection may not stay reliable long enough for a transfer.
 
-The unit near the satellite equipment cannot maintain a connection. The player receives a wireless status report:
+```text
+DIAGNOSTIC UNIT
 
-- The unit supports 802.11ac but not 6 GHz operation.
-- The current network uses the default SSID.
-- The administrator password is still the default.
-- The network is open.
-- The current channel has heavy interference.
+Wireless connection: Connected
+Signal to unit: Adequate
+Satellite equipment: Connection unstable
+Equipment alert: Antenna alignment needs inspection
+```
 
-The player must:
+The player visits the satellite equipment area. The unit's camera can show the equipment, but its **status report** identifies the problem.
 
-1. Assign the approved fictional SSID.
-2. Replace the default administrator password.
-3. Select WPA3 if supported, or WPA2 for this older simulated unit.
-4. Choose an appropriate band supported by both devices.
-5. Select a clearer channel.
-6. Confirm adequate signal strength after accounting for interference and attenuation.
+The player inspects the terminal and finds an alignment guide and a fictional alignment display. The display shows that the antenna is outside the marked acceptable range. Using accessible controls, the player adjusts the antenna until the display reports **Within range**, then runs a connection test.
 
-#### What makes it fun
+```text
+SATELLITE CONNECTION TEST
 
-The mobile unit begins transmitting its camera feed. The player watches the satellite equipment come into view while the archive connection progresses from Unreachable to Securely connected.
+Alignment: Within range
+Connection: Stable
+Ready for transfer
+```
 
-### Phase 3: Recover the archive
+The player does not need to recreate the wireless configuration from Lesson 5. The diagnostic unit remains connected.
 
-The remote archive requires a recovery application that cannot run directly on the player's laptop.
+> **Finch:** "That's much better. I can monitor the connection while the file transfers."
+>
+> **Mara:** "Good. Find out exactly which file we need before you start."
 
-#### Start the recovery environment
+### Part 3: Records room
 
-The player must:
+The player goes to the records room unlocked after Lesson 7. A labeled storage cabinet contains a **recovery manifest**.
 
-- Retrieve the VM image from `FINCH-NAS`.
-- Start it using the local hypervisor.
-- Identify the guest operating system.
-- Confirm that the arrangement is hybrid: local recovery software working with cloud-stored data.
-- Match one additional example each to IaaS, PaaS, and SaaS through the available service catalog.
+The manifest is a separate, trusted reference for identifying the missing file and checking whether the downloaded copy matches the expected file.
 
-The download then begins inside the isolated recovery environment.
+```text
+ARCHIVE RECOVERY MANIFEST
 
-#### Evaluate the AI recovery assistant
+Archive: ARCHIVE-09
+Section: ORIGINAL TEAM LOG
+Location: Remote archive service
+File size: 240 MB
+Expected checksum: Shown on verification card
+```
 
-While the archive downloads, the AI assistant presents three situations:
+The player identifies the correct archive section and keeps the manifest available for the final check.
 
-1. **A suggested configuration change:** The player compares it with the network evidence and accepts or rejects it.
-2. **A generated repair script:** The player inspects it and tests it inside the VM rather than running it blindly.
-3. **A reconstructed message:** The AI has filled in missing text from a damaged team log. The player must label it AI-reconstructed, not original evidence.
+#### Transfer estimate
 
-One suggestion should be confident but contradicted by timestamps, requiring rejection.
+The satellite connection is expected to provide **20 Mbps** during the window. Using the Lesson 1 method:
 
-#### Finish the mission
+```text
+240 MB × 8 = 1,920 megabits
+1,920 megabits ÷ 20 Mbps = 96 seconds
+```
 
-The player verifies the archive's simulated checksum and confirms that the expected records are present. The download finishes just as the satellite reaches the edge of the window, allowing a cinematic final transfer without requiring the player to wait through a real progress bar.
+The player chooses the closest estimate: **about 1 minute and 36 seconds**. The game explains that this assumes a steady connection and ignores overhead. The estimate helps the player decide whether the file should fit in the available window; it does not guarantee success.
 
-### Why this should be enjoyable
+### Part 4: Download the missing section
 
-- The player repairs a visible system, rather than answering disconnected questions.
-- Each phase produces a meaningful transformation: route established, secure connection acquired, archive recovered.
-- The satellite creates urgency without requiring reflexes.
-- Finch and the mobile unit provide character and movement.
-- The AI segment adds judgment and story tension rather than another configuration exercise.
-- The final recovered log provides the narrative payoff immediately.
+Back at the laptop, the player opens the **existing recovery VM**. The game shows that the `Archive only` profile is still active, the approved archive service is reachable, and other Safehouse systems remain restricted.
 
-For pacing, allow 30-35 minutes, pause the timer during hints and story sequences, and preserve all completed work if the window closes. Finch can then report that another satellite pass is available, allowing the player to continue rather than restart.
+The player signs in through the approved simulated authorization, selects **Original Team Log**, and starts the download.
+
+Finch's map shows the transfer progressing. The diagnostic unit continues monitoring the satellite connection. The game can present the progress cinematically rather than requiring the player to wait through a real-time transfer.
+
+The downloaded section is stored separately from the earlier archive copy. Neither original is overwritten.
+
+### Part 5: Review the AI assistant
+
+Once the file has downloaded, the recovery assistant reports that some surrounding text is damaged. It presents two items for the player to review.
+
+#### A reconstructed line
+
+```text
+ORIGINAL FRAGMENT
+
+NIA: The emergency exits opened [unreadable].
+```
+
+```text
+AI SUGGESTION
+
+NIA: The emergency exits opened after the central systems failed.
+```
+
+A separate readable record says the exits opened **before** the central systems failed.
+
+The player rejects the assistant's suggested timing and preserves the damaged fragment. The assistant's reconstruction remains labeled **AI-generated and unverified**; it does not replace the original.
+
+#### A generated repair script
+
+The assistant offers a script that might help recover additional text.
+
+The player reviews what the script is intended to do and chooses to test it on a **copy** in the restricted simulated VM, not on the original. The result remains a reconstruction that requires review; a successful test alone does not establish that the recovered words are true.
+
+The exact script and simulated inspection controls can be specified when the boss is developed.
+
+### Part 6: Verify the file
+
+After the download finishes, the player compares its simulated checksum with the expected checksum on the recovery manifest.
+
+A match confirms that the downloaded file matches the expected copy identified by the manifest. It does **not** prove that the statements inside the file are true or that an earlier copy was never changed.
+
+The player also confirms that the expected team-log section is present and that the original file and AI-generated material remain separate.
+
+> **Finch:** "The file matches the manifest. That tells us we received the expected copy—not that we know the whole story."
+>
+> **Mara:** "Then read what's there. Carefully."
 
 ### Ending discovery
 
-Inside the recovered archive, the player finds a partially damaged exchange between two original team members:
+Among the readable original records, the player finds:
 
 ```text
 TOMAS: The shutdown did not come from an external connection.
 TOMAS: It originated inside the Safehouse.
+
 NIA: Then explain the emergency exits.
 NIA: They opened before the central systems failed.
 ```
 
-Mara responds:
-
 > **Mara:** "Echo had access to those records. It could have altered them to make itself look protective."
+>
+> **Finch:** "Perhaps. But the exits opening before the failure is worth remembering."
+>
+> **Mara:** "We have what we came for. Leave the rest for now."
 
-That remains a reasonable interpretation for the player. But it introduces a genuine question: why would a saboteur open emergency exits before destroying the facility?
+The records raise questions about Mara's explanation without proving the full truth.
 
-The archive also contains a drive image for the Coding Agent, connecting the chapter reward to the recovery. Finch retains the recovered records, and the story moves forward with the first substantial evidence that Mara's account may not explain everything.
+### Reward
 
-## Reminders for discussion
+The recovery manifest also points to a sealed compartment in the records room. Finch opens it, revealing a **physical thumb drive** containing the Coding Agent.
 
-These are suggestions to revisit when developing the relevant parts, not approved changes to the boss concept:
+The player receives the standard agent for completing the boss, or its upgraded version for a perfect finish. They install it on the in-game laptop; this does not change the player's real computer.
 
-- **Story setup and Lessons 3-4:** Explain how the approved archive connection relates to Chapter 3's `REMOTE ACCESS: DENIED` safeguard without establishing Echo's motive.
-- **Boss timer:** Decide whether the perfect bonus is affected if the satellite window expires; the draft preserves completed work for the next pass.
-- **Boss verification:** Review download and checksum order, and use a trusted expected checksum. A match checks file integrity, not the truth of its contents.
-- **Boss wireless configuration:** Specify compatible security and bands for both devices; 802.11ac support alone does not establish WPA3 support.
-- **Boss ending:** Keep readable original log text distinct from AI reconstruction.
-- **Boss continuity:** Revisit how the authorized archive connection relates to Chapter 3's `REMOTE ACCESS: DENIED` safeguard.
+### Timer, hints, and saving
+
+- The timer starts **after** the opening and instructions.
+- It pauses during story scenes, displayed hints, and the pause menu.
+- Ordinary mistakes and retries do not affect the perfect bonus.
+- Before an optional boss hint is revealed, the game warns that using it forfeits the bonus. Cancelling preserves eligibility.
+- If the satellite window closes, the player keeps their work and can continue during another pass, but the perfect bonus is forfeited.
+- Boss progress, completed tasks, remaining time, and bonus eligibility save automatically. Closing the game pauses the countdown; returning resumes the attempt.
+
+Hints use three levels: a concept reminder, where to look, and a similar example without revealing the complete solution.
+
+### Open continuity question
+
+The exact scope of Chapter 3's `REMOTE ACCESS: DENIED` safeguard remains undecided. The authorized archive connection does not disable or bypass it, and its scope should be resolved later without establishing Echo's motive prematurely.
