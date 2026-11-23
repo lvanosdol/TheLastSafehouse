@@ -138,7 +138,7 @@ Each chapter's earned component arrives on a separate in-game thumb drive. The p
 - Final engine and desktop/mobile architecture.
 - How to safely execute or simulate PowerShell, Bash, and any later Python/SQL practice without granting access to the player's real machine or network.
 - Exact command subsets, script-editor behavior, and equivalent-solution validation for cross-platform shell lessons.
-- Detailed outlines for Chapters 2–7, including the introductory networking and major database blocks.
+- Further development of Chapters 1–4 and the detailed direction for Chapters 5–7.
 - How deeply to cover each topic and which advanced subjects should remain optional as the seven-chapter curriculum develops.
 - How the downloadable development app can responsibly support real-world use, including privacy, security, testing, reliability, and AI-service requirements.
 
@@ -223,8 +223,8 @@ The campaign aims for a beginner-to-practical pathway in IT, networking, databas
 
 1. **Computer and Workshop restoration:** Begin by learning the components and rebuilding the broken PC, then use it to learn computing basics, operating systems, Windows navigation, files and permissions, device protection, and software choices. The boss uses file sorting, evidence preservation, permissions, and a simulated Windows Security alert; the story introduces the apparent Echo threat and the first signs of Mara's deception.
 2. **Programming fundamentals:** See the [Chapter 2 design](Chapter%202/Chapter-2-Design.md).
-3. **Databases:** Database lessons are planned here; their detailed scope remains open.
-4. **Later chapters:** The remaining chapter assignments will be rearranged before work begins on Chapter 3. Previous candidates include network hardware and addressing; network services and protocols; and troubleshooting, logs, backups, and automation.
+3. **Databases:** See the [Chapter 3 design](Chapter%203/Chapter-3-Design.md).
+4. **Networking, cloud, and AI-assisted recovery:** See the [Chapter 4 design](Chapter%204/Chapter-4-Design.md).
 5. **Later chapter:** Assignment to be decided.
 6. **Later chapter:** Assignment to be decided.
 7. **IT capstone and identity resolution:** Apply the curriculum, discover that the player is The Echo (`E.C.H.O_Thread_01`), learn that Echo destroyed Mara's lab to save its subjects, and uncover Mara's manipulation. Final choices and endings remain open.

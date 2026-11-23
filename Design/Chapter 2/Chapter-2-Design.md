@@ -1,8 +1,8 @@
 # Chapter 2 Design
 
-**Status:** Redesign from scratch. The [previous Chapter 2 draft](../Previous%20Drafts/Chapter-2-Previous-Draft-2026-11-20.md) is superseded and preserved for reference. Its lessons, story, and boss are not current requirements.
+**Status:** Working design with six lessons and a boss direction. The [previous Chapter 2 draft](../Previous%20Drafts/Chapter-2-Previous-Draft-2026-11-20.md) is preserved for historical reference.
 
-Chapter 2 focuses on programming fundamentals and is being developed together. Database lessons are planned for Chapter 3; the later chapter order will be rearranged before work begins on Chapter 3. Remaining topics, lesson depth, story, and boss details remain open for discussion. The reference images are guides, not text to copy.
+Chapter 2 focuses on programming fundamentals. The lessons and boss remain working designs that can be refined during development. The reference images are guides, not text to copy.
 
 The previously agreed Chapter 2 reward is the Design Agent, with an upgraded version for a perfect boss finish. Its details are in [Section 8 of the master design](../The-Last-Safehouse-Design.md#8-software-development-agents-and-chapter-rewards).
 

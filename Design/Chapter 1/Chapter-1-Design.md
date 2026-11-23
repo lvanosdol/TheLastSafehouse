@@ -4,7 +4,7 @@
 
 ## 18. IT-first Chapter 1 rewrite
 
-**Status:** Approved working direction and authoritative current Chapter 1 draft. This section supersedes Sections 4–6 and the earlier Chapter 1 reward assignments in Section 9. Section 7's summary/menu ideas remain legacy concepts to reconcile. The apparent-villain and dual-reveal story is in Section 15.
+**Status:** Approved working direction and authoritative current Chapter 1 design. The campaign story is in [Section 15 of the master design](../The-Last-Safehouse-Design.md#15-campaign-story--working-narrative).
 
 ### Chapter 1 purpose
 
@@ -187,7 +187,6 @@ The in-game laptop is the player's computer for later lessons and checkpoints. E
 - Show actual tool output or visible system state. Identify the missed concept, offer a hint or guiding question, preserve the player's work, and allow unlimited penalty-free retries.
 - Offer three hint levels: a concept reminder, where to look, and a guiding question or similar example. Hints do not reveal the full solution.
 - The protecting-the-device lesson introduces the simulated Windows Security interface without a threat. The first threat alert and the **Block threat** response remain reserved for the boss.
-- The previous boss's shell report and extra practice are historical, not requirements of the revised lessons.
 - Chapter 1 save points can follow hardware assembly, the OS and evidence lessons, and before the boss. Exact save points remain open.
 
 ### Chapter 1 perfect-run and rewards
