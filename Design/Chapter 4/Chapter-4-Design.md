@@ -60,7 +60,7 @@ Finch brings up an incomplete map of the Safehouse's communications equipment. S
 
 The player opens the first networking lesson on their laptop.
 
-**Continuity note:** The remote-copy location comes from the local registry, not a successful connection. What Chapter 3's `REMOTE ACCESS: DENIED` safeguard applies to remains open; the scene does not establish why access was denied or what Echo intended.
+**Continuity note:** The remote-copy location comes from the local registry, not a successful connection. Chapter 3's `REMOTE ACCESS: DENIED` safeguard protects a separate evidence store; the authorized archive connection does not bypass it. Its purpose is not revealed to the player here.
 
 ### Story direction (design spoilers)
 
@@ -448,7 +448,7 @@ Finch also notices the earlier safeguard entry: **REMOTE ACCESS: DENIED**.
 >
 > **Mara:** "Whatever it was, it doesn't change what we need to do now."
 
-The player does not bypass the safeguard, and the scene does not establish its scope or Echo's motive. That detail remains open for later chapter development.
+The player does not bypass the safeguard, and the scene does not reveal what it protects or establish Echo's motive.
 
 The player moves on to Lesson 4 to investigate the network services. Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
 
@@ -502,7 +502,7 @@ Other common network services include **file transfer** and **email**. They also
 
 A **firewall** applies rules that allow or block traffic. The player should allow only the approved archive service needed for this task, rather than broadly opening the firewall.
 
-The Chapter 3 safeguard still has an unresolved scope. Configuring an explicitly approved archive connection does not require the player to disable or bypass it.
+The Chapter 3 safeguard protects a separate evidence store. Configuring the explicitly approved archive connection does not require the player to disable or bypass it; its purpose remains unknown to the player.
 
 #### Checkpoint: Establish the archive connection
 
@@ -560,7 +560,7 @@ The sign-in page appears on the laptop. Finch's map shows the secure connection 
 >
 > **Mara:** "Leave the sign-in for now. We still need the diagnostic unit near the satellite equipment."
 
-Finch notes that the archive request and the old **REMOTE ACCESS: DENIED** entry are separate pieces of information; the entry's exact scope remains unresolved. The player moves on to Lesson 5 to configure the mobile unit's wireless connection.
+Finch notes that the archive request and the old **REMOTE ACCESS: DENIED** entry are separate pieces of information; he does not yet know what the safeguard protects. The player moves on to Lesson 5 to configure the mobile unit's wireless connection.
 
 Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
 
@@ -819,7 +819,7 @@ The player moves on to Lesson 7 to evaluate the AI assistant's suggestions and d
 
 Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
 
-**Continuity note:** The VM has restricted access to the authorized archive, rather than being completely disconnected. The Chapter 3 `REMOTE ACCESS: DENIED` safeguard's exact scope remains unresolved; the player does not disable or bypass it.
+**Continuity note:** The VM has restricted access to the authorized archive, rather than being completely disconnected. The Chapter 3 `REMOTE ACCESS: DENIED` safeguard protects a separate evidence store; the player does not disable or bypass it.
 
 ## Lesson 7: AI-assisted recovery and verification
 
@@ -871,6 +871,16 @@ Generated code can contain mistakes or do more than intended. Before running it,
 Keep the original evidence unchanged. Work on a copy when testing a recovery method, and label generated or reconstructed material so it cannot be confused with the original.
 
 > **Finch:** "So the assistant can help us look, but it doesn't get to decide what the evidence says."
+
+##### Page 5: Checksums and digital signatures
+
+A **checksum** is a value calculated from a file. If a downloaded file's checksum matches the expected checksum from a trusted source, it is evidence that the file matches the expected copy. A match does **not** prove that the information inside is true or that an earlier copy was never changed.
+
+The expected checksum needs to come from a source the player can trust. Otherwise, someone could change both the file and its listed checksum.
+
+A **digital signature** helps check who signed a record and whether it has changed since it was signed. Finch can check the recovery manifest's signature using a trusted verification key stored separately in the Asset Registry. A valid signature does not prove that the manifest's claims are true.
+
+For the recovery, check the manifest's signature first, download the file, and then compare the downloaded file's checksum with the checksum in the verified manifest. Read the log as evidence rather than assuming its claims are automatically true.
 
 #### Checkpoint: Review the assistant's work
 
@@ -1051,7 +1061,11 @@ Equipment alert: Antenna alignment needs inspection
 
 The player visits the satellite equipment area. The unit's camera can show the equipment, but its **status report** identifies the problem.
 
-The player inspects the terminal and finds an alignment guide and a fictional alignment display. The display shows that the antenna is outside the marked acceptable range. Using accessible controls, the player adjusts the antenna until the display reports **Within range**, then runs a connection test.
+The player inspects the terminal and finds an alignment guide and a fictional alignment display. The guide says this antenna's acceptable range is **45–55**; the display shows a current reading of **30**.
+
+The player adjusts the setting with left and right buttons or keyboard controls. The number and a text label update as they work: **Below range**, **Within range**, or **Above range**. Nothing depends on color, speed, or precise mouse movement. Once the reading is within range, the player selects **Test connection**. Incorrect settings can be adjusted and tested again without affecting the perfect bonus.
+
+These are fictional measurements for this equipment, not real-world antenna guidance. The boss timer continues during adjustment and pauses while a hint is displayed.
 
 ```text
 SATELLITE CONNECTION TEST
@@ -1071,7 +1085,7 @@ The player does not need to recreate the wireless configuration from Lesson 5. T
 
 The player goes to the records room unlocked after Lesson 7. A labeled storage cabinet contains a **recovery manifest**.
 
-The manifest is a separate, trusted reference for identifying the missing file and checking whether the downloaded copy matches the expected file.
+The manifest is a separate reference for identifying the missing file and checking whether the downloaded copy matches the expected file. It has a digital signature that Finch checks against a trusted verification key stored separately in the Asset Registry.
 
 ```text
 ARCHIVE RECOVERY MANIFEST
@@ -1083,7 +1097,7 @@ File size: 240 MB
 Expected checksum: Shown on verification card
 ```
 
-The player identifies the correct archive section and keeps the manifest available for the final check.
+The player checks the manifest's signature, identifies the correct archive section, and keeps the verified manifest available for the final check. The signature check verifies the signed manifest against the trusted key; it does not prove the log's claims are true. Exact fictional values and signature-check controls can be specified during development.
 
 #### Transfer estimate
 
@@ -1130,15 +1144,22 @@ The player rejects the assistant's suggested timing and preserves the damaged fr
 
 #### A generated repair script
 
-The assistant offers a script that might help recover additional text.
+The assistant offers a fictional script that might help recover additional text. Its readable steps are:
 
-The player reviews what the script is intended to do and chooses to test it on a **copy** in the restricted simulated VM, not on the original. The result remains a reconstruction that requires review; a successful test alone does not establish that the recovered words are true.
+1. Open a **copy** of the downloaded team log.
+2. Look for unreadable portions.
+3. Write suggested text to a separate reconstruction file.
+4. Label the suggestions **AI-generated and unverified**.
 
-The exact script and simulated inspection controls can be specified when the boss is developed.
+The player inspects the steps, chooses the copy rather than the original, and selects **Test in recovery VM**. The simulated result shows the original is unchanged and the suggestions are in a separate, labeled file. Finch explains that a successful test shows what happened during that test; it does not prove the suggested words are correct.
+
+If the player chooses the original or skips the inspection, the simulation prevents the test and explains what needs attention. They can retry without losing the perfect bonus. No code runs on the player's real computer. Exact simulated inspection controls can be specified during development.
 
 ### Part 6: Verify the file
 
-After the download finishes, the player compares its simulated checksum with the expected checksum on the recovery manifest.
+After the download finishes, the recovery VM calculates and displays a simulated checksum. The player compares it with the expected checksum on the verified recovery manifest and selects **Match** or **Do not match**. In this boss the values match. An incorrect selection points the player back to the two values and allows another attempt without affecting the perfect bonus.
+
+Display both values as readable text with keyboard-accessible controls; exact fictional values can be specified during development.
 
 A match confirms that the downloaded file matches the expected copy identified by the manifest. It does **not** prove that the statements inside the file are true or that an earlier copy was never changed.
 
@@ -1180,11 +1201,14 @@ The player receives the standard agent for completing the boss, or its upgraded 
 - It pauses during story scenes, displayed hints, and the pause menu.
 - Ordinary mistakes and retries do not affect the perfect bonus.
 - Before an optional boss hint is revealed, the game warns that using it forfeits the bonus. Cancelling preserves eligibility.
-- If the satellite window closes, the player keeps their work and can continue during another pass, but the perfect bonus is forfeited.
+- If the satellite window closes during the transfer, Finch reports that the connection has paused. The game saves the partial download and completed work; the perfect bonus is forfeited.
+- Finch offers the next satellite pass immediately, with no real waiting. The simulated archive supports resuming the saved transfer. Each new pass has another window of the same length; further passes work the same way.
+- Until the entire file has downloaded, the partial file is labeled **Incomplete** and is not treated as recovered evidence. The checksum is checked only after the download finishes.
+- If the download has already finished when the timer expires, it stays saved and the player can continue the remaining boss tasks; the perfect bonus is still forfeited.
 - Boss progress, completed tasks, remaining time, and bonus eligibility save automatically. Closing the game pauses the countdown; returning resumes the attempt.
 
 Hints use three levels: a concept reminder, where to look, and a similar example without revealing the complete solution.
 
-### Open continuity question
+### Safeguard continuity
 
-The exact scope of Chapter 3's `REMOTE ACCESS: DENIED` safeguard remains undecided. The authorized archive connection does not disable or bypass it, and its scope should be resolved later without establishing Echo's motive prematurely.
+The `REMOTE ACCESS: DENIED` safeguard protects a separate evidence store containing records of Mara's experiments and Echo's actions. The authorized archive connection does not disable or bypass it. The player and Finch do not yet know what it protects; the protected evidence leads to the full reveal in Chapter 7. Denying remote access does not by itself prove the evidence was never changed.

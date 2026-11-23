@@ -923,6 +923,8 @@ REMOTE ACCESS: DENIED
 
 The log does not explain Echo's motive. The integrity checks establish that the recovered registry follows its rules; they do not prove Mara's interpretation or guarantee who authored the log.
 
+**Story direction (design spoilers):** Echo's safeguard denies remote access to a protected evidence store containing records of Mara's experiments and Echo's actions. It does not by itself prove the evidence was never changed. The player and Finch do not yet know the safeguard's purpose; the protected evidence leads to the full reveal in Chapter 7. The separate authorized archive used in Chapter 4 does not bypass this safeguard.
+
 ### Feedback, hints, and bonus
 
 - The player can run and revise queries freely. Syntax feedback identifies what needs attention without supplying the answer.

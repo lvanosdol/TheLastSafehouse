@@ -195,6 +195,8 @@ The player appears to be an outsider helping Mara Vale restore Safehouse 7, its 
 
 The hidden history is that Mara built Safehouse 7 and its systems as a laboratory for abusive experiments on people and robots. She tortured subjects while trying to create an army of indestructible robo-people. The Echo, an intelligent system with the original identity `E.C.H.O_Thread_01`, discovered what Mara was doing and destroyed the lab and its systems to stop the experiments and save lives. The Echo later lost his memories. Mara exploits that memory loss to make the player rebuild the very facility he destroyed, without the player understanding who he is or why he destroyed it. The cause and timing of the memory loss remain open.
 
+Echo's `REMOTE ACCESS: DENIED` safeguard protects a separate evidence store containing records of Mara's experiments and Echo's actions by denying remote access. The player and Finch do not yet know its purpose; the protected evidence leads to the Chapter 7 reveal. The authorized remote archive in Chapter 4 is separate and does not bypass the safeguard. Denying remote access does not by itself prove that the evidence was never changed.
+
 The experience takes place in the real Safehouse 7, while the player-facing interface and some evidence are simulated. The player's actions still change isolated Safehouse systems. The full boundaries and purpose of the simulation remain to be reconciled with Mara's deception and the late-game reveal.
 
 ### Characters
