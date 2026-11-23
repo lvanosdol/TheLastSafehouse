@@ -1,6 +1,6 @@
 # Chapter 4: The Archive Recovery
 
-**Status:** Draft outline. The story, lessons, checkpoints, and boss will be developed together. The boss concept is still to be shared.
+**Status:** Draft outline and boss concept. The story, lessons, checkpoints, and boss will be developed together.
 
 ## Story setup
 
@@ -170,6 +170,158 @@ Select the appropriate storage location for recovering the remote archive.
 
 That distinction can become important throughout the rest of the game.
 
+## Boss concept: Archive recovery
+
+**Status:** Initial concept to be refined after the lessons.
+
+### Boss sequence
+
+1. **Restore the communication path:** Place the network devices correctly and identify the LAN and WAN portions.
+2. **Select storage and connection records:** Locate the remote archive and confirm the satellite link can support the transfer.
+3. **Restore required services:** Complete DHCP, DNS, HTTPS, port, and protocol selections.
+4. **Secure the diagnostic unit:** Correct its SSID, password, encryption, band, and channel settings.
+5. **Start the recovery environment:** Select the hypervisor, guest OS, and hybrid recovery arrangement.
+6. **Evaluate the AI assistance:** Approve appropriate assistance, reject unsupported claims, and preserve the distinction between evidence and reconstruction.
+7. **Verify the archive:** Confirm the downloaded file matches its simulated checksum and that all required records are present.
+
+### Phase 1: Restore the communication path
+
+#### Identify the network roles
+
+Select labels for important parts of the map:
+
+- Workshop LAN
+- Satellite WAN
+- Laptop as client
+- Archive server
+- Two diagnostic units exchanging a signal map peer to peer
+
+#### Locate the correct storage
+
+Inspect three destinations:
+
+- `FINCH-NAS`: Contains the local recovery VM
+- `WORKSHOP-FILES`: Contains maintenance documents
+- `ARCHIVE-09`: Contains the required remote backup
+
+#### Check the transfer time
+
+The archive is `600 MB`, and the satellite connection provides `20 Mbps`. The player chooses the closest estimate: approximately four minutes, ignoring overhead.
+
+This uses Chapter 2's bits-and-bytes knowledge alongside the throughput lesson.
+
+#### What makes it fun
+
+Every correct connection illuminates part of the map. A small simulated packet travels from the laptop toward the archive but stops at the firewall, giving the player a visible reason to begin the next phase.
+
+Finch comments on the progress:
+
+> **Finch:** "We have a route. Unfortunately, the firewall appears to be taking its responsibilities seriously."
+
+### Phase 2: Establish the secure link
+
+The player now works between two connected panels: Network Services and Mobile Unit. Neither requires fast mouse movement; the satellite timer simply continues while they think.
+
+#### Restore the network services
+
+The player completes a small set of related decisions:
+
+- Use DHCP to obtain the laptop's approved address.
+- Use DNS to resolve `archive.safehouse7.test`.
+- Select HTTPS and the appropriate secure-web port for the archive connection.
+- Choose TCP for the archive transfer because the complete file must arrive reliably.
+- Identify UDP as suitable for the satellite's frequent position updates, where the latest update matters more than recovering every older one.
+- Complete a fictional NAT mapping so the remote server can respond to the laptop through the facility router.
+
+To cover the basic service examples, the mission can include three final actions:
+
+- Open the secure archive page.
+- Start the file transfer.
+- Send Mara an automated status email.
+
+#### Connect the mobile diagnostic unit
+
+The unit near the satellite equipment cannot maintain a connection. The player receives a wireless status report:
+
+- The unit supports 802.11ac but not 6 GHz operation.
+- The current network uses the default SSID.
+- The administrator password is still the default.
+- The network is open.
+- The current channel has heavy interference.
+
+The player must:
+
+1. Assign the approved fictional SSID.
+2. Replace the default administrator password.
+3. Select WPA3 if supported, or WPA2 for this older simulated unit.
+4. Choose an appropriate band supported by both devices.
+5. Select a clearer channel.
+6. Confirm adequate signal strength after accounting for interference and attenuation.
+
+#### What makes it fun
+
+The mobile unit begins transmitting its camera feed. The player watches the satellite equipment come into view while the archive connection progresses from Unreachable to Securely connected.
+
+### Phase 3: Recover the archive
+
+The remote archive requires a recovery application that cannot run directly on the player's laptop.
+
+#### Start the recovery environment
+
+The player must:
+
+- Retrieve the VM image from `FINCH-NAS`.
+- Start it using the local hypervisor.
+- Identify the guest operating system.
+- Confirm that the arrangement is hybrid: local recovery software working with cloud-stored data.
+- Match one additional example each to IaaS, PaaS, and SaaS through the available service catalog.
+
+The download then begins inside the isolated recovery environment.
+
+#### Evaluate the AI recovery assistant
+
+While the archive downloads, the AI assistant presents three situations:
+
+1. **A suggested configuration change:** The player compares it with the network evidence and accepts or rejects it.
+2. **A generated repair script:** The player inspects it and tests it inside the VM rather than running it blindly.
+3. **A reconstructed message:** The AI has filled in missing text from a damaged team log. The player must label it AI-reconstructed, not original evidence.
+
+One suggestion should be confident but contradicted by timestamps, requiring rejection.
+
+#### Finish the mission
+
+The player verifies the archive's simulated checksum and confirms that the expected records are present. The download finishes just as the satellite reaches the edge of the window, allowing a cinematic final transfer without requiring the player to wait through a real progress bar.
+
+### Why this should be enjoyable
+
+- The player repairs a visible system, rather than answering disconnected questions.
+- Each phase produces a meaningful transformation: route established, secure connection acquired, archive recovered.
+- The satellite creates urgency without requiring reflexes.
+- Finch and the mobile unit provide character and movement.
+- The AI segment adds judgment and story tension rather than another configuration exercise.
+- The final recovered log provides the narrative payoff immediately.
+
+For pacing, allow 30-35 minutes, pause the timer during hints and story sequences, and preserve all completed work if the window closes. Finch can then report that another satellite pass is available, allowing the player to continue rather than restart.
+
+### Ending discovery
+
+Inside the recovered archive, the player finds a partially damaged exchange between two original team members:
+
+```text
+TOMAS: The shutdown did not come from an external connection.
+TOMAS: It originated inside the Safehouse.
+NIA: Then explain the emergency exits.
+NIA: They opened before the central systems failed.
+```
+
+Mara responds:
+
+> **Mara:** "Echo had access to those records. It could have altered them to make itself look protective."
+
+That remains a reasonable interpretation for the player. But it introduces a genuine question: why would a saboteur open emergency exits before destroying the facility?
+
+The archive also contains a drive image for the Coding Agent, connecting the chapter reward to the recovery. Finch retains the recovered records, and the story moves forward with the first substantial evidence that Mara's account may not explain everything.
+
 ## Reminders for discussion
 
 These are suggestions to revisit when developing the relevant parts, not approved changes to the outline:
@@ -179,3 +331,8 @@ These are suggestions to revisit when developing the relevant parts, not approve
 - **Lesson 1:** Provide an estimated satellite throughput and archive size for the transfer calculation; explain that actual transfer time can vary. `Tbps` means terabits per second.
 - **Lesson 2:** Consider describing the local network's physical connections as restored, with address and service configuration still to come in Lesson 4.
 - **Lesson 6:** Consider a restricted recovery VM that can reach the authorized archive rather than a completely disconnected VM.
+- **Boss timer:** Decide whether the perfect bonus is affected if the satellite window expires; the draft preserves completed work for the next pass.
+- **Boss verification:** Review download and checksum order, and use a trusted expected checksum. A match checks file integrity, not the truth of its contents.
+- **Boss wireless configuration:** Specify compatible security and bands for both devices; 802.11ac support alone does not establish WPA3 support.
+- **Boss ending:** Keep readable original log text distinct from AI reconstruction.
+- **Boss continuity:** Revisit how the authorized archive connection relates to Chapter 3's `REMOTE ACCESS: DENIED` safeguard.
