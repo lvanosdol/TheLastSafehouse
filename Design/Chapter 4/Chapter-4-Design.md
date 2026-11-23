@@ -14,6 +14,54 @@ Finch is hopeful that the archive contains some of his missing memories.
 
 The chapter progresses from restoring the network, to reaching the archive, to evaluating what its AI-assisted recovery reveals.
 
+### Opening scene: The Archive
+
+The player plugs the Development Setup Agent's thumb drive into their laptop. Once it's installed, Finch returns to the restored Asset Registry on the Workshop monitor.
+
+> **Finch:** "While you were installing that, I found another entry in the registry. A backup called `ARCHIVE-09`."
+>
+> **Mara:** "What's in it?"
+>
+> **Finch:** "The description mentions infrastructure records and a facility map. Or at least, it did when the entry was last updated."
+>
+> **Mara:** "Open it."
+
+Finch tries the local copy. The monitor pauses, then displays:
+
+```text
+ARCHIVE-09: LOCAL COPY DAMAGED
+REMOTE COPY: LISTED IN REGISTRY
+SATELLITE CONNECTION: UNAVAILABLE
+```
+
+> **Finch:** "The local copy isn't readable. The registry lists another one in remote storage, but I can't reach it."
+>
+> **Mara:** "Then we'll restore the connection. Those records could show us more of the facility."
+
+Finch hesitates. Another line in the registry mentions that the archive *may* contain system memory records.
+
+> **Finch:** "There might be something of mine in there, too. I don't know how much is left."
+>
+> **Mara:** "Echo had access to those records. Don't assume everything in that backup is trustworthy."
+>
+> **Finch:** "My memories are in remote storage. I'm not sure whether that makes me backed up or extremely absent-minded."
+
+Finch brings up an incomplete map of the Safehouse's communications equipment. Some devices are visible, but their connections aren't clear.
+
+> **Mara:** "Before we can reach the archive, you need to understand how the devices here communicate—and how they connect beyond the Safehouse."
+>
+> **Finch:** "A map we can actually finish. That would be a nice change."
+
+The player opens the first networking lesson on their laptop.
+
+**Continuity note:** The remote-copy location comes from the local registry, not a successful connection. What Chapter 3's `REMOTE ACCESS: DENIED` safeguard applies to remains open; the scene does not establish why access was denied or what Echo intended.
+
+### Story direction (design spoilers)
+
+Chapter 4 is where the player begins noticing a pattern of increasingly obvious clues, without learning the full truth until Chapter 7. Early oddities can have plausible explanations; as further clues appear, Mara becomes more insistent about directing attention away from suspicious records. Her interpretation remains a claim, not established fact.
+
+Finch is genuinely curious and does not remember that the player is Echo or what Mara used to do. As the Safehouse system, Finch was involved in her work and saved data from her experiments, but his missing memories prevent him from recognizing that history. Finch and the player discover clues together. Original evidence must remain distinguishable from AI reconstructions.
+
 ## Lesson 1: Network communication and network models
 
 **Topics:**
@@ -37,6 +85,133 @@ The chapter progresses from restoring the network, to reaching the archive, to e
 Then compare two throughput measurements and determine whether the satellite link can transfer the archive during its available window.
 
 **Visible result:** Finch produces a communication map and calculates the estimated archive-transfer time.
+
+### Detailed lesson: How networks communicate
+
+#### Opening
+
+Finch brings up the incomplete communications map on the Workshop monitor.
+
+> **Finch:** "I can see the laptop, the file server, and the satellite equipment. I'm less certain about how everything connects."
+>
+> **Mara:** "Start with the basics. Once you understand the connections, you can work out what needs restoring."
+
+The player opens the lesson on their laptop.
+
+#### Lesson pages
+
+The player can use **Next** and **Back** and review the lesson during the checkpoint. All devices and network activity are simulated.
+
+##### Page 1: What is a network?
+
+A **network** connects devices so they can exchange information. A laptop might request a file from a server, or two diagnostic devices might exchange readings.
+
+Information travels as small pieces called **packets**. The receiving device uses them to put the information back together.
+
+##### Page 2: LANs and WANs
+
+A **local area network (LAN)** connects devices in a relatively small area, such as the Safehouse Workshop. The laptop and Workshop file server can communicate over the LAN.
+
+A **wide area network (WAN)** connects networks across larger distances. The satellite connection provides the Safehouse with a route beyond its local network to remote storage.
+
+A device can use the local network to reach another network; the LAN and WAN are different parts of the journey.
+
+##### Page 3: Clients, servers, and peers
+
+A **client** requests a service or information. A **server** provides it. For example, the player's laptop can request a file from the Workshop file server.
+
+In a **peer-to-peer** exchange, devices communicate directly as peers. Two diagnostic units can exchange a signal map with each other rather than requesting it from a central file server.
+
+A device's role depends on what it is doing: a laptop can act as a client when requesting a file.
+
+##### Page 4: Throughput
+
+**Throughput** is the amount of data transferred per second. It is often measured in **bits per second**:
+
+| Unit | Meaning |
+|---|---|
+| `bps` | bits per second |
+| `Kbps` | kilobits per second |
+| `Mbps` | megabits per second |
+| `Gbps` | gigabits per second |
+| `Tbps` | terabits per second |
+
+Each step in this list is 1,000 times the previous one. For example, `1 Gbps` equals `1,000 Mbps`.
+
+A higher throughput means more data can be transferred per second. Actual speeds can change with conditions and other network activity.
+
+##### Page 5: Bits, bytes, and transfer time
+
+A file's **size** describes how much data it contains. A connection's **throughput** describes how quickly data is transferred. They are different measurements.
+
+File size is often shown in **bytes**, while network speed is often shown in **bits per second**. Lowercase **b** means bits, as in `Mbps`; uppercase **B** means bytes, as in `MB`. There are **8 bits in one byte**. For this lesson's estimates, use decimal units: `1 MB = 8 megabits`.
+
+For example, a `100 MB` file contains `800 megabits`. At an estimated `10 Mbps`, the transfer would take about `80 seconds`:
+
+```text
+100 MB × 8 = 800 megabits
+800 megabits ÷ 10 Mbps = 80 seconds
+```
+
+This is an estimate assuming the speed stays constant and ignoring overhead. A real transfer may take longer.
+
+#### Checkpoint: Map the connection
+
+There is no separate practice activity. Finch displays a simulated map showing the Workshop laptop, file server, two diagnostic units, satellite connection, and remote archive server. It shows the planned communication route, not a working connection; the player begins restoring the equipment in Lesson 2.
+
+**Part 1: Label the map**
+
+The player identifies:
+
+1. The **Workshop LAN** connecting the local devices.
+2. The **satellite WAN connection** leading beyond the Safehouse.
+3. The **laptop as client** requesting a file.
+4. The **file server** responding to the request.
+5. The two diagnostic units exchanging a signal map **peer to peer**.
+
+**Part 2: Compare and estimate**
+
+The map lists two estimated connection speeds:
+
+- Workshop connection: `100 Mbps`
+- Satellite connection: `20 Mbps`
+
+The player identifies the Workshop connection as the faster one. A recovered transfer record says the archive is `600 MB` and the satellite window is **6 minutes**. Assuming a steady `20 Mbps` and ignoring overhead, the player estimates the transfer time and decides whether it fits.
+
+**Expected result:**
+
+```text
+600 MB × 8 = 4,800 megabits
+4,800 megabits ÷ 20 Mbps = 240 seconds = 4 minutes
+```
+
+The estimated four-minute transfer fits within the six-minute window under those assumptions. It is not a guarantee of actual performance. Completing the checkpoint creates a plan; it does not restore the satellite connection or download the archive.
+
+#### Feedback and hints
+
+Map selections are marked **Correct** or **Try again**. For the calculation, the game identifies whether the conversion, time estimate, or window comparison needs another look without displaying the complete answer. The player can revise their work and review the lesson pages. Hints and retries are unlimited and penalty-free.
+
+Finch offers three hint levels:
+
+1. "Think about which connections stay nearby and which one reaches beyond the Safehouse."
+2. "The laptop requests the file; the server provides it. For the transfer, compare the units in the file size and the connection speed."
+3. "Convert the file size from bytes to bits before dividing by the speed. Then compare the estimated time with the six-minute window."
+
+#### Completion
+
+The map now shows the local connections and the route the archive transfer would need to follow.
+
+> **Finch:** "The transfer should fit in the window, assuming the connection holds. Now we just need a connection that works."
+
+One part of the recovered map has an unlabeled local connection. Finch pauses over it.
+
+> **Finch:** "That connection doesn't have a destination listed. I wonder what used to be attached."
+>
+> **Mara:** "It could be an old diagnostic connection. Focus on the communications equipment for now."
+
+Her explanation is possible, but unconfirmed. The missing destination remains a small clue, not a reveal. The player moves on to Lesson 2 to examine the network equipment.
+
+Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
 
 ## Lesson 2: Network devices and identifiers
 
@@ -62,6 +237,119 @@ Add the access point for the mobile diagnostic unit and the firewall protecting 
 
 **Visible result:** The local network comes online, but the satellite link remains unavailable.
 
+### Detailed lesson: Network devices and identifiers
+
+#### Opening
+
+The player returns to Finch's communications map. The route is planned, but the equipment labels in the rack are mixed up.
+
+> **Finch:** "I found the switch, router, access point, and satellite modem. I'm less sure which connection goes where."
+>
+> **Mara:** "Identify what each device does first. Then we can restore the local network without guessing."
+
+#### Lesson pages
+
+The player uses **Next** and **Back** and can review the pages during the checkpoint. The network is simulated; the player is identifying roles, not configuring real equipment.
+
+##### Page 1: Devices that connect a network
+
+- A **switch** connects wired devices within a local network, such as a laptop and file server.
+- A **wireless access point (AP)** lets wireless devices join the local network.
+- A **router** connects different networks and directs traffic between them. The Safehouse router is the gateway between the LAN and the satellite connection.
+- A **modem** connects the router to the service provider's communication system. Here, the satellite modem links the Safehouse router to the satellite service.
+- A **firewall** allows or blocks network traffic according to rules. In this fictional setup, the firewall is part of the router, rather than a separate box in the cable path.
+
+The path is: local devices -> switch or access point -> router/firewall -> satellite modem -> satellite WAN. The local server can be reached within the LAN; reaching the remote archive also requires the WAN link and services from later lessons.
+
+##### Page 2: MAC and IP addresses
+
+A **MAC address** identifies a network interface on its local network link. It helps local network traffic reach the correct interface. A device with wired and wireless connections can have a different MAC address for each interface.
+
+An **IP address** is a logical network address used to deliver traffic between networks. It can change when a device joins a different network or receives a new assignment.
+
+In short: MAC identifies a local interface; IP identifies a network location for communication. Neither is the same as a person's name or a device's permanent physical location.
+
+##### Page 3: Ports identify services
+
+A **port number** helps direct network traffic to a particular service on a device. The IP address helps reach the device; the port helps reach the service on it. For example, secure web traffic commonly uses port `443` for HTTPS. Lesson 4 will cover service and protocol choices in more detail.
+
+#### Checkpoint: Restore the local communication path
+
+There is no separate practice activity. The player examines the communications rack, connects the local equipment, and uses recovered records to identify network interfaces and addresses. All devices and network activity are simulated.
+
+**Part 1: Place the devices**
+
+- Connect the laptop and Workshop file server to the **switch**.
+- Connect the mobile diagnostic unit to the local network through the **access point**.
+- Identify the **router** as the gateway between the Safehouse LAN and the satellite connection, with its firewall function protecting traffic.
+- Connect the router to the **satellite modem**, which leads toward the satellite WAN and remote archive.
+
+For this simulated network, the firewall is integrated into the router. The player identifies it as the device protecting traffic, not as a separate box in the cable path. The diagram distinguishes the local LAN from the satellite WAN.
+
+**Part 2: Find the address matches**
+
+The player inspects equipment tags in the communications rack and on the mobile diagnostic unit. Each tag identifies an interface and its MAC address.
+
+**Interface inventory**
+
+| Device/interface | MAC address |
+|---|---|
+| Laptop - wired interface | `02:00:00:00:00:11` |
+| Workshop file server - network interface | `02:00:00:00:00:20` |
+| Access point - network interface | `02:00:00:00:00:02` |
+| Mobile diagnostic unit - wireless interface | `02:00:00:00:00:30` |
+
+Finch opens a saved status snapshot from the router's local maintenance console. It lists MAC-to-IP address assignments but has no device names:
+
+**Recovered address assignments**
+
+| MAC address | IP address |
+|---|---|
+| `02:00:00:00:00:30` | `192.0.2.30` |
+| `02:00:00:00:00:11` | `192.0.2.11` |
+| `02:00:00:00:00:02` | `192.0.2.2` |
+| `02:00:00:00:00:20` | `192.0.2.20` |
+
+The player matches each MAC address across the two records to identify which current IP assignment belongs to each interface. The entries are in a different order to make the player cross-reference them.
+
+**Part 3: Match the service port**
+
+A service card lists the archive page as a secure web service on port `443`. The player matches that port to the service. Lesson 4 will explain HTTPS and service configuration in more detail.
+
+**Expected result:** The laptop and file server are connected to the switch, the mobile unit connects through the access point, and the router connects to the satellite modem. The player identifies:
+
+- **MAC address:** Identifies a network interface on its local link.
+- **IP address:** Gives a current network location for communication.
+- **Port:** Directs traffic to a service, such as the archive's secure web service on port `443`.
+
+The local network comes online, but the satellite connection remains unavailable until Lesson 3. The checkpoint establishes local connectivity only; the remote archive cannot yet be reached.
+
+#### Feedback and hints
+
+Correct placements and matches are marked **Correct**; other choices are marked **Try again** and remain editable. Feedback explains the role that needs another look without placing the answer for the player. The player can review lesson pages; hints and retries are unlimited and penalty-free.
+
+Three hint levels:
+
+1. "Which device connects wired equipment, and which one lets the mobile unit join wirelessly?"
+2. "The router is the gateway between networks. The satellite modem connects that gateway to the satellite service."
+3. "A MAC belongs to a network interface, an IP address is used to reach a network location, and a port directs traffic to a service."
+
+#### Completion
+
+The local devices appear on Finch's map. The satellite modem is connected to the router, but the external link remains unavailable until it is activated in Lesson 3.
+
+> **Finch:** "The Workshop devices can talk to each other again. The satellite link is still quiet."
+>
+> **Mara:** "The equipment is in place. Next, confirm what connection and storage we actually have before we bring the external link online."
+
+A recovered label on the router references an unrecognized device identifier. Finch asks whether it belongs to the unlabeled connection from Lesson 1.
+
+> **Mara:** "It's probably an old diagnostic unit. We have enough to do without chasing obsolete labels."
+
+Her explanation is plausible but unconfirmed. The clue is recorded, but the lesson moves on to connection types and storage.
+
+Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+
 ## Lesson 3: Internet connections and network storage
 
 **Topics:**
@@ -81,6 +369,140 @@ Add the access point for the mobile diagnostic unit and the firewall protecting 
 Select the appropriate storage location for recovering the remote archive.
 
 **Visible result:** The satellite modem connects. Finch locates `ARCHIVE-09`, but cannot yet retrieve it because the required services are unavailable.
+
+### Detailed lesson: Internet connections and network storage
+
+#### Opening
+
+The Workshop's local equipment is connected, but the satellite link is still unavailable. Mara brings up recovered service and storage records.
+
+> **Mara:** "Before we activate anything, we need to know what connection the Safehouse uses and where the backup is stored."
+>
+> **Finch:** "I've found a few records. Some are more helpful than others, which seems to be a theme around here."
+
+The player opens the lesson on their laptop.
+
+#### Lesson pages
+
+The player uses **Next** and **Back** and can review the pages during the checkpoint. All services, storage, and network activity are simulated.
+
+##### Page 1: Connecting beyond the local network
+
+A LAN connects local devices, but reaching remote storage also requires a connection beyond the Safehouse. Different locations can use different kinds of internet service:
+
+- **Fiber:** Uses light through fiber-optic cable; it can provide high speeds but requires fiber infrastructure.
+- **Cable:** Uses a cable provider's network; service may be affected by shared local capacity.
+- **DSL:** Uses telephone lines; speed can depend on distance and line quality.
+- **RF wireless:** Uses radio signals, such as a fixed wireless link between an antenna and a nearby provider's tower; a clear path can matter.
+- **Satellite:** Uses a satellite link and can reach remote locations, though latency and weather can affect service.
+- **Cellular:** Uses a mobile network; service depends on coverage and available capacity.
+
+Satellite and cellular also use radio signals. Here, **RF wireless** is a fixed wireless example, not a completely separate kind of radio technology.
+
+No connection type is always best. Availability, speed, reliability, latency, and cost all matter. **Latency** is the delay before information travels between points; it's different from throughput, the amount transferred per second.
+
+##### Page 2: Where network files live
+
+A **network-attached storage device (NAS)** is storage available to devices on a network. The Safehouse's `FINCH-NAS` is local storage on the Workshop network.
+
+A **file server** provides files to other devices. `WORKSHOP-FILES` is the Workshop's file server. NAS devices can also provide files; the terms can overlap.
+
+**Cloud storage** keeps data on remote systems accessed through a network. The registry lists a remote copy of `ARCHIVE-09` in cloud storage.
+
+The name `ARCHIVE-09` identifies the **backup**, while cloud storage describes where that remote copy is kept. The same backup can have more than one copy in different locations.
+
+##### Page 3: Choosing the right source
+
+Before opening or recovering a file, check **what you need**, **where each copy is**, and **whether it's available**. A local copy can be faster to reach, but it isn't useful for recovery if it is damaged. A remote copy may be available, but reaching it requires a working connection and the right services.
+
+> **Finch:** "So the nearest copy isn't necessarily the one we want."
+>
+> **Mara:** "Right. Check the records before deciding."
+
+#### Checkpoint: Find the connection and the archive
+
+There is no separate practice activity. The player reviews fictional service cards and recovered Safehouse records.
+
+**Part 1: Match connection types**
+
+The player matches each scenario to **fiber, cable, DSL, fixed RF wireless, satellite, or cellular**:
+
+1. A building connects through fiber-optic lines that carry light. **Fiber.**
+2. A home connects through its cable provider's network. **Cable.**
+3. A small office connects through its telephone line. **DSL.**
+4. A building's antenna connects by radio to a nearby provider's tower. **Fixed RF wireless.**
+5. A remote site communicates through a satellite terminal. **Satellite.**
+6. A mobile unit connects through a mobile-network provider. **Cellular.**
+
+These answers are for the design and feedback; the player sees the scenarios and choices, not the answers.
+
+**Part 2: Read the Safehouse service records**
+
+The player examines three recovered records:
+
+```text
+SERVICE SURVEY
+Fiber line to Safehouse: Not installed
+Fixed wireless tower coverage: Not available
+Cellular coverage: Not available
+```
+
+```text
+SATELLITE SERVICE RECORD
+Installed equipment: Satellite terminal and modem
+Service status: Available for activation
+```
+
+```text
+CONNECTION HISTORY
+Previous external service: Satellite
+```
+
+The player identifies **satellite** as the Safehouse's documented external connection and selects its service record. The evidence explains this Safehouse's situation; it does not mean every remote location must use satellite.
+
+**Part 3: Identify the storage**
+
+The player reviews the recovered inventory:
+
+| Record | Description |
+|---|---|
+| `FINCH-NAS` | Local network-attached storage; contains a recovery VM image |
+| `WORKSHOP-FILES` | Local file server; contains maintenance documents |
+| `ARCHIVE-09` | Backup with a damaged local copy and a remote copy listed in cloud storage |
+
+The player identifies the NAS and file server, then selects the **remote cloud copy of `ARCHIVE-09`** as the source to investigate for recovery. The registry lists its location, but the player has not yet verified the remote copy's condition.
+
+**Part 4: Activate the link**
+
+After selecting the documented connection and archive source, the player selects **Activate satellite service**. The simulated modem reports that its satellite link is connected. This does **not** make the archive reachable yet: name resolution and firewall/service configuration still need attention in Lesson 4.
+
+#### Feedback and hints
+
+Correct matches and selections are marked **Correct**; incorrect choices are marked **Try again** and remain editable. Finch points the player toward the relevant records without giving the complete answer. The player can review lesson pages; hints and retries are unlimited and penalty-free.
+
+Three hint levels:
+
+1. "Compare each scenario with how the connection carries information. Then look for the Safehouse's own service and storage records."
+2. "The survey describes what is unavailable; the service record and connection history describe equipment and service that are available."
+3. "Look for the installed terminal in the service record. For recovery, distinguish the backup itself from the location of its remote copy."
+
+#### Completion
+
+The satellite modem connects, and the registry points Finch toward the remote archive. An attempt to open it stops before the archive page appears.
+
+> **Finch:** "The satellite link is awake, but I still can't open the archive. It seems having a road and knowing where to go are two different problems."
+>
+> **Mara:** "Then we'll check the services the connection depends on."
+
+Finch also notices the earlier safeguard entry: **REMOTE ACCESS: DENIED**.
+
+> **Finch:** "The registry still says remote access was denied. I don't know exactly what that safeguard was blocking."
+>
+> **Mara:** "Whatever it was, it doesn't change what we need to do now."
+
+The player does not bypass the safeguard, and the scene does not establish its scope or Echo's motive. That detail remains open for later chapter development.
+
+The player moves on to Lesson 4 to investigate the network services. Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
 
 ## Lesson 4: Network services and protocols
 
