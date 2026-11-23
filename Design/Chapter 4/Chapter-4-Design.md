@@ -16,13 +16,15 @@ The chapter progresses from restoring the network, to reaching the archive, to e
 
 ### Visible recovery progress
 
-Finch's map shows connections and systems coming online as the player completes checkpoints. Newly accessible records appear separately; physical areas unlock only when the story calls for it. The specific updates will be woven into each lesson as it is reviewed.
+Finch's map shows connections and systems coming online as the player completes checkpoints. Newly accessible records appear separately. Some story milestones also unlock rooms for the player to explore; later chapters can make use of these spaces, including a possible scavenger-hunt boss.
+
+When a room unlocks, a short cutscene shows its door and plays an unlocking sound. A visible **Door unlocked** message and a caption communicate the change without relying on sound. The player can choose when to enter.
 
 ### Opening scene: The Archive
 
-The player plugs the Development Setup Agent's thumb drive into their laptop. Once it's installed, Finch returns to the restored Asset Registry on the Workshop monitor.
+With the Development Setup Agent already installed at the end of Chapter 3, Finch returns to the restored Asset Registry on the Workshop monitor.
 
-> **Finch:** "While you were installing that, I found another entry in the registry. A backup called `ARCHIVE-09`."
+> **Finch:** "While you were installing the agent, I found another entry in the registry. A backup called `ARCHIVE-09`."
 >
 > **Mara:** "What's in it?"
 >
@@ -181,7 +183,7 @@ Finch offers three hint levels:
 
 #### Completion
 
-The map now shows the local connections and the route the archive transfer would need to follow.
+The map now shows the planned local connections and the route the archive transfer would need to follow. A dotted line indicates that the route is a plan, not a working connection.
 
 > **Finch:** "The transfer should fit in the window, assuming the connection holds. Now we just need a connection that works."
 
@@ -206,6 +208,8 @@ The player returns to Finch's communications map. The route is planned, but the 
 > **Finch:** "I found the switch, router, access point, and satellite modem. I'm less sure which connection goes where."
 >
 > **Mara:** "Identify what each device does first. Then we can restore the local network without guessing."
+
+Finch unlocks the **communications room** so the player can examine the rack and equipment labels. The room's door-unlock cutscene plays before the player enters.
 
 #### Lesson pages
 
@@ -298,7 +302,7 @@ Three hint levels:
 
 #### Completion
 
-The local devices appear on Finch's map. The satellite modem is connected to the router, but the external link remains unavailable until it is activated in Lesson 3.
+The local devices and their working connections light up on Finch's map. The satellite modem is connected to the router, but the external link remains offline until it is activated in Lesson 3.
 
 > **Finch:** "The Workshop devices can talk to each other again. The satellite link is still quiet."
 >
@@ -432,7 +436,7 @@ Three hint levels:
 
 #### Completion
 
-The satellite modem connects, and the registry points Finch toward the remote archive. An attempt to open it stops before the archive page appears.
+The satellite modem connects, and Finch's map shows the satellite link online. The registry points toward the remote archive, but the map still shows the archive as unreachable. An attempt to open it stops before the archive page appears.
 
 > **Finch:** "The satellite link is awake, but I still can't open the archive. It seems having a road and knowing where to go are two different problems."
 >
@@ -550,7 +554,7 @@ Three hint levels:
 
 #### Completion
 
-The sign-in page appears on the laptop, but the archive has not yet been downloaded.
+The sign-in page appears on the laptop. Finch's map shows the secure connection to the archive service, but the player has not signed in or downloaded the archive.
 
 > **Finch:** "The page is there. That's progress, even if it is asking us for more than a friendly wave."
 >
@@ -566,7 +570,7 @@ Completed activity progress saves automatically; an unfinished checkpoint restar
 
 #### Opening
 
-The archive sign-in page is available, but Finch needs the mobile diagnostic unit near the satellite equipment before recovery can proceed.
+The archive sign-in page is available, but Finch needs the mobile diagnostic unit near the satellite equipment before recovery can proceed. Its status report confirms that the satellite equipment is working and lets Finch monitor the connection during recovery. Its camera is useful for inspecting the equipment and noticing clues, but the camera itself is not required for recovery.
 
 > **Finch:** "The diagnostic unit connected near the Workshop, but its signal becomes unreliable when I move it toward the satellite equipment."
 >
@@ -671,7 +675,7 @@ Three hint levels:
 
 #### Completion
 
-The mobile unit connects near the satellite equipment and sends Finch a status report. Its camera shows the terminal and surrounding equipment.
+The mobile unit connects near the satellite equipment and sends Finch a status report confirming that the equipment is working. Finch's map shows the unit connected and monitoring the satellite connection during recovery. Its camera shows the terminal and surrounding equipment.
 
 > **Finch:** "The unit can see the satellite equipment, and the connection is holding. That's better."
 
@@ -682,6 +686,8 @@ A recovered label on the equipment references the same unfamiliar identifier Fin
 > **Mara:** "Old equipment labels get reused. We have the connection we need - let's keep moving."
 
 Her explanation remains possible but unconfirmed. The unit reports that the **connection is ready for the next recovery step**; it does not establish that the archive has been downloaded or verified. The player moves on to Lesson 6 to prepare the recovery environment.
+
+Finch unlocks access to the **satellite equipment area**, and its door-unlock cutscene plays. The player can visit and examine the equipment.
 
 Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
 
@@ -801,7 +807,7 @@ Three hint levels:
 
 #### Completion
 
-The archive finishes downloading into the restricted recovery environment. Finch attempts to read it and finds that some sections are unreadable, although other records can be examined.
+The archive finishes downloading into the restricted recovery environment. Finch's map shows the recovery VM online and the archive downloaded, with its contents still unverified. Finch attempts to read it and finds that some sections are unreadable, although other records can be examined.
 
 > **Finch:** "We have the remote copy, but some of the records are damaged too. I can read parts of it; the rest will take more work."
 >
@@ -870,13 +876,15 @@ Keep the original evidence unchanged. Work on a copy when testing a recovery met
 
 There is no separate practice activity. The recovery assistant presents five items. The player compares each one with the supplied evidence and chooses how to handle it.
 
-##### 1. Suggested configuration
+##### 1. Review the current configuration
 
 **Evidence:** The recovery VM's approved profile permits access to the archive service and restricts other Safehouse systems.
 
-**Assistant suggestion:** "Use the Archive only profile for the recovery VM."
+**Assistant suggestion:** "The recovery VM is using the Archive only profile."
 
-**Expected decision:** The suggestion is supported by the environment card. It may be used **after checking** that the profile's actual settings match the card. The player does not automatically approve it just because the assistant suggested it.
+**Settings panel:** The running VM shows **Archive only** as its profile, with access to the approved archive service and other Safehouse systems restricted.
+
+**Expected decision:** Review the profile already selected in Lesson 6. Compare its actual settings with the environment card before continuing recovery. The player does not assume the settings match just because the assistant says so.
 
 ##### 2. Generated repair script
 
@@ -938,7 +946,7 @@ Three hint levels:
 
 #### Completion
 
-The readable records and the assistant's output appear in separate sections of the recovery workspace. Finch's map shows the **recovery workspace online**, while the accessible records appear separately; no new physical area is automatically unlocked.
+The readable records and the assistant's output appear in separate sections of the recovery workspace. Finch's map shows the **recovery workspace online**, while the accessible records appear separately.
 
 > **Finch:** "I've kept the original fragments and the assistant's suggestions apart. That should make it easier to tell what we actually know."
 >
@@ -950,7 +958,11 @@ Finch notices a readable reference to the unfamiliar identifier seen earlier, bu
 >
 > **Mara:** "Then there's no reason to spend time on it. Finish the recovery."
 
-The clue becomes harder to dismiss but does not reveal the truth. The player moves toward the boss, where the larger recovery and the original team's log become the focus.
+The clue becomes harder to dismiss but does not reveal the truth.
+
+One readable archive record identifies a nearby **records room**. Finch unlocks its door, and the door-unlock cutscene plays. The player can choose when to enter; its physical files and objects can become useful in a later chapter.
+
+The player moves toward the boss, where the larger recovery and the original team's log become the focus.
 
 Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
 
@@ -1110,13 +1122,9 @@ The archive also contains a drive image for the Coding Agent, connecting the cha
 
 ## Reminders for discussion
 
-These are suggestions to revisit when developing the relevant parts, not approved changes to the outline:
+These are suggestions to revisit when developing the relevant parts, not approved changes to the boss concept:
 
 - **Story setup and Lessons 3-4:** Explain how the approved archive connection relates to Chapter 3's `REMOTE ACCESS: DENIED` safeguard without establishing Echo's motive.
-- **Story setup and Lessons 6-7:** Clarify whether the remote archive also contains unreadable sections, since the local copy is damaged and the AI recovery requires damaged material.
-- **Lesson 1:** Provide an estimated satellite throughput and archive size for the transfer calculation; explain that actual transfer time can vary. `Tbps` means terabits per second.
-- **Lesson 2:** Consider describing the local network's physical connections as restored, with address and service configuration still to come in Lesson 4.
-- **Lesson 6:** Consider a restricted recovery VM that can reach the authorized archive rather than a completely disconnected VM.
 - **Boss timer:** Decide whether the perfect bonus is affected if the satellite window expires; the draft preserves completed work for the next pass.
 - **Boss verification:** Review download and checksum order, and use a trusted expected checksum. A match checks file integrity, not the truth of its contents.
 - **Boss wireless configuration:** Specify compatible security and bands for both devices; 802.11ac support alone does not establish WPA3 support.
