@@ -308,6 +308,8 @@ The discovery remains unexplained. The player moves on to Lesson 4, where they l
 
 ### Opening
 
+After the Lesson 3 report, Finch recovers two additional records: the temporary test entry `DEV-10` and the archived Habitat Pressure Sensor `DEV-11`. They were not available when the offline-device report was run.
+
 Finch compares the registry with recovered maintenance notes and finds that some information needs correcting.
 
 > **Finch:** "The report helped, but some of these records don't match the maintenance notes. Can we fix them without making things worse?"
@@ -733,6 +735,8 @@ The player moves toward the boss recovery operation. The checks verify this reco
 
 Finch has recovered another batch of registry information, but some records are incomplete or conflict with the existing database.
 
+Finch has loaded the recovered temporary test entry `DEV-14` into the registry. The Airflow Relay remains in the recovered batch because its ID conflicts with an existing device.
+
 > **Finch:** "There's more of the registry here, but I don't think we can trust it yet. One of these device IDs is already in use."
 >
 > **Mara:** "Then investigate it. Use the records and the evidence to restore what you can, and verify your work before the other systems rely on it."
@@ -813,12 +817,15 @@ One recovered device record is waiting to be added:
 But `DEV-06` is already assigned to the Ventilation Sensor. A recovered label says:
 
 ```text
+EQUIPMENT LABEL
+
 Equipment: Airflow Relay
 Assigned ID: DEV-12
-Room: Workshop (RM-01)
+Location: Workshop (RM-01)
+Status: Active
 ```
 
-The player compares the label with the registry and corrects the recovered record's ID **before adding it**. The existing primary-key protection stays in place.
+The recovered record supplies the relay's offline status and priority. The player compares the label with the registry and types the corrected ID into the recovered record while it remains separate from the registry. This does not insert it: the player writes the `INSERT` statement later during the repair objective. The existing primary-key protection stays in place.
 
 ### Objective 2: Find offline devices
 
@@ -841,6 +848,30 @@ The recovered evidence gives the player three jobs:
 1. **Equipment label:** Add the corrected `DEV-12` Airflow Relay record.
 2. **Maintenance note:** Change the Ventilation Sensor's (`DEV-06`) priority from `3` to `2`.
 3. **Cleanup note:** Delete `DEV-14`, a temporary test entry. Preserve `DEV-11`, a real historical record marked Archived.
+
+The maintenance note says:
+
+```text
+MAINTENANCE NOTE
+
+Device: Ventilation Sensor
+Device ID: DEV-06
+
+Priority has been reassessed.
+Update the registry from priority 3 to priority 2.
+```
+
+The cleanup note says:
+
+```text
+REGISTRY CLEANUP NOTE
+
+DEV-14 is a temporary test entry.
+It can be removed from the registry.
+
+DEV-11 is an archived equipment record.
+Preserve it and its maintenance history.
+```
 
 The player writes an `INSERT`, an `UPDATE`, and a `DELETE`, previewing each change before applying it.
 
@@ -870,7 +901,17 @@ The player checks that:
 
 Isolated tests attempt to add a duplicate ID and assign an invalid room. Those attempts should be rejected and do not change the registry.
 
-Once the checks pass, the player produces the final report:
+The restored registry includes a recovered safeguard log:
+
+```text
+SAFEGUARD LOG
+
+Last safeguard update: E.C.H.O_Thread_01
+Remote access: Denied
+Habitat 02 records: Preserved
+```
+
+Once the checks pass, the player produces the final report, including information from the recovered log:
 
 ```text
 ASSET REGISTRY: VERIFIED
@@ -880,10 +921,12 @@ LAST SAFEGUARD UPDATE: E.C.H.O_Thread_01
 REMOTE ACCESS: DENIED
 ```
 
+The log does not explain Echo's motive. The integrity checks establish that the recovered registry follows its rules; they do not prove Mara's interpretation or guarantee who authored the log.
+
 ### Feedback, hints, and bonus
 
 - The player can run and revise queries freely. Syntax feedback identifies what needs attention without supplying the answer.
-- **Preview** shows which records a change would affect. The player can cancel or undo a change.
+- **Preview** shows which records a statement would change without applying it. The player can select **Apply**, or cancel and revise the statement. Applied changes can be undone.
 - Verification checks identify failed rules without fixing problems automatically.
 - There is **no timer**.
 - Mistakes, retries, previews, the reference key, and objective guidance do not affect the perfect bonus.
@@ -924,6 +967,8 @@ REMOTE ACCESS: DENIED
 ### Saving progress
 
 Boss progress saves automatically. If the player closes the game, they can resume with their current objective, written SQL, applied repairs, and bonus eligibility intact.
+
+An open preview closes without applying its pending change. The SQL remains saved, so the player can preview it again after returning. Already applied repairs remain saved and can be undone if necessary.
 
 ### Ending and reward
 
