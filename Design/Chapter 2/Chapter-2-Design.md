@@ -291,7 +291,32 @@ ____:
     print("Battery level is fine")
 ```
 
-The pieces include `20`, `if`, `<=`, and `else`. The existing charging value remains in the readout but does not need its own condition. Test **60%** for a normal message and **15%** and **20%** for a warning. The simulation supplies each separate current test reading after the Lesson 3 calculation but before the readout and warning run, so the earlier `+ 15` does not alter it. Validate behavior and meaning rather than requiring exact message wording. Preserve the player's work, give clear feedback, and provide three levels of hints and unlimited penalty-free retries. The exercise remains fictional and runs only in the game's simulation.
+The pieces include `20`, `if`, `<=`, and `else`. The existing charging value remains in the readout but does not need its own condition.
+
+After the player places the pieces, Finch activates a visible **test bench**:
+
+> **Finch:** “I’ve loaded three sample readings. This will run your completed warning logic against each one without changing your saved code.”
+
+The test bench explains that it temporarily supplies the `battery` value for each run and does not modify the player’s program. The player selects **Run tests** and receives:
+
+| Test reading | Expected result | Output |
+|---:|---|---|
+| `60%` | Normal status | The player’s normal message |
+| `15%` | Warning | The player’s warning message |
+| `20%` | Warning | The player’s warning message |
+
+Each result receives a **Pass** or **Needs attention** label. The checkpoint validates whether the player’s messages communicate the correct status rather than requiring exact wording.
+
+Feedback identifies the failed case without supplying the answer:
+
+- **60% produces a warning:** “The program warns even when the battery is healthy. Check which branch runs when the condition is false.”
+- **20% produces a normal status:** “Readings at or below the limit should warn. Check whether the comparison includes equality.”
+- **15% produces a normal status:** “The low reading did not enter the warning branch. Compare the condition with the threshold.”
+- **No output or an error:** Show the simulated error and point to the relevant line without correcting it.
+
+The player may revise the code and rerun the tests without penalty. Passing all three completes the checkpoint.
+
+After the tests pass, the Workshop’s ordinary readout still shows its current `60%` reading. The sample values are test inputs and do not change the backup battery. The checkpoint remains fictional and runs only inside the game's simulation.
 
 **Checkpoint hints:** (1) Remind the player that `if` checks a condition and `else` runs when it is false; (2) point to the comparison with the named limit and remind them that the warning includes the limit itself; (3) show a separate sensor example using `<=` and explain its two branches. Feedback identifies which test reading did not produce the expected type of message without placing pieces for the player.
 
