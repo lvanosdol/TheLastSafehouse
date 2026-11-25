@@ -24,3 +24,7 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-21 | Add persistent lesson sticky notes and separate temporary boss notes | Let players keep their own reminders while keeping lesson notes unavailable during bosses. |
 | 2026-11-21 | Type unlocked Chapter 2 boss words and allow one free run | Give players placement feedback while making a later incorrect run forfeit the perfect bonus. |
 | 2026-11-21 | Use the standard Chapter 2 boss timer with pause and resume behavior | Keep the timed challenge while preserving progress and remaining time when the player leaves. |
+| 2026-11-25 | Rebuild Chapter 1 around seven focused lessons | Split files, accounts/permissions, device protection, and software into separate learning and checkpoint goals. |
+| 2026-11-25 | Keep Chapter 1 on a pre-provisioned standard account | Mara cannot grant administrator approval because Echo holds that identity; the player's hidden access becomes a story clue. |
+| 2026-11-25 | Use four grouped recovery goals in the Chapter 1 boss | Preserve README guidance while giving the player room to understand the recovery instead of following seven steps. |
+| 2026-11-25 | Delay the Chapter 1 threat alert until recovery checks pass | Prevent blocking the suspicious file before records, evidence, access, and trusted settings are preserved. |

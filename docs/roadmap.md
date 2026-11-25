@@ -19,7 +19,7 @@
 
 ## Later phases
 
-- [ ] Chapter 1 complete (all 9 lesson stages + Restoration boss)
+- [ ] Chapter 1 complete (7 focused lessons + Restoration boss)
 - [ ] Chapter 2 build (design is in `Design\Chapter 2\`)
 - [ ] Chapters 3–7: design (Story Designer), then build
 

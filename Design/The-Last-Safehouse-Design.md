@@ -1,7 +1,7 @@
 # The Last Safehouse — Working Design Record
 
 **Status:** Brainstorming draft; no implementation decisions are final unless explicitly confirmed below.
-**Updated:** 2026-11-20
+**Updated:** 2026-11-25
 **Purpose:** Serve as the main working record for the game's confirmed decisions, brainstormed drafts, and open questions. Keep it updated as planning continues.
 
 **Navigation:** [Authoritative Chapter 1](Chapter%201/Chapter-1-Design.md) | [Current campaign story (Section 15)](#15-campaign-story--working-narrative) | [Curriculum map (Section 16)](#16-seven-chapter-curriculum-scaffold) | [Current Chapter 2 design](Chapter%202/Chapter-2-Design.md) | [Earlier reward ideas](Previous%20Drafts/Earlier-Reward-Ideas.md) | [Archived historical sections](Superseded/Superseded-Design-Sections.md)
@@ -223,7 +223,7 @@ The previous endings based on joining Mara's Sentinel partnership or rejecting h
 
 The campaign aims for a beginner-to-practical pathway in IT, networking, databases, troubleshooting, and task-appropriate automation. It teaches foundations and evidence-based judgment rather than trying to cover every specialization.
 
-1. **Computer and Workshop restoration:** Begin by learning the components and rebuilding the broken PC, then use it to learn computing basics, operating systems, Windows navigation, files and permissions, device protection, and software choices. The boss uses file sorting, evidence preservation, permissions, and a simulated Windows Security alert; the story introduces the apparent Echo threat and the first signs of Mara's deception.
+1. **Computer and Workshop restoration:** Begin by reassembling a training PC, then use it to learn computing basics, operating systems, Windows navigation, files and permissions, device protection, and software choices. The boss uses file sorting, evidence preservation, permissions, and a simulated Windows Security alert; the story introduces the apparent Echo threat and the first signs of Mara's deception.
 2. **Programming fundamentals:** See the [Chapter 2 design](Chapter%202/Chapter-2-Design.md).
 3. **Databases:** See the [Chapter 3 design](Chapter%203/Chapter-3-Design.md).
 4. **Networking, cloud, and AI-assisted recovery:** See the [Chapter 4 design](Chapter%204/Chapter-4-Design.md).
@@ -236,7 +236,9 @@ Pace each chapter in manageable steps with practice and meaningful checks. Some 
 
 **Status:** Redesign from scratch. The [Chapter 2 design file](Chapter%202/Chapter-2-Design.md) tracks the new direction; the earlier detailed draft is archived.
 
-## 18. IT-first Chapter 1 rewrite
+## 18. Chapter 1 — current design
 
-For the authoritative current Chapter 1 design, see the [Chapter 1 design file](Chapter%201/Chapter-1-Design.md).
+**Status:** Authoritative. The chapter uses seven focused lessons and a four-goal Restoration boss. Mara cannot authorize administrator actions; the pre-provisioned standard account and delegated recovery permissions are part of the Echo mystery.
+
+For the current Chapter 1 design, see the [Chapter 1 design file](Chapter%201/Chapter-1-Design.md).
 
