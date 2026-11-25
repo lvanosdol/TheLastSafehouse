@@ -558,13 +558,15 @@ After main power fails, the player repairs a program on Finch's simulated system
 
 The reference image's terminal text and word bank are illustrative; use the Python program and puzzle defined below. Its displayed time is also illustrative; the initial timer is approximately 25 minutes. Keep controls keyboard-accessible and make status understandable without relying on color or faintness alone.
 
-**Binary puzzle and repair:** The program is significantly unfinished, but enough code remains to provide structure. `#` comments above each code section explain its purpose. The missing words appear with faint letters.
+**Binary puzzle and repair:** The program is significantly unfinished, but enough code remains to provide structure. `#` comments above each code section explain its purpose.
+
+The word bank initially shows each missing word as blank letter slots with its length and a **Locked** label. Locked letters are not displayed faintly and are not exposed to screen readers. As letters unlock, they appear in every matching slot. The complete word is revealed and becomes available for typing only when all its letters are unlocked.
 
 1. The player uses the eight-bit reference chart to convert a binary number to decimal, entering the place-value contributions and their total as described below.
-2. The game automatically darkens the corresponding letter everywhere it appears in the missing words. One correct conversion unlocks all occurrences of that letter; the player does not need to learn a letter-to-number key.
-3. When all the letters in a word are unlocked, the player can type the word into a blank in the terminal.
+2. A correct conversion reveals the corresponding letter everywhere it appears in the word bank. One conversion unlocks all occurrences of that letter; the player does not need to learn a letter-to-number key.
+3. When all the letters in a word are unlocked, its full text appears with an **Unlocked** label and the player can type it into a blank in the terminal.
 4. The player can type an unlocked word into any blank, using the code, comments, and earlier lessons to work out where it belongs rather than being told its position.
-5. Once all words are entered, the player presses **Run**. The word list marks correctly placed words green and incorrectly placed words red, with **Correct** and **Incorrect** text labels so the feedback does not depend on color alone. The player can edit the code and run it again; all words must be correctly placed for the repair to succeed.
+5. Once all words are entered, the player presses **Run**. The word bank marks correctly placed words green and incorrectly placed words red, with **Correct** and **Incorrect** text labels so the feedback does not depend on color alone. The player can edit the code and run it again; all words must be correctly placed for the repair to succeed.
 
 The first run is free and does not forfeit the perfect bonus. If the player runs the code again and any words are still in the wrong places, the perfect bonus is forfeited, even if different words are wrong. The player keeps their progress and can continue correcting the code to earn the standard reward. Explain this rule before the boss begins.
 
@@ -634,6 +636,14 @@ Use one conversion per distinct letter. When the player enters the correct decim
 
 Incorrect conversions can be retried and do not count as a Run. Playtest whether the 12 conversions fit comfortably within the initial timer.
 
+### Boss accessibility
+
+- Each word displays its length and **Locked** or **Unlocked** state as text.
+- A screen-reader list reports unlocked letters, completed words, and progress such as “E unlocked. Four of twelve letters found.”
+- Locked letters are not present in accessibility output or conveyed through faintness.
+- Correctly and incorrectly placed words use the words **Correct** and **Incorrect**, not only green and red.
+- Players can review the current word bank, code, and unlocked-letter list at any time.
+
 ### Hints
 
 The player chooses whether they need help with a binary conversion or a code gap. Each hint has three levels:
@@ -656,7 +666,7 @@ Before revealing any hint, warn that using it forfeits the perfect bonus. Confir
 
 If time runs out, the game clearly reports that the perfect bonus has been forfeited. The player keeps their progress and has unlimited time to finish, with no second countdown. They can still complete the chapter and receive the standard agent. Accepting a boss hint or Mara's help also forfeits the bonus, but only after a warning and confirmation; cancelling preserves eligibility.
 
-The countdown pauses during cutscenes, the pause menu, and displayed hints. Closing the game stops the countdown; reopening resumes with the remaining time. Restore solved puzzles, partial answers, code, boss sticky notes, remaining time, Run history, and perfect-bonus eligibility so closing the game does not reset the attempt. Boss sticky notes are still removed when the boss ends.
+The countdown pauses during cutscenes, the pause menu, displayed Hint overlays, Ask Mara help, and mandatory accessibility overlays. It resumes at the remaining time when the overlay closes. Closing the game stops the countdown; reopening resumes with the remaining time. Restore solved puzzles, partial answers, code, boss sticky notes, remaining time, Run history, and perfect-bonus eligibility so closing the game does not reset the attempt. Boss sticky notes are still removed when the boss ends.
 
 The [sticky note app](../The-Last-Safehouse-Design.md#sticky-notes) is available during the boss, but lesson notes are hidden and boss notes are removed when the boss ends. The timer continues while a note is open or being edited.
 
