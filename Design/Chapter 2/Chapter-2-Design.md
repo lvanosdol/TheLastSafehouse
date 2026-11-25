@@ -552,9 +552,9 @@ The countdown begins after the cutscene and boss instructions, not during Finch'
 
 ## Chapter 2 boss: Working direction
 
-After main power fails, the player repairs a program on Finch's simulated system to restore power and the auxiliary monitor.
+After main power fails, the player repairs a program on the Safehouse system to restore power and the auxiliary monitor.
 
-**Screen reference:** Use the supplied [boss-screen image](Boss-Screen-Reference.png) as a visual reference. The large Workshop monitor shows the code terminal on the left, the word bank and output on the right, the timer at the top, and a Run button inside the code window. A smaller laptop screen in front shows a binary puzzle and the eight-bit place-value chart. Mara's hint and sticky-note controls are accessible from the screen.
+**Screen reference:** Use the supplied [boss-screen image](Boss-Screen-Reference.png) as a visual reference. The large Workshop monitor shows the code terminal on the left, the word bank and output on the right, the timer at the top, and a Run button inside the code window. A smaller laptop screen in front shows a binary puzzle and the eight-bit place-value chart. The Hint, Ask Mara, and sticky-note controls are accessible from the screen.
 
 The reference image's terminal text and word bank are illustrative; use the Python program and puzzle defined below. Its displayed time is also illustrative; the initial timer is approximately 30 minutes. Keep controls keyboard-accessible and make status understandable without relying on color or faintness alone.
 
@@ -622,14 +622,14 @@ ____ reading in battery_readings:
     status = get_battery_status(reading)
     ____("Battery:", reading, "% -", status)
 
-# Restore main power in Finch's simulated system.
+# Restore main power in the Safehouse system.
 main_power_online = ____
 
 # Display the recovered diagnostic information.
 if main_power_online:
     print("AUXILIARY MONITOR: ONLINE")
     print("CHARGING RELAY: DISCONNECTED")
-    print("NON ESSENTIAL POWER LOADS: IDENTIFIED")
+    print("NON-ESSENTIAL POWER LOADS: IDENTIFIED")
     print("LOCAL CONTROL: AVAILABLE")
     print("REMOTE ACCESS: DENIED")
     print("SAFEGUARD: ECHO-02")
@@ -639,7 +639,7 @@ The missing words are `def`, `if`, `return`, `else`, `for`, `print`, and `True`.
 
 ### Binary conversions
 
-Use one conversion per distinct letter. When the player enters the correct decimal answer, the game darkens that letter everywhere it appears in the missing-word list, regardless of letter case. The player does not need to learn the mapping below; it defines the game's automatic unlocks.
+Use one conversion per distinct letter. When the player enters the correct decimal answer, the game reveals that letter everywhere it appears in the word bank, regardless of letter case. The player does not need to learn the mapping below; it defines the game's automatic unlocks.
 
 | Binary | Decimal | Letter unlocked |
 |---|---:|---|
@@ -668,7 +668,9 @@ Incorrect conversions can be retried and do not count as a Run. Playtest whether
 
 ### Hints
 
-The player chooses whether they need help with a binary conversion or a code gap. Each hint has three levels:
+The boss provides two separate help controls. **Hint** offers the progressive hints below. **Ask Mara** opens in-character conversational guidance.
+
+The player chooses whether they need help with a binary conversion or a code gap. Each Hint has three levels:
 
 | Level | Binary puzzle | Code placement |
 |---|---|---|
@@ -676,7 +678,7 @@ The player chooses whether they need help with a binary conversion or a code gap
 | 2: Where to look | Point to the relevant positions on the eight-bit chart. | Point to the `#` comment above the section. |
 | 3: Similar example | Show how to convert a different binary number. | Show a similar, separate Python example without completing the boss code. |
 
-Before revealing any hint, warn that using it forfeits the perfect bonus. Confirmation reveals it and forfeits the bonus; cancelling preserves eligibility. The first Run's placement feedback is not a hint and remains free.
+Before revealing any Hint or opening Ask Mara, warn that using either help method forfeits the perfect bonus. Confirmation reveals the help and forfeits the bonus; cancelling preserves eligibility. The first Run's placement feedback is not a hint and remains free.
 
 **Timer and rewards:** Use the standard timer only, without separate extended-time or no-timer settings. The initial limit is approximately **30 minutes**, subject to playtesting, and starts after the opening cutscene and instructions. Give the player calm warnings at **15 minutes** and **5 minutes** remaining during the initial countdown. Explain before the countdown that letting time run out forfeits the perfect bonus.
 
@@ -686,7 +688,7 @@ Before revealing any hint, warn that using it forfeits the perfect bonus. Confir
 >
 > **Finch, when time runs out:** "I'm shutting down the unnecessary Workshop lights. That should give you the time you need."
 
-If time runs out, the game clearly reports that the perfect bonus has been forfeited. The player keeps their progress and has unlimited time to finish, with no second countdown. They can still complete the chapter and receive the standard agent. Accepting a boss hint or Mara's help also forfeits the bonus, but only after a warning and confirmation; cancelling preserves eligibility.
+If time runs out, the game clearly reports that the perfect bonus has been forfeited. The player keeps their progress and has unlimited time to finish, with no second countdown. They can still complete the chapter and receive the standard agent. Accepting a **Hint** or **Ask Mara** help also forfeits the bonus, but only after a warning and confirmation; cancelling preserves eligibility.
 
 The countdown pauses during cutscenes, the pause menu, displayed Hint overlays, Ask Mara help, and mandatory accessibility overlays. It resumes at the remaining time when the overlay closes. Closing the game stops the countdown; reopening resumes with the remaining time. Restore solved puzzles, partial answers, code, boss sticky notes, remaining time, Run history, and perfect-bonus eligibility so closing the game does not reset the attempt. Boss sticky notes are still removed when the boss ends.
 
@@ -697,7 +699,7 @@ The [sticky note app](../The-Last-Safehouse-Design.md#sticky-notes) is available
 ```text
 AUXILIARY MONITOR: ONLINE
 CHARGING RELAY: DISCONNECTED
-NON ESSENTIAL POWER LOADS: IDENTIFIED
+NON-ESSENTIAL POWER LOADS: IDENTIFIED
 LOCAL CONTROL: AVAILABLE
 REMOTE ACCESS: DENIED
 SAFEGUARD: ECHO-02
