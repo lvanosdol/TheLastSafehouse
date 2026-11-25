@@ -686,7 +686,7 @@ Before revealing any Hint or opening Ask Mara, warn that using either help metho
 >
 > **Finch, when time runs out:** "I'm shutting down the unnecessary Workshop lights. That should give you the time you need."
 
-If time runs out, the game clearly reports that the perfect bonus has been forfeited. The player keeps their progress and has unlimited time to finish, with no second countdown. They can still complete the chapter and receive the standard agent. Accepting a **Hint** or **Ask Mara** help also forfeits the bonus, but only after a warning and confirmation; cancelling preserves eligibility.
+If time runs out, the game clearly reports that the perfect bonus has been forfeited. The player keeps their progress and has unlimited time to finish, with no second countdown. They can still complete the chapter and receive the standard component. Accepting a **Hint** or **Ask Mara** help also forfeits the bonus, but only after a warning and confirmation; cancelling preserves eligibility.
 
 The countdown pauses during cutscenes, the pause menu, displayed Hint overlays, Ask Mara help, and mandatory accessibility overlays. It resumes at the remaining time when the overlay closes. Closing the game stops the countdown; reopening resumes with the remaining time. Restore solved puzzles, partial answers, code, boss sticky notes, remaining time, Run history, and perfect-bonus eligibility so closing the game does not reset the attempt. Boss sticky notes are still removed when the boss ends.
 
