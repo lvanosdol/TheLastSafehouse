@@ -544,11 +544,11 @@ Mara is available for help, with three levels of hints and unlimited penalty-fre
 
 The Workshop lights flicker, then the main power shuts down. Backup lights come on as the facility switches to backup power, leading into the boss.
 
-> **Finch:** "Good news: the essential systems are protected. Bad news: we have approximately twenty-five minutes before this console goes back to sleep."
+> **Finch:** "Good news: the essential systems are protected. Bad news: we have approximately thirty minutes before this console goes back to sleep."
 >
 > **Mara:** "That's enough time. Work carefully, and don't skip the tests. A fast repair isn't useful if it gives us the wrong readings."
 
-The countdown begins after the cutscene and boss instructions, not during Finch's dialogue. The initial 25-minute limit can be adjusted after playtesting.
+The countdown begins after the cutscene and boss instructions, not during Finch's dialogue. The initial 30-minute limit can be adjusted after playtesting.
 
 ## Chapter 2 boss: Working direction
 
@@ -556,7 +556,7 @@ After main power fails, the player repairs a program on Finch's simulated system
 
 **Screen reference:** Use the supplied [boss-screen image](Boss-Screen-Reference.png) as a visual reference. The large Workshop monitor shows the code terminal on the left, the word bank and output on the right, the timer at the top, and a Run button inside the code window. A smaller laptop screen in front shows a binary puzzle and the eight-bit place-value chart. Mara's hint and sticky-note controls are accessible from the screen.
 
-The reference image's terminal text and word bank are illustrative; use the Python program and puzzle defined below. Its displayed time is also illustrative; the initial timer is approximately 25 minutes. Keep controls keyboard-accessible and make status understandable without relying on color or faintness alone.
+The reference image's terminal text and word bank are illustrative; use the Python program and puzzle defined below. Its displayed time is also illustrative; the initial timer is approximately 30 minutes. Keep controls keyboard-accessible and make status understandable without relying on color or faintness alone.
 
 **Binary puzzle and repair:** The program is significantly unfinished, but enough code remains to provide structure. `#` comments above each code section explain its purpose.
 
@@ -678,7 +678,7 @@ The player chooses whether they need help with a binary conversion or a code gap
 
 Before revealing any hint, warn that using it forfeits the perfect bonus. Confirmation reveals it and forfeits the bonus; cancelling preserves eligibility. The first Run's placement feedback is not a hint and remains free.
 
-**Timer and rewards:** Use the standard timer only, without separate extended-time or no-timer settings. The initial limit is approximately 25 minutes, subject to playtesting, and starts after the opening cutscene and instructions. Give the player calm warnings at **15 minutes** and **5 minutes** remaining during the initial countdown. Explain before the countdown that letting time run out forfeits the perfect bonus.
+**Timer and rewards:** Use the standard timer only, without separate extended-time or no-timer settings. The initial limit is approximately **30 minutes**, subject to playtesting, and starts after the opening cutscene and instructions. Give the player calm warnings at **15 minutes** and **5 minutes** remaining during the initial countdown. Explain before the countdown that letting time run out forfeits the perfect bonus.
 
 > **Finch, at 15 minutes:** "We have fifteen minutes left. Power use hasn't changed."
 >

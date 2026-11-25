@@ -32,3 +32,4 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-25 | Treat chapter rewards as build components, not in-game assistants | The player assembles the seven-agent app across the campaign without using its agents during gameplay. |
 | 2026-11-25 | Offer the completed seven-agent app for real-world download after Chapter 7 | The campaign's earned standard or upgraded components form the finished app for the player's real computer, subject to safety and testing. |
 | 2026-11-25 | Install the Chapter 2 Project Planning Agent component for the current user | Preserve Chapter 1's standard-account boundary and avoid implying administrator access. |
+| 2026-11-25 | Use a 30-minute initial Chapter 2 boss timer | Give beginners enough time for 12 conversions and seven word placements while retaining gentle urgency. |
