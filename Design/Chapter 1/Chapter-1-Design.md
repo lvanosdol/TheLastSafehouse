@@ -930,7 +930,7 @@ After the checks pass and the file is blocked, Finch's hologram flickers into vi
 >
 > **Finch:** “Now, where did I put your welcome present?”
 
-A secret compartment opens at the end of the cutscene with a thumb drive containing the Project Planning Agent and any earned perfect-finish upgrade.
+A secret compartment opens at the end of the cutscene with a thumb drive containing the Project Planning Agent build component. The drive contains either its standard or earned perfect-finish version, never both.
 
 Finch is the Safehouse's system in holographic form, with a comedic personality and damaged memories. His system was destroyed years earlier when Echo destroyed the facility.
 
@@ -940,7 +940,7 @@ Mara presents the recovery as a victory. The player does not yet know that block
 
 The player picks up the thumb drive from Finch's secret compartment.
 
-> **Finch:** “One Project Planning Agent, ready for duty. Well, almost. It needs somewhere to live.”
+> **Finch:** “One Project Planning Agent component, ready for assembly. Well, almost. It needs somewhere to live.”
 >
 > *Mara brings over a laptop and hands it to the player.*
 >
@@ -958,7 +958,7 @@ The player picks up the thumb drive from Finch's secret compartment.
 
 The player looks at the laptop and the drive as the scene fades out, ending Chapter 1.
 
-The in-game laptop is the player's computer for later lessons and checkpoints. Each chapter's earned software component arrives on a separate in-game thumb drive. The first drive comes from Finch's secret compartment and can be used after the player receives the laptop. Installing a component does not affect the player's real computer.
+The in-game laptop is the player's computer for later lessons and checkpoints. Each chapter's earned software component arrives on a separate in-game thumb drive. The first drive comes from Finch's secret compartment and can be used after the player receives the laptop. Adding a component updates the in-game project build; it does not provide an assistant or tool during gameplay and does not affect the player's real computer. The completed seven-agent app is intended to become downloadable for real-world use only after the full campaign and Chapter 7 boss are complete.
 
 ## Story and checkpoint behavior
 
@@ -992,7 +992,9 @@ Ordinary mistakes, corrections, undos, and repeated attempts do not forfeit the 
 
 Using an optional boss hint or Mara's AI-powered help triggers a warning. Confirming help forfeits the upgrade; cancelling preserves eligibility. Lesson hints and retries never affect eligibility.
 
-Completing the chapter awards the **Project Planning Agent**, which helps the player brainstorm ideas and save approved drafts in an organized project folder. A perfect boss finish upgrades it to compare alternative ideas and create a more detailed development roadmap.
+Completing the chapter adds the **Project Planning Agent** component to the in-game software project. Its standard version is designed to help the eventual real-world app's user brainstorm ideas and save approved drafts in an organized project folder. A perfect boss finish selects its upgraded version, designed to compare alternative ideas and create a more detailed development roadmap.
+
+The player receives only one version, not both. The component is not used as an assistant during gameplay. Its described abilities apply to the finished app intended for download after the full seven-chapter campaign.
 
 Finch is a story character and the Safehouse's holographic system, not a reward. No other Chapter 1 rewards are currently planned. The app's final name remains open.
 

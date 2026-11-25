@@ -10,7 +10,7 @@
 
 *The Last Safehouse* is a 3D, story-driven IT and networking learning game for adult beginners. It teaches real-world computer, operating-system, networking, database, automation, troubleshooting, and defensive-security skills through short explanations, examples, exploration, hands-on practice, and meaningful checkpoints.
 
-The player gradually builds a seven-agent software-development app, earning one agent after each chapter and an optional upgraded version for a perfect boss finish. The complete app is intended to be downloadable and useful beyond the game. The campaign target is seven chapters.
+The player gradually builds a seven-agent software-development app, earning one component after each chapter and an optional upgraded version for a perfect boss finish. During gameplay, the player assembles these components in the in-game project build; the agents are not available as tools or assistants inside the game. After Chapter 7, the completed app is intended to be downloadable and useful on the player's real computer, subject to future safety, security, privacy, compatibility, reliability, and testing work. The campaign target is seven chapters.
 
 The app's final name and implementation remain open. Real-world use needs separate safety, security, privacy, compatibility, and reliability design; game simulations use fictional records and contained exercises.
 
@@ -105,7 +105,9 @@ Hints should not reveal a complete solution.
 
 ## 8. Software-development agents and chapter rewards
 
-**Status:** Approved working direction. Each chapter awards its standard agent; a perfect boss finish awards that agent's upgraded version. No other reward types are currently planned. The app can be downloaded and saved for real-world use after completion, subject to future design and testing.
+**Status:** Approved working direction. Each chapter awards its standard agent component; a perfect boss finish awards that agent's upgraded version. No other reward types are currently planned.
+
+The agents are components of the software the player is assembling across the campaign. They are not launched, invoked, or used as assistants inside the game. The in-game project build tracks the earned standard or upgraded component after each chapter. Once all seven chapters and the final boss are complete, the game is intended to assemble those earned versions into the finished seven-agent app and offer it for download on the player's real computer, subject to future design and testing.
 
 | Chapter | Standard agent | Perfect-finish upgrade |
 |---|---|---|
@@ -121,7 +123,7 @@ Version control is a shared app feature rather than an eighth agent. After the u
 
 Standard agents must remain useful on their own. Safety, accessibility, and user approval apply to both standard and upgraded versions. Compatibility claims must be checked where possible and uncertainty made clear. The development setup agent never installs software for the user.
 
-Each chapter's earned component arrives on a separate in-game thumb drive. The player plugs it into the in-game laptop to install the component as the app grows; the first drive comes from Finch's secret compartment. The laptop is a learning tool rather than another chapter reward, and the app's intended real-world download remains separate from the fictional installation.
+Each chapter's earned component arrives on a separate in-game thumb drive. The player adds it to the in-game project build as the app grows; the first drive comes from Finch's secret compartment. Installation is a simulated build step: the component is not run or used inside the game. The laptop is a learning tool rather than another chapter reward, and the app's real-world download is produced only after the full campaign is complete.
 
 ### Previous agent roster
 

@@ -29,3 +29,6 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-25 | Use four grouped recovery goals in the Chapter 1 boss | Preserve README guidance while giving the player room to understand the recovery instead of following seven steps. |
 | 2026-11-25 | Delay the Chapter 1 threat alert until recovery checks pass | Prevent blocking the suspicious file before records, evidence, access, and trusted settings are preserved. |
 | 2026-11-25 | Identify the Chapter 1 machine as the Safehouse system computer | It is the facility's system hardware, not a disposable training PC. |
+| 2026-11-25 | Treat chapter rewards as build components, not in-game assistants | The player assembles the seven-agent app across the campaign without using its agents during gameplay. |
+| 2026-11-25 | Offer the completed seven-agent app for real-world download after Chapter 7 | The campaign's earned standard or upgraded components form the finished app for the player's real computer, subject to safety and testing. |
+| 2026-11-25 | Install the Chapter 2 Project Planning Agent component for the current user | Preserve Chapter 1's standard-account boundary and avoid implying administrator access. |

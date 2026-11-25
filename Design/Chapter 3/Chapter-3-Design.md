@@ -4,7 +4,7 @@
 
 ## Opening scene
 
-The Workshop is quiet again. With main power restored and the Design Agent installed, the player sits down with their in-game laptop. Finch appears beside the monitoring display.
+The Workshop is quiet again. With main power restored and the Design Agent component added to the in-game project build, the player sits down with their in-game laptop. Finch appears beside the monitoring display.
 
 > **Finch:** "The monitor is working again, but it's found a rather impressive collection of Workshop records. I'm not sure where to start."
 >
@@ -986,4 +986,4 @@ Finch notices an inventory entry for a sealed supply case in the Workshop.
 
 > **Finch:** "There's one more thing. The restored inventory lists a case nearby. It might be worth a look."
 
-The player finds and opens the case, then installs the **Development Setup Agent** from its thumb drive. Completing the boss earns the standard agent; a perfect finish earns the upgraded version. The agent helps compare development tools, while the user chooses and installs them.
+The player finds and opens the case, then adds the **Development Setup Agent** component from its thumb drive to the in-game project build. Completing the boss earns the standard component; a perfect finish earns the upgraded version, never both. The component is not used during gameplay. In the finished downloadable app, this agent will help compare development tools while the user chooses and installs them.

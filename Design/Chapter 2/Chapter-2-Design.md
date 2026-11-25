@@ -20,9 +20,19 @@ The next morning, the player sits down with their in-game laptop and the thumb d
 >
 > **Finch:** "And how to do it without upsetting them. They can be surprisingly sensitive."
 >
-> **Mara:** "First, let's get your Project Planning Agent installed."
+> **Mara:** "First, let's add your Project Planning Agent component to the project build."
 
-The player plugs the drive into the in-game laptop and follows a simple installation prompt. Once it is installed, the computer opens the first lesson. Mara remains available for help, and Finch can occasionally add commentary. The simulated installation does not affect the player's real computer.
+The player plugs the drive into the in-game laptop and selects **Add component for current user**. The simulated installer does not request administrator approval, change system-wide settings, or affect the player's real computer:
+
+```text
+APPLICATION COMPONENT: PROJECT PLANNING AGENT
+BUILD SLOT: 1 OF 7
+INSTALL SCOPE: CURRENT USER
+ADMINISTRATOR APPROVAL: NOT REQUIRED
+REAL COMPUTER CHANGES: NONE
+```
+
+Adding the component updates the in-game project build and unlocks the first lesson. The Project Planning Agent is not launched or used as an in-game assistant. Once it is added, Mara remains available for help, Finch can occasionally add commentary, and the next lesson opens.
 
 ## Lesson 1: How computers represent information
 
@@ -646,4 +656,4 @@ Finch uses the monitor to disconnect nonessential loads and restore local chargi
 
 > **Finch:** "One more thing survived the outage. I believe you've earned it."
 
-Inside is a thumb drive containing the Design Agent. Mara hands the drive to the player, who plugs it into their laptop and installs the agent. If the player earned the perfect boss bonus, the drive contains the upgraded Design Agent instead.
+Inside is a thumb drive containing the Design Agent build component. Mara hands the drive to the player, who adds it to the in-game project build. The agent is not launched or used during gameplay. If the player earned the perfect boss bonus, the drive contains the upgraded Design Agent component instead; the player never receives both versions.

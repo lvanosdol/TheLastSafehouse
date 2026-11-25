@@ -4,7 +4,7 @@
 
 ## Opening scene
 
-After the Chapter 4 recovery, Finch reviews the Tomas and Nia log. The Coding Agent is already installed on the player's laptop. Finch uses the recovered archive to update the facility map:
+After the Chapter 4 recovery, Finch reviews the Tomas and Nia log. The Coding Agent component has already been added to the in-game project build. Finch uses the recovered archive to update the facility map:
 
 ```text
 SYSTEMS WING: LOCATED
