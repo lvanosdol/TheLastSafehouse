@@ -22,9 +22,9 @@ When a room unlocks, a short cutscene shows its door and plays an unlocking soun
 
 ### Opening scene: The Archive
 
-With the Development Setup Agent already installed at the end of Chapter 3, Finch returns to the restored Asset Registry on the Workshop monitor.
+With the Development Setup Agent component already added to the in-game project build at the end of Chapter 3, Finch returns to the restored Asset Registry on the Workshop monitor.
 
-> **Finch:** "While you were installing the agent, I found another entry in the registry. A backup called `ARCHIVE-09`."
+> **Finch:** "While you were adding that component, I found another entry in the registry. A backup called `ARCHIVE-09`."
 >
 > **Mara:** "What's in it?"
 >
@@ -1191,9 +1191,9 @@ The records raise questions about Mara's explanation without proving the full tr
 
 ### Reward
 
-The recovery manifest also points to a sealed compartment in the records room. Finch opens it, revealing a **physical thumb drive** containing the Coding Agent.
+The recovery manifest also points to a sealed compartment in the records room. Finch opens it, revealing a **physical thumb drive** containing the Coding Agent build component.
 
-The player receives the standard agent for completing the boss, or its upgraded version for a perfect finish. They install it on the in-game laptop; this does not change the player's real computer.
+The player adds the standard component to the in-game project build for completing the boss, or its upgraded version for a perfect finish—never both. The component is not launched or used during gameplay. The finished real-world app is intended to become downloadable only after the full campaign and Chapter 7 boss.
 
 ### Timer, hints, and saving
 

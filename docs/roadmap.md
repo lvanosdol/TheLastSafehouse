@@ -19,8 +19,13 @@
 
 ## Later phases
 
-- [ ] Chapter 1 complete (all 9 lesson stages + Restoration boss)
+- [ ] Chapter 1 complete (7 focused lessons + Restoration boss)
 - [ ] Chapter 2 build (design is in `Design\Chapter 2\`)
 - [ ] Chapters 3–7: design (Story Designer), then build
+- [ ] Final seven-agent app assembled with earned standard or upgraded components and offered for real-world download
 
 *Ask the Planner to expand any phase into detailed steps.*
+
+## Final design pass
+
+- [ ] After all seven chapters are designed, return to every chapter's open implementation questions with the owner and resolve them before implementation is treated as final.

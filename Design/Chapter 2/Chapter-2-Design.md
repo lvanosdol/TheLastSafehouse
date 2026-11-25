@@ -20,9 +20,19 @@ The next morning, the player sits down with their in-game laptop and the thumb d
 >
 > **Finch:** "And how to do it without upsetting them. They can be surprisingly sensitive."
 >
-> **Mara:** "First, let's get your Project Planning Agent installed."
+> **Mara:** "First, let's add your Project Planning Agent component to the project build."
 
-The player plugs the drive into the in-game laptop and follows a simple installation prompt. Once it is installed, the computer opens the first lesson. Mara remains available for help, and Finch can occasionally add commentary. The simulated installation does not affect the player's real computer.
+The player plugs the drive into the in-game laptop and selects **Add component for current user**. The simulated installer does not request administrator approval, change system-wide settings, or affect the player's real computer:
+
+```text
+APPLICATION COMPONENT: PROJECT PLANNING AGENT
+BUILD SLOT: 1 OF 7
+INSTALL SCOPE: CURRENT USER
+ADMINISTRATOR APPROVAL: NOT REQUIRED
+REAL COMPUTER CHANGES: NONE
+```
+
+Adding the component updates the in-game project build and unlocks the first lesson. The Project Planning Agent is not launched or used as an in-game assistant. Once it is added, Mara remains available for help, Finch can occasionally add commentary, and the next lesson opens.
 
 ## Lesson 1: How computers represent information
 
@@ -281,7 +291,32 @@ ____:
     print("Battery level is fine")
 ```
 
-The pieces include `20`, `if`, `<=`, and `else`. The existing charging value remains in the readout but does not need its own condition. Test **60%** for a normal message and **15%** and **20%** for a warning. The simulation supplies each separate current test reading after the Lesson 3 calculation but before the readout and warning run, so the earlier `+ 15` does not alter it. Validate behavior and meaning rather than requiring exact message wording. Preserve the player's work, give clear feedback, and provide three levels of hints and unlimited penalty-free retries. The exercise remains fictional and runs only in the game's simulation.
+The pieces include `20`, `if`, `<=`, and `else`. The existing charging value remains in the readout but does not need its own condition.
+
+After the player places the pieces, Finch activates a visible **test bench**:
+
+> **Finch:** “I’ve loaded three sample readings. This will run your completed warning logic against each one without changing your saved code.”
+
+The test bench explains that it temporarily supplies the `battery` value for each run and does not modify the player’s program. The player selects **Run tests** and receives:
+
+| Test reading | Expected result | Output |
+|---:|---|---|
+| `60%` | Normal status | The player’s normal message |
+| `15%` | Warning | The player’s warning message |
+| `20%` | Warning | The player’s warning message |
+
+Each result receives a **Pass** or **Needs attention** label. The checkpoint validates whether the player’s messages communicate the correct status rather than requiring exact wording.
+
+Feedback identifies the failed case without supplying the answer:
+
+- **60% produces a warning:** “The program warns even when the battery is healthy. Check which branch runs when the condition is false.”
+- **20% produces a normal status:** “Readings at or below the limit should warn. Check whether the comparison includes equality.”
+- **15% produces a normal status:** “The low reading did not enter the warning branch. Compare the condition with the threshold.”
+- **No output or an error:** Show the simulated error and point to the relevant line without correcting it.
+
+The player may revise the code and rerun the tests without penalty. Passing all three completes the checkpoint.
+
+After the tests pass, the Workshop’s ordinary readout still shows its current `60%` reading. The sample values are test inputs and do not change the backup battery. The checkpoint remains fictional and runs only inside the game's simulation.
 
 **Checkpoint hints:** (1) Remind the player that `if` checks a condition and `else` runs when it is false; (2) point to the comparison with the named limit and remind them that the warning includes the limit itself; (3) show a separate sensor example using `<=` and explain its two branches. Feedback identifies which test reading did not produce the expected type of message without placing pieces for the player.
 
@@ -427,13 +462,11 @@ LOW_BATTERY_LIMIT = 20
 
 battery_readings = [60, 15, 42, 18, 55]
 
-
 def get_battery_status(battery):
     if battery <= LOW_BATTERY_LIMIT:
         return "WARNING: Backup battery low"
     else:
         return "Backup battery level is okay"
-
 
 for battery in battery_readings:
     status = get_battery_status(battery)
@@ -509,29 +542,53 @@ Mara is available for help, with three levels of hints and unlimited penalty-fre
 
 The Workshop lights flicker, then the main power shuts down. Backup lights come on as the facility switches to backup power, leading into the boss.
 
-> **Finch:** "Good news: the essential systems are protected. Bad news: we have approximately twenty-five minutes before this console goes back to sleep."
+> **Finch:** "Good news: the essential systems are protected. Bad news: we have approximately thirty minutes before this console goes back to sleep."
 >
 > **Mara:** "That's enough time. Work carefully, and don't skip the tests. A fast repair isn't useful if it gives us the wrong readings."
 
-The countdown begins after the cutscene and boss instructions, not during Finch's dialogue. The initial 25-minute limit can be adjusted after playtesting.
+The countdown begins after the cutscene and boss instructions, not during Finch's dialogue. The initial 30-minute limit can be adjusted after playtesting.
 
 ## Chapter 2 boss: Working direction
 
-After main power fails, the player repairs a program on Finch's simulated system to restore power and the auxiliary monitor.
+After main power fails, the player repairs a program on the Safehouse system to restore power and the auxiliary monitor.
 
-**Screen reference:** Use the supplied [boss-screen image](Boss-Screen-Reference.png) as a visual reference. The large Workshop monitor shows the code terminal on the left, the word bank and output on the right, the timer at the top, and a Run button inside the code window. A smaller laptop screen in front shows a binary puzzle and the eight-bit place-value chart. Mara's hint and sticky-note controls are accessible from the screen.
+**Screen reference:** Use the supplied [boss-screen image](Boss-Screen-Reference.png) as a visual reference. The large Workshop monitor shows the code terminal on the left, the word bank and output on the right, the timer at the top, and a Run button inside the code window. A smaller laptop screen in front shows a binary puzzle and the eight-bit place-value chart. The Hint, Ask Mara, and sticky-note controls are accessible from the screen.
 
-The reference image's terminal text and word bank are illustrative; use the Python program and puzzle defined below. Its displayed time is also illustrative; the initial timer is approximately 25 minutes. Keep controls keyboard-accessible and make status understandable without relying on color or faintness alone.
+The reference image's terminal text and word bank are illustrative; use the Python program and puzzle defined below. Its displayed time is also illustrative; the initial timer is approximately 30 minutes. Keep controls keyboard-accessible and make status understandable without relying on color or faintness alone.
 
-**Binary puzzle and repair:** The program is significantly unfinished, but enough code remains to provide structure. `#` comments above each code section explain its purpose. The missing words appear with faint letters.
+**Binary puzzle and repair:** The program is significantly unfinished, but enough code remains to provide structure. `#` comments above each code section explain its purpose.
+
+The word bank initially shows each missing word as blank letter slots with its length and a **Locked** label. Locked letters are not displayed faintly and are not exposed to screen readers. As letters unlock, they appear in every matching slot. The complete word is revealed and becomes available for typing only when all its letters are unlocked.
 
 1. The player uses the eight-bit reference chart to convert a binary number to decimal, entering the place-value contributions and their total as described below.
-2. The game automatically darkens the corresponding letter everywhere it appears in the missing words. One correct conversion unlocks all occurrences of that letter; the player does not need to learn a letter-to-number key.
-3. When all the letters in a word are unlocked, the player can type the word into a blank in the terminal.
+2. A correct conversion reveals the corresponding letter everywhere it appears in the word bank. One conversion unlocks all occurrences of that letter; the player does not need to learn a letter-to-number key.
+3. When all the letters in a word are unlocked, its full text appears with an **Unlocked** label and the player can type it into a blank in the terminal.
 4. The player can type an unlocked word into any blank, using the code, comments, and earlier lessons to work out where it belongs rather than being told its position.
-5. Once all words are entered, the player presses **Run**. The word list marks correctly placed words green and incorrectly placed words red, with **Correct** and **Incorrect** text labels so the feedback does not depend on color alone. The player can edit the code and run it again; all words must be correctly placed for the repair to succeed.
+5. Once all words are entered, the player presses **Run**. The word bank marks correctly placed words green and incorrectly placed words red, with **Correct** and **Incorrect** text labels so the feedback does not depend on color alone. The player can edit the code and run it again; all words must be correctly placed for the repair to succeed.
 
-The first run is free and does not forfeit the perfect bonus. If the player runs the code again and any words are still in the wrong places, the perfect bonus is forfeited, even if different words are wrong. The player keeps their progress and can continue correcting the code to earn the standard reward. Explain this rule before the boss begins.
+The first Run is free and does not forfeit the perfect bonus. If the player runs the code again and any words are still in the wrong places, the perfect bonus is forfeited, even if different words are wrong. A correct Run after the first preserves the bonus unless another forfeit already applied. The player keeps their progress and can continue correcting the code to earn the standard reward. Explain this rule before the boss begins.
+
+The boss displays a persistent perfect-finish status:
+
+```text
+PERFECT FINISH: AVAILABLE
+PLACEMENT CHECK: FIRST RUN FREE
+```
+
+After the first incorrect Run, it changes to:
+
+```text
+PERFECT FINISH: AT RISK
+ANOTHER INCORRECT RUN WILL FORFEIT THE UPGRADE
+```
+
+Before every Run after the first, display a confirmation:
+
+> **This placement check can forfeit your perfect finish if any words are incorrect.**
+>
+> **Run anyway** · **Return to code**
+
+**Return to code** cancels without counting a Run or affecting eligibility. A correct Run preserves the bonus. An incorrect Run changes the status to **Perfect finish forfeited**, preserves all progress, and leaves the standard reward available. If the bonus was already forfeited through time or help, the warning states that instead of implying it can still be protected.
 
 The comments are part of the task, not optional boss hints. Code and system interactions remain inside the game's simulation.
 
@@ -563,14 +620,14 @@ ____ reading in battery_readings:
     status = get_battery_status(reading)
     ____("Battery:", reading, "% -", status)
 
-# Restore main power in Finch's simulated system.
+# Restore main power in the Safehouse system.
 main_power_online = ____
 
 # Display the recovered diagnostic information.
 if main_power_online:
     print("AUXILIARY MONITOR: ONLINE")
     print("CHARGING RELAY: DISCONNECTED")
-    print("NON ESSENTIAL POWER LOADS: IDENTIFIED")
+    print("NON-ESSENTIAL POWER LOADS: IDENTIFIED")
     print("LOCAL CONTROL: AVAILABLE")
     print("REMOTE ACCESS: DENIED")
     print("SAFEGUARD: ECHO-02")
@@ -580,7 +637,7 @@ The missing words are `def`, `if`, `return`, `else`, `for`, `print`, and `True`.
 
 ### Binary conversions
 
-Use one conversion per distinct letter. When the player enters the correct decimal answer, the game darkens that letter everywhere it appears in the missing-word list, regardless of letter case. The player does not need to learn the mapping below; it defines the game's automatic unlocks.
+Use one conversion per distinct letter. When the player enters the correct decimal answer, the game reveals that letter everywhere it appears in the word bank, regardless of letter case. The player does not need to learn the mapping below; it defines the game's automatic unlocks.
 
 | Binary | Decimal | Letter unlocked |
 |---|---:|---|
@@ -599,9 +656,19 @@ Use one conversion per distinct letter. When the player enters the correct decim
 
 Incorrect conversions can be retried and do not count as a Run. Playtest whether the 12 conversions fit comfortably within the initial timer.
 
+### Boss accessibility
+
+- Each word displays its length and **Locked** or **Unlocked** state as text.
+- A screen-reader list reports unlocked letters, completed words, and progress such as “E unlocked. Four of twelve letters found.”
+- Locked letters are not present in accessibility output or conveyed through faintness.
+- Correctly and incorrectly placed words use the words **Correct** and **Incorrect**, not only green and red.
+- Players can review the current word bank, code, and unlocked-letter list at any time.
+
 ### Hints
 
-The player chooses whether they need help with a binary conversion or a code gap. Each hint has three levels:
+The boss provides two separate help controls. **Hint** offers the progressive hints below. **Ask Mara** opens in-character conversational guidance.
+
+The player chooses whether they need help with a binary conversion or a code gap. Each Hint has three levels:
 
 | Level | Binary puzzle | Code placement |
 |---|---|---|
@@ -609,9 +676,9 @@ The player chooses whether they need help with a binary conversion or a code gap
 | 2: Where to look | Point to the relevant positions on the eight-bit chart. | Point to the `#` comment above the section. |
 | 3: Similar example | Show how to convert a different binary number. | Show a similar, separate Python example without completing the boss code. |
 
-Before revealing any hint, warn that using it forfeits the perfect bonus. Confirmation reveals it and forfeits the bonus; cancelling preserves eligibility. The first Run's placement feedback is not a hint and remains free.
+Before revealing any Hint or opening Ask Mara, warn that using either help method forfeits the perfect bonus. Confirmation reveals the help and forfeits the bonus; cancelling preserves eligibility. The first Run's placement feedback is not a hint and remains free.
 
-**Timer and rewards:** Use the standard timer only, without separate extended-time or no-timer settings. The initial limit is approximately 25 minutes, subject to playtesting, and starts after the opening cutscene and instructions. Give the player calm warnings at **15 minutes** and **5 minutes** remaining during the initial countdown. Explain before the countdown that letting time run out forfeits the perfect bonus.
+**Timer and rewards:** Use the standard timer only, without separate extended-time or no-timer settings. The initial limit is approximately **30 minutes**, subject to playtesting, and starts after the opening cutscene and instructions. Give the player calm warnings at **15 minutes** and **5 minutes** remaining during the initial countdown. Explain before the countdown that letting time run out forfeits the perfect bonus.
 
 > **Finch, at 15 minutes:** "We have fifteen minutes left. Power use hasn't changed."
 >
@@ -619,9 +686,9 @@ Before revealing any hint, warn that using it forfeits the perfect bonus. Confir
 >
 > **Finch, when time runs out:** "I'm shutting down the unnecessary Workshop lights. That should give you the time you need."
 
-If time runs out, the game clearly reports that the perfect bonus has been forfeited. The player keeps their progress and has unlimited time to finish, with no second countdown. They can still complete the chapter and receive the standard agent. Accepting a boss hint or Mara's help also forfeits the bonus, but only after a warning and confirmation; cancelling preserves eligibility.
+If time runs out, the game clearly reports that the perfect bonus has been forfeited. The player keeps their progress and has unlimited time to finish, with no second countdown. They can still complete the chapter and receive the standard component. Accepting a **Hint** or **Ask Mara** help also forfeits the bonus, but only after a warning and confirmation; cancelling preserves eligibility.
 
-The countdown pauses during cutscenes, the pause menu, and displayed hints. Closing the game stops the countdown; reopening resumes with the remaining time. Restore solved puzzles, partial answers, code, boss sticky notes, remaining time, Run history, and perfect-bonus eligibility so closing the game does not reset the attempt. Boss sticky notes are still removed when the boss ends.
+The countdown pauses during cutscenes, the pause menu, displayed Hint overlays, Ask Mara help, and mandatory accessibility overlays. It resumes at the remaining time when the overlay closes. Closing the game stops the countdown; reopening resumes with the remaining time. Restore solved puzzles, partial answers, code, boss sticky notes, remaining time, Run history, and perfect-bonus eligibility so closing the game does not reset the attempt. Boss sticky notes are still removed when the boss ends.
 
 The [sticky note app](../The-Last-Safehouse-Design.md#sticky-notes) is available during the boss, but lesson notes are hidden and boss notes are removed when the boss ends. The timer continues while a note is open or being edited.
 
@@ -630,7 +697,7 @@ The [sticky note app](../The-Last-Safehouse-Design.md#sticky-notes) is available
 ```text
 AUXILIARY MONITOR: ONLINE
 CHARGING RELAY: DISCONNECTED
-NON ESSENTIAL POWER LOADS: IDENTIFIED
+NON-ESSENTIAL POWER LOADS: IDENTIFIED
 LOCAL CONTROL: AVAILABLE
 REMOTE ACCESS: DENIED
 SAFEGUARD: ECHO-02
@@ -646,4 +713,18 @@ Finch uses the monitor to disconnect nonessential loads and restore local chargi
 
 > **Finch:** "One more thing survived the outage. I believe you've earned it."
 
-Inside is a thumb drive containing the Design Agent. Mara hands the drive to the player, who plugs it into their laptop and installs the agent. If the player earned the perfect boss bonus, the drive contains the upgraded Design Agent instead.
+Inside is a thumb drive containing the Design Agent build component. Mara hands the drive to the player, who adds it to the in-game project build. The agent is not launched or used during gameplay. If the player earned the perfect boss bonus, the drive contains the upgraded Design Agent component instead; the player never receives both versions.
+
+## Open implementation questions
+
+- Final initial timer after beginner playtesting; the current baseline is 30 minutes
+- Exact binary-entry focus order, keyboard controls, and error formatting
+- How skipped puzzles cycle without creating a soft lock
+- Whether partially completed puzzles and the unlocked-letter list remain visible together
+- Exact meaning of a Run when required words are missing
+- Whether the second-Run warning appears again after cancellation without counting as a Run
+- Whether the timer pauses when the application loses focus
+- Exact saved state when closing during a Hint, Ask Mara, or Run confirmation
+- How the per-user project-build installation is represented visually
+- How the word bank and placement feedback adapt for screen readers and mobile
+- Final timing and readability checks for all 12 conversions on the target display sizes

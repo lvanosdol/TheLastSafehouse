@@ -1,7 +1,7 @@
 # The Last Safehouse — Working Design Record
 
 **Status:** Brainstorming draft; no implementation decisions are final unless explicitly confirmed below.
-**Updated:** 2026-11-20
+**Updated:** 2026-11-25
 **Purpose:** Serve as the main working record for the game's confirmed decisions, brainstormed drafts, and open questions. Keep it updated as planning continues.
 
 **Navigation:** [Authoritative Chapter 1](Chapter%201/Chapter-1-Design.md) | [Current campaign story (Section 15)](#15-campaign-story--working-narrative) | [Curriculum map (Section 16)](#16-seven-chapter-curriculum-scaffold) | [Current Chapter 2 design](Chapter%202/Chapter-2-Design.md) | [Earlier reward ideas](Previous%20Drafts/Earlier-Reward-Ideas.md) | [Archived historical sections](Superseded/Superseded-Design-Sections.md)
@@ -10,7 +10,7 @@
 
 *The Last Safehouse* is a 3D, story-driven IT and networking learning game for adult beginners. It teaches real-world computer, operating-system, networking, database, automation, troubleshooting, and defensive-security skills through short explanations, examples, exploration, hands-on practice, and meaningful checkpoints.
 
-The player gradually builds a seven-agent software-development app, earning one agent after each chapter and an optional upgraded version for a perfect boss finish. The complete app is intended to be downloadable and useful beyond the game. The campaign target is seven chapters.
+The player gradually builds a seven-agent software-development app, earning one component after each chapter and an optional upgraded version for a perfect boss finish. During gameplay, the player assembles these components in the in-game project build; the agents are not available as tools or assistants inside the game. After Chapter 7, the completed app is intended to be downloadable and useful on the player's real computer, subject to future safety, security, privacy, compatibility, reliability, and testing work. The campaign target is seven chapters.
 
 The app's final name and implementation remain open. Real-world use needs separate safety, security, privacy, compatibility, and reliability design; game simulations use fictional records and contained exercises.
 
@@ -33,7 +33,7 @@ The app's final name and implementation remain open. Real-world use needs separa
 
 - Explain each idea in plain language.
 - Show labeled examples and explain what each relevant piece does.
-- Once the Workshop PC is working, present lessons on the in-game computer with interactive explanations and examples. Mara remains available for optional guidance and help, and can introduce or connect lessons when needed.
+- Once the Safehouse system computer is working, present lessons on the in-game computer with interactive explanations and examples. Mara remains available for optional guidance and help, and can introduce or connect lessons when needed.
 - After Chapter 1, the player's in-game laptop supports later lessons, practice, homework, and checkpoints.
 - Match lesson depth to the importance and complexity of the subject. Cover important information thoroughly rather than shortening it to fit a fixed lesson length; reading can supplement interactive examples when it helps teach the material.
 - Give players chances to predict, run, edit, and observe results.
@@ -105,7 +105,9 @@ Hints should not reveal a complete solution.
 
 ## 8. Software-development agents and chapter rewards
 
-**Status:** Approved working direction. Each chapter awards its standard agent; a perfect boss finish awards that agent's upgraded version. No other reward types are currently planned. The app can be downloaded and saved for real-world use after completion, subject to future design and testing.
+**Status:** Approved working direction. Each chapter awards its standard agent component; a perfect boss finish awards that agent's upgraded version. No other reward types are currently planned.
+
+The agents are components of the software the player is assembling across the campaign. They are not launched, invoked, or used as assistants inside the game. The in-game project build tracks the earned standard or upgraded component after each chapter. Once all seven chapters and the final boss are complete, the game is intended to assemble those earned versions into the finished seven-agent app and offer it for download on the player's real computer, subject to future design and testing.
 
 | Chapter | Standard agent | Perfect-finish upgrade |
 |---|---|---|
@@ -121,7 +123,7 @@ Version control is a shared app feature rather than an eighth agent. After the u
 
 Standard agents must remain useful on their own. Safety, accessibility, and user approval apply to both standard and upgraded versions. Compatibility claims must be checked where possible and uncertainty made clear. The development setup agent never installs software for the user.
 
-Each chapter's earned component arrives on a separate in-game thumb drive. The player plugs it into the in-game laptop to install the component as the app grows; the first drive comes from Finch's secret compartment. The laptop is a learning tool rather than another chapter reward, and the app's intended real-world download remains separate from the fictional installation.
+Each chapter's earned component arrives on a separate in-game thumb drive. The player adds it to the in-game project build as the app grows; the first drive comes from Finch's secret compartment. Installation is a simulated build step: the component is not run or used inside the game. The laptop is a learning tool rather than another chapter reward, and the app's real-world download is produced only after the full campaign is complete.
 
 ### Previous agent roster
 
@@ -158,7 +160,7 @@ Each chapter's earned component arrives on a separate in-game thumb drive. The p
 - No engine or implementation architecture has been selected yet; decide those after the game design is sufficiently drafted.
 ## 13. Cybersecurity curriculum ideas
 
-**Status: Mixed.** The previous Chapter 2 networking and Python draft is superseded; Chapter 2 is being redesigned around programming fundamentals, with database lessons planned for Chapter 3. Other topics and chapter assignments below remain candidates, not approved requirements. Keep the curriculum beginner-friendly and connect each concept to a story problem, a safe simulation, and a clear learning check. Avoid turning the game into a glossary.
+**Status:** Chapter 2 covers programming fundamentals, and Chapter 3 covers databases. The topic list below remains a candidate pool for later chapters; it does not assign every topic to a chapter or make those assignments final. Keep the curriculum beginner-friendly and connect each concept to a story problem, a safe simulation, and a clear learning check. Avoid turning the game into a glossary.
 
 ### Strong candidates for the core learning path
 
@@ -223,7 +225,7 @@ The previous endings based on joining Mara's Sentinel partnership or rejecting h
 
 The campaign aims for a beginner-to-practical pathway in IT, networking, databases, troubleshooting, and task-appropriate automation. It teaches foundations and evidence-based judgment rather than trying to cover every specialization.
 
-1. **Computer and Workshop restoration:** Begin by learning the components and rebuilding the broken PC, then use it to learn computing basics, operating systems, Windows navigation, files and permissions, device protection, and software choices. The boss uses file sorting, evidence preservation, permissions, and a simulated Windows Security alert; the story introduces the apparent Echo threat and the first signs of Mara's deception.
+1. **Computer and Workshop restoration:** Begin by reassembling the Safehouse system computer in the Workshop, then use it to learn computing basics, operating systems, Windows navigation, files and permissions, device protection, and software choices. The boss uses file sorting, evidence preservation, permissions, and a simulated Windows Security alert; the story introduces the apparent Echo threat and the first signs of Mara's deception.
 2. **Programming fundamentals:** See the [Chapter 2 design](Chapter%202/Chapter-2-Design.md).
 3. **Databases:** See the [Chapter 3 design](Chapter%203/Chapter-3-Design.md).
 4. **Networking, cloud, and AI-assisted recovery:** See the [Chapter 4 design](Chapter%204/Chapter-4-Design.md).
@@ -236,7 +238,9 @@ Pace each chapter in manageable steps with practice and meaningful checks. Some 
 
 **Status:** Redesign from scratch. The [Chapter 2 design file](Chapter%202/Chapter-2-Design.md) tracks the new direction; the earlier detailed draft is archived.
 
-## 18. IT-first Chapter 1 rewrite
+## 18. Chapter 1 — current design
 
-For the authoritative current Chapter 1 design, see the [Chapter 1 design file](Chapter%201/Chapter-1-Design.md).
+**Status:** Authoritative. The chapter uses seven focused lessons and a four-goal Restoration boss. Mara cannot authorize administrator actions; the pre-provisioned standard account and delegated recovery permissions are part of the Echo mystery.
+
+For the current Chapter 1 design, see the [Chapter 1 design file](Chapter%201/Chapter-1-Design.md).
 

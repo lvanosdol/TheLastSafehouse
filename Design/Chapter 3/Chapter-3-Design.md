@@ -1,10 +1,11 @@
 # Chapter 3 Design
 
-**Status:** Working design. Chapter 3 focuses on databases; its lessons, story details, and boss will be developed together.
+**Status:** Working design with six detailed database lessons and the Registry Investigation boss. Story details and implementation remain open.
+**Updated:** 2026-11-25
 
 ## Opening scene
 
-The Workshop is quiet again. With main power restored and the Design Agent installed, the player sits down with their in-game laptop. Finch appears beside the monitoring display.
+The Workshop is quiet again. With main power restored and the Design Agent component added to the in-game project build, the player sits down with their in-game laptop. Finch appears beside the monitoring display.
 
 > **Finch:** "The monitor is working again, but it's found a rather impressive collection of Workshop records. I'm not sure where to start."
 >
@@ -18,7 +19,7 @@ Mara directs the player to the laptop's first database lesson. The records stay 
 
 ### Opening
 
-The chapter's opening scene plays. Mara directs the player to the first database lesson on their laptop.
+At the first database lesson, Finch is already waiting at the laptop.
 
 > **Finch:** "The monitor can see more devices, but some of their names and locations are missing. That seems like an inconvenient detail to leave out."
 >
@@ -81,7 +82,7 @@ The player selects a name and room for each record, then selects the data type f
 
 The player submits their answers. Correct selections are marked **Correct**; incorrect selections are marked **Try again**, without automatically showing the answer. Correct selections remain in place while the player revises the others. Retries and hints are unlimited and penalty-free.
 
-Finch offers three hint levels:
+**Hint** offers three progressive levels:
 
 1. "Compare the records with the labels, and think about what kind of information each field contains."
 2. "Use the device IDs to match labels to records. For the types, consider whether a value is written as words, a measurement, or a yes-or-no state."
@@ -171,7 +172,7 @@ The validation check confirms that every device ID is present and unique. If an 
 
 The player receives **Correct** or **Try again** feedback for submitted selections without the game automatically revealing answers. Correct selections remain in place while the player revises the others. Validation explains whether IDs are missing or duplicated. Hints and retries are unlimited and penalty-free.
 
-Finch offers three hint levels:
+**Hint** offers three progressive levels:
 
 1. "Look for a value that appears more than once, and compare the records with the equipment list."
 2. "The serial numbers connect each device record to its equipment-list entry. A primary key needs a different, non-missing value for each record."
@@ -257,9 +258,23 @@ ORDER BY priority ASC;
 
 The clauses appear in this order: `SELECT`, `FROM`, `WHERE`, then `ORDER BY`. This example returns Workshop devices sorted from the smallest priority number to the largest. It does not change any records.
 
+### Guided practice: Complete a basic query
+
+Using a small practice table, the player fills two blanks and runs:
+
+```sql
+SELECT ____, ____
+FROM devices
+WHERE room = 'Workshop';
+```
+
+The available field choices are `device_id`, `device_name`, and `room`. A correct query shows the IDs and names of Workshop devices only. The player confirms that the result contains no devices from other rooms.
+
+Feedback identifies a wrong field or an incorrect filter without completing the query. The practice does not change the table. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
+
 ### Checkpoint: Find the offline devices
 
-There is no separate practice activity. Finch displays these registry records:
+Finch displays these registry records:
 
 | device_id | device_name | room | online | priority |
 |---|---|---|---|---|
@@ -286,7 +301,7 @@ ORDER BY priority ASC;
 
 The player enters their query and presses **Run**. If the query has a syntax error, Finch identifies the problem without giving the full answer. If it runs but selects the wrong fields, includes the wrong devices, or sorts them incorrectly, feedback identifies what still needs attention. The query stays editable. Hints and retries are unlimited and penalty-free.
 
-Finch offers three hint levels:
+**Hint** offers three progressive levels:
 
 1. "We need only the offline devices, and the most urgent ones should appear first."
 2. "Choose the four requested fields, filter using the online field, and sort using priority."
@@ -370,9 +385,23 @@ For this simulated lesson, pressing **Preview** shows the records a statement wo
 
 > **Finch:** "A chance to look before we change anything? I approve of this system."
 
+### Guided practice: Preview one change
+
+The practice table contains `DEV-06`, the Ventilation Sensor, and `DEV-07`, the Coolant Monitor. The player reviews this prepared statement:
+
+```sql
+UPDATE devices
+SET room = 'Workshop'
+WHERE device_id = 'DEV-07';
+```
+
+They select **Preview**, identify that only the Coolant Monitor would change, and then select **Cancel**. The practice does not apply the update.
+
+Feedback explains whether the selected record matches the `WHERE` condition. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
+
 ### Checkpoint: Correct the registry
 
-There is no separate practice activity. Finch shows the player a few relevant records. The `status` field describes whether a record is Active or Archived; it is separate from the device's true/false `online` field.
+Finch shows the player a few relevant records. The `status` field describes whether a record is Active or Archived; it is separate from the device's true/false `online` field.
 
 | device_id | device_name | room | online | priority | status |
 |---|---|---|---|---|---|
@@ -409,7 +438,7 @@ Equivalent valid statements and formatting can be accepted when they produce the
 
 A syntax error identifies the part of the statement that needs attention without providing the full answer. The preview shows what would change before anything is applied. If a statement targets the wrong records or produces the wrong values, Finch explains what needs review. The player's statement remains editable. Hints and retries are unlimited and penalty-free.
 
-Finch offers three hint levels:
+**Hint** offers three progressive levels:
 
 1. "Use the maintenance notes to decide which record to add, change, or remove. Leave the archived record alone."
 2. "Use `INSERT` for the new device, `UPDATE` for the room correction, and `DELETE` for the temporary entry. Check the preview each time."
@@ -452,6 +481,20 @@ A database can keep different kinds of information in separate tables. The regis
 Separate tables help organize related information without repeating every room detail in every device record.
 
 For this lesson, the registry has been organized so each device's existing room is represented by a `room_id`. The room names are still preserved in the `rooms` table. The player does not need to perform this reorganization.
+
+Before and after:
+
+```text
+Earlier record view:
+devices.room = 'Workshop'
+
+Relationship view:
+devices.room_id = 'RM-01'
+rooms.room_id = 'RM-01'
+rooms.room_name = 'Workshop'
+```
+
+The device record now stores the room ID, while the room's human-readable name remains in the `rooms` table. The join matches those IDs to bring the name back into a report.
 
 #### Page 2: Primary and foreign keys
 
@@ -503,9 +546,18 @@ After joining tables, `SELECT` can include fields from any of them. Use the tabl
 
 > **Finch:** "So the tables stay separate, but the report can still show their information together. That's much tidier than the pile of notes I found."
 
+### Guided practice: Match the join keys
+
+The player is shown the `devices`, `rooms`, and `maintenance_events` fields and selects the two matching key pairs:
+
+- `devices.room_id = rooms.room_id`
+- `devices.device_id = maintenance_events.device_id`
+
+Correct selections remain marked **Correct**. Incorrect choices receive **Try again** feedback and a reminder to compare the field names and stored values. The player does not write the full query yet. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
+
 ### Checkpoint: Build a maintenance report
 
-There is no separate practice activity. The registry shows these records:
+The checkpoint displays the subset of registry records relevant to this report. Other previously recovered devices remain in the registry. The inner join will omit devices that have no matching maintenance event.
 
 **`rooms`**
 
@@ -565,7 +617,7 @@ JOIN maintenance_events ON devices.device_id = maintenance_events.device_id;
 
 Correct field selections are marked **Correct**; incorrect selections are marked **Try again**. When the player runs the query, syntax feedback identifies what needs attention without providing the full answer. If the result is incomplete or contains incorrect matches, feedback points the player toward the fields or join conditions to review. The query stays editable. Hints and retries are unlimited and penalty-free.
 
-Finch offers three hint levels:
+**Hint** offers three progressive levels:
 
 1. "Start with devices and rooms, then connect the maintenance events to their devices."
 2. "Match the room ID fields for the first join. For the second, look for the field shared by devices and maintenance events."
@@ -652,9 +704,22 @@ When a check finds a problem:
 >
 > **Mara:** "Exactly. Correcting a problem is part of verification."
 
+### Guided practice: Read a verification result
+
+The player reviews an isolated check showing:
+
+```text
+REQUIRED VALUE: FAILED
+EVENT: EVT-PRACTICE
+FIELD: event_description
+VALUE: NULL
+```
+
+They identify that the event description is missing and that reliable evidence is needed before correcting it. This does not change the practice records. Correct selections remain in place while others can be revised. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
+
 ### Checkpoint: Verify the recovered records
 
-There is no separate practice activity. Finch adds a newly recovered maintenance event to the records under review. Its description is missing:
+Finch adds a newly recovered maintenance event to the records under review. Its description is missing:
 
 **`maintenance_events`**
 
@@ -711,7 +776,7 @@ The recovered event is being checked before its description requirement is enfor
 
 Each check reports **Pass** or **Needs attention** and identifies the rule involved. A preview shows what the correction would change before the player applies it; the player can cancel or undo the checkpoint change. Query feedback identifies syntax errors or discrepancies without providing the complete answer. The player's statements remain editable. Hints and retries are unlimited and penalty-free.
 
-Finch offers three hint levels:
+**Hint** offers three progressive levels:
 
 1. "Start with the check that needs attention, then compare that record with the recovered note."
 2. "The maintenance event's description is missing. Use its event ID to target the correction, then rerun the checks."
@@ -927,14 +992,16 @@ The log does not explain Echo's motive. The integrity checks establish that the 
 
 ### Feedback, hints, and bonus
 
+The boss provides two separate optional help controls. **Hint** offers Finch's progressive hints below. **Ask Mara** opens in-character conversational guidance using the current objective, written SQL, results, and error output; a clear notice explains what she can see. Mara may identify the likely issue and ask a guiding question, but she does not supply the complete solution or change records automatically.
+
 - The player can run and revise queries freely. Syntax feedback identifies what needs attention without supplying the answer.
 - **Preview** shows which records a statement would change without applying it. The player can select **Apply**, or cancel and revise the statement. Applied changes can be undone.
 - Verification checks identify failed rules without fixing problems automatically.
 - There is **no timer**.
 - Mistakes, retries, previews, the reference key, and objective guidance do not affect the perfect bonus.
-- Accepting an optional hint forfeits the perfect bonus. The player receives a warning and can cancel first.
+- Before either **Hint** or **Ask Mara** opens, warn that using help forfeits the perfect bonus. Confirming opens the help and forfeits the bonus; cancelling preserves eligibility.
 
-#### Optional hint levels
+#### Finch's Hint levels
 
 **Inspect the evidence**
 
@@ -986,4 +1053,33 @@ Finch notices an inventory entry for a sealed supply case in the Workshop.
 
 > **Finch:** "There's one more thing. The restored inventory lists a case nearby. It might be worth a look."
 
-The player finds and opens the case, then installs the **Development Setup Agent** from its thumb drive. Completing the boss earns the standard agent; a perfect finish earns the upgraded version. The agent helps compare development tools, while the user chooses and installs them.
+The player finds and opens the case, then adds the **Development Setup Agent** component from its thumb drive to the in-game project build. Completing the boss earns the standard component; a perfect finish earns the upgraded version, never both. The component is not used during gameplay. In the finished downloadable app, this agent will help compare development tools while the user chooses and installs them.
+
+## Accessibility requirements
+
+These requirements apply to the lesson tables and checkpoints as well as the boss.
+
+- The SQL console supports keyboard-only entry and execution.
+- Focus moves predictably between the query editor, reference key, objective, results, preview, and help controls.
+- Query results use labeled column headers and announce row and column position.
+- Screen readers announce changed cells, affected-row counts, syntax errors, pass/fail checks, and preview outcomes.
+- Color is never the only indicator of changed rows, selected fields, errors, or completed objectives.
+- Wide tables can scroll horizontally, wrap, or switch to an accessible stacked view.
+- Any visual relationship diagram has a text equivalent.
+- Preview, Apply, Cancel, Undo, Hint, and Ask Mara are keyboard accessible.
+- The SQL reference key can be collapsed and remains screen-reader accessible.
+- The untimed design preserves the player's ability to work at their own pace.
+
+## Open implementation questions
+
+- Supported SQL subset and which equivalent statements the validator accepts
+- Whether column order, aliases, join order, capitalization, and optional semicolons are accepted
+- How ordering ties are compared
+- Exact behavior of `NULL`, `TRUE`, and `FALSE` in the simulation
+- Keyboard navigation and focus flow between the console, tables, preview, and results
+- How changed rows, syntax errors, and verification failures are announced
+- Whether undo history persists after closing the game
+- How previewed-but-unapplied changes are saved or discarded
+- How wide database tables adapt to mobile and narrow displays
+- How Ask Mara's guidance differs from Finch's Hint levels
+- Whether the chapter needs a text alternative for a visual relationship map
