@@ -462,13 +462,11 @@ LOW_BATTERY_LIMIT = 20
 
 battery_readings = [60, 15, 42, 18, 55]
 
-
 def get_battery_status(battery):
     if battery <= LOW_BATTERY_LIMIT:
         return "WARNING: Backup battery low"
     else:
         return "Backup battery level is okay"
-
 
 for battery in battery_readings:
     status = get_battery_status(battery)

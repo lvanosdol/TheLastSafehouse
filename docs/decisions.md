@@ -32,4 +32,8 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-25 | Treat chapter rewards as build components, not in-game assistants | The player assembles the seven-agent app across the campaign without using its agents during gameplay. |
 | 2026-11-25 | Offer the completed seven-agent app for real-world download after Chapter 7 | The campaign's earned standard or upgraded components form the finished app for the player's real computer, subject to safety and testing. |
 | 2026-11-25 | Install the Chapter 2 Project Planning Agent component for the current user | Preserve Chapter 1's standard-account boundary and avoid implying administrator access. |
+| 2026-11-25 | Use a visible three-reading test bench in Chapter 2 Lesson 4 | Demonstrate both conditional branches and the inclusive boundary without requiring a test loop. |
+| 2026-11-25 | Represent locked boss letters as accessible placeholders | Keep the puzzle solvable without relying on faint text or exposing hidden letters to screen readers. |
+| 2026-11-25 | Warn before any Chapter 2 Run that can forfeit the perfect finish | Prevent an accidental second placement check from silently removing the upgrade. |
+| 2026-11-25 | Pause the Chapter 2 boss timer for Hint, Ask Mara, and accessibility overlays | Do not consume challenge time while help or required accessibility controls are open. |
 | 2026-11-25 | Use a 30-minute initial Chapter 2 boss timer | Give beginners enough time for 12 conversions and seven word placements while retaining gentle urgency. |
