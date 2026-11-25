@@ -33,7 +33,7 @@ The app's final name and implementation remain open. Real-world use needs separa
 
 - Explain each idea in plain language.
 - Show labeled examples and explain what each relevant piece does.
-- Once the Workshop PC is working, present lessons on the in-game computer with interactive explanations and examples. Mara remains available for optional guidance and help, and can introduce or connect lessons when needed.
+- Once the Safehouse system computer is working, present lessons on the in-game computer with interactive explanations and examples. Mara remains available for optional guidance and help, and can introduce or connect lessons when needed.
 - After Chapter 1, the player's in-game laptop supports later lessons, practice, homework, and checkpoints.
 - Match lesson depth to the importance and complexity of the subject. Cover important information thoroughly rather than shortening it to fit a fixed lesson length; reading can supplement interactive examples when it helps teach the material.
 - Give players chances to predict, run, edit, and observe results.
@@ -223,7 +223,7 @@ The previous endings based on joining Mara's Sentinel partnership or rejecting h
 
 The campaign aims for a beginner-to-practical pathway in IT, networking, databases, troubleshooting, and task-appropriate automation. It teaches foundations and evidence-based judgment rather than trying to cover every specialization.
 
-1. **Computer and Workshop restoration:** Begin by reassembling a training PC, then use it to learn computing basics, operating systems, Windows navigation, files and permissions, device protection, and software choices. The boss uses file sorting, evidence preservation, permissions, and a simulated Windows Security alert; the story introduces the apparent Echo threat and the first signs of Mara's deception.
+1. **Computer and Workshop restoration:** Begin by reassembling the Safehouse system computer in the Workshop, then use it to learn computing basics, operating systems, Windows navigation, files and permissions, device protection, and software choices. The boss uses file sorting, evidence preservation, permissions, and a simulated Windows Security alert; the story introduces the apparent Echo threat and the first signs of Mara's deception.
 2. **Programming fundamentals:** See the [Chapter 2 design](Chapter%202/Chapter-2-Design.md).
 3. **Databases:** See the [Chapter 3 design](Chapter%203/Chapter-3-Design.md).
 4. **Networking, cloud, and AI-assisted recovery:** See the [Chapter 4 design](Chapter%204/Chapter-4-Design.md).

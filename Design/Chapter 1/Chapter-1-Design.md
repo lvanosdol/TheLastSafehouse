@@ -7,7 +7,7 @@
 
 ## Chapter purpose
 
-Chapter 1 introduces real-world introductory IT skills through the fictional Workshop PC and contained system state. The player learns computer components, basic computing, operating systems, Windows navigation, files and permissions, device protection, and trustworthy software sources before later chapters introduce programming, databases, networking, security, and automation.
+Chapter 1 introduces real-world introductory IT skills through the fictional Safehouse system computer and contained system state. The player learns computer components, basic computing, operating systems, Windows navigation, files and permissions, device protection, and trustworthy software sources before later chapters introduce programming, databases, networking, security, and automation.
 
 The chapter teaches cross-platform IT concepts with Windows as the primary environment. It uses Windows navigation, File Explorer, plain-text records, and a simulated Windows Security interface. Graphical and command-line interfaces are introduced conceptually; Chapter 1 does not require shell commands, SQL, real system changes, or real network access.
 
@@ -52,7 +52,7 @@ Use neutral language such as “the player” or “they” whenever the charact
 
 ## Arrival at the Safehouse
 
-Mara greets the player at the remote Safehouse and leads them to the Workshop. A partially disassembled training PC waits there. This room becomes the main setting for Chapter 1's lessons.
+Mara greets the player at the remote Safehouse and leads them to the Workshop. A partially disassembled Safehouse system computer waits there. This room becomes the main setting for Chapter 1's lessons.
 
 Mara explains that she will teach step by step and does not expect the player to repair the computer alone. Once the PC powers on, it becomes the computer used for the remaining lessons.
 
@@ -72,7 +72,7 @@ Windows works, but the Workshop application remains unresponsive. A holographic 
 
 ### Story purpose
 
-Mara brings the player to a training chassis whose components were removed and placed on the Workshop bench. This avoids implying that the player is performing a dangerous internal power-supply repair.
+Mara brings the player to the Safehouse system chassis whose components were removed and placed on the Workshop bench. This avoids implying that the player is performing a dangerous internal power-supply repair.
 
 > **Mara:** “Before we put this computer back together, let’s meet its parts. You don’t need to know everything yet—we’ll take them one at a time.”
 
@@ -126,7 +126,7 @@ The guided assembly then proceeds in a logical order:
 10. Connect the monitor, keyboard, mouse, and power cable.
 11. Confirm the power-supply switch position, then press the case power button.
 
-The training chassis has its front-panel buttons and indicators preconnected so the lesson does not become a tiny-cable memory exercise. The simulation uses a pre-applied thermal pad; real thermal-compound application is explained only as a safety note.
+The Safehouse system chassis has its front-panel buttons and indicators preconnected so the lesson does not become a tiny-cable memory exercise. The simulation uses a pre-applied thermal pad; real thermal-compound application is explained only as a safety note.
 
 ### Checkpoint: Assemble and boot the computer
 
