@@ -160,7 +160,7 @@ Each chapter's earned component arrives on a separate in-game thumb drive. The p
 - No engine or implementation architecture has been selected yet; decide those after the game design is sufficiently drafted.
 ## 13. Cybersecurity curriculum ideas
 
-**Status: Mixed.** The previous Chapter 2 networking and Python draft is superseded; Chapter 2 is being redesigned around programming fundamentals, with database lessons planned for Chapter 3. Other topics and chapter assignments below remain candidates, not approved requirements. Keep the curriculum beginner-friendly and connect each concept to a story problem, a safe simulation, and a clear learning check. Avoid turning the game into a glossary.
+**Status:** Chapter 2 covers programming fundamentals, and Chapter 3 covers databases. The topic list below remains a candidate pool for later chapters; it does not assign every topic to a chapter or make those assignments final. Keep the curriculum beginner-friendly and connect each concept to a story problem, a safe simulation, and a clear learning check. Avoid turning the game into a glossary.
 
 ### Strong candidates for the core learning path
 

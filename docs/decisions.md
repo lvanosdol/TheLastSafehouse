@@ -37,3 +37,5 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-25 | Warn before any Chapter 2 Run that can forfeit the perfect finish | Prevent an accidental second placement check from silently removing the upgrade. |
 | 2026-11-25 | Pause the Chapter 2 boss timer for Hint, Ask Mara, and accessibility overlays | Do not consume challenge time while help or required accessibility controls are open. |
 | 2026-11-25 | Use a 30-minute initial Chapter 2 boss timer | Give beginners enough time for 12 conversions and seven word placements while retaining gentle urgency. |
+| 2026-11-25 | Add Ask Mara as a separate Chapter 3 boss help control | Use the established help and perfect-bonus rules consistently without adding a timer to the untimed database boss. |
+| 2026-11-25 | Add guided SQL practice and accessibility requirements to Chapter 3 | Prepare beginners for full query tasks and make the console, tables, previews, and verification results usable without a mouse or color alone. |
