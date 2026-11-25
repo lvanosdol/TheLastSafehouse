@@ -568,7 +568,29 @@ The word bank initially shows each missing word as blank letter slots with its l
 4. The player can type an unlocked word into any blank, using the code, comments, and earlier lessons to work out where it belongs rather than being told its position.
 5. Once all words are entered, the player presses **Run**. The word bank marks correctly placed words green and incorrectly placed words red, with **Correct** and **Incorrect** text labels so the feedback does not depend on color alone. The player can edit the code and run it again; all words must be correctly placed for the repair to succeed.
 
-The first run is free and does not forfeit the perfect bonus. If the player runs the code again and any words are still in the wrong places, the perfect bonus is forfeited, even if different words are wrong. The player keeps their progress and can continue correcting the code to earn the standard reward. Explain this rule before the boss begins.
+The first Run is free and does not forfeit the perfect bonus. If the player runs the code again and any words are still in the wrong places, the perfect bonus is forfeited, even if different words are wrong. A correct Run after the first preserves the bonus unless another forfeit already applied. The player keeps their progress and can continue correcting the code to earn the standard reward. Explain this rule before the boss begins.
+
+The boss displays a persistent perfect-finish status:
+
+```text
+PERFECT FINISH: AVAILABLE
+PLACEMENT CHECK: FIRST RUN FREE
+```
+
+After the first incorrect Run, it changes to:
+
+```text
+PERFECT FINISH: AT RISK
+ANOTHER INCORRECT RUN WILL FORFEIT THE UPGRADE
+```
+
+Before every Run after the first, display a confirmation:
+
+> **This placement check can forfeit your perfect finish if any words are incorrect.**
+>
+> **Run anyway** · **Return to code**
+
+**Return to code** cancels without counting a Run or affecting eligibility. A correct Run preserves the bonus. An incorrect Run changes the status to **Perfect finish forfeited**, preserves all progress, and leaves the standard reward available. If the bonus was already forfeited through time or help, the warning states that instead of implying it can still be protected.
 
 The comments are part of the task, not optional boss hints. Code and system interactions remain inside the game's simulation.
 
