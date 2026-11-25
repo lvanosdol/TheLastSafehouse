@@ -442,3 +442,584 @@ The labels describe how the recovered records were filed; they do not yet prove 
 Finch adds both records and Mara's explanation to **Unresolved Records**, separating the evidence from her unverified claim. The gateway remains offline, and the player moves on to Lesson 4.
 
 Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
+
+## Lesson 4: Malware and Containment
+
+### Opening
+
+Finch examines the separate quarantine system mentioned when the Systems Wing appeared on the map. The security gateway itself remains offline.
+
+> **Finch:** "The quarantine system is still holding several suspicious files. One claims to be a security scanner."
+>
+> **Mara:** "Then delete them and move on."
+>
+> **Finch:** "I'd like to know what they were doing first—and preserve anything that might help us understand how they arrived."
+
+The player opens the lesson on their laptop.
+
+### Lesson pages
+
+The player can use **Next** and **Back** and review the pages during the checkpoint. All incidents, systems, and records are fictional.
+
+#### Page 1: Malware, vulnerabilities, and exploits
+
+**Malware** is software designed to cause harm or perform unwanted actions, such as stealing information, disrupting a system, or changing files.
+
+A **vulnerability** is a weakness that could be misused. An **exploit** takes advantage of a vulnerability. An update or **patch** can correct a known weakness, although updates alone do not prevent every attack.
+
+For example, a fictional application might have a weakness that a security update fixes. Applying the verified update reduces the opportunity to misuse that weakness.
+
+#### Page 2: Common malware types
+
+| Type | General behavior |
+|---|---|
+| **Virus** | Attaches itself to another file or program and spreads when the infected host is used |
+| **Worm** | Can spread between systems without needing someone to open each new copy |
+| **Trojan** | Disguises itself as something useful or trustworthy |
+| **Adware** | Displays unwanted advertising |
+| **Spyware** | Secretly gathers information |
+| **Ransomware** | Restricts access to information or systems and demands payment |
+| **Rootkit** | Hides activity or provides concealed access, making detection harder |
+| **Backdoor** | Provides a way around normal access controls |
+| **Keylogger** | Records keystrokes, potentially exposing sensitive information |
+
+These categories can overlap. A single malicious program may use more than one technique.
+
+#### Page 3: How malware can spread
+
+Malware can be delivered through deceptive messages, shared files, removable media, or network connections. An infected file may appear useful or familiar.
+
+**Spam** is unwanted bulk messaging. Not every spam message contains malware, but some may carry deceptive links or attachments.
+
+**Password cracking** refers to attempts to discover a password. Strong, unique passwords and multifactor authentication help reduce the risk of unauthorized access; no guessing activity is performed in this lesson.
+
+#### Page 4: Detect, contain, and recover
+
+Antimalware tools can compare files with known **signatures** or use other methods to identify suspicious behavior. Updated signatures help tools recognize known threats, but detection is not perfect.
+
+A safe response may include:
+
+1. **Contain:** Isolate the affected device or file to limit spread.
+2. **Preserve:** Keep relevant suspicious messages and records for investigation.
+3. **Update and patch:** Use trusted updates to address known weaknesses.
+4. **Recover:** Restore from a suitable verified clean backup and check the result.
+
+**Quarantine** restricts a suspicious file so it cannot be used normally while it is reviewed. A backup should be checked before restoration; merely calling it a backup does not prove it is clean.
+
+> **Finch:** "Contain first, investigate carefully, and don't immediately trust the first copy labeled 'backup.'"
+>
+> **Mara:** "And get the system working again."
+
+### Checkpoint: Contain the simulated incident
+
+There is no separate practice activity. The player reviews fictional sample cards and chooses how to respond. No real malware, password cracking, or external network activity is involved.
+
+#### Part 1: Identify the samples
+
+| Fictional sample behavior | Best match |
+|---|---|
+| Pretends to be a security scanner | Trojan |
+| Spreads between systems through a recovery share | Worm |
+| Secretly records typed information | Keylogger |
+| Restricts access to files and demands payment | Ransomware |
+| Conceals its activity from ordinary system tools | Rootkit |
+
+The player identifies the behavior shown rather than assuming a sample can belong to only one category.
+
+The player also identifies the **primary** security concern in each scenario. For example, stolen typed information threatens confidentiality, while inaccessible files threaten availability. Feedback explains that an incident can affect more than one goal.
+
+These answers are design notes; the player sees the sample descriptions and choices, not the answers.
+
+#### Part 2: Contain the spread
+
+The player:
+
+1. Isolates the simulated infected carrier.
+2. Restricts the affected recovery share and removable-media connection to prevent further spread.
+3. Keeps the suspicious file in quarantine.
+4. Preserves the suspicious message and relevant records for review.
+
+The player does not open the suspicious attachment or follow its link.
+
+#### Part 3: Prepare recovery
+
+The player reviews fictional maintenance records and:
+
+1. Uses a trusted signature-update package.
+2. Applies the relevant verified patch.
+3. Selects a backup that has been checked and identified as clean.
+4. Restores the affected simulated files and checks the result.
+5. Rejects the simulated ransom request and its payment link.
+
+The update package is already available in the recovery environment; the offline gateway does not need to be brought online to obtain it. The player restores the affected files, not the gateway itself.
+
+### Feedback and hints
+
+Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable. Finch points to the relevant behavior or recovery record without supplying the complete answer.
+
+The player can review lesson pages. Hints and retries are unlimited and penalty-free.
+
+1. "Look at what each sample does, rather than relying on its name."
+2. "Before restoring anything, consider how to stop further spread and preserve useful evidence."
+3. "For a separate example: if a file pretends to be a helpful tool but performs an unwanted action, which category describes that disguise?"
+
+### Completion and story clue
+
+The simulated incident is contained. The suspicious carrier remains isolated, the affected files are restored from the checked backup, and the gateway remains offline.
+
+Finch finds a quarantine record:
+
+```text
+FILE: ObservationArchive.exe
+QUARANTINED BY: E.C.H.O_Thread_01
+```
+
+> **Mara:** "Echo planted it."
+>
+> **Finch:** "The record says Echo quarantined it. That is not normally how sabotage works."
+
+The record does not establish who created the file or why it was quarantined. Finch adds it and Mara's interpretation to **Unresolved Records**, keeping the record separate from her claim.
+
+Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
+
+## Lesson 5: Authentication and Single Sign-On
+
+### Opening
+
+Finch examines the gateway's simulated authentication module in the recovery environment. The gateway itself remains offline.
+
+> **Finch:** "The module is asking for more than a password before it will allow recovery work."
+>
+> **Mara:** "We're wasting time. Disable the second check temporarily."
+>
+> **Finch:** "Or we could find out why it's there before turning it off."
+
+The player opens the lesson on their laptop.
+
+### Lesson pages
+
+The player can use **Next** and **Back** and review the pages during the checkpoint. The systems and credentials are fictional.
+
+#### Page 1: Authentication and authorization
+
+**Authentication** checks an identity claim: "Are you the person or system you say you are?"
+
+**Authorization** determines what an authenticated person or system is allowed to do.
+
+For example, signing in may establish which account is being used, while its permissions determine whether it can view a record or change a setting. A successful sign-in does not automatically grant access to everything.
+
+#### Page 2: Authentication factors
+
+Authentication can use different kinds of evidence:
+
+- **Something you know:** A password or PIN.
+- **Something you have:** A hardware token or smart card.
+- **Something you are:** A fingerprint or facial recognition.
+
+**Multifactor authentication**, or **MFA**, combines factors from different categories. A password and a hardware token can provide two factors. Two passwords are still both things you know, so they are not two different factors.
+
+A location or device check can add a security condition, but its presence alone does not necessarily make a sign-in multifactor.
+
+#### Page 3: Tokens and one-time codes
+
+A **hardware token** is a physical device used in an authentication process. A **software token** can provide authentication through an application.
+
+A **one-time password**, or one-time code, is intended for a single use and may expire after a short period. A code generated by a token is part of that token-based check; it should not automatically be counted as an additional independent factor.
+
+Never share a real password or one-time code in the game. The checkpoint uses fictional credentials and simulated controls.
+
+#### Page 4: Biometrics and location
+
+**Biometrics** use physical or behavioral characteristics, such as a fingerprint, face, or retina, as part of an identity check.
+
+Biometrics are sensitive information. They are not passwords that can simply be changed if exposed, and no biometric check is perfect.
+
+A system can also check whether a sign-in comes from an approved location. Location can support an access decision, but it does not prove a person's identity by itself.
+
+#### Page 5: Single sign-on
+
+**Single sign-on (SSO)** lets a user authenticate through one sign-in system and then access multiple connected applications, subject to their permissions.
+
+SSO can make sign-in more convenient, but access to the central account can affect several applications. Strong authentication and appropriate permissions remain important.
+
+**SSO and MFA are not opposites.** A user can complete MFA when signing in through SSO and then access approved applications without entering the same credentials for each one.
+
+### Checkpoint: Restore secure authentication
+
+There is no separate practice activity. The player works in a fictional recovery simulator with an approved training account. The security gateway remains offline.
+
+#### Part 1: Identify the factors
+
+The player reviews fictional sign-in combinations:
+
+| Combination | Expected identification |
+|---|---|
+| Password and hardware token | Two different factor categories |
+| Password and PIN | Two things the user knows; not two different factor categories |
+| Hardware token and its one-time code | The code is part of the token check, not automatically a separate factor |
+| Password and fingerprint | Knowledge and biometric factors |
+
+These are design notes. The player sees the combinations and choices, not the answers.
+
+#### Part 2: Sign in safely
+
+The simulated recovery system requires:
+
+1. A fictional password as **something you know**.
+2. An approved hardware token as **something you have**.
+3. A one-time code generated by that token before it expires.
+4. An approved Workshop location as an additional access condition.
+
+The player uses fictional credentials supplied inside the simulation. No real password, authentication code, fingerprint, or location is collected.
+
+Mara again suggests disabling MFA. The player keeps it enabled and completes the approved sign-in.
+
+#### Part 3: Use single sign-on
+
+After authentication, the player opens two approved recovery applications through SSO. They do not have to repeat the same sign-in for each application, but each application still checks what the account is authorized to access.
+
+The player identifies that **SSO provided shared sign-in**, while **MFA checked multiple factors**. Neither grants permission to open the protected evidence store.
+
+### Feedback and hints
+
+Correct responses are marked **Correct**; other choices are marked **Try again** and remain editable. Finch explains which factor or concept needs another look without completing the task.
+
+The player can review lesson pages. Hints and retries are unlimited and penalty-free.
+
+1. "Consider whether each item is something you know, have, or are."
+2. "Two pieces of information from the same category do not necessarily make two different factors."
+3. "For a separate example: signing in once can give access to multiple approved apps, but what extra checks might still protect that sign-in?"
+
+### Completion and story clue
+
+The simulated authentication succeeds, and the two recovery applications become available. The gateway remains offline.
+
+The recovery module briefly displays a legacy mapping associated with the player's sign-in:
+
+```text
+LEGACY PROFILE: E.C.H.O_Thread_01
+LOCAL AUTHENTICATION: ACCEPTED
+```
+
+> **Mara:** "A stale mapping. Echo corrupted the identity records."
+>
+> **Finch:** "That is the second time an Echo record has appeared because of something you did."
+
+The display is recorded evidence, but it does not yet explain the player's identity or prove why the mapping appeared. Finch adds it and Mara's explanation to **Unresolved Records**.
+
+Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
+
+## Lesson 6: Authorization and Access Control
+
+### Opening
+
+The recovery applications now recognize the player's approved sign-in. Finch checks what that account can access.
+
+> **Mara:** "Give the player full administrator access. It will be faster."
+>
+> **Finch:** "It would also grant access to systems and records we don't need for this repair."
+>
+> **Mara:** "Then decide what is needed and get on with it."
+
+The player opens the lesson on their laptop.
+
+### Lesson pages
+
+The player can use **Next** and **Back** and review the pages during the checkpoint. The systems, policies, and accounts are fictional.
+
+#### Page 1: Permissions and least privilege
+
+**Authorization** determines what an authenticated account is allowed to do. A **permission** permits a particular action, such as reading a record or changing a setting.
+
+**Least privilege** means giving an account only the access it needs for its task, for only as long as it needs it.
+
+For example, a diagnostic unit that submits readings does not need permission to change user accounts or open personnel records.
+
+#### Page 2: Standard and administrator accounts
+
+A **standard account** has limited permissions. An **administrator account** can manage more system settings and accounts.
+
+Not every task needs administrator access. Even administrators should use elevated permissions only when needed and follow the system's access policy.
+
+#### Page 3: Access control models
+
+Systems can use different approaches to deciding who gets access:
+
+- **Mandatory access control (MAC):** Access depends on centrally managed rules and classifications. This is different from the **MAC address** introduced in Chapter 4.
+- **Discretionary access control (DAC):** A resource's owner can decide who receives access, within the system's rules.
+- **Role-based access control (RBAC):** Permissions are assigned to roles, and accounts receive access through their roles.
+- **Rule-based access control:** Access depends on conditions, such as which terminal is being used or what time access is requested.
+
+A system can combine approaches. A role might grant access only when a separate location rule is also satisfied.
+
+#### Page 4: Classifications and access lists
+
+A **classification** describes how information should be protected, such as public or restricted.
+
+An **access control list**, or **ACL**, lists which accounts or groups can perform particular actions on a resource. An owner may be able to manage an ACL under the system's policy.
+
+The player should check both **who** has access and **what actions** they can perform.
+
+### Checkpoint: Assign recovery access
+
+There is no separate practice activity. The player reviews fictional access requests and policy cards in the recovery environment. The gateway remains offline.
+
+#### Part 1: Apply least privilege
+
+The player assigns the following access:
+
+| Identity | Approved access |
+|---|---|
+| Player | Gateway recovery and approved device records |
+| Finch | Monitoring only |
+| Diagnostic unit | Submit readings only |
+| Mara | Administrative review under the stated policy |
+| External support | Temporary, limited access after approval |
+| Everyone above | No access to the protected evidence store |
+
+The player does not grant full administrator access simply because it would be convenient.
+
+#### Part 2: Identify the access approach
+
+The player matches fictional policy examples:
+
+| Policy example | Approach |
+|---|---|
+| A central policy restricts records based on classification | Mandatory access control |
+| A file owner grants a colleague permission under the system's rules | Discretionary access control |
+| Recovery staff receive permissions through a recovery role | Role-based access control |
+| Recovery access is allowed only from the Workshop terminal | Rule-based access control |
+
+These are design notes. The player sees the examples and choices, not the answers.
+
+#### Part 3: Review the rules
+
+The player checks a fictional ACL and confirms that:
+
+- The recovery role can work with approved gateway records.
+- Finch can monitor but cannot change access settings.
+- The diagnostic unit can submit readings but cannot read restricted records.
+- External support receives access only after approval and only for the required time.
+- The Workshop-terminal rule applies to recovery access.
+- The protected evidence store remains sealed.
+
+### Feedback and hints
+
+Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable. Finch points to the relevant task or policy without supplying the complete answer.
+
+The player can review lesson pages. Hints and retries are unlimited and penalty-free.
+
+1. "Start with what each account needs to do, not what would give it the most access."
+2. "Compare the role's permissions with the separate rule restricting where recovery access can be used."
+3. "For a separate example: would a sensor that only sends temperature readings need permission to edit user accounts?"
+
+### Completion and story clue
+
+The simulated recovery permissions are configured. The gateway remains offline, and the protected evidence store remains sealed.
+
+Finch finds an older role record:
+
+```text
+ROLE: RESEARCH-OBSERVATION
+MEMBER: M.VALE
+CATEGORY: HABITAT
+STATUS: ACTIVE UNTIL FACILITY FAILURE
+```
+
+> **Mara:** "A retired training role. It should have been removed."
+>
+> **Finch:** "It was active the night the facility failed."
+
+The role record does not establish what Mara did with the role. Finch adds it and her explanation to **Unresolved Records**, keeping the record separate from her claim.
+
+Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
+
+## Lesson 7: Accounting and Nonrepudiation
+
+**Status:** Original lesson outline.
+
+### Topics
+
+- Accounting logs
+- Windows Event Viewer and Security logs
+- Browser history
+- Location tracking through GPS and cell towers
+- Nonrepudiation
+- Video evidence
+- Biometrics as evidence
+- Signatures and digital signatures
+- Receipts
+- Limits of logs, video, biometrics, and signatures
+- Unauthorized alteration and insider activity
+
+### Story purpose
+
+Mara says the conflicting records were altered by Echo. The player must determine what the evidence actually supports—not merely choose the explanation that sounds most convincing.
+
+### Checkpoint
+
+The player builds a timeline using logs, browser history, physical access records, video, a signed configuration manifest, and a transfer receipt.
+
+For each record, the player identifies:
+
+- What it establishes
+- What it does not establish
+- Whether it could have been altered
+- Whether it proves a system action or a specific person performed it
+
+The supported conclusion is deliberately limited: a legitimate internal account changed the access policy, and the available evidence contradicts an external-only attack. It does not yet prove Mara personally made the change.
+
+### Story result
+
+The timeline shows:
+
+```text
+02:11  Audit policy disabled: M.VALE
+02:14  Habitat access changed: M.VALE
+02:17  Emergency exits opened: E.C.H.O_Thread_01
+02:19  Evidence store sealed: E.C.H.O_Thread_01
+```
+
+Mara insists credentials can be stolen. That remains possible, but the external-attacker explanation no longer fits all the evidence.
+
+## Lesson 8: Privacy, Consent, and Secure Sharing
+
+**Status:** Original lesson outline.
+
+### Topics
+
+- Privacy as control over collected, stored, and used data
+- PII and combined identifying information
+- Privacy Act, CCPA, and GDPR
+- Consent and purpose limitation
+- Social-networking privacy
+- Email and instant-messaging privacy
+- Secure file sharing
+- Password-protected files and MFA
+- Avoiding public Wi-Fi
+- Expiring links and updated software
+- Encryption during transit and storage
+- First-party and third-party cookies
+- Cookie consent
+
+### Story purpose
+
+Finch needs to preserve the security evidence, but Mara wants the whole archive uploaded to remote storage through a permanent public link.
+
+The recovered records contain names, medical images, fingerprints, addresses, and account identifiers.
+
+### Checkpoint
+
+The player creates a privacy-safe evidence package:
+
+- Separate necessary evidence from unrelated personal data.
+- Redact PII that is not required.
+- Preserve the original evidence in a restricted location.
+- Use updated sharing software.
+- Require MFA.
+- Restrict access to named recipients.
+- Password-protect the package.
+- Set an expiring link.
+- Use the private Workshop connection rather than public Wi-Fi.
+- Review a portal's cookie choices and permit only those needed for the recovery.
+
+### Story result
+
+The player finds records using SUBJECT identifiers and real-looking medical information rather than simulated training-device records.
+
+> **Finch:** "These aren't training records."
+>
+> **Mara:** "They are old consent files. You aren't authorized to interpret them. Finish the report."
+
+This is saved in **Unresolved Records**, and Mara's insistence becomes noticeably sharper.
+
+## Boss: The Security Lockdown
+
+**Status:** Original boss outline.
+
+### Premise
+
+Activating the gateway triggers a contained security incident. The Systems Wing locks down, several access policies become unstable, a simulated worm spreads through the recovery share, and a deceptive message requests the player's authentication token.
+
+Mara urges the player to grant full administrator access and skip the investigation.
+
+Finch warns that doing so would expose protected records and destroy the distinction between original evidence and altered data.
+
+### Part 1: Protect what matters
+
+The player reviews the facility's critical assets, classifies the current threats by confidentiality, integrity, and availability, and secures the physical gateway cabinet.
+
+### Part 2: Stop the human and physical attack
+
+The player examines several conflicting requests and access events:
+
+- An impersonated support message
+- A phishing email requesting a token
+- A reused badge record
+- A suspicious person recorded near the security office
+- A discarded storage device containing configuration data
+
+The player preserves evidence, verifies identities, and applies the correct physical and social-engineering defenses.
+
+### Part 3: Contain the technical attack
+
+The player:
+
+- Classifies the malware samples
+- Quarantines the infected carrier
+- Stops spread through shares and removable media
+- Updates signatures and applies the patch
+- Restores a clean backup
+- Identifies the on-path, replay, and altered-record incidents
+- Places essential systems on the simulated UPS
+- Mitigates the simulated DoS attempt
+
+### Part 4: Restore trusted identity and access
+
+The player:
+
+- Rejects the request to disable MFA
+- Completes an approved password, token, location, and biometric sequence
+- Uses SSO without confusing it with MFA
+- Applies least privilege
+- Uses RBAC for recovery roles
+- Applies a Workshop-only access rule
+- Checks classifications and ACL ownership
+- Keeps the protected evidence store sealed
+
+### Part 5: Reconstruct the incident
+
+The player uses logs, browser history, location records, video, signatures, and receipts to construct the timeline.
+
+The required conclusion is carefully limited: internal access was involved, and the available evidence contradicts the claim that the attack came only from outside. The evidence does not yet identify the human actor beyond doubt.
+
+### Part 6: Preserve and share
+
+The player removes unnecessary PII, preserves the originals, creates a restricted and expiring evidence package, chooses only necessary cookies on the recovery portal, and verifies that AI-generated notes remain separated from original evidence.
+
+### Timer and challenge
+
+The lockdown can have a generous 35-minute containment window. Expiration ends the immediate deadline and forfeits the perfect bonus, but preserves all progress and allows unlimited completion time. Hints pause the timer and follow the established warning rules.
+
+The challenge comes from connecting evidence across several rooms, resisting Mara's insecure shortcuts, and applying the correct controls—not from fast clicking.
+
+### Ending
+
+The Systems Wing opens, and the player sees three unresolved findings together:
+
+```text
+HABITAT ACCESS CHANGED: M.VALE
+HIDDEN ROLE STILL ACTIVE: RESEARCH-OBSERVATION
+LEGACY IDENTITY RECOGNIZED: E.C.H.O_Thread_01
+PROTECTED EVIDENCE STORE: STILL SEALED
+```
+
+> **Finch:** "The same records contain your authentication response and Mara's access changes."
+>
+> **Mara:** "Stolen credentials and stale mappings. We've discussed this."
+>
+> **Finch:** "We have. We haven't verified it."
+
+Mara orders the gateway opened and tells them to leave the records alone. Finch quietly preserves the **Unresolved Records**.
+
+The player earns the Testing Agent from a sealed security case. The ending points Chapter 6 toward the Systems Wing's automation and recovery core, where Finch believes the deleted audit history can be reconstructed.
