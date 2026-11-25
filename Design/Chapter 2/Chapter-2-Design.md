@@ -716,3 +716,17 @@ Finch uses the monitor to disconnect nonessential loads and restore local chargi
 > **Finch:** "One more thing survived the outage. I believe you've earned it."
 
 Inside is a thumb drive containing the Design Agent build component. Mara hands the drive to the player, who adds it to the in-game project build. The agent is not launched or used during gameplay. If the player earned the perfect boss bonus, the drive contains the upgraded Design Agent component instead; the player never receives both versions.
+
+## Open implementation questions
+
+- Final initial timer after beginner playtesting; the current baseline is 30 minutes
+- Exact binary-entry focus order, keyboard controls, and error formatting
+- How skipped puzzles cycle without creating a soft lock
+- Whether partially completed puzzles and the unlocked-letter list remain visible together
+- Exact meaning of a Run when required words are missing
+- Whether the second-Run warning appears again after cancellation without counting as a Run
+- Whether the timer pauses when the application loses focus
+- Exact saved state when closing during a Hint, Ask Mara, or Run confirmation
+- How the per-user project-build installation is represented visually
+- How the word bank and placement feedback adapt for screen readers and mobile
+- Final timing and readability checks for all 12 conversions on the target display sizes
