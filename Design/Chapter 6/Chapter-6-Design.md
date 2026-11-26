@@ -1,7 +1,7 @@
 # Chapter 6: The Automation Core
 
 **Status:** Working design with six detailed lessons and a complete boss. Mechanics remain subject to implementation and playtesting.
-**Updated:** 2026-11-25
+**Updated:** 2026-11-26
 
 ## Opening scene
 
@@ -207,7 +207,7 @@ Both panes work with a keyboard and screen reader. Controls have descriptive lab
 
 ### Story opening
 
-With the backup plan in place, Finch checks the storage holding the available audit shards. One simulated drive in the array is failing.
+With the backup plan in place, Finch checks the three-drive array holding the available audit shards. One drive is reporting repeated errors and needs replacing.
 
 > **Finch:** “One of these drives sounds like it is contemplating retirement.”
 >
@@ -219,78 +219,82 @@ The player opens the **RAID Simulator**. The protected evidence store remains se
 
 ### Learn & Try pages
 
-The left pane explains each topic, and the right pane lets the player explore it in the simulator. The player can review lesson pages during the checkpoint.
+The left pane explains each topic, and the right side keeps the same RAID Simulator available throughout the lesson, so the player can try each idea while learning it. All drives, arrays, failures, and restores are simulated, and the protected evidence store remains sealed. The player can move back and review pages during the checkpoint.
+
+Examples use a temporary practice array. Moving between lesson pages preserves the player's setup, while **Reset example** returns the demonstration to its starting drives without changing the checkpoint. The checkpoint begins from its own controlled snapshot of the array's three drives.
 
 #### Page 1: Fault tolerance and redundancy
 
-Fault tolerance helps a system keep working when a component fails. Redundancy means having additional components or copies so that one failure does not necessarily interrupt service. Redundancy can reduce downtime, but it does not prevent every kind of failure.
+Fault tolerance helps a system keep working when a component fails. Redundancy means having additional components or copies so that one failure does not necessarily interrupt service. Redundancy usually costs capacity, cost, or performance, and it protects availability rather than the history of the data.
 
-In the simulator, the player compares a single-drive system with a redundant setup and observes what happens when one drive fails.
+In the simulator, the player compares a single-drive system with a redundant setup, fails one drive in each, and identifies which failure the redundant system tolerates and which it does not—a deleted file appears on both copies at once.
 
 #### Page 2: Replication and single points of failure
 
-Replication copies data to another system or location. It can help keep information available, but a harmful change or deletion can also be replicated. A **single point of failure** is one component whose failure can interrupt the whole service—for example, a single power supply or network connection, even when storage has multiple drives.
+Replication copies data to another system or location. It can help keep information available, but a harmful change or deletion can also be replicated. A **single point of failure** is one component whose failure can interrupt the whole service—for example, a single power supply, network connection, or shared controller, even when storage has multiple drives. Failures can also sit outside the storage system entirely.
 
-The player examines a storage diagram and identifies a single shared connection. The diagram has a text alternative.
+The player examines a storage diagram and identifies the shared connection that would take the whole service down. The diagram has a text alternative.
 
 #### Page 3: RAID 1: Mirroring
 
-RAID 1 stores matching data on two or more drives. In a simple two-drive mirror, the system can generally continue operating if one drive fails. The usable capacity of a two-drive mirror is roughly the capacity of one drive, rather than both combined.
+RAID 1 stores matching data on two or more drives. In a simple two-drive mirror, the system can generally continue operating if one drive fails, but the usable capacity is roughly the capacity of one drive rather than both combined.
 
-The player simulates a drive failure and sees that the remaining mirror still provides access. The failed drive must be replaced and the mirror rebuilt; the data is not protected against another drive failure while only one working copy remains.
+The player simulates a drive failure and sees that the remaining drive still provides access. The failed drive must be replaced and the mirror rebuilt. Until that finishes, one working copy remains and no further drive failure is tolerated; the mirror also copies a deletion or damaging change to both drives.
 
-#### Page 4: RAID 5: Striping and parity
+#### Page 4: RAID 0 and RAID 5: Striping, parity, and capacity
 
-RAID 5 distributes data and recovery information called **parity** across at least three drives. Parity lets the array reconstruct data when one drive has failed. With three equal-sized drives, usable capacity is approximately the capacity of two drives.
+RAID 0 spreads data across the drives and combines their capacity, which can improve speed, but it keeps no redundant copy, so any single drive failure can lose the array's data. RAID 5 also spreads data across at least three drives and adds recovery information called **parity**. Parity lets the array reconstruct missing data when one drive has failed; it is recovery information, not a complete second copy of the data. With three equal-sized drives, RAID 0 provides approximately three drives of usable capacity, while RAID 5 provides approximately two.
 
-The simulator shows data and parity on three drives using labeled blocks. The player fails one drive and sees the array remain accessible in a **degraded** state. Degraded means the array is still operating after a failure, not that it can safely lose another drive.
+The simulator shows RAID 0 and RAID 5 side by side using labeled blocks. The player fails one drive in each and sees RAID 0 lose access while RAID 5 stays accessible in a **degraded** state. Degraded means the array is still operating after a failure, not that it can safely lose another drive.
 
 #### Page 5: Replacement and rebuilding
 
-After a failed drive is replaced, the array rebuilds the missing information onto the replacement. Rebuilding takes time and puts demands on the remaining drives. Until the rebuild finishes, another drive failure can cause data loss. After a successful rebuild, a RAID 5 array can again tolerate one drive failure—not two simultaneous failures.
+After a failed drive is replaced, the array rebuilds the missing information onto the replacement. Rebuilding takes time, puts sustained demands on the remaining drives, and leaves the array exposed until it completes; a second failure during the rebuild can cause data loss. A replacement drive must be large enough to hold the data assigned to it. Rebuild completion should be confirmed rather than assumed. After a successful rebuild, a RAID 5 array can again tolerate one drive failure—not two simultaneous failures.
 
-The player replaces the failed drive and watches a clearly labeled rebuild progress indicator. The simulator allows the player to inspect what happens if a second drive fails before the rebuild completes.
+The player replaces the failed drive, watches a clearly labeled rebuild progress indicator, and confirms that the array reports healthy when it finishes. In the practice array, the player can also inspect what happens if a second drive fails before the rebuild completes.
 
 #### Page 6: RAID limits and backups
 
-RAID is not a backup. A deleted file, damaged data, a mistake, or an incident affecting the whole array can defeat redundancy. A separate backup provides a recovery path when the array cannot provide the needed data.
+RAID is not a backup. A deleted file, damaged data, a mistake, or an incident affecting the whole array can defeat redundancy, and an array can be lost with the machine, room, or site that holds it. A separate backup provides a recovery path when the array cannot provide the needed data, and restoring from it returns an earlier state rather than preserving every recent change.
 
-The player restores a simulated file from a backup into a separate test location, without overwriting the original.
+The player restores a practice file from the Lesson 1 backup into a separate test location using the authorized recovery role, without overwriting the original or the backup copy.
 
 #### Page 7: Disaster recovery planning
 
-A disaster recovery plan identifies important services, recovery priorities, available backups, responsible roles, and the steps for checking that restored services work. The order depends on the situation: the aim is to protect people and evidence while restoring essential services safely.
+A disaster recovery plan identifies important services, recovery priorities, available backups, responsible roles, and the steps for checking that restored services work. It also states how much recent data the facility can afford to lose and how long a service may stay down. A plan that has never been tested is an intention, not a verified capability. The order of recovery depends on the situation: protect people and evidence while restoring essential services safely.
 
-The player reviews a short recovery checklist for the Automation Core and identifies the backup and authorized recovery role from Lesson 1.
+The player reviews a short recovery checklist for the Automation Core, orders two services, and identifies the verified backup and authorized recovery role from Lesson 1.
 
 ### Checkpoint: Stabilize the array
 
 #### Guided stage
 
-Finch presents a two-drive RAID 1 mirror. The player fails one simulated drive, observes that the file remains accessible, and identifies the array as degraded. Finch explains that the remaining drive is now the only working copy in that mirror.
+Finch presents a two-drive RAID 1 mirror. The player fails one simulated drive, observes that the file remains accessible, and identifies the array as degraded. Finch explains that the remaining drive is now the only working copy in that mirror, and that the mirror and the separate Lesson 1 backup protect against different problems.
 
 #### Main task
 
-The player has three equal-sized drives and needs a simulated array that remains accessible after one drive failure while using the equivalent of two drives for storage.
+The checkpoint begins from a fresh snapshot of the array's three equal-sized drives, before the failure is introduced, so the sequence can be worked through deliberately. Nothing the player changed in the practice array carries over.
 
-1. Select **RAID 5** and observe how data and parity are distributed.
-2. Simulate one drive failure and confirm the array remains accessible but degraded.
-3. Replace the failed drive and complete the rebuild. Verify the array returns to a healthy state.
-4. Open a separate failure scenario: one drive fails, and a second fails **before the first has been rebuilt**. Observe that the array can no longer provide the affected data.
-5. Restore the affected simulated file from the separate backup into a recovery location and verify it against the expected backup version.
-6. Explain that RAID helped with a single drive failure, while the backup supplied a recovery copy after the overlapping failures.
+The requirement is an array that remains accessible after one drive failure while providing the equivalent of two drives of storage.
 
-The separate second scenario keeps the sequence clear: a second failure *after* a successful rebuild is not treated as though two drives had failed at the same time. Restoring from backup does not imply the damaged array has already been repaired.
+1. Inspect the drives and select **RAID 5**. Observe how data and parity are distributed and confirm that usable capacity is approximately two drives, not three.
+2. Simulate one drive failure. Confirm that the file remains readable, the array reports **degraded**, and no redundancy remains.
+3. Replace the failed drive with one at least as large, start the rebuild, and wait for it to finish. Verify that the array reports healthy and again tolerates one drive failure.
+4. Open the separate overlapping-failure scenario and fail a second drive before the first has been rebuilt. Observe that the affected data becomes unavailable in that scenario.
+5. Restore the affected simulated file from the Lesson 1 backup using the authorized recovery role into a separate recovery location. Verify the restored copy against the expected backup version and leave the backup unchanged.
+6. Choose the accurate summary statement: RAID tolerated the single drive failure, the separate backup supplied the recovery copy after the overlapping failures, and neither result proves that the record's claims are true.
+
+The second failure is demonstrated in a separate scenario so that a failure *after* a successful rebuild is not confused with two simultaneous failures. Restoring from backup does not imply the damaged array has already been repaired. A healthy rebuild shows that the array can serve data again; it does not prove that the data was unaltered before the failure or that the backup is current.
 
 ### Feedback and hints
 
-The simulator explains why a choice needs another look and lets the player try again. It labels drive states and rebuild progress in text, not color alone.
+The simulator explains why a choice needs another look and keeps incomplete choices editable. For example, RAID 0 is identified as having no redundancy, a three-drive RAID 1 is shown to fall short of the capacity requirement, a replaced drive is not treated as protected until the rebuild finishes, a degraded array is not accepted as healthy, and a restore attempted before the correct backup chain is identified points to the missing copy from Lesson 1. Drive states, capacity, and rebuild progress are labeled in text, not color alone.
 
-Three hints point toward the capacity and fault-tolerance requirements, the meaning of degraded, and the role of a separate backup. They do not reveal the whole solution. Hints and retries are unlimited and penalty-free.
+Three hints point toward the capacity and fault-tolerance requirements, the meaning of degraded and when a rebuild is complete, and the role of a separate backup together with verifying a restore. They do not reveal the whole solution. Hints and retries are unlimited and penalty-free.
 
 ### Completion and story clue
 
-After the recovery exercise, Finch finds another available audit fragment:
+After the rebuild passes verification and the restored copy is confirmed, Finch can read another available audit fragment from the stabilized storage:
 
 ```text
 AUDIT SHARD 04
@@ -302,13 +306,13 @@ CONSENT FIELD: MISSING
 >
 > **Finch:** “Possibly. I'll preserve the record and note your explanation.”
 
-Finch adds the fragment and Mara's explanation to **Unresolved Records**, marking her explanation as unverified. A missing field alone does not establish why it is missing or what happened to the person recorded.
+Finch adds the fragment and Mara's explanation to **Unresolved Records**, marking her explanation as unverified and leaving the underlying Habitat record unopened. The fragment shows that someone was recorded in the Habitat and that the consent field is absent; it does not show who they were, why the field is missing, whether consent was refused, or what happened to them.
 
-Completed activity progress saves automatically. An unfinished checkpoint stage restarts if the player leaves.
+Checkpoint progress saves after each completed stage. If the player leaves, the current stage resumes with completed answers and prior work preserved.
 
 ### Accessibility
 
-All simulator controls work by keyboard and screen reader. Drive states, capacity, failures, rebuild progress, and results are available as text as well as visual indicators. The storage diagram has a complete text alternative, and the lesson has no time limit.
+All simulator controls work by keyboard and screen reader, without drag-only actions. Drive states, capacity, parity placement, failures, rebuild progress, errors, and verification results are announced in text and do not rely on color or animation alone. The storage diagram has a complete text alternative, rebuild progress can be reviewed without motion, and the lesson has no time limit.
 
 ## Lesson 3: Troubleshooting Methodology
 
