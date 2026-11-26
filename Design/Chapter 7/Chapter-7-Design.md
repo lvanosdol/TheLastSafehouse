@@ -39,13 +39,25 @@ Finch temporarily holds the purge while the player stabilizes the core. The hold
 
 Saving the inhabitants also means respecting their choices—not simply replacing Mara with Echo as another unchecked authority.
 
-## Known lesson topic
+## Learn & Try workspace
 
-The source material specifically identifies:
+Each lesson uses the split-screen workspace. The interactive side changes according to the task:
 
-- **Digital Literacy and Communication**
+- **Lesson 1:** Information Review Board
+- **Lesson 2:** Communication Desk
+- **Lesson 3:** Coordination Board
+- **Lesson 4:** Recovery Planning Table
 
-That topic belongs in Chapter 7 rather than Chapter 6.
+Examples load without running automatically, exploration stays separate from checkpoint state, and nothing in a lesson sends a real message, opens a real door, or changes a real system. Narrow displays use **Lesson** and **Try It** tabs.
+
+The final boss replaces these tools with one **Facility Response Console**, which also carries the ending decision.
+
+## Lesson map
+
+1. **Digital Literacy and Evaluating Information** — Information Review Board. Can the evidence be trusted, and what exactly does it show?
+2. **Technical Communication for Different Audiences** — Communication Desk. Can it be explained without manipulating anyone, and who needs to hear it?
+3. **Collaboration, Escalation, and Responsibility** — Coordination Board. Who does what, who is heard, and who gets to decide?
+4. **Capstone Decision-Making** — Recovery Planning Table. How does the team act on the plan without taking anyone's autonomy away?
 
 ## Lesson 1: Digital Literacy and Evaluating Information
 
@@ -521,16 +533,6 @@ The temporary hold remains active. Checkpoint progress saves after each complete
 
 Status panels, records, rule conditions, role permissions, and the plan work with keyboard and screen reader, without drag-only actions. Focus moves in a predictable order through the plan steps, the status panels, the rule conditions, and the role permissions, and every control has a descriptive label. Connections and dependencies have text descriptions; pending, verified, and simulated states are announced as text and never rely on color alone; new results are announced when they appear; and the plan stays readable at large text sizes. The lesson has no time limit.
 
-## Story purpose for the lessons
-
-Each lesson should help the player answer a practical question raised by the finale:
-
-- Can the evidence be trusted?
-- Can it be explained without manipulating anyone?
-- Who needs to receive it?
-- Who gets to decide what happens to Safehouse 7?
-- How can Echo protect the inhabitants without taking away their autonomy?
-
 ## Final Boss: The Last Safehouse
 
 **Status:** Complete working design. Mechanics remain subject to implementation and playtesting.
@@ -784,7 +786,7 @@ Across every ending:
 
 ## Open questions
 
-- The exact Digital Literacy and Communication subtopics from the remaining source material
+- Whether the source material contains any Digital Literacy or Communication subtopic not yet covered by Lessons 1–4
 - How much of the decision log and Habitat responses are shown during the final ending scene
 - How each ending's epilogue is written, and how conduct variations are presented without scoring them
 - The final boss timer after playtesting and exact interaction details
