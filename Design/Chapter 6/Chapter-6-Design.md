@@ -614,7 +614,7 @@ The startup timeline, recovery menus, startup component list, messages, and serv
 
 ### Story opening
 
-The Automation Core starts normally again, but Finch finds three new problems: the display is using an incorrect driver, an older archive application keeps crashing, and the backup controller reports intermittent errors.
+The Automation Core starts normally again, but Finch finds three new problems: the primary display drops to a low resolution after a recent driver update, an older archive application keeps crashing, and the backup controller reports intermittent errors.
 
 > **Finch:** “Good news: the core is awake. Less good news: it appears to have several complaints.”
 >
@@ -622,82 +622,93 @@ The Automation Core starts normally again, but Finch finds three new problems: t
 >
 > **Finch:** “Yes, once we determine which complaints belong to software and which belong to hardware.”
 
-Finch opens the **Repair Bench**. It contains three simulated repair tickets, device information, application controls, and diagnostic results. The player works with fictional equipment and authorized copies; the protected evidence store stays sealed.
+Mara's manner follows the earlier choices. If the player has been filing records openly, she stays and reads the tickets herself before answering; if not, she leaves the triage to Finch. The difference is tone only.
+
+Finch opens the **Repair Bench**. It holds three simulated repair tickets, device information, application controls, diagnostic results, and the trusted **Asset Registry** entry for each device. The player works with fictional equipment and authorized copies; the protected evidence store stays sealed.
 
 ### Learn & Try pages
 
-The left pane explains each topic while the right pane lets the player investigate and test choices. The player can review pages during the checkpoint.
+The left pane explains each topic, and the right side keeps the same Repair Bench available throughout the lesson, so the player can open each ticket, inspect a device, and watch what a change does. All equipment, applications, and repairs are simulated, and the protected evidence store stays sealed. The player can move back and review pages during the checkpoint.
+
+Examples use a temporary practice bench. Moving between lesson pages preserves the player's work on it, while **Reset example** returns the demonstration to its starting state without changing the checkpoint. The checkpoint begins from its own controlled snapshot of the three tickets.
 
 #### Page 1: Recognizing hardware symptoms
 
 Unexpected restarts, unusual sounds, overheating, and intermittent device errors can suggest a hardware problem, but a symptom alone does not establish the cause. Check relevant messages, recent changes, connections, and diagnostic results before replacing a component.
 
-The player compares fictional symptoms and identifies what information would be useful next.
+The practice bench shows four symptoms side by side with the evidence each one does and does not provide.
 
 #### Page 2: POST diagnostic cards
 
 A POST diagnostic card displays codes produced during the computer's startup hardware checks. A code can help narrow an investigation, but its meaning depends on the system or manufacturer. Record the code and consult the correct reference rather than assuming every code means the same thing.
 
-The player matches a sample code to the simulated system's provided reference.
+The practice bench shows one POST code beside two different manufacturers' references, so the same code can be looked up in each.
 
 #### Page 3: Devices and drivers
 
-A driver helps the operating system communicate with a device. A driver must be compatible with the device and operating system; an incorrect or damaged driver can cause missing features, errors, or instability.
+A driver helps the operating system communicate with a device. A driver must be compatible with the device and operating system; an incorrect, outdated, or damaged driver can cause missing features, errors, or instability.
 
-The player compares fictional driver details with a device model and operating-system version.
+The practice bench displays an installed driver, a device model, and an operating-system version together, and marks each mismatch as it appears.
 
 #### Page 4: Device Manager, updates, and rollback
 
-Windows Device Manager displays devices and their status and can help manage drivers. Before changing a driver, note the current version and use a trusted, compatible source. A safe update may fix a problem; rolling back to a previously working version may help if trouble began after an update. Neither action fixes every hardware failure.
+Windows Device Manager displays devices and their status and can help manage drivers. A device status code is a starting point, not a verdict: it must be looked up in the correct reference for that system, the way a POST code is. Before changing a driver, note the current version, compare it with the verified version for the device model and operating system, and use a trusted source. A safe update may fix a problem; rolling back to a previously working version may help if trouble began after an update. Neither action fixes every hardware failure.
 
-The player inspects a device warning and compares an installed driver with a verified compatible package.
+The practice bench shows a device status code beside the reference entry for that system, and a driver update history with the previous verified version still available.
 
 #### Page 5: Unresponsive applications
 
-Windows Task Manager can show running applications and end an unresponsive task. On macOS, **Force Quit** serves a similar purpose. Ending an application can lose unsaved work, so save or preserve work when possible and close the affected application rather than unrelated processes.
+Windows Task Manager can show running applications and end an unresponsive task. On macOS, **Force Quit** serves a similar purpose. Ending an application can lose unsaved work, so save or preserve a recovery copy when possible, close the affected application rather than unrelated processes, and review the warning before confirming.
 
-The player identifies an unresponsive fictional application and reviews the unsaved-work warning before ending it.
+Opening the practice task shows the unsaved-work warning and the recovery-copy option before anything is ended.
 
 #### Page 6: Application compatibility
 
-An older application may not behave correctly on a newer operating system. Compatibility settings can help some applications, but they are not a universal fix. Check the application's requirements, use an approved version, and test the result. Do not apply compatibility settings to unrelated programs.
+An older application may not behave correctly on a newer operating system. Compatibility settings can help some applications, but they are not a universal fix. Check the application's requirements, use an approved version, test the result, and change only the affected program so that unrelated applications keep their settings.
 
-The player compares a compatibility issue with a hardware fault and chooses an appropriate test for each.
+The practice bench applies a compatibility setting to one fictional application and shows that no other program's settings changed.
 
 #### Page 7: When to replace or escalate
 
-If supported diagnostics indicate a failing component, further software changes may not fix it. Protect data, confirm recovery options, and follow the organization's authorization and replacement procedures. Escalate when the evidence is inconclusive or the repair is outside the player's authority.
+If supported diagnostics indicate a failing component, further software changes may not fix it. Protect data, confirm recovery options, and follow the authorization and replacement procedures. Escalate when the evidence is inconclusive or the repair is outside the player's authority.
 
-The player reviews a fictional controller's repeated hardware diagnostic failures and distinguishes them from a driver compatibility problem.
+The practice bench shows a controller whose diagnostics fail repeatedly; the software-only options report that they would not address the evidence.
 
-#### Page 8: Verify the repair
+#### Page 8: Verify and record the repair
 
-After a change, check both the reported symptom and the service that depends on the device. A device showing no warning does not, by itself, prove the complete workflow works. Record what changed and the result.
+After a change, check both the reported symptom and the service that depends on the device. A device showing no warning does not, by itself, prove the complete workflow works. Record what changed and the result, and record the verified driver version in the Asset Registry so a future mismatch can be recognized instead of rediscovered.
 
-The player runs a simulated test backup and restore, without overwriting original records.
+The practice bench runs a test backup and restore to a separate location, then shows the version record it would add to the Asset Registry.
 
 ### Checkpoint: Repair the core's devices and application
 
 #### Guided stage
 
-Finch shows a fictional display adapter's model and operating-system version alongside three driver packages. The player selects the verified compatible package. Finch explains why matching the device and operating system matters.
+Finch demonstrates the method on a separate device: a scanner whose status code points to a driver written for the wrong operating-system version. The player looks the code up in the simulated system's reference, compares the scanner's model and operating-system version with the Asset Registry entry, and selects the verified package. Finch points out that the code narrowed the search while the registry decided it.
+
+The scanner is not one of the core's three tickets, and nothing from the demonstration carries into the main task.
 
 #### Main task
 
-The player works through three repair tickets:
+The checkpoint begins from its own snapshot of the three tickets, before anything has been changed. Nothing from the practice bench carries over.
 
-1. **Display adapter:** Inspect Device Manager, identify the mismatched driver, and install the verified compatible driver. Confirm the warning clears and the simulated display works correctly.
-2. **Archive application:** Review the unsaved-work warning and safely end the unresponsive application. Inspect its compatibility information, apply the appropriate setting to that application only, restart it, and verify that it opens a test record.
-3. **Backup controller:** Review repeated controller errors and a failed hardware diagnostic. Confirm that a verified backup is available, then authorize the simulated controller's replacement or escalate it through the provided recovery role. A software setting alone is not accepted as a verified repair.
-4. **Final verification:** After the simulated replacement is completed, verify that the backup controller and service work together by running a test backup and restoring a test file to a separate location. Record the actions and results.
+The requirement is three tickets resolved with the correct classification, an authorized hardware repair, preserved work and records, and verification that the whole workflow works rather than that the warnings cleared.
 
-If the player chooses escalation, Finch's simulated authorized technician completes the controller replacement before final verification. The lesson does not require the player to perform a real hardware repair.
+1. Triage before repairing anything. Classify each ticket as a driver regression, an application-compatibility problem, or a hardware failure, and record the evidence for each with one alternative ruled out. The three complaints are deliberately different kinds of fault.
+2. **Display:** read the device status code, then compare the installed driver and its update history with the device model, the operating-system version, and the Asset Registry entry. The installed driver matches the device but is newer than the verified version, and the display worked before that update. Select the option that fits the device and operating system: the newest package requires a different operating-system version, the remaining package belongs to another model, and choosing either is refused with that explanation.
+3. Roll back the driver, restart when prompted, and verify that the display does real work — the core's status display renders every tile at full resolution — and that the warning stays clear after the restart.
+4. **Archive application:** copy the unsaved draft to a recovery location, then end only that task and review the unsaved-work warning before confirming. Read the application's compatibility information, apply the setting to that application only, reopen it, and open a test record. Confirm that no other application's settings changed.
+5. **Backup controller:** compare the repeated controller errors with the failed hardware diagnostic. A driver change is refused as unsupported by that evidence, and disabling the monitoring is blocked as evidence loss. Confirm the Lesson 1 backup is verified, then authorize the simulated replacement through the provided recovery role. If the player judges the authority insufficient, escalating is accepted and the authorized technician completes the same replacement. A software setting alone is not accepted as a verified repair.
+6. **Verification:** after the authorized technician completes the simulated replacement, run a test backup and restore a test file to a separate location, and confirm that the controller diagnostic passes. Then check all three tickets together, plus the Lesson 3 export check and a normal startup.
+7. Record each classification, change, and result, add the verified driver version to the Asset Registry, and file the record in the **export path** thread with its source linked and what remains unknown. Choose the accurate conclusion: two faults were software-side and one required an authorized hardware replacement, and the record does not establish why the controller failed or when the display driver changed.
+
+The lesson does not ask the player to perform a real hardware repair; escalation is the authorized route.
 
 ### Feedback and hints
 
-Each ticket explains what the evidence supports and why an incompatible driver, unrelated compatibility setting, or unverified hardware diagnosis needs another look. The player can revise choices without penalty.
+Each ticket explains what the evidence supports and keeps incomplete choices editable. For example, the newest driver package is identified as requiring a different operating-system version, the package for another model is refused, replacing the controller before the diagnostic is read is identified as premature, applying a compatibility setting to every application is refused as unrelated change, ending the task before the draft is copied is blocked as work loss, and a cleared warning accepted as the whole verification is returned to the unfinished checks.
 
-Three hints point toward matching driver details, limiting application changes to the affected program, and checking the controller's diagnostic evidence. They do not reveal the entire solution. Hints and retries are unlimited and penalty-free.
+Three hints point toward matching the device and operating system against the verified registry, limiting each change to the affected item, and reading repeated diagnostic failures differently from a compatibility problem. They do not reveal the entire solution. Hints and retries are unlimited and penalty-free.
 
 ### Completion and story clue
 
@@ -709,17 +720,19 @@ HABITAT 02: OCCUPANCY DETECTED
 ACCESS RECORD: E.C.H.O_Thread_01
 ```
 
-> **Mara:** “That occupancy entry is a sensor error.”
+> **Mara:** “The occupancy entry is a sensor error, and that thread identifier belongs to a maintenance account.”
 >
-> **Finch:** “It could be. I'll preserve the entry and note that explanation.”
+> **Finch:** “Both may be true. I will preserve the fragment and record your explanation as an explanation.”
 
-Finch links the fragment and Mara's statement in **Unresolved Records**, marking her explanation as unverified. The occupancy entry and account record are clues, not proof of who was present or who used the account.
+Finch notes that the fragment contains an occupancy detection and an identity string, and that neither shows who was present or who used the account. The player recognizes the thread name from their own sign-in in Chapter 5 and asks why it appears in a Habitat record. Mara does not answer directly.
 
-The local repairs are complete, but the final audit shard is stored offsite. Completed activity progress saves automatically; an unfinished checkpoint stage restarts if the player leaves.
+The repair record joins the **export path** thread with the two software faults, the authorized controller replacement, the verification results, the Asset Registry update, and the questions that remain open. The shard is preserved beside it with its source and marked as a fragment whose meaning is not established.
+
+The local repairs are complete, but the final audit shard is stored offsite. Checkpoint progress saves after each completed stage. If the player leaves, the current stage resumes with completed answers and prior work preserved.
 
 ### Accessibility
 
-Repair tickets, device details, diagnostic results, warnings, and controls work with keyboard and screen reader. Status and feedback are written in text rather than conveyed by color alone. The player can review the lesson and ticket history without a time limit.
+Repair tickets, the device tree, status codes, driver history, diagnostic results, unsaved-work warnings, and every control work with keyboard and screen reader, without drag-only actions. Focus moves in a predictable order through the ticket list, device details, and results, and each control has a descriptive label. Device status, warnings, and results are announced as text and never rely on color alone, the unsaved-work warning must be acknowledged before a task ends, and the ticket history can be read back in full. The player can review the lesson and ticket history without a time limit.
 
 ## Lesson 6: Network Troubleshooting and VPN Access
 
