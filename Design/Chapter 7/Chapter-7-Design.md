@@ -1,6 +1,6 @@
 # Chapter 7: The Last Safehouse
 
-**Status:** Approved opening and detailed Lessons 1 through 4. Final boss and ending choices remain to be developed.
+**Status:** Approved opening, detailed Lessons 1 through 4, and complete working boss design. Ending choices remain to be developed.
 **Updated:** 2026-11-26
 
 ## Story continuity
@@ -507,23 +507,157 @@ Each lesson should help the player answer a practical question raised by the fin
 - Who gets to decide what happens to Safehouse 7?
 - How can Echo protect the inhabitants without taking away their autonomy?
 
-## Final boss direction
+## Final Boss: The Last Safehouse
 
-### Working title: The Last Safehouse
+**Status:** Complete working design. Mechanics remain subject to implementation and playtesting.
+**Goal:** Use skills from across the game to stop Mara's purge, protect and free the inhabitants, and preserve the evidence.
 
-Mara’s purge becomes a facility-wide containment crisis. The player must:
+This is one connected operation, not a separate quiz for each chapter. Each part gives the player something needed for the next.
 
-- Stabilize the automation and security systems
-- Keep Habitat 02 alive
-- Open the sealed doors without granting unrestricted control to one person
-- Preserve the verified evidence and separate it from AI reconstruction
-- Stop Mara’s override
-- Give the inhabitants a way to control their own access
-- Decide what should happen to the facility afterward
+### Opening
 
-The final boss should test the complete curriculum through a connected operation rather than a separate quiz for each chapter.
+The team is ready to act on the plan from Lesson 4. The temporary purge hold becomes unstable, and Mara renews her containment request across all Habitats.
 
-Exact stages, timer, and interactions remain open.
+```text
+TEMPORARY HOLD: UNSTABLE
+CONTAINMENT REQUEST: ACTIVE
+SCOPE: ALL HABITATS
+HABITAT 02: OCCUPIED
+RECOVERED EVIDENCE: PRESERVED
+PROTECTED EVIDENCE STORE: SEALED
+```
+
+> **Mara:** “You don't know what they'll do if you let them out.”
+>
+> **Player:** “They should get to decide what happens to them.”
+>
+> **Finch:** “Then let's give them that chance—and make certain the systems keep them safe.”
+
+An independent fallback keeps the hold active while the player restores the recovery workstation. Finch warns that the hold is temporary, not a permanent solution.
+
+### Timer, help, and safety
+
+A **35-minute containment window** begins after the opening and instructions, with calm warnings at 15 and 5 minutes. Its length is subject to playtesting.
+
+If it expires, the simulated workspace switches to manual recovery. The hold and life support remain safe, completed work and evidence are preserved, and the player has unlimited time to finish. The perfect bonus is forfeited, but the standard reward remains available. There is no game over.
+
+The timer pauses during story scenes, the pause menu, help panels, mandatory accessibility overlays, while the game is closed, and during the final ending decision. It continues while ordinary boss sticky notes are open.
+
+**Hint** has three progressive levels. **Ask Mara** offers contextual conversation but does not change settings or evidence; her explanations remain claims. Before either opens, a warning says that using help forfeits the perfect bonus. Confirming opens help; cancelling preserves eligibility. Ordinary mistakes, retries, failed tests, and allowed undos do not forfeit it.
+
+All equipment, files, accounts, credentials, communications, code, and network operations are simulated. The protected evidence store stays sealed. Unsafe destructive actions are blocked with an explanation.
+
+### Boss interface
+
+The **Facility Response Console** provides a text-accessible room map, current objective, timer, bonus status, Habitat and system statuses, and access to **Unresolved Records**. The player can review completed actions and move between available stations. Later controls unlock when their prerequisites are satisfied.
+
+### Stage 1: Restore the recovery workstation
+
+**Skills:** Chapter 1 hardware, files, and permissions; Chapter 6 troubleshooting.
+
+The workstation cannot reach the recovery tools because a fictional external connection is unplugged. Finch shows the device status and a safe-to-handle simulated connector. The player checks the evidence, reconnects the correct component, and confirms that the workstation recognizes it.
+
+The player then locates an approved recovery file in the in-game file browser. A separate trusted registry identifies the expected file and verification information. The player checks the file before opening it, creates an authorized working copy, and leaves the original and the recovered evidence unchanged.
+
+**Result:** The workstation can open the facility's read-only device registry.
+
+### Stage 2: Find the affected systems
+
+**Skills:** Chapter 3 databases, relationships, and SQL; Chapter 7 evaluating information.
+
+The registry contains fictional Habitat and device tables linked by Habitat ID. The player uses an authorized read-only query to find Habitat 02's controller, communications device, and life-support monitor. The player checks the returned IDs and statuses against the separate current status panel.
+
+The player also requests the available status for the other Habitats. Missing or unreachable entries remain **unknown**, not automatically empty or safe. The game accepts equivalent read-only queries that return the required information; it does not permit editing the records.
+
+**Result:** Finch marks the identified controller and its communication path on the facility map.
+
+### Stage 3: Restore the communication path
+
+**Skills:** Chapter 4 networking; Chapter 6 troubleshooting and network tests.
+
+The workstation can reach the local network but not the identified recovery controller. The player:
+
+1. Checks the adapter and the approved gateway information.
+2. Tests the local gateway and the controller path, then reviews a simulated trace and configuration.
+3. Identifies and corrects the mismatched gateway setting. A timeout alone is not treated as proof of the cause.
+4. Retests the route and verifies that the **actual recovery service**, not merely a ping, responds.
+
+Failed tests can be reversed and retried. The now-reachable service supplies the current control and life-support status needed for the release plan.
+
+### Stage 4: Protect evidence and assign access
+
+**Skills:** Chapters 1 and 5 permissions and security; Chapter 6 backups and recovery.
+
+Before the team changes the containment system, the player confirms that the recovered original records are preserved, a working copy is available, and a separate backup can be restored. The player restores a test file to a separate location and checks it against the expected backup version.
+
+The player assigns the recovery teammate the limited access needed to perform the technical recovery and gives an independent reviewer the access needed to review it. Neither receives unrestricted control over both evidence and Habitat access. Authentication uses fictional simulated credentials only.
+
+The player prepares a limited evidence package for an appropriate fictional recipient, keeping source records separate from AI-generated summaries. A checksum or signature verifies the applicable integrity or authenticity check; it does not prove every claim is true.
+
+**Result:** The team has a verified recovery copy and the authorized roles needed to proceed.
+
+### Stage 5: Repair and test the review rule
+
+**Skills:** Chapter 2 programming, conditions, testing, and debugging; Chapter 7 decision-making.
+
+The recovery station displays a simulated rule that requests a Habitat release review when the purge hold alone is active. The player corrects the rule so that a review is requested only when **the hold is active, the relevant life-support check is confirmed, and communications are available**.
+
+The rule requests human review; it does not open a door. The player tests at least three examples:
+
+- All three conditions confirmed → review requested.
+- Life-support check unconfirmed → no review requested.
+- Communications unavailable → no review requested.
+
+The player also checks that a failed or incomplete test is not shown as a successful review. The game accepts equivalent correct logic. The repaired rule is tested in the simulation before the authorized team applies it.
+
+**Result:** The team has a tested way to request a release review without automatically opening a Habitat.
+
+### Stage 6: Stop the purge and coordinate the release
+
+**Skills:** Chapters 5–7 security, troubleshooting, communication, and collaboration.
+
+Mara's existing facilities authority allows her containment request; the game does not pretend a permissions check will reject it. The player uses the approved simulated recovery procedure to isolate the **purge execution path**, while keeping the separate life-support and Habitat communication services online.
+
+The console shows the proposed impact before the change. The authorized recovery teammate confirms the technical step, an independent reviewer checks it, and the player verifies that the purge is no longer executing or queued. Life support and communications are checked afterward, and the action is recorded.
+
+For each Habitat, the team checks its status, resolves or escalates warnings, confirms a safe route with a qualified responder, and communicates with the people inside. Door controls become available only after the relevant checks and review are complete. Opening a door gives inhabitants the **choice** to leave or remain where safe; the player does not make one decision for everyone.
+
+Individual requests and unanswered messages remain distinct. A Habitat that cannot yet be checked stays visibly pending with an assigned follow-up; it is not silently counted as cleared. The player verifies each door's actual state after an authorized release.
+
+Mara can be heard without allowing her to restart the purge or erase evidence. Her final accountability is left for the ending sequence.
+
+### Final verification
+
+The team reviews the facility-wide state:
+
+- The purge is stopped and is not queued to restart.
+- Life support and communications remain operational, with warnings addressed or explicitly escalated.
+- Habitat statuses and door results are recorded; no unverified Habitat is labeled safe or cleared.
+- The original evidence is preserved, and the backup restore has been verified.
+- The limited evidence package has a visible delivery status, and unresolved matters have assigned follow-up.
+
+When the required checks pass, the boss completes **automatically**—there is no separate Submit button.
+
+### Reward
+
+Finch gives the player a physical thumb drive containing the **Release Agent build component**.
+
+- Standard completion awards the standard Release Agent, which guides release preparation.
+- A perfect finish awards the upgraded version, which helps plan releases for multiple platforms. The player receives one version, not both.
+- The player adds it to the in-game project build on the laptop. It is not used as an assistant during gameplay.
+- After the full campaign, the completed seven-agent app is intended to be offered as a real-world download, subject to future implementation, safety, and testing. This is separate from the story ending.
+
+### Ending transition
+
+With the immediate crisis resolved, the player and inhabitants discuss the facility's future. The outline proposes **Open Doors**, **Empty Foundations**, and **The Watchful Echo**. Their exact scenes, choice conditions, and consequences remain open for us to develop together; the boss does not silently select one.
+
+Across the proposed endings, Finch survives, the inhabitants regain autonomy, and preserved evidence supports accountability. The ending decision is not timed.
+
+### Saving and accessibility
+
+Progress saves automatically after completed objectives and individual actions. Closing the game pauses the timer; reopening restores the current station, actions, Habitat and evidence statuses, remaining time, and perfect-bonus eligibility. Sticky notes are removed when the boss ends.
+
+The map, workstation, query controls, rule editor, messages, and door controls work with keyboard and screen reader. States and warnings use text, not color alone. Captions and reduced-motion alternatives cover alarms and story scenes. Timer expiry is announced without interrupting input. Restricted records remain unavailable through accessibility output unless authorized.
 
 ## Ending framework
 
@@ -552,7 +686,7 @@ Across every ending:
 
 - The exact Digital Literacy and Communication subtopics from the remaining source material
 - Which technical skills are revisited in the final lesson sequence
-- The final boss structure and whether it is timed
+- The final boss timer after playtesting and exact interaction details
 - How the player communicates the evidence and to whom
 - Whether Mara can be heard out, contained, or handed over
 - The exact fate and choices of the surviving subjects
