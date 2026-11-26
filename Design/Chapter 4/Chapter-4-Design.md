@@ -1,6 +1,7 @@
 # Chapter 4: The Archive Recovery
 
-**Status:** Working design with detailed lessons and a boss draft.
+**Status:** Working design with seven detailed lessons and a complete boss draft. Timer values and some interaction details remain provisional.
+**Updated:** 2026-11-25
 
 ## Story setup
 
@@ -9,8 +10,6 @@ The Asset Registry identifies a backup called `ARCHIVE-09`, but its local copy i
 Because the facility is remote, its working external connection is through a satellite relay. Mara wants the archive because it should contain infrastructure records and the remaining facility map. She warns that Echo may have corrupted its contents.
 
 Finch is hopeful that the archive contains some of his missing memories.
-
-> **Finch:** "My memories are in remote storage. I'm not sure whether that makes me backed up or extremely absent-minded."
 
 The chapter progresses from restoring the network, to reaching the archive, to evaluating what its AI-assisted recovery reveals.
 
@@ -88,7 +87,7 @@ The player can use **Next** and **Back** and review the lesson during the checkp
 
 ##### Page 1: What is a network?
 
-A **network** connects devices so they can exchange information. A laptop might request a file from a server, or two diagnostic devices might exchange readings.
+A **network** connects devices so they can exchange information. A laptop might request a file from a server. A stationary diagnostic relay might exchange readings with a mobile diagnostic unit.
 
 Information travels as small pieces called **packets**. The receiving device uses them to put the information back together.
 
@@ -104,7 +103,7 @@ A device can use the local network to reach another network; the LAN and WAN are
 
 A **client** requests a service or information. A **server** provides it. For example, the player's laptop can request a file from the Workshop file server.
 
-In a **peer-to-peer** exchange, devices communicate directly as peers. Two diagnostic units can exchange a signal map with each other rather than requesting it from a central file server.
+In a **peer-to-peer** exchange, devices communicate directly as peers. The stationary Workshop diagnostic relay and the mobile diagnostic unit can exchange a signal map with each other rather than requesting it from a central file server.
 
 A device's role depends on what it is doing: a laptop can act as a client when requesting a file.
 
@@ -141,7 +140,7 @@ This is an estimate assuming the speed stays constant and ignoring overhead. A r
 
 #### Checkpoint: Map the connection
 
-There is no separate practice activity. Finch displays a simulated map showing the Workshop laptop, file server, two diagnostic units, satellite connection, and remote archive server. It shows the planned communication route, not a working connection; the player begins restoring the equipment in Lesson 2.
+There is no separate practice activity. Finch displays a simulated map showing the Workshop laptop, file server, stationary diagnostic relay, mobile diagnostic unit, satellite connection, and remote archive server. It shows the planned communication route, not a working connection; the player begins restoring the equipment in Lesson 2.
 
 **Part 1: Label the map**
 
@@ -151,7 +150,7 @@ The player identifies:
 2. The **satellite WAN connection** leading beyond the Safehouse.
 3. The **laptop as client** requesting a file.
 4. The **file server** responding to the request.
-5. The two diagnostic units exchanging a signal map **peer to peer**.
+5. The stationary Workshop diagnostic relay and the mobile diagnostic unit exchanging a signal map **peer to peer**.
 
 **Part 2: Compare and estimate**
 
@@ -169,7 +168,7 @@ The player identifies the Workshop connection as the faster one. A recovered tra
 4,800 megabits ÷ 20 Mbps = 240 seconds = 4 minutes
 ```
 
-The estimated four-minute transfer fits within the six-minute window under those assumptions. It is not a guarantee of actual performance. Completing the checkpoint creates a plan; it does not restore the satellite connection or download the archive.
+The estimated four-minute transfer fits within the six-minute window under those assumptions. It is not a guarantee of actual performance. The six-minute figure comes from a recovered historical transfer record used only to practice the estimate; it is not the live window available during the boss. Completing the checkpoint creates a plan; it does not restore the satellite connection or download the archive.
 
 #### Feedback and hints
 
@@ -237,9 +236,22 @@ In short: MAC identifies a local interface; IP identifies a network location for
 
 A **port number** helps direct network traffic to a particular service on a device. The IP address helps reach the device; the port helps reach the service on it. For example, secure web traffic commonly uses port `443` for HTTPS. Lesson 4 will cover service and protocol choices in more detail.
 
+#### Guided practice: Identify device roles
+
+The player matches four descriptions to the correct device:
+
+| Description | Device |
+|---|---|
+| Connects wired devices within the local network | Switch |
+| Connects different networks and directs traffic between them | Router |
+| Lets wireless devices join the local network | Access point |
+| Connects the router to the satellite service | Modem |
+
+Correct choices remain marked **Correct**. Incorrect choices receive **Try again** feedback and a reminder about the device's role. The player does not place cables yet. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
+
 #### Checkpoint: Restore the local communication path
 
-There is no separate practice activity. The player examines the communications rack, connects the local equipment, and uses recovered records to identify network interfaces and addresses. All devices and network activity are simulated.
+The player examines the communications rack, connects the local equipment, and uses recovered records to identify network interfaces and addresses. All devices and network activity are simulated.
 
 **Part 1: Place the devices**
 
@@ -504,9 +516,19 @@ A **firewall** applies rules that allow or block traffic. The player should allo
 
 The Chapter 3 safeguard protects a separate evidence store. Configuring the explicitly approved archive connection does not require the player to disable or bypass it; its purpose remains unknown to the player.
 
+#### Guided practice: Trace a request
+
+The player arranges the main steps used to reach the secure archive:
+
+```text
+DHCP address -> DNS lookup -> HTTPS request -> Firewall rule -> Archive response
+```
+
+Correct steps remain in place; incorrect choices receive **Try again** feedback. The practice explains that this is a simplified path for the scenario, not a complete description of every network exchange. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
+
 #### Checkpoint: Establish the archive connection
 
-There is no separate practice activity. Finch displays the laptop's network panel, a simulated DNS record, the firewall rules, and a router status panel.
+Finch displays the laptop's network panel, a simulated DNS record, the firewall rules, and a router status panel.
 
 **Part 1: Check the laptop's address**
 
@@ -618,9 +640,17 @@ After changing settings, check that the unit can join the network and that the s
 
 > **Finch:** "A connection that only works when the unit stays in the Workshop would rather defeat the point."
 
+#### Guided practice: Read the alignment gauge
+
+The laptop includes a training version of the antenna alignment control. For this practice, the acceptable range is **30–40**, and the current reading is **25**.
+
+The player uses left and right controls, or the keyboard, to raise the reading into the acceptable range. A text label updates as **Below range**, **Within range**, or **Above range**. The player selects **Test alignment** once it is within range.
+
+Incorrect readings remain adjustable and do not affect lesson progress. The practice explains that this gauge is specific to the fictional equipment and is not universal antenna guidance. Three hints and unlimited penalty-free retries remain available.
+
 #### Checkpoint: Connect the diagnostic unit
 
-There is no separate practice activity. The player reviews fictional capability cards, a wireless status report, and measurements taken near the satellite equipment.
+The player reviews fictional capability cards, a wireless status report, and measurements taken near the satellite equipment.
 
 **Capability cards**
 
@@ -751,9 +781,20 @@ A VM can run on a local laptop without using cloud services. Cloud providers may
 >
 > **Mara:** "Break it down: where is the application running, and where is the archive stored?"
 
+#### Guided practice: Identify the VM parts
+
+Using a supplied environment card, the player labels:
+
+- The laptop as the **host**
+- Safehouse VM Host as the **hypervisor**
+- `FINCH-RECOVERY` as the **VM image**
+- Recovery OS as the **guest operating system**
+
+Correct labels remain marked **Correct**; incorrect choices receive **Try again** feedback. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
+
 #### Checkpoint: Prepare the recovery environment
 
-There is no separate practice activity. The player reviews fictional equipment and service records, then prepares the simulated VM.
+The player reviews fictional equipment and service records, then prepares the simulated VM.
 
 **Recovered environment card**
 
@@ -882,9 +923,21 @@ A **digital signature** helps check who signed a record and whether it has chang
 
 For the recovery, check the manifest's signature first, download the file, and then compare the downloaded file's checksum with the checksum in the verified manifest. Read the log as evidence rather than assuming its claims are automatically true.
 
+#### Guided practice: Sort evidence types
+
+The player classifies three short items:
+
+| Item | Evidence type |
+|---|---|
+| `MAINTENANCE LOG: The diagnostic unit was moved to [unreadable].` | Original record with readable and missing text |
+| “The file server is local, and the archive copy is remote.” | Checked summary of readable records |
+| “The diagnostic unit was moved to the satellite terminal.” | AI-generated and unverified reconstruction |
+
+Correct choices remain marked **Correct**; incorrect choices receive **Try again** feedback and a reminder to compare the item with its source. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
+
 #### Checkpoint: Review the assistant's work
 
-There is no separate practice activity. The recovery assistant presents five items. The player compares each one with the supplied evidence and chooses how to handle it.
+The recovery assistant presents five items. The player compares each one with the supplied evidence and chooses how to handle it.
 
 ##### 1. Review the current configuration
 
@@ -990,7 +1043,7 @@ After reviewing the archive, Finch finds a reference to a separate file: the **O
 >
 > **Finch:** "I'll keep the original and the assistant's suggestions separate. I've become rather fond of knowing the difference."
 
-Finch tries to open the archive service again, but the connection fails. A new satellite window is approaching.
+Finch tries to open the archive service again, but the connection fails. A new satellite window is approaching, separate from the historical six-minute record used in Lesson 1.
 
 The boss begins after the opening scene and instructions. The player has approximately **30–35 minutes**, subject to playtesting.
 
@@ -1036,7 +1089,15 @@ Name: archive.safehouse7.test
 Address: 203.0.113.81
 ```
 
-The player compares the records, identifies the mismatched DNS address, corrects the local entry to the approved address, and tests the connection.
+The player first checks that the local path is intact. Using the recovered switch table, laptop interface details, and router status panel, the player traces:
+
+```text
+Laptop -> Switch -> Router/Firewall -> Satellite modem -> Archive
+```
+
+One switch uplink label is missing. The player matches the laptop's local MAC address to its switch port, identifies the router as the gateway between the LAN and WAN, and confirms that TCP port `443` is the service being requested. The local path remains intact, so this step does not reset the network configured in the lessons.
+
+The player then compares the DNS records, identifies the mismatched address, corrects the local entry to the approved address, and tests the connection.
 
 The archive sign-in page returns. The existing firewall rule and Echo's `REMOTE ACCESS: DENIED` safeguard remain unchanged.
 
@@ -1048,18 +1109,26 @@ Her explanation remains possible, but unproven.
 
 ### Part 2: Satellite equipment area
 
-The diagnostic unit reports that the archive page is reachable, but the satellite connection may not stay reliable long enough for a transfer.
+The diagnostic unit reports that the archive page was reachable, but after it was moved closer to the satellite equipment its wireless association dropped.
 
 ```text
 DIAGNOSTIC UNIT
 
-Wireless connection: Connected
-Signal to unit: Adequate
+Wireless connection: Lost after relocation
+Signal to unit: Not available while disconnected
 Satellite equipment: Connection unstable
 Equipment alert: Antenna alignment needs inspection
 ```
 
-The player visits the satellite equipment area. The unit's camera can show the equipment, but its **status report** identifies the problem.
+The saved wireless profile did not follow the unit to its new location. The player compares the access-point and unit capability cards, the recovered interference measurements, and the approved network details from Lesson 5; the boss displays these references alongside the unit status. The player then reapplies:
+
+- SSID `SAFEHOUSE-DIAGNOSTICS`
+- WPA2 with AES
+- 2.4 GHz, channel 1
+
+The player tests the association before continuing. This reuses the Lesson 5 decision at the new location; it does not introduce a new wireless standard or reset the access point.
+
+The player then visits the satellite equipment area. The unit's camera can show the equipment, but its **status report** identifies the alignment problem.
 
 The player inspects the terminal and finds an alignment guide and a fictional alignment display. The guide says this antenna's acceptable range is **45–55**; the display shows a current reading of **30**.
 
@@ -1075,7 +1144,7 @@ Connection: Stable
 Ready for transfer
 ```
 
-The player does not need to recreate the wireless configuration from Lesson 5. The diagnostic unit remains connected.
+The player no longer needs to recreate the wireless configuration from Lesson 5. The diagnostic unit remains connected after the profile is reapplied.
 
 > **Finch:** "That's much better. I can monitor the connection while the file transfers."
 >
@@ -1083,7 +1152,17 @@ The player does not need to recreate the wireless configuration from Lesson 5. T
 
 ### Part 3: Records room
 
-The player goes to the records room unlocked after Lesson 7. A labeled storage cabinet contains a **recovery manifest**.
+The player goes to the records room unlocked after Lesson 7. Before opening the storage cabinet, the player reviews a recovered storage map:
+
+| Location | Contents |
+|---|---|
+| `FINCH-NAS` | Local VM image |
+| `WORKSHOP-FILES` | Maintenance documents |
+| Remote cloud copy of `ARCHIVE-09` | The missing original team-log section |
+
+The player selects the remote cloud archive as the download source, distinguishes it from the local VM image, and identifies the file server as unrelated to this recovery. This applies the Lesson 3 source-selection skill without repeating its full checkpoint.
+
+A labeled storage cabinet contains a **recovery manifest**.
 
 The manifest is a separate reference for identifying the missing file and checking whether the downloaded copy matches the expected file. It has a digital signature that Finch checks against a trusted verification key stored separately in the Asset Registry.
 
@@ -1112,9 +1191,9 @@ The player chooses the closest estimate: **about 1 minute and 36 seconds**. The 
 
 ### Part 4: Download the missing section
 
-Back at the laptop, the player opens the **existing recovery VM**. The game shows that the `Archive only` profile is still active, the approved archive service is reachable, and other Safehouse systems remain restricted.
+Back at the laptop, the player opens the **existing recovery VM**. The VM is not rebuilt. The player confirms that the **Archive only** profile is still selected, verifies that the approved archive service is reachable, and confirms that other Safehouse systems remain restricted.
 
-The player signs in through the approved simulated authorization, selects **Original Team Log**, and starts the download.
+The player identifies the arrangement as **hybrid**: the recovery application runs locally in the VM while the requested archive section remains in cloud storage. They sign in through the approved simulated authorization, select **Original Team Log**, and start the download.
 
 Finch's map shows the transfer progressing. The diagnostic unit continues monitoring the satellite connection. The game can present the progress cinematically rather than requiring the player to wait through a real-time transfer.
 
@@ -1197,18 +1276,49 @@ The player adds the standard component to the in-game project build for completi
 
 ### Timer, hints, and saving
 
+The boss provides two separate optional help controls. **Hint** offers Finch's three progressive hint levels. **Ask Mara** opens in-character conversational guidance using the current objective, network state, current selections, and available results; a visible notice explains what she can see. Mara may identify the likely issue and ask a guiding question, but she does not complete the task or change network settings.
+
 - The timer starts **after** the opening and instructions.
-- It pauses during story scenes, displayed hints, and the pause menu.
+- It pauses during story scenes, the pause menu, displayed Hint overlays, Ask Mara help, and mandatory accessibility overlays. It resumes at the remaining time when the overlay closes.
 - Ordinary mistakes and retries do not affect the perfect bonus.
-- Before an optional boss hint is revealed, the game warns that using it forfeits the bonus. Cancelling preserves eligibility.
+- Before either **Hint** or **Ask Mara** opens, warn that using help forfeits the perfect bonus. Confirming opens the help and forfeits the bonus; cancelling preserves eligibility.
 - If the satellite window closes during the transfer, Finch reports that the connection has paused. The game saves the partial download and completed work; the perfect bonus is forfeited.
 - Finch offers the next satellite pass immediately, with no real waiting. The simulated archive supports resuming the saved transfer. Each new pass has another window of the same length; further passes work the same way.
 - Until the entire file has downloaded, the partial file is labeled **Incomplete** and is not treated as recovered evidence. The checksum is checked only after the download finishes.
 - If the download has already finished when the timer expires, it stays saved and the player can continue the remaining boss tasks; the perfect bonus is still forfeited.
 - Boss progress, completed tasks, remaining time, and bonus eligibility save automatically. Closing the game pauses the countdown; returning resumes the attempt.
 
-Hints use three levels: a concept reminder, where to look, and a similar example without revealing the complete solution.
+Hint levels use a concept reminder, where to look, and a similar example without revealing the complete solution.
 
 ### Safeguard continuity
 
 The `REMOTE ACCESS: DENIED` safeguard protects a separate evidence store containing records of Mara's experiments and Echo's actions. The authorized archive connection does not disable or bypass it. The player and Finch do not yet know what it protects; the protected evidence leads to the full reveal in Chapter 7. Denying remote access does not by itself prove the evidence was never changed.
+
+## Accessibility requirements
+
+These requirements apply to the lessons, checkpoints, room interactions, and boss.
+
+- The network map has a text alternative describing every device, connection, and current state.
+- Device placement and cable/path selection support keyboard-only input.
+- Tables, capability cards, status reports, recovery records, and query results use labeled headers and screen-reader-compatible structure.
+- Focus moves predictably among the map, lesson pages, objectives, outputs, preview panels, and help controls.
+- Antenna alignment and transfer controls are keyboard operable.
+- Connection and alignment states use text such as **Connected**, **Disconnected**, **Below range**, and **Within range**, not only color.
+- Correct, incorrect, changed, incomplete, and verified states include text labels.
+- Door unlocks, equipment alerts, timer warnings, and other meaningful sounds have captions or visual equivalents.
+- Screen readers announce timer warnings, remaining time, transfer progress milestones, and completion.
+- Reduced-motion settings replace or simplify map animation, transfer progress, door transitions, and equipment effects.
+- Any clue-bearing camera view has a text description of the information needed to solve the task.
+
+## Open implementation questions
+
+- Final initial timer after playtesting; the current design range is 30–35 minutes
+- Exact supported network configuration and whether equivalent answers are accepted
+- How DNS, DHCP, firewall, and NAT changes are validated
+- How partial transfers and satellite-pass resumption affect saved state
+- Exact save behavior when closing during a transfer, dialogue, or help overlay
+- Whether the alignment practice and boss use the same control model
+- How the AI evidence workspace visually separates originals, summaries, scripts, and reconstructions
+- How the network map, tables, equipment labels, and camera clues adapt for mobile and screen readers
+- Whether unlocked rooms remain accessible after the boss
+- How timer warnings are announced without interrupting the current task

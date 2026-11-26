@@ -39,3 +39,6 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-25 | Use a 30-minute initial Chapter 2 boss timer | Give beginners enough time for 12 conversions and seven word placements while retaining gentle urgency. |
 | 2026-11-25 | Add Ask Mara as a separate Chapter 3 boss help control | Use the established help and perfect-bonus rules consistently without adding a timer to the untimed database boss. |
 | 2026-11-25 | Add guided SQL practice and accessibility requirements to Chapter 3 | Prepare beginners for full query tasks and make the console, tables, previews, and verification results usable without a mouse or color alone. |
+| 2026-11-25 | Reuse Chapters 4 lessons 2, 3, 5, and 6 in the archive boss | Make the final mission require device-path, storage-source, wireless, and VM knowledge rather than testing only DNS, AI, and checksums. |
+| 2026-11-25 | Add guided network practice and full accessibility rules to Chapter 4 | Prepare beginners for device, service, wireless, VM, and AI tasks and keep maps, timers, and control panels usable without vision, color, or precise pointer movement. |
+| 2026-11-25 | Distinguish the historical and live satellite windows in Chapter 4 | Keep the Lesson 1 estimate and the boss timer from appearing contradictory. |
