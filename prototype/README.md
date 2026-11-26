@@ -2,6 +2,8 @@
 
 The accessible half of the engine spike: the simulated computer, built as real HTML/CSS/JavaScript so screen readers and keyboard focus work as they do in a real application.
 
+**Easiest start:** `standalone.html` in this folder is the whole prototype in one file. Download it and double-click it — no server, no installs.
+
 This prototype exists to answer one question: **can a screen reader read the simulated desktop, and can the whole flow be completed by keyboard alone?** It is not the game. Unity will host it in an embedded browser; nothing here talks to Unity yet.
 
 ## Run it
