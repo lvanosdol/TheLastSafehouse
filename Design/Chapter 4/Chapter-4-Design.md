@@ -180,6 +180,8 @@ This is an estimate assuming the speed stays constant and ignoring overhead. A r
 
 ### Checkpoint: Map the connection
 
+The requirement is every device role labelled on the map, both transfer estimates shown as arithmetic, and a fit decision that follows from the numbers.
+
 #### Guided stage
 
 There is no separate practice activity. Finch displays a simulated map showing the Workshop laptop, file server, stationary diagnostic relay, mobile diagnostic unit, satellite connection, and remote archive server. It shows the planned communication route, not a working connection; the player begins restoring the equipment in Lesson 2.
@@ -279,6 +281,8 @@ In short: MAC identifies a local interface; IP identifies a network location for
 A **port number** helps direct network traffic to a particular service on a device. The IP address helps reach the device; the port helps reach the service on it. For example, secure web traffic commonly uses port `443` for HTTPS. Lesson 4 will cover service and protocol choices in more detail.
 
 ### Checkpoint: Restore the local communication path
+
+The requirement is every device connected to the right counterpart, each interface matched to its address from the recovered snapshot, and a local test that reaches the file server.
 
 #### Guided stage: Identify device roles
 
@@ -425,6 +429,8 @@ Before opening or recovering a file, check **what you need**, **where each copy 
 
 ### Checkpoint: Find the connection and the archive
 
+The requirement is each scenario matched to a connection type its constraints support, and the archive copy chosen with its location and availability stated.
+
 #### Guided stage
 
 There is no separate practice activity. The player reviews fictional service cards and recovered Safehouse records.
@@ -564,6 +570,8 @@ The Chapter 3 safeguard protects a separate evidence store. Configuring the expl
 
 ### Checkpoint: Establish the archive connection
 
+The requirement is an approved address, the archive name resolving to the expected server, and a firewall rule that allows only the approved service.
+
 #### Guided stage: Trace a request
 
 The player arranges the main steps used to reach the secure archive:
@@ -689,6 +697,8 @@ After changing settings, check that the unit can join the network and that the s
 > **Finch:** "A connection that only works when the unit stays in the Workshop would rather defeat the point."
 
 ### Checkpoint: Connect the diagnostic unit
+
+The requirement is the unit joined on a band and security mode both devices support, chosen from the capability cards rather than the standard's name, and the connection verified by an actual exchange.
 
 #### Guided stage: Read the alignment gauge
 
@@ -832,6 +842,8 @@ A VM can run on a local laptop without using cloud services. Cloud providers may
 > **Mara:** "Break it down: where is the application running, and where is the archive stored?"
 
 ### Checkpoint: Prepare the recovery environment
+
+The requirement is the image deployed with the stated resources, the access profile limited to the archive, and the original archive copy left unchanged.
 
 #### Guided stage: Identify the VM parts
 
@@ -987,6 +999,8 @@ A **digital signature** helps check who signed a record and whether it has chang
 For the recovery, check the manifest's signature first, download the file, and then compare the downloaded file's checksum with the checksum in the verified manifest. Read the log as evidence rather than assuming its claims are automatically true.
 
 ### Checkpoint: Review the assistant's work
+
+The requirement is every item classified by what the evidence supports, with reconstructions labelled and nothing unverified applied.
 
 #### Guided stage: Sort evidence types
 
