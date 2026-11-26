@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Safehouse 7 — simulated computer</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/controls.css">
+</head>
+<body>
+  <a class="skip-link" href="#desktop">Skip to desktop</a>
+
+  <header class="topbar">
+    <p class="simulation-flag" id="simulation-flag">
+      <span aria-hidden="true">◉</span> Simulated computer — nothing here affects your device
+    </p>
+    <div class="text-size" role="group" aria-label="Text size">
+      <button type="button" id="text-smaller" aria-describedby="text-size-status">A−</button>
+      <button type="button" id="text-larger" aria-describedby="text-size-status">A+</button>
+      <span id="text-size-status" class="sr-only">Text size: 100 percent</span>
+    </div>
+  </header>
+
+  <main id="desktop" aria-label="Simulated desktop">
+    <h1 class="desktop-title">Safehouse 7 — Workshop computer</h1>
+    <ul class="icons" id="desktop-icons"></ul>
+    <div id="windows" class="windows" aria-label="Open windows"></div>
+  </main>
+
+  <footer class="taskbar">
+    <span class="taskbar-label">Windows</span>
+    <div id="taskbar-windows" class="taskbar-windows" role="group" aria-label="Open windows"></div>
+  </footer>
+
+  <div id="announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div id="alert-announcer" class="sr-only" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+  <script type="module" src="scripts/desktop.js"></script>
+</body>
+</html>

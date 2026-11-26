@@ -24,7 +24,7 @@ Build the game in **Unity** (current LTS release at project start), and render t
 
 ## Validation gate
 
-The decision is provisional until one spike passes:
+The web half of the spike is built — see `prototype/` and its `ACCESSIBILITY-TEST.md`. The decision is provisional until one spike passes:
 
 1. A Unity HDRP interior with a walkable camera.
 2. An embedded web page containing the Chapter 1 mock desktop, the folder Security dialog, and one terminal command.

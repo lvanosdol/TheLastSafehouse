@@ -1,0 +1,72 @@
+.path { font-family: ui-monospace, Consolas, monospace; color: var(--ink-dim); margin: 0 0 0.75rem; }
+
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 26rem; }
+caption { text-align: left; padding-bottom: 0.5rem; color: var(--ink-dim); }
+th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--line); }
+th { font-weight: 600; background: var(--surface-2); }
+tbody tr:focus-within { background: rgba(127, 178, 255, 0.12); }
+
+.row-button {
+  font: inherit; padding: 0.15rem 0.4rem; background: transparent; color: var(--ink);
+  border: 1px solid transparent; border-radius: 4px; cursor: pointer; text-align: left;
+}
+.row-button:hover { border-color: var(--line); }
+
+.terminal-output {
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  background: #06101c; border: 1px solid var(--line);
+  padding: 0.75rem; margin: 0 0 0.75rem; min-height: 8rem; white-space: pre-wrap;
+}
+.terminal-form { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+.terminal-form label { font-family: ui-monospace, Consolas, monospace; }
+.terminal-form input {
+  font: inherit; font-family: ui-monospace, Consolas, monospace;
+  flex: 1; min-width: 12rem; padding: 0.4rem 0.5rem;
+  background: #06101c; color: var(--ink); border: 1px solid var(--line); border-radius: 4px;
+}
+
+button:focus-visible, input:focus-visible, [tabindex]:focus-visible, a:focus-visible {
+  outline: 3px solid var(--focus); outline-offset: 2px;
+}
+
+.dialog-scrim {
+  position: fixed; inset: 0; background: rgba(4, 10, 18, 0.72);
+  display: flex; align-items: center; justify-content: center; padding: 1rem; z-index: 40;
+}
+.dialog {
+  width: min(34rem, 96vw); background: var(--surface); border: 1px solid var(--line);
+  border-radius: 8px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+.dialog-body { padding: 1rem 1.25rem; }
+.dialog-actions {
+  display: flex; gap: 0.5rem; justify-content: flex-end;
+  padding: 0.75rem 1.25rem 1.25rem; flex-wrap: wrap;
+}
+.dialog-actions button {
+  font: inherit; padding: 0.4rem 0.9rem; background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 4px; cursor: pointer;
+}
+
+.worker-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.worker-actions button {
+  font: inherit; padding: 0.35rem 0.8rem; background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 4px; cursor: pointer;
+}
+.path-inline { font-family: ui-monospace, Consolas, monospace; }
+
+.status-ok { color: var(--ok); }
+.status-error { color: var(--danger); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+@media (forced-colors: active) {
+  .window, .dialog, .terminal-output { border: 1px solid CanvasText; }
+}

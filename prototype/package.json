@@ -1,0 +1,9 @@
+{
+  "name": "safehouse-web-layer-prototype",
+  "private": true,
+  "type": "module",
+  "description": "Accessible simulated-computer prototype for the engine spike. No dependencies.",
+  "scripts": {
+    "start": "python3 -m http.server 8000"
+  }
+}
