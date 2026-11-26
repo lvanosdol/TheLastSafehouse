@@ -66,13 +66,15 @@ Finch opens the **Information Review Board**, displaying authorized source recor
 
 ### Learn & Try pages
 
-The lesson stays on the left while the review board appears on the right. The player can inspect each example and revisit the pages during the checkpoint.
+The left pane explains each topic, and the right side keeps the same **Information Review Board** available throughout the lesson, so the player can open a source, compare it with a summary, and watch what the board marks. All records, claims, and summaries are simulated, and the protected evidence store remains sealed. The player can move back and review pages during the checkpoint.
+
+Examples use a temporary practice summary. Moving between lesson pages preserves the player's work on it, while **Reset example** returns the demonstration to its starting state without changing the checkpoint. The checkpoint begins from its own controlled snapshot of the evidence summary.
 
 #### Page 1: Digital literacy
 
 Digital literacy includes finding, understanding, evaluating, and using digital information responsibly. A polished presentation or confident answer does not guarantee accuracy.
 
-The player compares two fictional messages and identifies what they would need to know before trusting either.
+Opening the two practice messages shows each one's author, date, and source beside the claims it makes, and marks the gaps the board cannot fill.
 
 #### Page 2: Identify the source
 
@@ -84,25 +86,25 @@ The player inspects a log entry's source, timestamp, and copy status.
 
 An observation records what the available evidence shows. A claim is an explanation or assertion that may need further support. An unanswered question should remain unanswered until there is enough evidence.
 
-The player sorts statements into **supported**, **not established**, and **needs more information**, with feedback explaining each choice.
+The board sorts a demonstration set into **supported**, **not established**, and **needs more information**, and shows the reason for each label beside it.
 
 #### Page 4: Check context
 
 An excerpt can omit surrounding information, and records can appear to disagree because they describe different times or events. Compare dates, nearby entries, and the original source before drawing a conclusion.
 
-The player opens an excerpt beside its surrounding entries and identifies what was omitted.
+Opening an excerpt places it beside its surrounding entries, and the entries it left out are highlighted in place.
 
 #### Page 5: Integrity is not the same as truth
 
 A matching checksum can show that a copy matches the expected data. A verified signature can help establish that a record was signed with a trusted key and has not changed since signing. Neither proves the author was correct or the claims are true.
 
-The player separates what a verification result establishes from what still needs independent evidence.
+The board shows a verification result beside the claims it does and does not support, leaving the unsupported ones marked as open questions.
 
 #### Page 6: Evaluate AI-generated summaries
 
 An AI summary can help organize information, but it can omit context, confuse sources, or state an unsupported interpretation as fact. Compare important statements with the underlying records. Keep originals separate from summaries and label generated or reconstructed content clearly.
 
-The player marks an unsupported sentence for revision.
+The board marks an unsupported sentence and shows the source text that does not contain it.
 
 #### Page 7: Recognize misleading presentation
 
@@ -134,7 +136,7 @@ The player identifies that the record names the **M.VALE account** as the change
 
 #### Main task
 
-The player reviews a simulated evidence summary and its linked sources:
+The player reviews a simulated evidence summary and its linked sources. The requirement is a reviewed summary in which every statement is supported, marked uncertain, or flagged as unverified, with its sources preserved and a safe excerpt prepared.
 
 1. Inspect each source's origin, time, and whether it is an original or a copy.
 2. Compare the summary with full source entries and their surrounding context.
@@ -143,7 +145,7 @@ The player reviews a simulated evidence summary and its linked sources:
 5. Identify what a checksum or signature result does—and does not—verify.
 6. Prepare a limited excerpt for an authorized audience without exposing unrelated restricted information. Preserve the source and label the generated summary separately.
 
-The board gives specific feedback and allows revision. It does not ask the player to decide that all claims are true simply because integrity checks passed.
+The board gives specific feedback and allows revision. For example, repeating a summary's claim without checking its source returns the player to the source view, a statement that assumes who used an account is marked unverified, a checksum accepted as proof that a claim is true is returned to the evidence question, and a share attempt that exposes restricted material is blocked with an explanation. It does not ask the player to decide that all claims are true simply because integrity checks passed.
 
 ### Feedback and hints
 
@@ -157,11 +159,11 @@ Finch keeps the reviewed summary alongside—not in place of—the preserved sou
 
 The reviewed material can support later communication and rescue decisions. Finch's temporary hold remains active; the inhabitants and their restricted records are not exposed by completing the lesson.
 
-Completed activity progress saves automatically. An unfinished checkpoint stage restarts if the player leaves.
+Checkpoint progress saves after each completed stage. If the player leaves, the current stage resumes with completed answers and prior work preserved.
 
 ### Accessibility
 
-Source cards, comparison views, classifications, and redaction controls work with keyboard and screen reader. Each claim can be reached with its linked source and context. Labels and feedback use text rather than color alone, and the player can review information without a time limit.
+Source cards, comparison views, classifications, and redaction controls work with keyboard and screen reader, without drag-only actions. Focus moves in a predictable order from each claim to its linked source and context, and every control has a descriptive label. Labels, classifications, and feedback are announced as text and never rely on color alone, new results are announced when they appear, and the source comparison stays readable at large text sizes. The player can review the information without a time limit.
 
 ## Lesson 2: Technical Communication for Different Audiences
 
@@ -182,69 +184,73 @@ Finch opens the **Communication Desk**. It contains a simulated incident summary
 
 ### Learn & Try pages
 
-The lesson stays on the left while the Communication Desk appears on the right. The player can review pages during the checkpoint.
+The left pane explains each topic, and the right side keeps the same **Communication Desk** available throughout the lesson, so the player can open a recipient card, draft on the practice incident, preview what an audience sees, and watch the status change. All messages, recipients, and deliveries are simulated. The player can move back and review pages during the checkpoint.
+
+Examples use a temporary practice incident. Moving between lesson pages preserves the player's drafts on it, while **Reset example** returns the demonstration to its starting state without changing the checkpoint. The checkpoint begins from its own controlled snapshot of the containment messages.
 
 #### Page 1: Start with the audience and purpose
 
 Different people need different information to act. A technical teammate may need the affected system, status, and relevant checks. An inhabitant may first need to know whether a door is safe, what is being done, and how to ask for help. Neither audience needs unrelated private details.
 
-The player compares two fictional recipients and selects the information each needs first.
+The desk places two practice recipients side by side and shows what each one needs first, and what would be unnecessary for them.
 
 #### Page 2: Be clear and specific
 
 Use direct language, explain unfamiliar terms, and include the action or decision needed. Avoid unexplained abbreviations and vague instructions such as “fix it” or “everything is fine.”
 
-The player revises an unclear message into a short, actionable update.
+The player revises an unclear line in the practice maintenance notice into a short, actionable update.
 
 #### Page 3: Report the situation without exaggeration
 
 Describe what is happening, its impact, and the urgency supported by the evidence. A temporary hold is not a permanent fix. Avoid promising that everyone is safe when that has not been verified.
 
-The player compares two draft alerts and identifies an unsupported reassurance.
+Two draft alerts open side by side, and the desk marks the reassurance that the status panel does not support.
 
 #### Page 4: Separate facts, uncertainty, and recommendations
 
 Clearly distinguish what has been observed, what is still unknown, and what action is recommended. An explanation from Mara, an account name in a log, and a verified technical status do not all carry the same meaning.
 
-The player labels statements in a sample update and links factual claims to their sources.
+A sample update opens with each sentence labelled as observation, uncertainty, or recommendation, and each factual claim linked to its source.
 
 #### Page 5: Give a technical handoff
 
 A useful handoff can include the affected system, current status, relevant symptoms, checks already completed, changes made, and the next requested action. Include timestamps or references where available. Do not send passwords, unrestricted evidence, or unnecessary personal information.
 
-The player assembles a simulated handoff for an authorized recovery teammate.
+The player assembles a practice handoff for a fictional maintenance responder.
 
 #### Page 6: Write for a nontechnical audience
 
 Explain the immediate situation in everyday language. State what people can do, how they can ask for help, and when they can expect another update. If the answer is not yet known, say so. People affected should have an opportunity to ask questions and express their preferences.
 
-The player rewrites a technical status message for a Habitat occupant without changing its meaning.
+The player rewrites the practice notice for a fictional building occupant without changing its meaning.
 
 #### Page 7: Choose a safe channel and protect privacy
 
 Use an approved channel for the intended audience. Share the minimum relevant information, and keep source records separate from any redacted copy or summary. A recipient's need for a safety update does not automatically authorize access to private records.
 
-The player selects fictional internal channels and previews what each audience can see.
+Each practice channel opens in review mode and shows exactly what its audience can see before anything is sent.
 
 #### Page 8: Confirm understanding and follow up
 
 A message being sent does not mean it was received or understood. Where possible, check delivery, invite questions, record the response, and provide updates when the situation changes. A lack of response should remain visible rather than being treated as consent.
 
-The player reviews a simulated delivery receipt and a recipient's question, then chooses a clear follow-up.
+The desk shows a delivery receipt and a recipient's question with the unanswered part marked, so the missing follow-up is visible rather than inferred.
 
 ### Checkpoint: Communicate the containment situation
 
 #### Guided stage
 
-Finch shows the player a draft:
+Finch demonstrates the correction on a separate notice from earlier in the week:
 
-> “Everything is safe. The purge is fixed.”
+> “Repair complete. All systems verified.”
 
-The status panel shows that the purge is **temporarily held**, not permanently stopped. The player changes the message to accurately describe the hold and identifies that the final resolution is still pending.
+The practice status panel shows one repaired service and two checks still open. The player changes the notice to say which service is repaired and which checks remain, and Finch points out that the problem was the missing scope, not the missing confidence.
+
+The notice is not the containment message, and nothing from the demonstration carries into the main task.
 
 #### Main task
 
-The player prepares two simulated communications using the reviewed source material:
+The player prepares two simulated communications using the reviewed source material. The requirement is two messages, each accurate for its audience, each marking what is still unknown, each sent through an approved channel with a recorded delivery, and a reply that claims no more than the evidence.
 
 1. **Technical handoff:** State that the containment request is temporarily held, identify the affected core and relevant status, summarize completed checks, and request help maintaining the hold. Mark unverified details as unknown and link relevant source records.
 2. **Habitat update:** Explain the temporary hold in plain language, say that the team is working to open doors safely, and provide a way to ask for help or share preferences. Do not promise that the purge has been permanently stopped.
@@ -255,7 +261,7 @@ The desk accepts clear equivalent wording rather than requiring one exact senten
 
 ### Feedback and hints
 
-The desk highlights unsupported claims, unexplained technical terms for a nontechnical audience, unnecessary private details, and missing actions or follow-up. The player can revise each draft.
+The desk highlights unsupported claims, unexplained technical terms for a nontechnical audience, unnecessary private details, and missing actions or follow-up, and the player can revise each draft. For example, promising that the purge is permanently stopped is returned to the status panel, sending credentials or whole records is blocked with an explanation, and a message with no recorded delivery stays visibly undelivered rather than being treated as sent.
 
 Three hints focus on the recipient's needs, the difference between a temporary hold and a permanent fix, and what information is necessary to share. They do not reveal the whole solution. Hints and retries are unlimited and penalty-free.
 
@@ -271,11 +277,11 @@ The authorized recovery teammate receives the technical handoff. The Habitat upd
 
 Finch preserves the messages separately from the evidence sources. The temporary hold remains active; sending an update does not open the Habitat or give anyone unrestricted control.
 
-Completed activity progress saves automatically. An unfinished checkpoint stage restarts if the player leaves.
+Checkpoint progress saves after each completed stage. If the player leaves, the current stage resumes with completed answers and prior work preserved.
 
 ### Accessibility
 
-Audience cards, message fields, previews, delivery statuses, and response controls work with keyboard and screen reader. Messages can be reviewed and edited before sending. Status and feedback use text rather than color alone, and there is no lesson time limit.
+Audience cards, message fields, previews, delivery statuses, and response controls work with keyboard and screen reader, without drag-only actions. Focus moves in a predictable order from the recipient card to the draft, the preview, the delivery status, and the reply, and every field has a label that screen readers announce. Status, delivery, and feedback are announced as text and never rely on color alone; drafts can be read back in full and stay editable at large text sizes. There is no lesson time limit.
 
 ## Lesson 3: Collaboration, Escalation, and Responsibility
 
