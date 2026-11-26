@@ -269,7 +269,7 @@ The player reviews a short recovery checklist for the Automation Core, orders tw
 
 #### Guided stage
 
-Finch presents a two-drive RAID 1 mirror. The player fails one simulated drive, observes that the file remains accessible, and identifies the array as degraded. Finch explains that the remaining drive is now the only working copy in that mirror, and that the mirror and the separate Lesson 1 backup protect against different problems.
+Finch presents a two-drive RAID 1 mirror from the simulator's demonstration set — not the facility's own three drives. The player fails one simulated drive, observes that the file remains accessible, and identifies the array as degraded. Finch explains that the remaining drive is now the only working copy in that mirror, that mirroring is one way to survive a drive failure rather than the only way, and that the mirror and the separate Lesson 1 backup protect against different problems.
 
 #### Main task
 
@@ -277,24 +277,27 @@ The checkpoint begins from a fresh snapshot of the array's three equal-sized dri
 
 The requirement is an array that remains accessible after one drive failure while providing the equivalent of two drives of storage.
 
-1. Inspect the drives and select **RAID 5**. Observe how data and parity are distributed and confirm that usable capacity is approximately two drives, not three.
-2. Simulate one drive failure. Confirm that the file remains readable, the array reports **degraded**, and no redundancy remains.
-3. Replace the failed drive with one at least as large, start the rebuild, and wait for it to finish. Verify that the array reports healthy and again tolerates one drive failure.
-4. Open the separate overlapping-failure scenario and fail a second drive before the first has been rebuilt. Observe that the affected data becomes unavailable in that scenario.
-5. Restore the affected simulated file from the Lesson 1 backup using the authorized recovery role into a separate recovery location. Verify the restored copy against the expected backup version and leave the backup unchanged.
-6. Choose the accurate summary statement: RAID tolerated the single drive failure, the separate backup supplied the recovery copy after the overlapping failures, and neither result proves that the record's claims are true.
+1. Inspect the three drives and choose the layout that satisfies both requirements. RAID 0, RAID 1, and RAID 5 are available, and each selection reports its usable capacity and what one drive failure would do to access. A layout that meets only one requirement is refused with an explanation, and the player can choose again.
+2. Confirm that the chosen layout's data and parity are distributed as described and that usable capacity is approximately two drives, not three.
+3. Simulate one drive failure. Confirm that the file remains readable, the array reports **degraded**, and no redundancy remains.
+4. Replace the failed drive. A smaller drive and a matching one are both offered; the smaller one is refused because it cannot hold the data assigned to it, while a drive at least as large is accepted. Start the rebuild and wait for it to finish, then verify that the array reports healthy and again tolerates one drive failure.
+5. Open the separate overlapping-failure scenario and fail a second drive before the first has been rebuilt. Observe that the affected data becomes unavailable in that scenario.
+6. Restore the affected simulated file from the Lesson 1 backup using the authorized recovery role into a separate recovery location. Verify the restored copy against the expected backup version and leave the backup unchanged.
+7. Choose the accurate summary statement: RAID tolerated the single drive failure, the separate backup supplied the recovery copy after the overlapping failures, and neither result proves that the record's claims are true.
 
 The second failure is demonstrated in a separate scenario so that a failure *after* a successful rebuild is not confused with two simultaneous failures. Restoring from backup does not imply the damaged array has already been repaired. A healthy rebuild shows that the array can serve data again; it does not prove that the data was unaltered before the failure or that the backup is current.
 
 ### Feedback and hints
 
-The simulator explains why a choice needs another look and keeps incomplete choices editable. For example, RAID 0 is identified as having no redundancy, a three-drive RAID 1 is shown to fall short of the capacity requirement, a replaced drive is not treated as protected until the rebuild finishes, a degraded array is not accepted as healthy, and a restore attempted before the correct backup chain is identified points to the missing copy from Lesson 1. Drive states, capacity, and rebuild progress are labeled in text, not color alone.
+The simulator explains why a choice needs another look and keeps incomplete choices editable. For example, RAID 0 is identified as having no redundancy, a three-drive RAID 1 is shown to fall short of the capacity requirement, a smaller replacement drive is refused because it cannot hold the data assigned to it, a replaced drive is not treated as protected until the rebuild finishes, a degraded array is not accepted as healthy, and a restore attempted before the correct backup chain is identified points to the missing copy from Lesson 1. Drive states, capacity, and rebuild progress are labeled in text, not color alone.
 
 Three hints point toward the capacity and fault-tolerance requirements, the meaning of degraded and when a rebuild is complete, and the role of a separate backup together with verifying a restore. They do not reveal the whole solution. Hints and retries are unlimited and penalty-free.
 
 ### Completion and story clue
 
-After the rebuild passes verification and the restored copy is confirmed, Finch can read another available audit fragment from the stabilized storage:
+Finch applies the replacement to the facility's own array and records it as healthy once the rebuild finishes. He notes that all three drives share one controller and one power feed, so the array now tolerates a drive failure while the service still has a single point of failure, and adds that risk to the outstanding recovery items.
+
+With the array stable and the restored copy verified, Finch can read another available audit fragment:
 
 ```text
 AUDIT SHARD 04
