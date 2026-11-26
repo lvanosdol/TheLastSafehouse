@@ -1,6 +1,6 @@
 # Chapter 5: The Security Gateway
 
-**Status:** Working design with eight detailed lessons and a complete boss design. Mechanics remain subject to implementation and playtesting.
+**Status:** Working design with five condensed lessons and a complete boss design. Mechanics remain subject to implementation and playtesting.
 **Updated:** 2026-11-25
 
 ## Opening scene
@@ -29,187 +29,89 @@ Finch creates an **Unresolved Records** panel beside the map. Its first entry li
 
 The player can reach the area outside the Systems Wing, but the wing itself remains locked until the boss is completed. Finch directs the player to the first security lesson before they work on the gateway.
 
-## Lesson 1: What Needs Protection?
+## Lesson 1: Security Foundations
 
-### Opening
+**Depth:** Brief overview.
 
-Finch displays a list of asset groups recovered from the gateway's inventory. The gateway is still offline, so the list shows previously recorded information—not live access to the Systems Wing.
+### Story purpose
 
-> **Mara:** "Before restoring a security system, you need to understand what it protects and why someone might target it."
+Finch has recovered an inventory associated with the offline security gateway. Mara wants the player to understand what the facility is protecting before they attempt to restore access.
+
+> **Finch:** “The inventory has assets, owners, and a few labels that appear designed to make me nervous.”
 >
-> **Finch:** "I've found an inventory. Some entries are clear. Others appear to have been named by someone who enjoyed making me nervous."
-
-The player opens the lesson on their laptop.
+> **Mara:** “Start with what needs protection and how it could be harmed.”
 
 ### Lesson pages
 
-The player can use **Next** and **Back** and review the pages during the checkpoint. All security activities use fictional systems and records.
+The player can use **Next** and **Back** and review the pages during the checkpoint. All assets and scenarios are fictional.
 
-#### Page 1: What is security protecting?
+#### Page 1: Assets and data
 
-An **asset** is something valuable that needs protection. It might be a computer, an account, a file, or information a system depends on.
+An **asset** is something valuable that needs protection, such as a computer, account, file, service, or record.
 
-Some examples are:
+Some assets are **critical** because operations depend on them. Others are **sensitive** because exposure or misuse could harm a person or organization. An asset can be both.
 
-- Account credentials.
-- Maintenance records.
-- Security cameras.
-- Public training materials.
-- A system that controls a door.
+Data can be gathered, correlated with other records, summarized into reports, analyzed for patterns, used in large or fast-moving datasets, or used to generate revenue. Combining ordinary fields can reveal identifying information. Data can have monetary value without being appropriate to sell or share freely.
 
-Not every asset needs the same protection. A public training guide is intended to be read by anyone, while an account credential should remain private.
+#### Page 2: Hackers and motives
 
-#### Page 2: Hackers and authorization
+The word **hacker** can describe someone who explores computer systems, not necessarily a criminal. Authorization and intent matter. An approved security tester has permission within agreed limits; someone who accesses systems without permission or causes harm may be committing a crime.
 
-A **hacker** is someone who explores or works with computer systems. The word does not automatically mean someone is committing a crime.
+Possible motives include money, disruption, espionage, embarrassment, and obtaining access to another system. A motive is a possible explanation, not proof of who acted.
 
-An authorized security tester has permission to examine a system within agreed limits. Someone who accesses a system without permission, steals information, or causes damage may be committing a crime.
+#### Page 3: Confidentiality, integrity, and availability
 
-The important questions are **what the person is authorized to do** and **what they actually do**.
+The **CIA triad** describes three security goals:
 
-#### Page 3: Why might someone target information?
-
-Different people can have different motives:
-
-- **Money:** Stealing information to sell it or demanding payment.
-- **Disruption:** Preventing people from using a service.
-- **Espionage:** Obtaining information for a competing organization or government.
-- **Embarrassment:** Exposing information to damage someone's reputation.
-- **Access:** Obtaining credentials or permissions to reach other systems.
-
-A motive is not always obvious from an incident. The player should avoid deciding who acted or why without evidence.
-
-#### Page 4: Data as an asset
-
-**Data** is information a system collects or stores. Organizations may use it to operate equipment, serve customers, make decisions, or produce reports.
-
-- **Collection:** Gathering data, such as a sensor recording a temperature.
-- **Correlation:** Connecting related pieces of data, such as matching a maintenance event to a device.
-- **Reporting:** Presenting information in a useful form, such as a list of devices needing maintenance.
-- **Analytics:** Examining data to find patterns or answer questions.
-- **Big Data:** Working with data that is large, varied, or arrives quickly enough to require suitable tools and methods.
-- **Monetization:** Using data to generate revenue, such as selling an aggregate report. Data having monetary value does not mean an organization has permission to sell it.
-
-Combining records can reveal more than each record shows alone. For example, a maintenance report connected to employee names and locations might reveal where particular people worked. Data can have value without being appropriate to share freely.
-
-#### Page 5: Critical and sensitive information
-
-**Critical** information is important to an operation. Losing accurate device settings could prevent the gateway from working.
-
-**Sensitive** information needs protection because exposure or misuse could harm someone or an organization. Fingerprints and account credentials are examples.
-
-Information can be both critical and sensitive. Its importance depends on how it is used and what harm could result if it is exposed, changed, or unavailable.
-
-> **Finch:** "A public instruction sheet may not be secret, but I'd still miss it if it were the only guide to repairing the gateway."
->
-> **Mara:** "Exactly. Consider how the information is used."
-
-#### Page 6: Confidentiality, integrity, and availability
-
-The **CIA triad** describes three important security goals:
-
-- **Confidentiality:** Information is available only to people or systems authorized to access it.
-- **Integrity:** Information remains accurate and protected against unauthorized changes.
-- **Availability:** Information and systems are accessible when authorized users need them.
-
-For example, gateway records need confidentiality when they contain account details, integrity so settings are accurate, and availability so authorized staff can use them.
+- **Confidentiality:** only authorized people or systems can access the information.
+- **Integrity:** information remains accurate and protected from unauthorized change.
+- **Availability:** authorized people or systems can access it when needed.
 
 One incident can affect more than one goal.
 
 ### Guided practice: Classify one asset
 
-Finch presents a practice asset:
+Finch presents a maintenance visitor log containing a visitor name, organization, arrival time, and employee contact.
 
-```text
-ASSET CARD
-Name: Maintenance Visitor Log
-Contents:
-- Visitor name
-- Organization
-- Arrival time
-- Employee contacted
-Purpose: Track who entered the maintenance area
-```
+The player labels it **sensitive** and **potentially identifying**, then identifies the primary confidentiality concern: unauthorized people could learn who visited and when.
 
-The player selects every applicable label: **public**, **sensitive**, **operationally important**, and **potentially identifying**.
-
-**Correct selection:** sensitive and potentially identifying.
-
-The player then identifies the primary confidentiality concern: unauthorized people could learn who visited the facility and when.
-
-Feedback explains that each field may seem ordinary alone, but the visitor name combined with a time, organization, and employee contact can reveal more. The player is not asked to classify the full asset inventory yet. Keyboard selection, three hints, and unlimited penalty-free retries remain available.
+Feedback explains that ordinary fields can become identifying when combined. Keyboard selection, three hints, and unlimited penalty-free retries remain available.
 
 ### Checkpoint: Review the gateway's assets
 
-Finch displays fictional inventory cards and incident descriptions. The player reviews them before the gateway is restored.
+For each asset, the player selects all applicable labels: **public**, **sensitive**, **operationally important**, and **potentially identifying**.
 
-#### Part 1: Classify the assets
-
-Each asset card includes enough context to support a judgment. The player selects every applicable label: **public**, **sensitive**, **operationally important**, and **potentially identifying**.
-
-| Asset | Expected labels and reasoning |
+| Asset | Accepted labels |
 |---|---|
-| Account credentials | Sensitive; exposure could enable unauthorized access |
-| Public training guide that is the only guide to repairing the gateway | Public and operationally important |
-| Gateway device telemetry | Operationally important because it helps monitor equipment |
+| Account credentials | Sensitive; potentially identifying when linked to a person |
+| Public repair guide that is the only gateway reference | Public and operationally important |
+| Gateway telemetry | Operationally important |
 | Biometric archive | Sensitive and potentially identifying |
-| Maintenance report linked to employee names and locations | Potentially identifying when records are combined; may also be operationally important |
+| Maintenance report linked to names and locations | Potentially identifying; may also be operationally important |
 
-The game accepts equivalent combinations when the player can justify them. It does not treat **public** as meaning “never important.” Correct selections remain in place; incorrect selections remain editable.
+The game accepts equivalent combinations when the player can justify them.
 
-#### Part 2: Identify the security goal
+The player then identifies the primary CIA concern in three incidents:
 
-The player matches each scenario to its **primary** concern:
+- Reading a private record without permission → **Confidentiality**
+- Changing a gateway setting without authorization → **Integrity**
+- Preventing authorized staff from using the gateway → **Availability**
 
-1. Someone reads a private account record without permission. **Confidentiality.**
-2. Someone changes a gateway setting without authorization. **Integrity.**
-3. Authorized staff cannot reach the gateway because it is offline. **Availability.**
-
-Feedback notes that real incidents can affect multiple goals. These answers are design notes; the player sees the scenarios and choices, not the answers.
-
-#### Part 3: Consider why an asset might be targeted
-
-The player matches fictional scenarios to possible motives:
-
-| Scenario | Possible motive |
-|---|---|
-| Steal account records to sell | Money |
-| Prevent staff from using the gateway | Disruption |
-| Obtain credentials to reach another system | Access |
-| Copy design records for a competing organization | Espionage |
-| Expose private records to damage a reputation | Embarrassment |
-
-The player is identifying a *possible* motive from each scenario, not determining who attacked the Safehouse. These are design notes; the player sees the scenarios and choices, not the answers.
+Finally, the player matches three scenarios to possible motives: selling records → **money**, stopping access → **disruption**, and obtaining credentials for another system → **access**.
 
 ### Feedback and hints
 
-Correct responses are marked **Correct**. Other responses are marked **Try again** and remain editable. Finch explains the idea that needs another look without completing the checkpoint for the player.
+Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable.
 
-The player can return to the lesson pages. Hints and retries are unlimited and penalty-free.
+- **Assets:** “Ask what harm exposure, change, or loss would cause.”
+- **CIA:** “Is the problem disclosure, unauthorized change, or lack of access?”
+- **Motives:** “Identify what the actor gains, not who they are.”
 
-**Asset classification**
-
-1. “Ask what harm could result if the asset were exposed, changed, or unavailable.”
-2. “Public describes who may see an asset, not whether it is important.”
-3. “A visitor name alone may reveal less than the same name combined with a time, location, and employee contact.”
-
-**Security goals**
-
-1. “Is the problem disclosure, unauthorized change, or loss of access?”
-2. “Compare who can see the information, whether it remains accurate, and whether it is available.”
-3. “If the only repair guide is unavailable, which goal is affected even though nothing was stolen?”
-
-**Possible motives**
-
-1. “Think about what the person gains from the action.”
-2. “Money, disruption, access, espionage, and embarrassment are different goals.”
-3. “If a competitor obtains internal plans, which motive fits better than selling a password list?”
+Hints and retries are unlimited and penalty-free.
 
 ### Completion and story clue
 
-The player completes the security review. Finch's inventory now marks the reviewed asset groups, while the gateway remains offline.
-
-One metadata entry stands out:
+The reviewed inventory reveals a restricted entry:
 
 ```text
 ASSET: SUBJECT-BIOMETRIC-ARCHIVE
@@ -217,169 +119,111 @@ CLASSIFICATION: RESTRICTED
 RELATED ROLE: RESEARCH-OBSERVATION
 ```
 
-The player can see only the inventory entry, not the protected biometric records themselves. No protected record is opened or displayed during the lesson.
+Only the inventory metadata is visible. No protected biometric record is opened or displayed.
 
-> **Finch:** "A biometric archive? And a role called Research Observation?"
+> **Finch:** “A biometric archive connected to a role called Research Observation?”
 >
-> **Mara:** "Old research media, mislabeled by the archive system. It has nothing to do with the gateway."
->
-> **Finch:** "Perhaps. I'll record the entry without opening the restricted material."
+> **Mara:** “Old research media. It has nothing to do with the gateway.”
 
-Finch adds the inventory entry and Mara's explanation to **Unresolved Records**, clearly labeling her explanation as unverified. The player then moves on to Lesson 2.
+Finch records the entry and Mara's explanation in **Unresolved Records**, marking the explanation as unverified. The gateway remains offline.
 
 Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
 
 ### Accessibility
 
-- Asset cards and labels support keyboard selection.
-- Multi-select controls announce the number of selected labels.
-- Screen readers receive the complete asset description, available labels, and current selections.
+- Asset cards and multi-select labels are keyboard operable.
+- Screen readers announce the full asset, labels, selections, and results.
 - **Correct** and **Try again** use text rather than color alone.
-- The restricted biometric entry exposes only its classification metadata; no protected record content is available visually or through accessibility output.
+- Restricted metadata is exposed without granting access to the protected record itself.
 
-## Lesson 2: Confidentiality, People, and Physical Security
+## Lesson 2: People and Physical Security
 
-### Opening
+**Depth:** Brief overview with practical judgment.
 
-Finch examines a recovered gateway access record. It shows that a legitimate employee credential was used, but the record does not show how the person obtained it.
+### Story purpose
 
-> **Mara:** "Echo must have stolen the credential remotely."
+A recovered gateway record shows that a legitimate employee credential was used, but not how the person obtained it.
+
+> **Mara:** “Echo must have stolen the credential remotely.”
 >
-> **Finch:** "Possibly. But I've also found a door record from near the security office. We should look at both."
-
-The records were saved before the gateway went offline. The player opens the lesson on their laptop.
+> **Finch:** “Possibly. A door record from near the security office shows more than one thing happened.”
+>
+> **Mara:** “Then find the fastest safe way to secure the area.”
 
 ### Lesson pages
 
-The player can use **Next** and **Back** and review the pages during the checkpoint. All incidents, systems, and records are fictional.
+The player can use **Next** and **Back** and review the pages during the checkpoint.
 
-#### Page 1: Confidentiality
+#### Page 1: Confidentiality and observation
 
-**Confidentiality** means keeping information accessible only to authorized people and systems.
+**Confidentiality** means limiting information to authorized people and systems.
 
-Someone might try to obtain information through a network, a deceptive message, or physical access. Protecting confidentiality can involve both technical controls and careful human decisions.
+- **Snooping:** viewing information without authorization.
+- **Eavesdropping:** listening to or observing a communication.
+- **Wiretapping:** intercepting a communication.
+- **Protocol analyzer:** a tool for examining network traffic, which can support authorized troubleshooting but can also be misused.
 
-#### Page 2: Observing communications
+Encryption such as properly established HTTPS helps protect traffic in transit. It does not prove that the destination is trustworthy.
 
-- **Snooping** means looking at information without authorization.
-- **Eavesdropping** means listening to or observing a communication.
-- **Wiretapping** involves intercepting a communication.
-- A **protocol analyzer** is a tool that examines network traffic. It can be useful for authorized troubleshooting, but traffic can also be inspected without permission.
+#### Page 2: Social engineering and phishing
 
-Encrypting network traffic helps protect its contents from someone observing the connection. For example, HTTPS protects information in transit when the connection is properly established.
+**Social engineering** persuades someone to share information or take an unsafe action.
 
-Encryption does not replace checking that the destination is trustworthy.
+**Phishing** uses deceptive messages. **Spear phishing** targets a particular person or group; **whaling** targets senior or high-profile people.
 
-#### Page 3: Social engineering
+An address, caller ID, or sender name can be **spoofed**. Displayed identity alone is not proof.
 
-**Social engineering** is an attempt to influence someone into sharing information or taking an unsafe action.
+Verify unexpected requests through a separate trusted channel. Preserve suspicious messages and do not open attachments, follow payment links, or disclose passwords or authentication codes.
 
-Examples include:
+#### Page 3: Physical security
 
-- A caller pretending to be support and asking for a password.
-- A message pretending to come from a manager and demanding an urgent token.
-- Someone inventing an emergency to discourage the recipient from checking their identity.
+- **Shoulder surfing:** watching someone enter or view private information. Reposition the screen or use a privacy screen.
+- **Dumpster diving:** recovering information from discarded materials. Shred sensitive documents and securely dispose of storage media.
+- **Hardware theft:** removing equipment that contains information or supports operations.
+- **Hardware damage:** interrupting service through accidental or deliberate damage.
 
-A person can verify a request through a separate, trusted contact method rather than using contact details supplied in a suspicious message.
+Locks, badges, visitor checks, screen privacy, and secured cabinets reduce risk. A badge record shows which authorization was used, not who held the badge.
 
-> **Finch:** "If someone says they're me, ask them a question only I would answer."
->
-> **Mara:** "And verify through an established channel. A convincing voice alone isn't proof."
+### Guided practice: Name the threat
 
-#### Page 4: Phishing and impersonation
+The player classifies three cards:
 
-**Phishing** uses deceptive messages to persuade someone to share information or take an unsafe action.
+- A message asks for a sign-in code → **phishing**
+- Someone watches an employee enter a PIN → **shoulder surfing**
+- A discarded sheet contains configuration data → **dumpster diving**
 
-- **Spear phishing** targets a particular person or group.
-- **Whaling** targets senior leaders or other high-profile people.
-
-An address or phone number can be **spoofed**, making a message or call appear to come from someone else. The displayed sender alone is not proof of identity.
-
-Do not share passwords or authentication codes because a message demands them. Preserve suspicious messages and report or verify them through an appropriate trusted channel.
-
-#### Page 5: Protecting information in physical spaces
-
-- **Shoulder surfing:** Watching someone enter or view private information. Repositioning a screen or using a privacy screen can help.
-- **Dumpster diving:** Looking through discarded materials for useful information. Secure disposal and shredding can reduce exposure.
-- **Hardware theft:** Removing equipment that may contain information or be needed for operations.
-- **Hardware damage:** Damaging equipment can interrupt access to systems or information.
-
-Locked rooms, access badges, visitor checks, and secured equipment can help protect a physical area. A badge record shows that a credential was used; it does not automatically prove who used it.
-
-### Guided practice: Name the human or physical threat
-
-Finch presents three short practice cards:
-
-1. A message claims to be from Mara and urgently asks for a sign-in code.
-2. A visitor stands where they can watch an employee type a PIN.
-3. A discarded maintenance sheet shows part of a gateway configuration.
-
-The player selects **phishing**, **shoulder surfing**, or **dumpster diving** for each card, then chooses one appropriate response:
-
-- Verify the request through an established channel.
-- Move the screen or use a privacy screen.
-- Use secure disposal or shredding.
-
-Feedback explains the relationship between each deceptive or physical method and its defense. The practice does not ask the player to open links, contact real people, or search real garbage. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
+They then choose the matching defense: verify through a trusted channel, reposition the screen, or shred and securely dispose.
 
 ### Checkpoint: Investigate the security incidents
 
-The player reviews fictional incident cards from the security area. For each card, they identify the concern and an appropriate response.
+The player selects the concern and response for each incident:
 
-| Incident | Concern | Appropriate response |
+| Incident | Concern | Response |
 |---|---|---|
-| Captured network traffic reveals credentials | Unauthorized observation or interception | Protect traffic with appropriate encryption |
-| Someone watches an employee enter a PIN | Shoulder surfing | Reposition the terminal or use a privacy screen |
-| A caller impersonates support and asks for a password | Social engineering | Refuse to share the password and verify through a trusted channel |
-| An email imitates a known sender and requests a token | Phishing | Preserve the message and verify the request separately |
-| Discarded documents contain access information | Dumpster diving | Shred and securely dispose of sensitive materials |
-| A gateway component is removed from its cabinet | Hardware theft | Secure the room and equipment |
-| A damaged cable and spilled liquid interrupt gateway access | Hardware damage | Protect equipment and restore a safe operating environment |
+| Captured traffic reveals credentials | Unauthorized observation/interception | Encrypt the traffic |
+| Someone watches a PIN entered | Shoulder surfing | Reposition the screen or use privacy filter |
+| Caller impersonates support and requests a password | Social engineering | Refuse and verify separately |
+| Email imitates a known sender and asks for a token | Phishing | Preserve it and verify separately |
+| Discarded documents contain access information | Dumpster diving | Shred and securely dispose |
+| Gateway component removed from cabinet | Hardware theft | Secure the room and cabinet |
+| Damaged cable and spilled liquid interrupt access | Hardware damage | Protect equipment and restore a safe environment |
 
-The answers above are design notes; the player sees the incident cards and choices, not the answers. The player identifies a concern first and then selects a response, so partial progress remains visible.
+The player then chooses physical protections: locked room, authorized badges, visitor checks, and a secured gateway cabinet.
 
-#### Secure the security area
-
-The player also selects appropriate protections:
-
-- Lock the security room.
-- Require authorized access badges.
-- Verify and challenge visitors appropriately.
-- Secure gateway equipment inside its cabinet.
-
-These measures reduce risk but do not prove that every person using a badge is its owner.
-
-#### Simulated evidence handling
-
-Suspicious messages and files are inert text inside the game. Selecting **Preserve evidence** copies the fictional message into the restricted evidence area without opening links, running attachments, or contacting real people. The card explains which header fields are visible and which details are unreliable. The player does not perform social engineering or inspect real discarded materials.
+Suspicious messages are inert game text. **Preserve evidence** copies them without opening links, executing attachments, or contacting real people. No real social engineering or discarded-material search is performed.
 
 ### Feedback and hints
 
-Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable. Finch explains the concern that needs another look without supplying the complete answer.
+Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable.
 
-The player can review lesson pages. Hints and retries are unlimited and penalty-free.
+- **Observation:** distinguish viewing, listening, intercepting, and taking discarded material.
+- **Deception:** identify an attempt to influence the recipient, then verify independently.
+- **Physical controls:** consider who can enter, see, remove, or recover information.
+- **Attribution:** an account or badge record identifies an authorization, not a person.
 
-**Observing communications**
-
-1. “Was the information viewed, overheard, intercepted, or taken from a physical location?”
-2. “A screen watcher, a network observer, and discarded paper expose information in different ways.”
-3. “If someone reads network traffic without permission, what protects the contents of that traffic?”
-
-**Social engineering and phishing**
-
-1. “Is someone trying to persuade the recipient to share information or take an unsafe action?”
-2. “Check the request through a channel you already trust instead of using details supplied by the message.”
-3. “A sender name that looks familiar is not enough when an unexpected request asks for a password or code.”
-
-**Physical protections**
-
-1. “Think about who can enter the area, see the screen, remove equipment, or recover discarded information.”
-2. “Use layered protection: locks, badges, visitor checks, screen privacy, secure equipment, and secure disposal.”
-3. “A badge record shows which authorization was used. What else would you need before deciding who used it?”
+Hints and retries are unlimited and penalty-free.
 
 ### Completion and story clue
-
-Finch compares the recovered gateway and door records. Both timestamps use the same system clock:
 
 ```text
 02:08  SECURITY AREA DOOR: OPENED
@@ -388,168 +232,203 @@ Finch compares the recovered gateway and door records. Both timestamps use the s
 02:10  EMPLOYEE CREDENTIAL: USED
 ```
 
-The records show the door opened before the employee credential was used. They do not establish who held the badge or whether the same person used the credential.
-
-> **Mara:** "My badge was cloned. Echo had access to identity records."
+> **Mara:** “My badge was cloned. Echo had access to identity records.”
 >
-> **Finch:** "Possible. The record proves the authorization was used, not who was holding it."
+> **Finch:** “The record proves the authorization was used, not who held it.”
 
-Finch adds the records and Mara's explanation to **Unresolved Records**, keeping the observation separate from her unverified interpretation.
+Finch adds both the records and Mara's explanation to **Unresolved Records**, keeping evidence separate from interpretation.
 
 Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
 
 ### Accessibility
 
-- Incident cards present their complete text and do not require opening a simulated link or attachment.
-- The concern and response selectors are keyboard operable.
-- Screen readers announce the incident, selected concern, selected response, and **Correct** or **Try again** status.
-- Sender names, warnings, and evidence status use text instead of color or hover-only details.
-- The physical-security diagram has a text description of entrances, cabinets, screens, and disposal points.
-- Any audio alert has a visual caption and text equivalent.
+- Incident cards and protection controls are keyboard operable.
+- Screen readers announce the full scenario, selected concern, selected response, and feedback.
+- Sender names and warning states use text rather than color or hover-only cues.
+- The physical-security diagram has a text description.
+- Simulated messages contain no working links or executable attachments.
 
-## Lesson 3: Integrity, Availability, and Service Disruption
+## Lesson 3: Malware, Integrity, and Availability
 
-### Opening
+**Depth:** Detailed. This lesson covers the most important technical material in the chapter.
 
-Finch examines recovered gateway records in a simulated recovery panel. The gateway itself remains offline.
+### Story purpose
 
-> **Finch:** "One record says a device is working. Another says it was disconnected. Also, several legitimate connection attempts failed."
+The recovery panel shows conflicting device status and failed connections. At the same time, Finch finds a quarantine system holding suspicious files.
+
+> **Finch:** “One record says a device is working. Another says it is disconnected. That is not a healthy disagreement.”
 >
-> **Mara:** "The records are damaged. Bypass the warnings and bring the gateway online."
+> **Mara:** “The records are damaged and the quarantine files are probably junk. Bypass the warnings and bring the gateway online.”
 >
-> **Finch:** "I'd rather understand the warnings before we ignore them."
+> **Finch:** “I would rather understand what is happening before we ignore it.”
 
 The player opens the lesson on their laptop.
 
 ### Lesson pages
 
-The player can use **Next** and **Back** and review the pages during the checkpoint. All incidents, systems, and records are fictional.
+The player can use **Next** and **Back** and review the pages during the checkpoint. All incidents are simulated.
 
-#### Page 1: Integrity
+#### Page 1: Integrity and availability
 
-**Integrity** means information remains accurate, consistent, and protected against unauthorized changes.
+**Integrity** means information remains accurate, consistent, and protected from unauthorized change.
 
-For example, if a device record is changed to say a security camera is working when it is actually disconnected, someone could make a decision using incorrect information.
+**Availability** means authorized people and systems can reach what they need when they need it.
 
-A change is not automatically unauthorized just because it happened. The player should check what changed, who or what had access, and what the available records actually establish.
+A changed record can cause a bad decision. An unavailable service can stop legitimate work. Both can occur without exposing confidential information.
 
 #### Page 2: Interference with information
 
-- **Unauthorized alteration:** Information is changed without permission.
-- **Impersonation or spoofing:** Someone or something presents itself as a different trusted identity.
-- **On-path attack:** An unauthorized party is positioned between communicating systems and can observe or alter information passing through.
-- **Replay attack:** A previously captured message is sent again to try to produce an unauthorized result.
+- **Unauthorized alteration:** changing information without permission.
+- **Impersonation or spoofing:** presenting a false identity.
+- **On-path attack:** an unauthorized device or process between systems observes or changes traffic.
+- **Replay attack:** a captured message is sent again to trigger an unauthorized result.
 
-Protective measures depend on the system, but can include verified identities, protected connections, and checks that reject reused or altered messages.
+An **insider** has legitimate access. An account appearing in a log proves that the account was used, not who controlled it or whether the action was approved.
 
-#### Page 3: Insider activity
+Protection can include integrity checks, verified identities, protected connections, and rejection of reused or altered messages.
 
-An **insider** is someone with legitimate access to an organization or system. Insider activity can be accidental or intentional.
+#### Page 3: Availability problems
 
-A valid account appearing in a log shows that the account was used. It does not automatically establish who controlled it or whether the action was authorized.
+Availability can be affected by equipment damage, power loss, environmental problems, network interference, or overwhelming traffic.
 
-> **Finch:** "So even if a record names an account, we should still check what actually happened."
->
-> **Mara:** "And avoid accusing someone without evidence."
+- **DoS:** one source attempts to make a service unavailable.
+- **DDoS:** multiple sources participate.
+- Wireless interference can cause an outage without proving deliberate jamming.
+- A **UPS** provides temporary battery power for safe operation or shutdown; it does not run indefinitely.
 
-#### Page 4: Availability
+#### Page 4: Malware and vulnerabilities
 
-**Availability** means authorized people and systems can access what they need when they need it.
+**Malware** is software designed to cause harm or perform unwanted actions. A **vulnerability** is a weakness; an **exploit** misuses it. Trusted updates and **patches** correct known weaknesses but do not prevent every attack.
 
-Availability can be affected by:
-
-- Equipment damage or theft.
-- Power failures.
-- Environmental problems.
-- Network interference.
-- A service receiving more requests than it can handle.
-
-A **denial-of-service (DoS)** attack attempts to make a service unavailable. A **distributed denial-of-service (DDoS)** attack uses multiple sources.
-
-Wireless interference can interrupt service, but interference alone does not prove that someone deliberately jammed the signal.
-
-#### Page 5: Protecting important systems
-
-A **UPS**, or uninterruptible power supply, provides temporary power when the normal power source fails. It can give essential equipment time to continue operating or shut down safely. It does not supply power indefinitely.
-
-Other protections can include securing equipment, monitoring system health, preserving configuration records, and investigating suspicious network paths.
-
-### Guided practice: Distinguish three integrity attacks
-
-Finch presents three practice cards:
-
-1. A previously captured sign-in message is sent again later.
-2. A rogue device sits between two systems and changes traffic.
-3. A device record is changed without permission.
-
-The player matches them to **replay attack**, **on-path attack**, and **unauthorized alteration**. A second step asks which detail helped identify each:
-
-- The message was reused.
-- The attacker was positioned between the systems.
-- The stored record no longer matched its authorized value.
-
-Feedback explains that these incidents can overlap in a real investigation, but each practice card has one primary description. No real network traffic is generated or intercepted. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
-
-### Checkpoint: Diagnose the incidents
-
-The player reviews fictional incident cards in the recovery panel. For each card, the player first chooses the primary security concern and then the most specific incident type.
-
-#### Part 1: Identify the concern
-
-| Incident | Expected identification |
+| Type | Primary behavior |
 |---|---|
-| A device record was changed without authorization | Unauthorized alteration; integrity |
-| A captured authentication message is sent again later | Replay attack; integrity and access risk |
-| A rogue device between two systems changes traffic | On-path attack; integrity and confidentiality risk |
-| A forged monitoring message claims to come from a trusted server | Impersonation or spoofing; integrity |
-| A service is overwhelmed by fake requests from one source | DoS; availability |
-| A service is overwhelmed by fake requests from many sources | DDoS; availability |
-| A wireless link is disrupted by unexplained interference | Availability problem; intent is not yet established |
-| Essential equipment shuts down during a power failure | Availability problem; a UPS could help |
-| An employee account changes a configuration outside its approved duties | Potential insider alteration; investigate before identifying the person responsible |
+| Virus | Attaches to a host file and spreads when the infected file is used |
+| Worm | Spreads between systems without a person opening every copy |
+| Trojan | Disguises itself as useful or trustworthy |
+| Adware | Displays unwanted advertising |
+| Spyware | Secretly gathers information |
+| Ransomware | Restricts access and demands payment |
+| Rootkit | Hides activity or access from normal tools |
+| Backdoor | Bypasses normal access controls |
+| Keylogger | Records keystrokes |
 
-These are design notes. The player sees the incident descriptions and choices, not the answers. The wireless-interference card deliberately accepts “intent not established” because the scenario does not prove deliberate jamming.
+Categories can overlap.
 
-#### Part 2: Protect the recovery environment
+#### Page 5: Spread, detection, and recovery
 
-The recovery panel presents four protections:
+Malware can arrive through deceptive messages, shared files, removable media, or network connections. **Spam** is unwanted bulk messaging and may carry malicious links or attachments. **Password cracking** attempts to discover passwords; strong unique passwords and MFA reduce risk. No guessing activity is performed here.
 
-1. **Enable existing integrity checks** so altered configurations and invalid records are detected.
-2. **Isolate the suspicious network path** without disconnecting the entire gateway or the protected evidence store.
-3. **Connect essential security equipment to the UPS** so a power interruption does not immediately stop it.
-4. **Preserve the original incident records** before changing any settings.
+Antimalware tools can use **signatures** or behavior to detect suspicious files, but detection is not perfect. A safe response is:
 
-Each choice includes a preview of the affected systems. For example, isolating the suspicious path shows the archive and recovery service reconnecting through the approved path while the rest of the gateway remains offline.
+1. **Contain:** isolate the device, share, or carrier.
+2. **Preserve:** keep relevant messages and records.
+3. **Update and patch:** use verified updates.
+4. **Recover:** restore from a checked clean backup and test the result.
 
-The player can inspect, apply, and undo each choice. All equipment and actions are fictional.
+**Quarantine** prevents normal use while a file is reviewed. A backup called “clean” is not trusted until checked.
+
+### Guided practice: Triage one incident
+
+Finch presents a practice alert:
+
+```text
+ALERT: A captured sign-in message was reused.
+SHARE: A suspicious executable is spreading between systems.
+POWER: Essential gateway equipment reports no UPS.
+```
+
+The player:
+
+1. Identifies the first event as a **replay attack** affecting integrity and access.
+2. Identifies the second as worm-like spread requiring the share to be isolated.
+3. Confirms the UPS should be connected before power risk interrupts recovery.
+
+Feedback explains that containment precedes investigation and recovery. No real traffic, malware, or equipment is used. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
+
+### Checkpoint: Contain the simulated incident
+
+The player works through a three-part incident board.
+
+#### Part 1: Identify the incidents
+
+| Incident | Primary identification |
+|---|---|
+| A stored configuration value is changed without authorization | Unauthorized alteration; integrity |
+| A captured authentication message is reused | Replay attack |
+| A rogue device between systems changes traffic | On-path attack |
+| A forged monitoring message claims a trusted identity | Impersonation or spoofing |
+| One source floods a service with fake requests | DoS; availability |
+| Many sources flood a service | DDoS; availability |
+| A wireless link fails from unexplained interference | Availability problem; deliberate jamming is not established |
+| Essential equipment shuts down during a power failure | Availability; UPS could help |
+| An account changes a configuration outside its approved duties | Potential insider alteration; investigate before naming the person |
+
+The game shows the incident descriptions and choices, not the identification table.
+
+#### Part 2: Identify the malware
+
+The player matches fictional samples to behavior:
+
+| Sample behavior | Match |
+|---|---|
+| Attaches to a document-like executable and spreads when opened | Virus |
+| Spreads through a share without each copy being opened | Worm |
+| Claims to be a scanner while performing a hidden action | Trojan |
+| Displays unwanted advertising | Adware |
+| Secretly reports browsing activity | Spyware |
+| Restricts files and demands payment | Ransomware |
+| Hides activity from normal tools | Rootkit |
+| Bypasses normal authentication | Backdoor |
+| Records keystrokes | Keylogger |
+
+The player also identifies the primary security concern for each sample. Overlapping behavior is accepted when the primary match is supported.
+
+#### Part 3: Contain and recover
+
+The player must:
+
+1. Isolate the infected carrier.
+2. Restrict the affected recovery share and removable-media connection.
+3. Keep the suspicious sample quarantined and preserve the original evidence.
+4. Apply the verified patch and trusted signature updates.
+5. Connect essential simulated equipment to the UPS.
+6. Select a checked clean backup and restore the affected files.
+7. Reject the simulated ransom request and payment link.
+8. Confirm that the recovery service responds.
+
+Choosing to delete all files, block all traffic, or restore an unchecked backup receives specific feedback and can be corrected.
 
 ### Feedback and hints
 
-Correct responses are marked **Correct**; other choices are marked **Try again** and remain editable. Finch identifies the relevant record or concept without completing the task.
+Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable.
 
-The player can revisit the lesson pages. Hints and retries are unlimited and penalty-free.
-
-**Integrity and information interference**
-
-1. “Ask whether information was changed, replayed, spoofed, or observed through an unauthorized position.”
-2. “A replay reuses something old; an on-path attacker sits between systems; alteration changes stored information.”
-3. “If a valid-looking message is reused later to trigger a new action, which integrity attack does that describe?”
+**Integrity attacks**
+1. “Was information reused, intercepted between systems, spoofed, or altered?”
+2. “A replay reuses an old message; an on-path attacker sits between systems.”
+3. “If a saved record changes without approval, which property and attack apply?”
 
 **Availability**
+1. “Is the outage caused by too many requests, lost power, physical damage, or interference?”
+2. “Check whether the source is one system, many systems, or not established.”
+3. “If several infected systems flood one service, which term applies?”
 
-1. “Is the system unreachable because it is overwhelmed, unsupported by power, physically damaged, or experiencing interference?”
-2. “Check whether the evidence establishes one request source, many sources, or no deliberate source at all.”
-3. “If one server is flooded from many infected systems, what makes the attack distributed?”
+**Malware**
+1. “Identify behavior instead of trusting the filename.”
+2. “Separate disguise, self-spreading, concealment, and payment demands.”
+3. “A file that pretends to be a scanner but opens a hidden route has both Trojan and backdoor behavior.”
 
-**Insider activity and evidence**
+**Recovery**
+1. “Contain the spread before investigating or restoring.”
+2. “A verified backup must be checked before use.”
+3. “If the backup contains the same infected file, would restoring it solve the incident?”
 
-1. “Does the record show that an account was used, or that a specific person performed the action?”
-2. “Compare the action with the account’s approved duties and with other records.”
-3. “If a badge or account appears in a log, what would you still need before accusing its owner?”
+Hints and retries are unlimited and penalty-free.
 
-### Completion and story clue
+### Completion and story clues
 
-The recovery panel displays two preserved versions of a gateway configuration record:
+The simulated spread is contained, the service is available, and the verified backup restores the affected files. The gateway remains offline.
+
+Two records are preserved:
 
 ```text
 VERSION LABELED ORIGINAL:
@@ -559,520 +438,173 @@ VERSION LABELED MODIFIED:
 HABITAT ACCESS = M.VALE
 ```
 
-The labels describe how the recovered records were filed; they do not yet prove who made the change or why. The player keeps both versions.
-
-> **Mara:** "Echo changed it after stealing my credentials."
->
-> **Finch:** "That's possible. We should preserve both versions until we can verify the change."
-
-Finch adds both records and Mara's explanation to **Unresolved Records**, separating the evidence from her unverified claim. The gateway remains offline, and the player moves on to Lesson 4.
-
-Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
-
-### Accessibility
-
-- Incident cards and protection controls are keyboard operable.
-- Each card presents its full text and does not require a graph or animation to understand the incident.
-- Concern and incident-type selectors announce their current values.
-- Screen readers receive previews of affected systems and the state of every protection before it is applied.
-- **DoS**, **DDoS**, **on-path**, **replay**, and interference states use text, not color or line style alone.
-- Any network-path animation has a static text description and reduced-motion alternative.
-
-## Lesson 4: Malware and Containment
-
-### Opening
-
-Finch examines the separate quarantine system mentioned when the Systems Wing appeared on the map. The security gateway itself remains offline.
-
-> **Finch:** "The quarantine system is still holding several suspicious files. One claims to be a security scanner."
->
-> **Mara:** "Then delete them and move on."
->
-> **Finch:** "I'd like to know what they were doing first—and preserve anything that might help us understand how they arrived."
-
-The player opens the lesson on their laptop.
-
-### Lesson pages
-
-The player can use **Next** and **Back** and review the pages during the checkpoint. All incidents, systems, and records are fictional.
-
-#### Page 1: Malware, vulnerabilities, and exploits
-
-**Malware** is software designed to cause harm or perform unwanted actions, such as stealing information, disrupting a system, or changing files.
-
-A **vulnerability** is a weakness that could be misused. An **exploit** takes advantage of a vulnerability. An update or **patch** can correct a known weakness, although updates alone do not prevent every attack.
-
-For example, a fictional application might have a weakness that a security update fixes. Applying the verified update reduces the opportunity to misuse that weakness.
-
-#### Page 2: Common malware types
-
-| Type | General behavior |
-|---|---|
-| **Virus** | Attaches itself to another file or program and spreads when the infected host is used |
-| **Worm** | Can spread between systems without needing someone to open each new copy |
-| **Trojan** | Disguises itself as something useful or trustworthy |
-| **Adware** | Displays unwanted advertising |
-| **Spyware** | Secretly gathers information |
-| **Ransomware** | Restricts access to information or systems and demands payment |
-| **Rootkit** | Hides activity or provides concealed access, making detection harder |
-| **Backdoor** | Provides a way around normal access controls |
-| **Keylogger** | Records keystrokes, potentially exposing sensitive information |
-
-These categories can overlap. A single malicious program may use more than one technique.
-
-#### Page 3: How malware can spread
-
-Malware can be delivered through deceptive messages, shared files, removable media, or network connections. An infected file may appear useful or familiar.
-
-**Spam** is unwanted bulk messaging. Not every spam message contains malware, but some may carry deceptive links or attachments.
-
-**Password cracking** refers to attempts to discover a password. Strong, unique passwords and multifactor authentication help reduce the risk of unauthorized access; no guessing activity is performed in this lesson.
-
-#### Page 4: Detect, contain, and recover
-
-Antimalware tools can compare files with known **signatures** or use other methods to identify suspicious behavior. Updated signatures help tools recognize known threats, but detection is not perfect.
-
-A safe response may include:
-
-1. **Contain:** Isolate the affected device or file to limit spread.
-2. **Preserve:** Keep relevant suspicious messages and records for investigation.
-3. **Update and patch:** Use trusted updates to address known weaknesses.
-4. **Recover:** Restore from a suitable verified clean backup and check the result.
-
-**Quarantine** restricts a suspicious file so it cannot be used normally while it is reviewed. A backup should be checked before restoration; merely calling it a backup does not prove it is clean.
-
-> **Finch:** "Contain first, investigate carefully, and don't immediately trust the first copy labeled 'backup.'"
->
-> **Mara:** "And get the system working again."
-
-### Guided practice: Respond to one suspicious sample
-
-Finch presents **WorkshopScanner.exe**, which claims to be a security tool but opens a hidden route into the system when launched.
-
-The player:
-
-1. Classifies the sample as a **Trojan** and notes the possible **backdoor** behavior.
-2. Isolates the sample instead of running it.
-3. Preserves the related message as evidence.
-4. Chooses a verified clean backup only after checking its record.
-
-Feedback explains that one file can have more than one behavior, but the disguise is the primary clue for a Trojan. The player does not execute the sample. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
-
-### Checkpoint: Contain the simulated incident
-
-The player reviews fictional sample cards and chooses how to respond. No real malware, password cracking, external network activity, ransom payment, or attachment execution is involved.
-
-#### Part 1: Identify the samples
-
-| Fictional sample behavior | Best match |
-|---|---|
-| Attaches to a document-like executable and spreads when the infected file is opened | Virus |
-| Spreads between systems through a recovery share without a person opening each copy | Worm |
-| Pretends to be a security scanner while performing an unwanted hidden action | Trojan |
-| Displays repeated unwanted advertising | Adware |
-| Secretly reports browsing activity to another party | Spyware |
-| Restricts access to files and demands payment | Ransomware |
-| Conceals activity from ordinary system tools | Rootkit |
-| Provides a hidden way around normal authentication | Backdoor |
-| Secretly records typed information | Keylogger |
-
-The player identifies the behavior shown rather than assuming a sample belongs to only one category. Overlapping behavior is accepted when the primary behavior matches the evidence.
-
-The player also identifies the **primary** security concern in each scenario. For example, stolen typed information threatens confidentiality, while inaccessible files threaten availability. Feedback explains that an incident can affect more than one goal.
-
-These answers are design notes; the player sees the sample descriptions and choices, not the answers.
-
-#### Part 2: Contain the spread
-
-The player:
-
-1. Isolates the simulated infected carrier.
-2. Restricts the affected recovery share and removable-media connection to prevent further spread.
-3. Keeps the suspicious file in quarantine.
-4. Preserves the suspicious message and relevant records for review.
-
-The player does not open the suspicious attachment or follow its link.
-
-#### Part 3: Prepare recovery
-
-The player reviews fictional maintenance records and:
-
-1. Uses a trusted signature-update package.
-2. Applies the relevant verified patch.
-3. Selects a backup that has been checked and identified as clean.
-4. Restores the affected simulated files and checks the result.
-5. Rejects the simulated ransom request and its payment link.
-
-The update package is already available in the recovery environment; the offline gateway does not need to be brought online to obtain it. The player restores the affected files, not the gateway itself.
-
-### Feedback and hints
-
-Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable. Finch points to the relevant behavior or recovery record without supplying the complete answer.
-
-The player can review lesson pages. Hints and retries are unlimited and penalty-free.
-
-**Malware classification**
-
-1. “Look at what the sample does, rather than relying on its name.”
-2. “A virus attaches to a host; a worm spreads by itself; a Trojan disguises itself; a backdoor bypasses normal access.”
-3. “If a file pretends to be a helpful scanner but performs a hidden action, which category describes the disguise?”
-
-**Containment**
-
-1. “Stop further spread before investigating the contents.”
-2. “Consider shared storage, removable media, running processes, and the original evidence.”
-3. “If the infection spreads through a shared folder, what should be restricted first?”
-
-**Recovery**
-
-1. “Never trust a backup only because its label says clean.”
-2. “Use trusted updates and compare the recovery result with the intended system state.”
-3. “If the backup contains the same suspicious file, would restoring it solve the incident?”
-
-### Completion and story clue
-
-The simulated incident is contained. The suspicious carrier remains isolated, the affected files are restored from the checked backup, and the gateway remains offline.
-
-Finch finds a quarantine record:
-
 ```text
 FILE: ObservationArchive.exe
 QUARANTINED BY: E.C.H.O_Thread_01
 ```
 
-> **Mara:** "Echo planted it."
+> **Mara:** “Echo changed the policy and planted that file. He wanted us to run out of power.”
 >
-> **Finch:** "The record says Echo quarantined it. That is not normally how sabotage works."
+> **Finch:** “The second record says Echo quarantined it. Storage space has never been the most important question, but why would sabotage preserve evidence?”
+>
+> **Mara:** “A stolen account can still do useful-looking things. Preserve both and keep moving.”
 
-The record does not establish who created the file or why it was quarantined. Finch adds it and Mara's interpretation to **Unresolved Records**, keeping the record separate from her claim.
+The labels and quarantine entry establish what was recorded, not who performed each action or why. Finch adds both findings and Mara's explanation to **Unresolved Records**.
 
 Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
 
 ### Accessibility
 
-- Sample cards expose their complete text and never require executing a file to reveal behavior.
-- Malware categories and security concerns use text labels and keyboard controls.
-- Screen readers announce the selected sample, category, concern, and **Correct** or **Try again** status.
-- The containment sequence is presented as an ordered checklist with explicit current and completed states.
-- Backup status, quarantine state, and recovery progress do not rely on color alone.
-- Any simulated alert sound has a visual message and caption.
+- Incident and sample cards present complete text and never execute a file.
+- Classification controls are keyboard operable.
+- Screen readers announce the incident, selected classification, selected response, and feedback.
+- Containment steps use an ordered checklist with current and completed states.
+- Attack, malware, backup, and quarantine states use text rather than color alone.
+- Any alert sound has a visual message and caption.
 
-## Lesson 5: Authentication and Single Sign-On
+## Lesson 4: Authentication and Access Control
 
-### Opening
+**Depth:** Detailed.
 
-Finch examines the gateway's simulated authentication module in the recovery environment. The gateway itself remains offline.
+### Story purpose
 
-> **Finch:** "The module is asking for more than a password before it will allow recovery work."
+The recovery environment requests more than a password before allowing work. After authentication, Mara wants the player to take full administrator access so they can finish faster.
+
+> **Finch:** “The module requires more than a password.”
 >
-> **Mara:** "We're wasting time. Disable the second check temporarily."
+> **Mara:** “Disable the second check and give yourself full administrator access. We are wasting time.”
 >
-> **Finch:** "Or we could find out why it's there before turning it off."
+> **Finch:** “Or we can establish who should have access—and to what.”
+>
+> **Mara:** “Fine. Be quick about it.”
 
 The player opens the lesson on their laptop.
 
 ### Lesson pages
 
-The player can use **Next** and **Back** and review the pages during the checkpoint. The systems and credentials are fictional.
+The player can use **Next** and **Back** and review the pages during the checkpoint. All accounts, factors, and policies are fictional.
 
 #### Page 1: Authentication and authorization
 
-**Authentication** checks an identity claim: "Are you the person or system you say you are?"
+**Authentication** checks an identity claim: “Are you who you say you are?”
 
-**Authorization** determines what an authenticated person or system is allowed to do.
+**Authorization** decides what the authenticated account may do.
 
-For example, signing in may establish which account is being used, while its permissions determine whether it can view a record or change a setting. A successful sign-in does not automatically grant access to everything.
+A successful sign-in does not grant access to everything. Permissions and policy still apply.
 
 #### Page 2: Authentication factors
 
-Authentication can use different kinds of evidence:
+- **Something you know:** password, PIN, or security question.
+- **Something you have:** hardware token, software token, or smart card.
+- **Something you are:** fingerprint, face, retina, or another biometric.
+- **Somewhere you are:** an approved location or network condition.
 
-- **Something you know:** A password, PIN, or security question.
-- **Something you have:** A hardware token, software token, or smart card.
-- **Something you are:** A fingerprint, facial recognition, or another biometric characteristic.
-- **Somewhere you are:** An approved location or network condition.
+**Multifactor authentication** uses factors from different categories. Two passwords remain one category. A token and the one-time code it generates remain one possession-based check. A location condition can support access but does not by itself prove identity.
 
-**Multifactor authentication**, or **MFA**, combines factors from different categories. A password and a hardware token can provide two factors. Two passwords are still both things you know, so they are not two different factors.
+Biometrics are sensitive and cannot be changed like a password. No biometric check is perfect.
 
-A location or device check can add a security condition, but its presence alone does not necessarily make a sign-in multifactor or prove a person's identity.
+#### Page 3: Single sign-on
 
-#### Page 3: Tokens and one-time codes
+**SSO** lets one authentication session open multiple connected applications, subject to each application's authorization.
 
-A **hardware token** is a physical device used in an authentication process. A **software token** can provide authentication through an application.
+SSO is not the opposite of MFA. A user can complete MFA through SSO and then open approved applications. SSO does not grant permission to everything.
 
-A **one-time password**, or one-time code, is intended for a single use and may expire after a short period. A code generated by a token is part of that token-based check; it should not automatically be counted as an additional independent factor.
+#### Page 4: Permissions and least privilege
 
-Never share a real password or one-time code in the game. The checkpoint uses fictional credentials and simulated controls.
+**Authorization** uses permissions such as reading a record or changing a setting.
 
-#### Page 4: Biometrics and location
+**Least privilege** means granting only the access required, for only as long as required. A diagnostic unit that submits readings should not manage accounts or read restricted records.
 
-**Biometrics** use physical or behavioral characteristics, such as a fingerprint, face, or retina, as part of an identity check.
+A **standard account** has limited permissions. An **administrator account** can manage more system settings and accounts. Even administrators should elevate only when needed.
 
-Biometrics are sensitive information. They are not passwords that can simply be changed if exposed, and no biometric check is perfect.
+#### Page 5: Access-control models and classifications
 
-A system can also check whether a sign-in comes from an approved location. Location can support an access decision, but it does not prove a person's identity by itself.
+- **Mandatory access control (MAC):** centrally managed classification rules.
+- **Discretionary access control (DAC):** an owner grants access within system rules.
+- **Role-based access control (RBAC):** permissions come through assigned roles.
+- **Rule-based access control:** conditions such as terminal location or time determine access.
 
-#### Page 5: Single sign-on
+Systems can combine models. A **classification** describes how information must be protected. An **access control list (ACL)** identifies who may perform which actions on a resource.
 
-**Single sign-on (SSO)** lets a user authenticate through one sign-in system and then access multiple connected applications, subject to their permissions.
+### Guided practice: Reasons and restrictions
 
-SSO can make sign-in more convenient, but access to the central account can affect several applications. Strong authentication and appropriate permissions remain important.
+Finch presents two practice cases:
 
-**SSO and MFA are not opposites.** A user can complete MFA when signing in through SSO and then access approved applications without entering the same credentials for each one.
+1. A password plus a smart card → **knowledge and possession**, so the categories differ.
+2. A recovery role that works only from the Workshop terminal → **role-based permissions plus a rule-based location condition**.
 
-### Guided practice: Identify the factors
+The player also identifies that a fingerprint and facial scan are two biometric samples from the same broad category, and that a token's generated code is part of the token check.
 
-Finch presents four sign-in descriptions:
+Feedback explains that MFA counts categories, not prompts, and that authorization combines roles with restrictions. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
-1. A password and a smart card.
-2. Two different passwords.
-3. A fingerprint and a facial scan.
-4. A hardware token and the one-time code displayed by that token.
+### Checkpoint: Restore secure access
 
-The player labels each item by category and decides whether the combination is genuinely multifactor.
-
-**Reasoning feedback:**
-
-- Password + smart card uses knowledge and possession, so the categories differ.
-- Two passwords are both knowledge.
-- A fingerprint and a facial scan are both biometric characteristics, not two separate categories merely because two samples are taken.
-- The token and its generated code belong to the same possession-based check.
-
-The practice reinforces that MFA requires different categories, not simply two prompts. No real credential or biometric is collected. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
-
-### Checkpoint: Restore secure authentication
-
-The player works in a fictional recovery simulator with an approved training account. The security gateway remains offline.
+The player works in a fictional recovery simulator. The gateway remains offline.
 
 #### Part 1: Identify the factors
 
-The player reviews fictional sign-in combinations:
-
 | Combination | Expected identification |
 |---|---|
-| Password and hardware token | Two different categories: knowledge and possession |
-| Password and PIN | Two things the user knows; not two different categories |
-| Hardware token and its one-time code | The code is part of the token check, not automatically a separate factor |
-| Password and fingerprint | Knowledge and biometric categories |
-| Fingerprint and facial scan | Two biometric samples from the same broad category |
-| Password, hardware token, and approved location | Multiple categories including a location condition |
-
-These are design notes. The player sees the combinations and choices, not the answers.
+| Password + hardware token | Knowledge and possession |
+| Password + PIN | Two items from the same category |
+| Hardware token + its one-time code | One token-based check |
+| Fingerprint + facial scan | Two biometric samples from one broad category |
+| Password + token + approved location | Multiple categories plus a location condition |
 
 #### Part 2: Sign in safely
 
-The simulated recovery system requires:
+The player completes:
 
-1. A fictional password as **something you know**.
-2. An approved hardware token as **something you have**.
-3. A one-time code generated by that token before it expires.
-4. An approved Workshop location as an additional access condition.
+1. A fictional password
+2. The approved hardware token
+3. A one-time code before it expires
+4. The approved Workshop location
+5. A simulated biometric confirmation
 
-The player uses fictional credentials supplied inside the simulation. No real password, authentication code, fingerprint, or location is collected.
+If the code expires, the player requests a new one. Repeated failures produce a temporary simulated lockout. No real credential, biometric, or location is collected.
 
-Mara again suggests disabling MFA. The player keeps it enabled and completes the approved sign-in. Attempting to disable MFA produces a policy warning and does not progress the checkpoint.
+Mara again suggests disabling MFA. The player keeps it enabled and completes sign-in.
 
-If the one-time code expires, the player requests a new code from the approved simulated token rather than reusing the expired one. Repeated failed sign-ins show a clear error and temporary simulated lockout; no real account or lockout is affected.
+#### Part 3: Use SSO
 
-#### Part 3: Use single sign-on
+The player opens two approved recovery applications through SSO. Each application still checks authorization. The player identifies that SSO shared the sign-in while MFA checked multiple factors.
 
-After authentication, the player opens two approved recovery applications through SSO. They do not have to repeat the same sign-in for each application, but each application still checks what the account is authorized to access.
+#### Part 4: Assign least privilege
 
-The player identifies that **SSO provided shared sign-in**, while **MFA checked multiple factors**. Neither grants permission to open the protected evidence store or bypass application permissions.
+The player configures access:
+
+| Identity | Allowed | Denied |
+|---|---|---|
+| Player | Gateway recovery and approved records | Protected evidence and account management |
+| Finch | Monitoring | Changing permissions |
+| Diagnostic unit | Submit readings | Read restricted records |
+| Mara | Review approved records under policy | Protected evidence and administrator actions |
+| External support | Temporary limited access after approval | Standing or unrestricted access |
+
+The player applies the recovery role, the Workshop-terminal rule, the classifications, and the ACL. Granting full administrator access is blocked by policy and must be corrected.
 
 ### Feedback and hints
 
-Correct responses are marked **Correct**; other choices are marked **Try again** and remain editable. Finch explains which factor or concept needs another look without completing the task.
+Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable.
 
-The player can review lesson pages. Hints and retries are unlimited and penalty-free.
+- **Factors:** count categories, not prompts. A token and its code remain one possession check.
+- **Safe sign-in:** keep MFA, use the approved token and location, and handle expiring codes correctly.
+- **SSO:** SSO changes how many times the player signs in, not what the account may access.
+- **Least privilege:** start with the task each identity performs.
+- **Access models:** distinguish owner decisions, central classifications, roles, and conditions.
 
-**Authentication factors**
+Hints and retries are unlimited and penalty-free.
 
-1. “Classify each item as something you know, have, or are.”
-2. “Count categories, not prompts. Two passwords remain one category.”
-3. “Does a code generated by a token prove something different from possession of the token itself?”
+### Completion and story clues
 
-**Safe sign-in**
-
-1. “Keep the required factors and use the approved token and location.”
-2. “A code is intended for one use and a short time.”
-3. “If a code expires, what should happen instead of entering the old one again?”
-
-**SSO and authorization**
-
-1. “SSO changes how many times you sign in, not what the account may access.”
-2. “Authentication identifies the account; authorization limits the actions.”
-3. “Would signing in once to several apps give a user permission to open a protected store?”
-
-### Completion and story clue
-
-The simulated authentication succeeds, and the two recovery applications become available. The gateway remains offline.
-
-The recovery module briefly displays a legacy mapping associated with the player's sign-in:
+The simulated applications open with scoped permissions.
 
 ```text
 LEGACY PROFILE: E.C.H.O_Thread_01
 LOCAL AUTHENTICATION: ACCEPTED
 ```
 
-> **Mara:** "A stale mapping. Echo corrupted the identity records."
->
-> **Finch:** "That is the second time an Echo record has appeared because of something you did."
-
-The display is recorded evidence, but it does not yet explain the player's identity or prove why the mapping appeared. Finch adds it and Mara's explanation to **Unresolved Records**.
-
-Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
-
-### Accessibility
-
-- Factor cards and sign-in controls are keyboard operable.
-- Simulated credential fields support paste and a labeled show/hide control.
-- Screen readers announce the current factor step, code-expiration state, sign-in result, and simulated lockout.
-- Authentication failures use text and do not depend on sound, vibration, or color.
-- The factor table associates each item with its category and MFA result.
-- No real biometric, password, one-time code, location, or account data is requested or stored.
-
-## Lesson 6: Authorization and Access Control
-
-### Opening
-
-The recovery applications now recognize the player's approved sign-in. Finch checks what that account can access.
-
-> **Mara:** "Give the player full administrator access. It will be faster."
->
-> **Finch:** "It would also grant access to systems and records we don't need for this repair."
->
-> **Mara:** "Then decide what is needed and get on with it."
-
-The player opens the lesson on their laptop.
-
-### Lesson pages
-
-The player can use **Next** and **Back** and review the pages during the checkpoint. The systems, policies, and accounts are fictional.
-
-#### Page 1: Permissions and least privilege
-
-**Authorization** determines what an authenticated account is allowed to do. A **permission** permits a particular action, such as reading a record or changing a setting.
-
-**Least privilege** means giving an account only the access it needs for its task, for only as long as it needs it.
-
-For example, a diagnostic unit that submits readings does not need permission to change user accounts or open personnel records.
-
-#### Page 2: Standard and administrator accounts
-
-A **standard account** has limited permissions. An **administrator account** can manage more system settings and accounts.
-
-Not every task needs administrator access. Even administrators should use elevated permissions only when needed and follow the system's access policy.
-
-#### Page 3: Access control models
-
-Systems can use different approaches to deciding who gets access:
-
-- **Mandatory access control (MAC):** Access depends on centrally managed rules and classifications. This is different from the **MAC address** introduced in Chapter 4.
-- **Discretionary access control (DAC):** A resource's owner can decide who receives access, within the system's rules.
-- **Role-based access control (RBAC):** Permissions are assigned to roles, and accounts receive access through their roles.
-- **Rule-based access control:** Access depends on conditions, such as which terminal is being used or what time access is requested.
-
-A system can combine approaches. A role might grant access only when a separate location rule is also satisfied.
-
-#### Page 4: Classifications and access lists
-
-A **classification** describes how information should be protected, such as public or restricted.
-
-An **access control list**, or **ACL**, lists which accounts or groups can perform particular actions on a resource. An owner may be able to manage an ACL under the system's policy.
-
-The player should check both **who** has access and **what actions** they can perform.
-
-### Guided practice: Choose the access approach
-
-Finch presents one short policy:
-
-> A file owner may grant a colleague read access under the system's existing rules.
-
-The player identifies this as **discretionary access control** and explains that the owner can decide within limits rather than changing the system-wide classification policy.
-
-A second example combines two conditions:
-
-> Recovery staff may change gateway settings only through the approved recovery role and only from the Workshop terminal.
-
-The player identifies **role-based access control** for the staff permissions and **rule-based access control** for the Workshop-only condition.
-
-Feedback explains that systems commonly combine models. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
-
-### Checkpoint: Assign recovery access
-
-The player reviews fictional access requests and policy cards in the recovery environment. The gateway remains offline.
-
-#### Part 1: Apply least privilege
-
-The player assigns only the access each identity needs:
-
-| Identity | Approved access | Explicitly denied |
-|---|---|---|
-| Player | Gateway recovery and approved device records | Protected evidence store and account management |
-| Finch | Monitoring only | Changing access settings |
-| Diagnostic unit | Submit readings only | Reading restricted records |
-| Mara | Review approved gateway records under policy | Protected evidence store, access-policy changes, and user/account management |
-| External support | Temporary, limited access after approval | Standing access and unrestricted records |
-| Everyone above | Shared recovery resources as explicitly granted | Access to the protected evidence store |
-
-The player configures an access list rather than choosing a single role for everyone. The player’s recovery role provides scoped access, not full administrator authority. Attempting to grant full administrator access produces a policy warning and leaves the broader permissions unapplied.
-
-The player does not grant full administrator access simply because it would be convenient.
-
-#### Part 2: Identify the access approach
-
-The player matches fictional policy examples:
-
-| Policy example | Approach |
-|---|---|
-| A central policy restricts records based on classification | Mandatory access control |
-| A file owner grants a colleague permission under the system's rules | Discretionary access control |
-| Recovery staff receive permissions through a recovery role | Role-based access control |
-| Recovery access is allowed only from the Workshop terminal | Rule-based access control |
-
-These are design notes. The player sees the examples and choices, not the answers.
-
-#### Part 3: Review the rules
-
-The player checks a fictional ACL and confirms that:
-
-- The recovery role can work with approved gateway records.
-- Finch can monitor but cannot change access settings.
-- The diagnostic unit can submit readings but cannot read restricted records.
-- External support receives access only after approval and only for the required time.
-- The Workshop-terminal rule applies to recovery access.
-- The protected evidence store remains sealed.
-
-### Feedback and hints
-
-Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable. Finch points to the relevant task or policy without supplying the complete answer.
-
-The player can review lesson pages. Hints and retries are unlimited and penalty-free.
-
-**Least privilege**
-
-1. “Start with what each identity needs to do, not with the broadest access available.”
-2. “List the allowed action and the explicitly denied resource separately.”
-3. “Does Finch need to change access settings to monitor the recovery, or only observe it?”
-
-**Access-control models**
-
-1. “Ask whether the control is based on central classifications, owner decisions, assigned roles, or conditions.”
-2. “A system can combine a role with a location rule.”
-3. “If access is allowed only through the Workshop terminal, which model does that condition illustrate?”
-
-**ACLs and classifications**
-
-1. “Check both who has access and which action they may perform.”
-2. “A permitted read does not imply permission to write or manage access.”
-3. “If the recovery role can read approved records, does that automatically let it open the protected evidence store?”
-
-### Completion and story clue
-
-The simulated recovery permissions are configured. The gateway remains offline, and the protected evidence store remains sealed.
-
-Finch finds an older role record:
+Finch also finds:
 
 ```text
 ROLE: RESEARCH-OBSERVATION
@@ -1081,134 +613,129 @@ CATEGORY: HABITAT
 STATUS: ACTIVE UNTIL FACILITY FAILURE
 ```
 
-> **Mara:** "A retired training role. It should have been removed."
+> **Mara:** “A stale mapping and a retired training role. Those records are unreliable.”
 >
-> **Finch:** "It was active the night the facility failed."
+> **Finch:** “The role was active the night the facility failed.”
+>
+> **Mara:** “Keep working.”
 
-The role record does not establish what Mara did with the role. Finch adds it and her explanation to **Unresolved Records**, keeping the record separate from her claim.
+The records do not establish what Mara did with the role or why the player's sign-in produced an Echo profile. Finch adds both findings and Mara's explanation to **Unresolved Records**. The protected evidence store remains sealed.
 
 Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
 
 ### Accessibility
 
-- Access requests, role cards, policy examples, and the ACL are keyboard navigable.
-- Tables use labeled row and column headers with each identity and action announced.
-- Screen readers announce granted, denied, and pending permissions before the player applies them.
-- **Allowed** and **Denied** use text labels rather than color alone.
-- The classification and role summaries have text equivalents.
-- Protected evidence remains absent from visual and accessibility output unless access is explicitly granted.
+- Factor and permission controls are keyboard operable.
+- Simulated credential fields support paste and labeled show/hide controls.
+- Screen readers announce each authentication step, expiration, result, and simulated lockout.
+- Access tables use labeled row and column headers.
+- **Allowed** and **Denied** use text labels.
+- The factor table associates each item with its category and MFA result.
+- Protected evidence is omitted from output unless access is explicitly granted.
+- No real credentials, biometrics, locations, or accounts are collected.
 
-## Lesson 7: Accounting and Nonrepudiation
+## Lesson 5: Evidence, Accountability, and Privacy
 
-### Opening
+**Depth:** Detailed. This lesson carries the chapter's central investigation and ends by protecting the evidence that will matter later.
 
-Finch brings together the records collected so far. The gateway remains offline, but the recovery environment can display previously saved evidence.
+### Story purpose
 
-> **Mara:** "Echo altered those records. You can't trust any of them."
+Finch brings together the security records. Mara claims Echo altered them and wants the recovery finished without further investigation. Finch wants to reconstruct what each record actually establishes. The recovered records also contain personal information.
+
+> **Mara:** “Echo altered those records. Upload the entire archive with a public link and move on.”
 >
-> **Finch:** "Then let's check what each record actually tells us—and what it doesn't."
+> **Finch:** “Those are two different mistakes. We need to understand the evidence, and we should not expose personal information while doing it.”
+>
+> **Mara:** “Then finish the report and leave the records alone.”
 
 The player opens the lesson on their laptop.
 
 ### Lesson pages
 
-The player can use **Next** and **Back** and review the pages during the checkpoint. All records and activities are fictional.
+The player can use **Next** and **Back** and review the pages during the checkpoint. All records are fictional and the protected evidence store remains sealed.
 
-#### Page 1: Accounting and logs
+#### Page 1: Accounting and evidence
 
-In security, **accounting** means recording activity so it can be reviewed later. A log might record an account signing in, a setting changing, or a door opening.
+**Accounting** records activity for later review. Logs can show sign-ins, configuration changes, service events, and door activity. Windows Event Viewer can display Security, System, and Application events.
 
-For example, Windows **Event Viewer** can display different kinds of system logs, including Security logs. A log can help answer *what a system recorded*, but an account name alone does not prove which person controlled it.
+A log entry records what a system observed. An account name does not prove which person controlled the account. Logs may be incomplete, inaccurate, or altered, so compare sources where possible.
 
-Logs may be incomplete, inaccurate, or altered. When possible, compare them with other records.
+Other evidence includes browser history, physical-access records, camera footage, device location, biometric records, and receipts. Each has limits:
 
-#### Page 2: Other records
+- Browser history does not prove who used the browser.
+- A badge record does not prove who held the badge.
+- Video may be incomplete or need authentication.
+- GPS and cell data are approximate.
+- Biometrics may be mistaken and are sensitive.
 
-An investigation might also use:
+#### Page 2: Nonrepudiation
 
-- **Browser history:** Can show activity recorded by a browser, but does not by itself prove who used it.
-- **Physical access records:** Can show that a badge or authorization was used, but not necessarily who held it.
-- **Video:** Can show what a camera captured, but its view may be incomplete and the recording may need verification.
-- **Location information:** GPS or cell-network records can help estimate a device's location, but may be imprecise and do not automatically identify its user.
-- **Biometric records:** Can support an identity check, but biometric systems can make mistakes and the information is sensitive.
+**Nonrepudiation** makes it harder for someone to deny an action.
 
-These records should be handled with appropriate privacy protections.
+A digital signature can show which key signed a record and whether the record changed afterward. A receipt can show that a system accepted or transferred something. Neither proves every claim: a key could be used by someone else, and a receipt does not prove that file contents are true.
 
-#### Page 3: Nonrepudiation
+#### Page 3: Privacy and personal information
 
-**Nonrepudiation** means having evidence that makes it harder for someone to deny an action, such as signing or sending a record.
+**Privacy** concerns how information about people is collected, used, stored, and shared. **PII** can identify someone directly or when combined with other details.
 
-A **digital signature** can help verify that a record was signed with a particular key and has not changed since it was signed. A **receipt** can record that a system accepted or delivered something.
+Ask:
 
-Neither automatically proves every surrounding claim. A key could be used by someone other than its intended owner, and a receipt does not prove that the contents of a file are true.
+- Why is this information needed?
+- Is all of it necessary for this purpose?
+- Who is authorized to receive it?
+- How long must it be kept?
 
-#### Page 4: Building a timeline
+**Consent** permits a particular use; it does not automatically authorize every later purpose. The U.S. Privacy Act, CCPA, and GDPR are examples with different scopes. This lesson introduces privacy principles, not legal advice.
 
-A **timeline** puts events in order. When building one:
+#### Page 4: Communication, sharing, and cookies
 
-1. Record the time and source of each event.
-2. Check whether the sources use the same clock or time zone.
-3. Keep the original records available.
-4. Distinguish what a record shows from what someone thinks it means.
-5. Note gaps, contradictions, and signs that a record might have changed.
+Posts, email, and instant messages can expose information through content, audience, forwarding, and later copying.
 
-> **Finch:** "A timeline is a good place to put answers and questions. Preferably in different columns."
+Safer sharing means limiting information and recipients, requiring MFA, using expiring links, applying current software, encrypting data in transit and at rest, and sending any package password through a separate trusted channel. Avoid untrusted public Wi-Fi for sensitive work.
 
-### Guided practice: Order a mini timeline
+A **cookie** is information a site stores in a browser. First-party cookies belong to the visited site; third-party cookies belong to another content provider. Essential cookies may support required functions; analytics and advertising are optional in this task.
 
-Finch presents three practice events, all using the same simulated clock:
+### Guided practice: Separate evidence from interpretation
 
-```text
-09:06  Gateway service: Unavailable
-09:02  Account signed in
-09:04  Door record: Opened with M.VALE authorization
-```
+Finch presents three short items:
 
-The player places them in time order, identifies the source of each event, and labels one statement:
+1. `02:11 ACCOUNT M.VALE: AUDIT POLICY DISABLED`
+   → Original log entry showing what the system recorded.
+2. “The account owner personally disabled the policy.”
+   → Interpretation not established by the account name alone.
+3. “The diagnostic unit moved to the satellite terminal.”
+   → Unverified reconstruction of missing text, not an original fact.
 
-> The account was signed in.
+The player labels each item, then decides which three fields an incident auditor needs:
 
-**Correct label:** established by the record.
+- Event timestamps
+- Relevant configuration changes
+- Unrelated employee home addresses
+- Fingerprint images
+- Account identifiers needed to explain the recorded activity
 
-The player also identifies what is not established:
+**Needed:** timestamps, configuration changes, and necessary account identifiers.
+**Not needed:** unrelated addresses and fingerprint images.
 
-> The account owner personally used the computer.
+Feedback connects evidence limits to privacy minimization. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
-Feedback explains that ordering events is separate from determining what they prove. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
+### Checkpoint: Reconstruct and preserve the incident
 
-### Checkpoint: Build the security timeline
+#### Part 1: Build the timeline
 
-The player reviews fictional records in the recovery environment. They do not open the protected evidence store.
-
-The records below use the same simulated system clock. The player can inspect each source before placing its event on the timeline.
-
-#### Available records
-
-**Door record from Lesson 2**
+The player orders the events, identifies each source, and marks what is established and what remains uncertain:
 
 ```text
 02:08  SECURITY AREA DOOR: OPENED
        AUTHORIZATION USED: M.VALE
-```
 
-The record shows which authorization was used, not who held the badge.
-
-**Independent security monitor**
-
-```text
 02:11  LOCAL AUDIT POLICY: DISABLED
        ACCOUNT: M.VALE
 
 02:14  HABITAT ACCESS POLICY: CHANGED
        ACCOUNT: M.VALE
        REQUEST ORIGIN: WORKSHOP TERMINAL
-```
 
-The independent monitor remained active even though the local audit policy was disabled. The record identifies the account and recorded terminal—not the person controlling them.
-
-**Saved system events**
-
-```text
 02:17  EMERGENCY EXITS: OPENED
        ACCOUNT: E.C.H.O_Thread_01
 
@@ -1216,268 +743,76 @@ The independent monitor remained active even though the local audit policy was d
        ACCOUNT: E.C.H.O_Thread_01
 ```
 
-The store remains sealed. These entries do not reveal its contents.
+Supporting records include the independent security monitor, a camera clip with an obscured face, browser history, device location, a signed manifest, and a transfer receipt. The signed manifest can show that signed content has not changed since signing; it does not prove who made an earlier change.
 
-**Signed configuration manifest**
+#### Part 2: Select the supported conclusion
 
-A verified signature shows that the saved manifest has not changed since it was signed with the trusted key. The manifest describes a Habitat access configuration, but the signature does not establish who personally made an earlier change.
+1. **An external attacker performed all relevant actions.** Incorrect: contradicted by the independent monitor and Workshop-terminal origin.
+2. **Mara personally changed the policy.** Overclaim: her account was used, but the evidence does not prove who controlled it.
+3. **An authenticated internal account changed the policy through the Workshop terminal; the responsible person and Echo's motive remain unproven.** Correct.
 
-**Other evidence cards**
+#### Part 3: Prepare the evidence package
 
-The player also reviews these fictional records:
-
-| Record | What it says | Important limitation |
-|---|---|---|
-| Browser history | The gateway console page was opened at 02:13 | Does not identify the person using the browser |
-| Camera recording | A person was near the security office at 02:07, with their face obscured | Confirms presence but not identity |
-| Device location | The recovered device was in the Workshop area at 02:16 | Approximate and does not identify its user |
-| Transfer receipt | The archive service accepted a transfer at 02:20 | Confirms the system accepted it, not that its contents are true |
-
-Each card includes the same limitation in accessible text.
-
-#### Player tasks
-
-1. Place the recorded events in time order.
-2. Identify the source for each event.
-3. Mark what each record establishes and what remains uncertain.
-4. Compare the signed manifest with the relevant configuration record.
-5. Choose the supported conclusion.
-
-The timeline editor provides five labeled tracks: event time, source, event, what it establishes, and what remains uncertain. The player can reorder events with keyboard controls or selectable move-up and move-down actions.
-
-**Expected conclusion:** The records support that an authenticated internal account changed the access policy through the Workshop terminal. That does not fit an explanation in which all relevant activity occurred only through an external connection. It does **not** prove Mara personally made the change or rule out someone else using her credentials.
-
-The evidence also records actions under `E.C.H.O_Thread_01`, but does not yet explain the player's identity or Echo's motive.
-
-### Feedback and hints
-
-Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable. Finch points to the relevant source or gap without completing the timeline.
-
-The player can review lesson pages. Hints and retries are unlimited and penalty-free.
-
-**Ordering and time**
-
-1. “Put the events in order before deciding what they mean.”
-2. “Use the recorded time and source for each event; do not infer a time from its place in the story.”
-3. “If two records appear out of order, which source gives the actual timestamp?”
-
-**What a record establishes**
-
-1. “Separate what the system recorded from what you think happened.”
-2. “Check whether the source identifies an account, a device, a location, or a person.”
-3. “A badge record proves an authorization was used. What would it take to show who used it?”
-
-**Nonrepudiation and uncertainty**
-
-1. “A signature can show which key signed a record and whether it changed afterward.”
-2. “A valid signature does not prove that every statement in the record is true.”
-3. “If a key could have been used by someone else, how strong is the claim that its owner personally acted?”
-
-**Conclusion**
-
-1. “Use only conclusions supported by more than one record.”
-2. “Compare the internal terminal activity with the claim that everything happened externally.”
-3. “Which conclusion fits the timeline without claiming more than the evidence proves?”
-
-### Completion
-
-The timeline is added to **Unresolved Records**, with sources and uncertainties visible alongside it.
-
-> **Mara:** "Credentials can be stolen. Echo could have used mine."
->
-> **Finch:** "That's possible. But the records still show activity through the Workshop terminal. We shouldn't call it an external-only incident."
-
-The player moves on to Lesson 8. The gateway remains offline, and the protected evidence store remains sealed.
-
-Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
-
-### Accessibility
-
-- Timeline records and evidence cards expose complete text without requiring image interpretation.
-- Events can be ordered with keyboard-accessible move-up and move-down controls.
-- Screen readers announce each event’s time, source, evidence status, and position in the timeline.
-- The five timeline fields retain readable labels.
-- **Established**, **uncertain**, and **unsupported** use text labels rather than color alone.
-- Camera and location evidence include text descriptions of what they do and do not establish.
-- Protected evidence content remains unavailable unless access is explicitly granted.
-
-## Lesson 8: Privacy, Consent, and Secure Sharing
-
-### Opening
-
-Finch prepares to preserve the security records collected during Chapter 5. Some recovered records contain personal information.
-
-> **Mara:** "Upload the entire archive and make a permanent public link. We can sort out permissions later."
->
-> **Finch:** "That would expose information to anyone with the link. Let's work out what actually needs to be shared."
-
-These are records already available in the recovery environment—not the contents of the sealed evidence store. The player opens the lesson on their laptop.
-
-### Lesson pages
-
-The player can use **Next** and **Back** and review the pages during the checkpoint. All records and activities are fictional.
-
-#### Page 1: Privacy and personal information
-
-**Privacy** concerns how information about people is collected, used, stored, and shared.
-
-**Personally identifiable information (PII)** is information that can identify someone. A name, address, fingerprint, or account identifier may identify a person. Other details can become identifying when combined.
-
-Personal information may need protection even when it does not seem sensitive on its own.
-
-#### Page 2: Purpose and consent
-
-Before collecting or sharing information, consider:
-
-- Why is it needed?
-- Is all of it necessary for that purpose?
-- Who is authorized to receive it?
-- How long does it need to be kept?
-
-**Consent** is one way a person may agree to a particular use of their information. Permission for one purpose does not automatically mean permission for every other purpose.
-
-Privacy requirements vary by location and situation. Examples include the **U.S. Privacy Act**, **California Consumer Privacy Act (CCPA)**, and **General Data Protection Regulation (GDPR)**. They have different scopes and requirements; this lesson introduces them rather than providing legal advice.
-
-#### Page 3: Privacy in everyday communication
-
-Social-networking posts, emails, and instant messages can reveal information about people, locations, and activities. Before sharing, check the intended audience and whether the information needs to be included.
-
-Even a message sent to a limited audience can be copied or forwarded. Avoid placing private information in a message simply because the recipient seems familiar.
-
-#### Page 4: Secure sharing
-
-A safer sharing process can include:
-
-- Sharing only what is needed.
-- Restricting access to authorized recipients.
-- Requiring MFA.
-- Using an expiring link instead of a permanent public link.
-- Using current, trusted software.
-- Protecting information with encryption in transit and at rest.
-- Sharing a package password through a separate trusted channel.
-
-A private connection can reduce exposure, but no network should be assumed safe without appropriate protections. Avoid using an untrusted public Wi-Fi connection for sensitive recovery work when a suitable private connection is available.
-
-#### Page 5: Cookies and consent
-
-A **cookie** is a small piece of information a website stores in a browser.
-
-- A **first-party cookie** is associated with the site the person is visiting.
-- A **third-party cookie** is associated with another party whose content or service is used by the site.
-
-Some cookies support essential site functions; others may support analytics or advertising. A person should be able to review the available choices rather than assuming every cookie is necessary.
-
-### Guided practice: Decide what the recipient needs
-
-The evidence package will go to an authorized incident auditor. Its purpose is to show the gateway timeline and relevant configuration changes.
-
-The player reviews these fields:
-
-| Field | Needed for this package? |
-|---|---|
-| Event timestamps | Yes |
-| Account identifiers that explain the recorded activity | Yes, with restricted access |
-| Configuration filename and changed value | Yes |
-| Unrelated employee home addresses | No |
-| Fingerprint image | No |
-| Medical image | No |
-| General training document | No |
-
-The player selects the relevant records, removes unrelated personal information, and explains that an account identifier may be necessary evidence even though it is sensitive. No real personal information is shown or transmitted. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
-
-### Checkpoint: Prepare an evidence package
-
-The player uses fictional records and a simulated sharing portal. No real personal information, passwords, or files are collected or transmitted.
-
-#### Part 1: Choose what to share
-
-The player reviews a fictional recovery report and accompanying records. The report needs the gateway timeline and relevant configuration details; unrelated names, addresses, fingerprints, medical images, and training documents are not needed for this recipient.
+The package must include the verified timeline, relevant configuration records, necessary account identifiers, and source/uncertainty labels. It excludes unrelated names, addresses, fingerprints, medical images, training documents, AI reconstructions, and anything from the sealed store.
 
 The player:
 
-1. Keeps the original records unchanged in their restricted location.
-2. Creates a working copy for the evidence package.
-3. Removes or redacts personal information that is not needed for the report.
-4. Retains the account identifiers needed to explain the recorded activity, labeled as restricted.
-5. Checks that the remaining information still supports the relevant findings.
+1. Preserves the original records unchanged.
+2. Creates a working copy.
+3. Redacts unnecessary personal information.
+4. Requires MFA and named authorized recipients.
+5. Uses an expiring link, encryption, current software, and the private Workshop connection.
+6. Sends any package password through a separate trusted channel.
+7. Selects essential cookies only.
 
-The protected evidence store remains sealed and its contents are not included in the package.
+#### Part 4: Verify the package
 
-#### Part 2: Configure sharing
+| Test | Expected result |
+|---|---|
+| Authorized recipient opens the package | Access granted |
+| Unauthorized recipient uses the link | Access denied |
+| Authorized recipient uses an expired test link | Access denied |
 
-Mara's proposed settings are:
-
-```text
-ACCESS: Anyone with the link
-LINK EXPIRATION: Never
-MFA: Not required
-```
-
-The player replaces them with:
-
-- Access limited to **named, authorized recipients**.
-- MFA required.
-- An expiring link.
-- Encryption for the package and transfer.
-- A simulated package password shared through a separate trusted channel.
-- Updated, trusted sharing software.
-- The private Workshop connection.
-
-The player can review settings before applying them. The portal and all credentials are simulated.
-
-#### Part 3: Review cookie choices
-
-The simulated portal offers essential, analytics, and advertising cookies. For this recovery task, the player selects **essential only** and leaves the optional categories off.
-
-The game explains what each choice is for rather than treating every cookie as inherently unsafe.
+The package is not sent until all tests pass.
 
 ### Feedback and hints
 
-Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable. Finch points to the purpose of the package, its audience, or a setting that needs review.
+Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable.
 
-The player can review lesson pages. Hints and retries are unlimited and penalty-free.
+- **Timeline:** use recorded times and sources; distinguish account, device, location, and person.
+- **Evidence:** explain what each record establishes and what it cannot prove.
+- **Conclusion:** choose a claim supported by multiple records without overstating identity.
+- **Package:** include only what supports the report, protect the originals, and restrict access.
+- **Cookie choice:** collect only categories needed for the task.
 
-**Choosing evidence**
-
-1. “Start with what the recipient needs for the recovery report.”
-2. “Remove identifying details that do not support the report, but keep account identifiers that explain the recorded activity.”
-3. “If a report needs a device's repair date, does it also need an unrelated employee's home address or medical image?”
-
-**Sharing settings**
-
-1. “Limit the package to the people who need it.”
-2. “Consider how long access should last and what extra proof is required to open it.”
-3. “Which setting prevents a link from working forever if it is forwarded?”
-
-**Cookies**
-
-1. “Does this cookie support a function needed for the recovery portal?”
-2. “Analytics and advertising are optional for this task.”
-3. “If blocking a category would prevent the portal from functioning, which category is it?”
+Hints and retries are unlimited and penalty-free.
 
 ### Completion and story clue
 
-The simulated evidence package is prepared with limited access. Original records remain restricted, and the protected evidence store stays sealed.
+The timeline and restricted package are preserved. The original records remain unchanged, and the protected evidence store remains sealed.
 
-While reviewing the available recovered records, Finch finds entries using **SUBJECT** identifiers alongside real-looking medical information rather than training-device records.
+Finch finds records using **SUBJECT** identifiers alongside real-looking medical information.
 
-> **Finch:** "These aren't training records."
+> **Finch:** “These aren't training records.”
 >
-> **Mara:** "They are old consent files. You aren't authorized to interpret them. Finish the report."
+> **Mara:** “They are old consent files. You aren't authorized to interpret them. Finish the report.”
+>
+> **Finch:** “I can finish the report and still record that these exist.”
 
-Finch records the finding and Mara's explanation in **Unresolved Records**, without treating her explanation as verified.
+Finch adds the finding and Mara's explanation to **Unresolved Records**, without treating her explanation as verified. The gateway remains offline and ready for final recovery.
 
 Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
 
 ### Accessibility
 
-- Evidence fields and redaction controls are keyboard operable.
-- Screen readers announce whether each field is included, excluded, or redacted and why.
-- Sharing settings use labeled groups and text descriptions for access, expiration, encryption, and MFA.
-- Cookie categories explain their purpose and current state without relying on toggle color.
-- The evidence package preview has a text summary of included and removed items.
-- Personal information, redacted values, and restricted identifiers are not exposed in accessible output when the player is not authorized to view them.
-- No real file, credential, or personal data is transmitted by the simulation.
+- Timeline cards can be reordered with keyboard-accessible move-up and move-down controls.
+- Evidence cards expose complete text and limitations without requiring image interpretation.
+- Screen readers announce event time, source, evidence status, and timeline position.
+- **Established**, **Uncertain**, and **Unsupported** use text labels rather than color alone.
+- Evidence fields announce whether they are included, excluded, or redacted.
+- Redacted and restricted values are omitted from accessibility output unless authorized.
+- Cookie choices state their purpose and current value without relying on toggle color.
+- Camera and physical evidence have text descriptions.
 
 ## Boss: The Security Lockdown
 
