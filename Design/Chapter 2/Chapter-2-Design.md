@@ -10,7 +10,9 @@ The previously agreed Chapter 2 reward is the Design Agent, with an upgraded ver
 
 Present teaching material one manageable section at a time, with Next and Back buttons. Players can review earlier explanations during a lesson and its checkpoint without losing completed progress.
 
-Save completed lesson activities automatically. If the player closes and returns during an unfinished lesson activity or checkpoint, that activity restarts from the last completed point. Within an activity, preserve the player's work while they receive feedback and retry. Lesson sticky notes continue to save automatically, and the boss follows its separate resume rules.
+Each lesson ends with one checkpoint that provides guided coaching and an assessed result. Earlier code samples and demonstrations are explanatory examples, not separate scored practice activities.
+
+Checkpoint progress saves after each completed step. If the player closes and returns during a checkpoint, that step resumes with prior answers and progress preserved. Lesson sticky notes continue to save automatically, and the boss follows its separate resume rules.
 
 ## Opening scene
 
@@ -49,7 +51,7 @@ The laptop teaches that a bit can be `0` or `1` and that eight bits make a byte.
 
 These are different representations of the same value, not different programming languages. The laptop also explains that standards such as Unicode let computers represent text.
 
-**Practice:** The player opens the simulated Calculator and follows guidance to select **Programmer** mode from its menu. They enter numbers and compare their binary, decimal, hexadecimal, and octal representations. These are number systems, not programming languages.
+**Example:** The lesson uses the simulated Calculator's **Programmer** mode to compare the same value in binary, decimal, hexadecimal, and octal. These are number systems, not programming languages.
 
 The lesson shows an eight-bit reference chart and explains that a `1` contributes its position's value while a `0` contributes nothing. For example:
 
@@ -61,7 +63,9 @@ The lesson shows an eight-bit reference chart and explains that a `1` contribute
 
 Explain that each base entry is a power of two: for example, 2³ means multiplying three 2s together, giving 8, and 2⁰ equals 1. Each value doubles moving left. Add the values under the `1` bits; in this example, 32 + 4 + 1 = **37**. Present the chart as readable text, not color alone.
 
-**Checkpoint — Binary conversions:** The Workshop's monitoring console detects three devices, but an old diagnostic report displays their numeric identifiers in binary. Mara asks the player to convert the identifiers to decimal so they can be matched to the Workshop's inventory.
+### Checkpoint: Binary conversions
+
+The Workshop's monitoring console detects three devices, but an old diagnostic report displays their numeric identifiers in binary. Mara asks the player to convert the identifiers to decimal so they can be matched to the Workshop's inventory.
 
 The player converts three different eight-digit binary numbers to decimal by adding the position values under their `1` digits. Each correct answer identifies a device in the inventory, such as a temperature sensor, a door sensor, or a backup battery monitor. As each device is identified, its console entry changes from **Unidentified** to its name.
 
@@ -90,9 +94,11 @@ The laptop introduces what different languages do:
 
 The lesson also shows two ways programs can be run: a **compiler** translates code, while an **interpreter** runs instructions through another program. Some languages and tools use a combination of approaches.
 
-**Practice:** The player matches four small examples to the language types. The laptop explains each match before the checkpoint.
+**Example:** The lesson presents one example of each language type and explains what it does.
 
-**Checkpoint — Monitoring restoration plan:** Now that the devices are identified, Mara and Finch plan how to restore their monitoring display. Recovered files include instructions for processing sensor readings, a page describing the display's layout, stored device information to retrieve, and a low-level hardware diagnostic.
+### Checkpoint: Monitoring restoration plan
+
+Now that the devices are identified, Mara and Finch plan how to restore their monitoring display. Recovered files include instructions for processing sensor readings, a page describing the display's layout, stored device information to retrieve, and a low-level hardware diagnostic.
 
 The player chooses an appropriate kind of language for each task. As the player selects the tools, they appear in a simple restoration plan:
 
@@ -133,7 +139,7 @@ A data type describes what kind of value Python is working with:
 
 Compare `"19"` (text) with `19` (a number): `19 + 1` produces `20`, while `"19" + 1` produces an error. Demonstrate `type(19)` to show how Python reports a value's type.
 
-**Practice — Data types:** The player matches `"Door sensor"` to string, `19` to integer, `19.5` to floating-point number, and `True` to Boolean. After each match, the laptop explains why it fits. The player can correct mistakes, use three hints, and retry without penalty. Provide a keyboard-accessible alternative.
+**Example — Data types:** The lesson labels `"Door sensor"` as a string, `19` as an integer, `19.5` as a floating-point number, and `True` as a Boolean, explaining why each fits.
 
 ### Variables
 
@@ -143,7 +149,7 @@ A variable is a name referring to a value. In `temperature = 19`, Python assigns
 
 In `temperature = temperature + 1`, Python reads the current value, adds `1`, and assigns the result back to the name. A subsequent `print(temperature)` displays `20`. Explain that variable names are case-sensitive, cannot contain spaces, and cannot begin with a number; descriptive names help make code readable.
 
-**Practice — A changing reading:** The player drags pieces into the blanks:
+**Example — A changing reading:** The lesson follows the completed example as the variable changes:
 
 ```python
 temperature = ____
@@ -152,7 +158,7 @@ temperature = temperature + ____
 print(____)
 ```
 
-The tray contains `18`, `1`, and two `temperature` pieces. Running the example displays **18** and **19**. The laptop explains how the value changed and why each `print` displays it. Provide a keyboard-accessible alternative, helpful feedback, three hints, and unlimited penalty-free retries.
+The completed values display **18** and then **19**. The lesson explains how the value changed and why each `print` displays it.
 
 ### Constants
 
@@ -165,7 +171,7 @@ print(DEVICE)
 
 Explain that `DEVICE` refers to the text and that `print` displays `Window sensor` without the quotation marks. Contrast its intended fixed use with a changing `temperature` reading.
 
-**Practice — Constants:** Show `DEVICE = "Door sensor"` and `temperature = 19`. The player selects which name is intended to stay fixed and which value may change with new readings. Feedback explains that uppercase `DEVICE` signals an intended constant, but Python does not enforce it. Hints and retries remain penalty-free.
+**Example — Constants:** The lesson contrasts `DEVICE = "Door sensor"` with `temperature = 19`. The uppercase name signals an intended constant, while `temperature` may change, but Python does not enforce that convention.
 
 ### Putting concepts together
 
@@ -184,17 +190,17 @@ print(online)
 
 The output is `Window sensor`, `18`, and `True` on separate lines. Explain why `DEVICE` is intended as a constant, why `temperature` changes, and why `online` holds a Boolean.
 
-**Practice — Door sensor:** A fictional door sensor starts at **19 degrees**, is **online**, and then rises by **1 degree**:
+**Example — Door sensor:** A fictional door sensor starts at **19 degrees**, is **online**, and then rises by **1 degree**. The completed example is:
 
 ```python
-DEVICE = ____
-temperature = ____
-online = ____
-temperature = temperature + ____
-print(____)
+DEVICE = "Door sensor"
+temperature = 19
+online = True
+temperature = temperature + 1
+print(temperature)
 ```
 
-The available pieces are `"Door sensor"`, `19`, `True`, `1`, and `temperature`. After the player places them and runs the example, it displays **20**. The laptop explains each line, including why `DEVICE` is intended as a constant and how changing `temperature` works.
+The output is **20**. The lesson explains each line, including why `DEVICE` is intended as a constant and how changing `temperature` works.
 
 **Cutscene — Before the checkpoint:** Finch panics because he cannot tell whether the Workshop's backup battery is charging.
 
@@ -204,7 +210,9 @@ The available pieces are `"Door sensor"`, `19`, `True`, `1`, and `temperature`. 
 
 The battery checkpoint opens.
 
-**Checkpoint — Workshop backup-power readout:** Finch asks the player to prepare a fictional readout. The Workshop's backup battery starts at **45%**, charging is **on**, and the latest reading shows a **15-point increase**. The simulated terminal presents code with missing elements for the player to type:
+### Checkpoint: Workshop backup-power readout
+
+Finch asks the player to prepare a fictional readout. The Workshop's backup battery starts at **45%**, charging is **on**, and the latest reading shows a **15-point increase**. The simulated terminal presents code with missing elements for the player to type:
 
 ```python
 LOCATION = ____
@@ -236,7 +244,7 @@ print(temperature < 30)
 
 The output is `True` because 25 is less than 30. Explain that `<` means less than and `<=` means less than or equal to: `20 <= 20` is `True`, while `20 < 20` is `False`.
 
-**Practice — Comparisons:** The player selects `True` or `False` for `18 < 20`, `20 < 20`, and `20 <= 20`. The respective answers are `True`, `False`, and `True`; do not show these answers before the player responds. After each answer, explain the result, especially that `<=` includes equality. Incorrect answers can be changed, with three hints and unlimited penalty-free retries.
+**Example — Comparisons:** The lesson evaluates `18 < 20` as `True`, `20 < 20` as `False`, and `20 <= 20` as `True`, explaining that `<=` includes equality.
 
 ### Decisions with `if` and `else`
 
@@ -253,24 +261,11 @@ else:
 
 Explain `>` as greater than. With `25`, the comparison is `False`, so the output is `Temperature is normal`. With `35`, it is `True`, so the output is `Temperature is high`. The colon starts each section; indentation shows which instructions belong to it. Four spaces are the usual Python convention, and consistent indentation, spelling, and colons matter.
 
-**Practice — `if` and `else`:** The player places `if` and `else` into the blanks:
-
-```python
-signal = 45
-
-____ signal > 50:
-    print("Signal high")
-____:
-    print("Signal normal")
-```
-
-The player predicts the message for `45`, then runs the example and sees `Signal normal`. They also try `65` and see `Signal high`. Feedback explains the condition and which branch ran. Provide keyboard access, three hints, and unlimited penalty-free retries.
-
 ### Applying a threshold
 
 A threshold is a decision point. Demonstrate using a named constant with `<=` in a separate sensor example, including a reading equal to the threshold. Explain that uppercase constant names signal intent in Python but are not enforced. Teach the required syntax before the checkpoint.
 
-**Practice — Thresholds:** The laptop first demonstrates:
+**Example — Thresholds:** The lesson demonstrates:
 
 ```python
 LOW_LEVEL = 10
@@ -278,9 +273,11 @@ water_level = 10
 print(water_level <= LOW_LEVEL)
 ```
 
-The output is `True` because the reading equals the limit. The player predicts the results for readings of `9`, `10`, and `11` before checking them. Feedback explains that `<=` includes the limit itself. Hints and retries are penalty-free.
+The output is `True` because the reading equals the limit. The lesson compares readings of `9`, `10`, and `11`, showing that `<=` includes the limit itself.
 
-**Checkpoint — Backup-battery warning:** Finch asks the player to add a warning to the existing Workshop battery readout so he does not have to watch the percentage manually. The player keeps their Lesson 3 code and completes the added warning by dragging pieces from a tray into blanks, with a keyboard-accessible alternative:
+### Checkpoint: Backup-battery warning
+
+Finch asks the player to add a warning to the existing Workshop battery readout so he does not have to watch the percentage manually. The player keeps their Lesson 3 code and completes the added warning by dragging pieces from a tray into blanks, with a keyboard-accessible alternative:
 
 ```python
 LOW_BATTERY_LIMIT = ____
@@ -353,8 +350,6 @@ print(battery_readings)
 
 Square brackets mark the list, commas separate values, and the output is `[60, 15, 42]`. Each item has a position called an index. Python starts at **0**: `battery_readings[0]` is `60`, index `1` is `15`, and index `2` is `42`.
 
-**Practice — Lists:** The player places `70`, `25`, and `40` in that order into `readings = [____, ____, ____]`, then identifies the values at indices `0` and `2`. Feedback explains that indexing starts at zero: the respective answers are `70` and `40`. Provide keyboard access, three hints, and unlimited penalty-free retries.
-
 ### Functions
 
 A function is a named group of instructions a program can use more than once. It can receive information, work with it, and return a result:
@@ -369,18 +364,6 @@ print(result)
 
 Explain `def`, the function name, the parameter `reading`, the colon and indentation, and the `return` instruction. Calling `add_one(18)` supplies `18` as an argument; the function returns `19`, which is assigned to `result` and displayed. `return` gives a result back and ends the call; `print` displays information. A returned value is not displayed just because it was returned.
 
-**Practice — Functions:** The player follows an input through this function and predicts the value of `result` before running it:
-
-```python
-def add_two(reading):
-    return reading + 2
-
-result = add_two(18)
-print(result)
-```
-
-The output is `20`. Feedback explains that `18` is passed to the function, `return` sends `20` back, and `print` displays it. The player also sees a function return a normal or warning message using `if`/`else`. Three hints and unlimited penalty-free retries remain available.
-
 ### Loops
 
 A loop repeats instructions. A `for` loop can visit each item in a list:
@@ -393,8 +376,6 @@ for reading in battery_readings:
 ```
 
 Explain `for`, the current-item name `reading`, `in battery_readings`, the colon, and indentation. The loop prints `60`, `15`, and `42` on separate lines, then ends after all items are processed.
-
-**Practice — Loops:** The player steps through a loop over `readings = [70, 25, 40]` that prints each `reading`. Highlight the current value and show output growing from `70` to `25` to `40`; explain that the loop ends after the final item. Provide keyboard controls, hints, and unlimited penalty-free retries.
 
 ### Putting the concepts together
 
@@ -417,24 +398,9 @@ for reading in readings:
 
 Explain the named limit, the list, each function call and returned message, and the assignment to `status`. The output is `8 At or below the limit` and `12 Above the limit` on separate lines.
 
-**Practice — Putting it together:** The player completes a short example with the pieces `values` and `add_one`:
+### Checkpoint: Overnight battery report
 
-```python
-values = [3, 7]
-
-def add_one(value):
-    return value + 1
-
-for value in ____:
-    result = ____(value)
-    print(result)
-```
-
-A correct run displays `4`, then `8`. Feedback follows each value through the loop, function call, return, and output. Provide a keyboard-accessible alternative, three hints, and unlimited penalty-free retries.
-
-Explain relevant syntax and show worked examples before each activity. Provide a keyboard-accessible alternative to drag-and-drop, clear feedback, three hint levels, and unlimited penalty-free retries. The examples run only in the game's simulation.
-
-**Checkpoint — Overnight battery report:** The Workshop's backup power fluctuated overnight. Finch saved several battery readings but has been checking them one at a time. He asks the player to turn the battery-warning code into a reusable program that reviews the whole list.
+The Workshop's backup power fluctuated overnight. Finch saved several battery readings but has been checking them one at a time. He asks the player to turn the battery-warning code into a reusable program that reviews the whole list.
 
 > **Finch:** "I have last night's battery readings. I've checked the first one twelve times, but I suspect that isn't what programmers mean by efficiency."
 
@@ -489,33 +455,17 @@ This may lead into investigating why the readings were low, without requiring an
 
 ## Lesson 6: Debugging and testing
 
-**Finding and fixing mistakes:** Finch has a copy of the battery-report program that is not working. Keep the lesson focused and manageable, with examples and short practices before the checkpoint.
+**Finding and fixing mistakes:** Finch has a copy of the battery-report program that is not working. Keep the lesson focused and manageable, with clear examples before the checkpoint.
 
 An error message is a clue, not a failure. Python reports information that can help locate a problem; the reported line is a starting point, and the mistake can be nearby. Demonstrate that `print("Battery status"` has a syntax error because the closing parenthesis is missing; correcting it to `print("Battery status")` displays `Battery status`.
 
-**Practice — Punctuation:** The player runs `print("Workshop ready"` and sees a syntax error. They edit the line freely, add the missing punctuation, and run it again; a correct run displays `Workshop ready`. Feedback helps them read the error without automatically fixing the code. Three hints and unlimited penalty-free retries are available.
-
 Next, demonstrate a `NameError` with `battery = 60` followed by `print(batery)`. Python does not recognize the misspelled name; correcting it to `print(battery)` displays `60`.
-
-**Practice — Misspelled name:** The player runs `device = "Door sensor"` followed by `print(devce)`, sees a `NameError`, and compares the misspelling with the earlier variable name. After editing and rerunning, the correct output is `Door sensor`. Preserve work and provide penalty-free hints and retries.
 
 Explain that a program can run without an error and still produce a wrong result. The intended battery warning is **20% or below**; `< 20` fails at exactly 20, while `<= 20` includes it. Demonstrate testing **15%, 20%, and 60%** for a low reading, the boundary, and a normal reading.
 
-**Practice — Wrong result:** The laptop explains that this program should identify readings at or below 10, but a test gives the wrong result:
+### Checkpoint: Repair the battery report
 
-```python
-LIMIT = 10
-reading = 10
-
-if reading < LIMIT:
-    print("At or below the limit")
-else:
-    print("Above the limit")
-```
-
-The player runs it, sees the incorrect message for `10`, and edits the comparison. They then test `9`, `10`, and `11`. Feedback shows results without making the correction; hints and retries remain unlimited and penalty-free.
-
-**Checkpoint — Repair the battery report:** Finch gives the player this broken copy of the overnight report:
+Finch gives the player this broken copy of the overnight report:
 
 ```python
 LOW_BATTERY_LIMIT = 20

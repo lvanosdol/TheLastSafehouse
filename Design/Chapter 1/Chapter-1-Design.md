@@ -28,6 +28,8 @@ All hardware, software, accounts, files, alerts, and system state in the chapter
 - Keep lesson hints and retries unlimited and penalty-free.
 - Never rely on color, sound, or animation alone.
 
+Each lesson ends with one checkpoint. The checkpoint begins with a guided stage and finishes with a main task. Progress saves after each stage; leaving during a stage resumes that stage with completed work intact.
+
 The general checkpoint loop and campaign rules remain in the [master design](../The-Last-Safehouse-Design.md#3-teaching-and-checkpoint-principles).
 
 ## Opening scene: The onsite apprenticeship
@@ -108,7 +110,9 @@ Before assembly, Mara explains:
 - Some repairs should be left to qualified professionals.
 - The simulation teaches concepts and is not instructions for dismantling the player's real computer.
 
-### Practice and assembly
+### Checkpoint: Assemble and boot the computer
+
+#### Guided stage: Practice and assembly
 
 The player first matches each component to its purpose. This checks understanding before placement.
 
@@ -128,7 +132,7 @@ The guided assembly then proceeds in a logical order:
 
 The Safehouse system chassis has its front-panel buttons and indicators preconnected so the lesson does not become a tiny-cable memory exercise. The simulation uses a pre-applied thermal pad; real thermal-compound application is explained only as a safety note.
 
-### Checkpoint: Assemble and boot the computer
+#### Main task: Assemble and boot the computer
 
 The player must correctly match the required components to their functions, install the processor, RAM, cooler, storage, and graphics card, place the motherboard and power supply, connect the required cables, and power on the system.
 
@@ -186,11 +190,13 @@ The player sees the relative order of bit, byte, kilobyte, megabyte, gigabyte, a
 
 ROM is reference-only: non-volatile memory containing essential low-level instructions. NVMe is reference-only: a way some SSDs communicate, not a separate storage category. Neither is assessed.
 
-### Practice
+### Checkpoint: Sort the computing jobs
+
+#### Guided stage
 
 The player reviews four actions and predicts which computing job is involved: pressing a key, a processor calculating a total, a drive retrieving a document, and speakers playing sound. The computer then reopens the Workshop photograph and shows where it waited after shutdown.
 
-### Checkpoint: Sort the computing jobs
+#### Main task: Sort the computing jobs
 
 The player sorts four new examples:
 
@@ -246,11 +252,13 @@ Windows provides a graphical interface through windows, icons, and menus. A comm
 
 The lesson briefly compares operating systems across computers, phones, servers, and other devices without claiming that one is universally better or completely secure.
 
-### Practice: Inspect the running system
+### Checkpoint: Identify the failing part
+
+#### Guided stage: Inspect the running system
 
 The player opens a simulated system-status view containing Windows Explorer running, Settings running, the Workshop application **Not responding**, a Workshop background service **Waiting**, and a display driver **Working normally**. Each item explains what its status means and whether it is an application, service, or driver.
 
-### Checkpoint: Identify the failing part
+#### Main task: Identify the failing part
 
 The player completes a diagnostic card by:
 
@@ -325,11 +333,13 @@ Practice/
 
 Only `Logs` and `Evidence` are used in this lesson. The other folders are used in Lesson 5.
 
-### Practice: Inspect a practice log
+### Checkpoint: Create a complete evidence set
+
+#### Guided stage: Inspect a practice log
 
 The player opens `Practice/Logs`, selects `sensor.log`, reads its properties, turns on visible filename extensions, and previews the file without editing it. Previewing is distinguished from editing, and the original remains unchanged.
 
-### Checkpoint: Create a complete evidence set
+#### Main task: Create a complete evidence set
 
 The practice folder contains `sensor.log`, `power.log`, and `display.log`. The player must:
 
@@ -434,13 +444,15 @@ The rule is:
 3. Leave the original in `Recovery`.
 4. Verify the active copy without editing either file manually.
 
-### Practice: Inspect account access
+### Checkpoint: Restore a practice setting safely
+
+#### Guided stage: Inspect account access
 
 The player opens the account panel, identifies the standard account, reviews the four folder permissions, opens a practice log read-only, attempts to modify a file in `Recovery`, and explains why read access is sufficient for that file.
 
 No actual permissions are changed.
 
-### Checkpoint: Restore a practice setting safely
+#### Main task: Restore a practice setting safely
 
 The player must:
 
@@ -523,13 +535,15 @@ The player opens the interface through Start or Settings and explores Virus & th
 
 Each area displays its current state, who manages it, what the state means, and whether the standard account can change it.
 
-### Windows Security dry run
+### Checkpoint: Verify the protection state
+
+#### Guided stage: Windows Security dry run
 
 The player reviews a benign simulated notification. The exercise identifies its source, affected protection area, displayed status, **Get details**, where severity appears, the available response controls, and why details must be reviewed before acting.
 
 The player chooses **Review**, confirms no threat is present, and closes the notification. No blocking action is performed yet. The actual security alert and **Block threat** response remain reserved for the boss.
 
-### Checkpoint: Verify the protection state
+#### Main task: Verify the protection state
 
 The player must:
 
@@ -617,11 +631,13 @@ The player is not asked to bypass an administrator requirement. If a fictional a
 
 The simulated **Installed apps** list shows application name, publisher, installation source, approximate size, and an Uninstall control. Some applications are installed for the current user; others are managed system-wide and cannot be removed with the standard account.
 
-### Practice: Compare download sources
+### Checkpoint: Install and remove software safely
+
+#### Guided stage: Compare download sources
 
 The player reviews three fictional listings for the same application: an official publisher page, an approved app store listing, and a third-party page offering a “full unlocked version.” The player compares publisher, source, requested permissions, and licensing. The third-party listing is rejected despite appearing cheaper or more capable.
 
-### Checkpoint: Install and remove software safely
+#### Main task: Install and remove software safely
 
 The player must:
 

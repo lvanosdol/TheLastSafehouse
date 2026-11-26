@@ -3,6 +3,8 @@
 **Status:** Working design with six detailed database lessons and the Registry Investigation boss. Story details and implementation remain open.
 **Updated:** 2026-11-25
 
+Each lesson ends with one checkpoint. Where a separate practice previously existed, it is now the checkpoint's guided first stage. Progress saves after each completed stage.
+
 ## Opening scene
 
 The Workshop is quiet again. With main power restored and the Design Agent component added to the in-game project build, the player sits down with their in-game laptop. Finch appears beside the monitoring display.
@@ -61,6 +63,8 @@ A record can have missing information. A shared device ID can help match a recor
 > **Finch:** "So the ID is the part that tells us which label belongs to which device. Good. I was about to start guessing."
 
 ### Checkpoint: Identify the devices
+
+#### Guided stage
 
 There is no separate practice activity. The player sees these incomplete records:
 
@@ -147,6 +151,8 @@ A missing ID is also a problem for a primary key. Before the rule can be enforce
 
 ### Checkpoint: Repair duplicate IDs
 
+#### Guided stage
+
 There is no separate practice activity. Finch displays two device records with the same ID:
 
 | Device ID | Device name | Room | Serial number |
@@ -186,7 +192,7 @@ The registry accepts the primary-key rule after validation succeeds.
 >
 > **Mara:** "Now that the records can be identified, we can start asking the registry useful questions."
 
-This leads into Lesson 3's SQL queries. Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+This leads into Lesson 3's SQL queries. Checkpoint progress saves after each completed stage. If the player leaves, that stage resumes with completed answers and prior progress preserved.
 
 ## Lesson 3: Finding information with SQL
 
@@ -258,7 +264,9 @@ ORDER BY priority ASC;
 
 The clauses appear in this order: `SELECT`, `FROM`, `WHERE`, then `ORDER BY`. This example returns Workshop devices sorted from the smallest priority number to the largest. It does not change any records.
 
-### Guided practice: Complete a basic query
+### Checkpoint: Find the offline devices
+
+#### Guided stage: Complete a basic query
 
 Using a small practice table, the player fills two blanks and runs:
 
@@ -272,7 +280,7 @@ The available field choices are `device_id`, `device_name`, and `room`. A correc
 
 Feedback identifies a wrong field or an incorrect filter without completing the query. The practice does not change the table. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
-### Checkpoint: Find the offline devices
+#### Main task: Find the offline devices
 
 Finch displays these registry records:
 
@@ -317,7 +325,7 @@ The report shows the offline devices, including the Habitat Ventilation Controll
 >
 > **Finch:** "Right. Still, I'll keep the record."
 
-The discovery remains unexplained. The player moves on to Lesson 4, where they learn how to change records safely. Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+The discovery remains unexplained. The player moves on to Lesson 4, where they learn how to change records safely. Checkpoint progress saves after each completed stage. If the player leaves, that stage resumes with completed answers and prior progress preserved.
 
 ## Lesson 4: Adding and changing records
 
@@ -385,7 +393,9 @@ For this simulated lesson, pressing **Preview** shows the records a statement wo
 
 > **Finch:** "A chance to look before we change anything? I approve of this system."
 
-### Guided practice: Preview one change
+### Checkpoint: Correct the registry
+
+#### Guided stage: Preview one change
 
 The practice table contains `DEV-06`, the Ventilation Sensor, and `DEV-07`, the Coolant Monitor. The player reviews this prepared statement:
 
@@ -399,7 +409,7 @@ They select **Preview**, identify that only the Coolant Monitor would change, an
 
 Feedback explains whether the selected record matches the `WHERE` condition. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
-### Checkpoint: Correct the registry
+#### Main task: Correct the registry
 
 Finch shows the player a few relevant records. The `status` field describes whether a record is Active or Archived; it is separate from the device's true/false `online` field.
 
@@ -454,7 +464,7 @@ The registry reflects the maintenance notes, while the archived Habitat record r
 >
 > **Finch:** "All right. I'd still like to know why someone kept it."
 
-This leads into Lesson 5, where the player learns how device, room, and maintenance records relate to one another. Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+This leads into Lesson 5, where the player learns how device, room, and maintenance records relate to one another. Checkpoint progress saves after each completed stage. If the player leaves, that stage resumes with completed answers and prior progress preserved.
 
 ## Lesson 5: Relationships and joins
 
@@ -546,7 +556,9 @@ After joining tables, `SELECT` can include fields from any of them. Use the tabl
 
 > **Finch:** "So the tables stay separate, but the report can still show their information together. That's much tidier than the pile of notes I found."
 
-### Guided practice: Match the join keys
+### Checkpoint: Build a maintenance report
+
+#### Guided stage: Match the join keys
 
 The player is shown the `devices`, `rooms`, and `maintenance_events` fields and selects the two matching key pairs:
 
@@ -555,7 +567,7 @@ The player is shown the `devices`, `rooms`, and `maintenance_events` fields and 
 
 Correct selections remain marked **Correct**. Incorrect choices receive **Try again** feedback and a reminder to compare the field names and stored values. The player does not write the full query yet. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
-### Checkpoint: Build a maintenance report
+#### Main task: Build a maintenance report
 
 The checkpoint displays the subset of registry records relevant to this report. Other previously recovered devices remain in the registry. The inner join will omit devices that have no matching maintenance event.
 
@@ -633,7 +645,7 @@ The report shows several maintenance events associated with Habitat 02, includin
 >
 > **Finch:** "Maybe. I'll keep them with the rest of the report."
 
-The records raise questions but do not yet establish what happened in Habitat 02. The player moves on to Lesson 6 to verify the registry's integrity. Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+The records raise questions but do not yet establish what happened in Habitat 02. The player moves on to Lesson 6 to verify the registry's integrity. Checkpoint progress saves after each completed stage. If the player leaves, that stage resumes with completed answers and prior progress preserved.
 
 ## Lesson 6: Data integrity and verification
 
@@ -704,7 +716,9 @@ When a check finds a problem:
 >
 > **Mara:** "Exactly. Correcting a problem is part of verification."
 
-### Guided practice: Read a verification result
+### Checkpoint: Verify the recovered records
+
+#### Guided stage: Read a verification result
 
 The player reviews an isolated check showing:
 
@@ -717,7 +731,7 @@ VALUE: NULL
 
 They identify that the event description is missing and that reliable evidence is needed before correcting it. This does not change the practice records. Correct selections remain in place while others can be revised. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
-### Checkpoint: Verify the recovered records
+#### Main task: Verify the recovered records
 
 Finch adds a newly recovered maintenance event to the records under review. Its description is missing:
 
@@ -792,7 +806,7 @@ The corrected records pass the checks, and the recovered registry section become
 >
 > **Finch:** "I'll keep the Habitat records, too. They passed the checks, even if we still don't know their whole story."
 
-The player moves toward the boss recovery operation. The checks verify this recovered section; they do not finish the larger registry restoration or resolve the Habitat mystery. Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+The player moves toward the boss recovery operation. The checks verify this recovered section; they do not finish the larger registry restoration or resolve the Habitat mystery. Checkpoint progress saves after each completed stage. If the player leaves, that stage resumes with completed answers and prior progress preserved.
 
 ## Boss: The Registry Investigation
 

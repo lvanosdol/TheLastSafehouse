@@ -3,6 +3,8 @@
 **Status:** Working design with five condensed lessons and a complete boss design. Mechanics remain subject to implementation and playtesting.
 **Updated:** 2026-11-25
 
+Each lesson ends with one checkpoint containing a guided stage and an independent task. Progress saves after each completed stage.
+
 ## Opening scene
 
 After the Chapter 4 recovery, Finch reviews the Tomas and Nia log. The Coding Agent component has already been added to the in-game project build. Finch uses the recovered archive to update the facility map:

@@ -3,6 +3,8 @@
 **Status:** Working design with seven detailed lessons and a complete boss draft. Timer values and some interaction details remain provisional.
 **Updated:** 2026-11-25
 
+Each lesson ends with one checkpoint. Where a separate practice previously existed, it is now the checkpoint's guided first stage. Progress saves after each completed stage.
+
 ## Story setup
 
 The Asset Registry identifies a backup called `ARCHIVE-09`, but its local copy is damaged. A remote copy still exists in Safehouse storage.
@@ -138,7 +140,9 @@ For example, a `100 MB` file contains `800 megabits`. At an estimated `10 Mbps`,
 
 This is an estimate assuming the speed stays constant and ignoring overhead. A real transfer may take longer.
 
-#### Checkpoint: Map the connection
+### Checkpoint: Map the connection
+
+#### Guided stage
 
 There is no separate practice activity. Finch displays a simulated map showing the Workshop laptop, file server, stationary diagnostic relay, mobile diagnostic unit, satellite connection, and remote archive server. It shows the planned communication route, not a working connection; the player begins restoring the equipment in Lesson 2.
 
@@ -194,7 +198,7 @@ One part of the recovered map has an unlabeled local connection. Finch pauses ov
 
 Her explanation is possible, but unconfirmed. The missing destination remains a small clue, not a reveal. The player moves on to Lesson 2 to examine the network equipment.
 
-Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+Checkpoint progress saves after each completed stage. If the player leaves, that stage resumes with completed answers and prior progress preserved.
 
 ## Lesson 2: Network devices and identifiers
 
@@ -236,7 +240,9 @@ In short: MAC identifies a local interface; IP identifies a network location for
 
 A **port number** helps direct network traffic to a particular service on a device. The IP address helps reach the device; the port helps reach the service on it. For example, secure web traffic commonly uses port `443` for HTTPS. Lesson 4 will cover service and protocol choices in more detail.
 
-#### Guided practice: Identify device roles
+### Checkpoint: Restore the local communication path
+
+#### Guided stage: Identify device roles
 
 The player matches four descriptions to the correct device:
 
@@ -249,7 +255,7 @@ The player matches four descriptions to the correct device:
 
 Correct choices remain marked **Correct**. Incorrect choices receive **Try again** feedback and a reminder about the device's role. The player does not place cables yet. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
-#### Checkpoint: Restore the local communication path
+#### Main task: Restore the local communication path
 
 The player examines the communications rack, connects the local equipment, and uses recovered records to identify network interfaces and addresses. All devices and network activity are simulated.
 
@@ -326,7 +332,7 @@ A recovered label on the router references an unrecognized device identifier. Fi
 
 Her explanation is plausible but unconfirmed. The clue is recorded, but the lesson moves on to connection types and storage.
 
-Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+Checkpoint progress saves after each completed stage. If the player leaves, that stage resumes with completed answers and prior progress preserved.
 
 ## Lesson 3: Internet connections and network storage
 
@@ -379,7 +385,9 @@ Before opening or recovering a file, check **what you need**, **where each copy 
 >
 > **Mara:** "Right. Check the records before deciding."
 
-#### Checkpoint: Find the connection and the archive
+### Checkpoint: Find the connection and the archive
+
+#### Guided stage
 
 There is no separate practice activity. The player reviews fictional service cards and recovered Safehouse records.
 
@@ -462,7 +470,7 @@ Finch also notices the earlier safeguard entry: **REMOTE ACCESS: DENIED**.
 
 The player does not bypass the safeguard, and the scene does not reveal what it protects or establish Echo's motive.
 
-The player moves on to Lesson 4 to investigate the network services. Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+The player moves on to Lesson 4 to investigate the network services. Checkpoint progress saves after each completed stage. If the player leaves, that stage resumes with completed answers and prior progress preserved.
 
 ## Lesson 4: Network services and protocols
 
@@ -516,7 +524,9 @@ A **firewall** applies rules that allow or block traffic. The player should allo
 
 The Chapter 3 safeguard protects a separate evidence store. Configuring the explicitly approved archive connection does not require the player to disable or bypass it; its purpose remains unknown to the player.
 
-#### Guided practice: Trace a request
+### Checkpoint: Establish the archive connection
+
+#### Guided stage: Trace a request
 
 The player arranges the main steps used to reach the secure archive:
 
@@ -526,7 +536,7 @@ DHCP address -> DNS lookup -> HTTPS request -> Firewall rule -> Archive response
 
 Correct steps remain in place; incorrect choices receive **Try again** feedback. The practice explains that this is a simplified path for the scenario, not a complete description of every network exchange. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
-#### Checkpoint: Establish the archive connection
+#### Main task: Establish the archive connection
 
 Finch displays the laptop's network panel, a simulated DNS record, the firewall rules, and a router status panel.
 
@@ -584,7 +594,7 @@ The sign-in page appears on the laptop. Finch's map shows the secure connection 
 
 Finch notes that the archive request and the old **REMOTE ACCESS: DENIED** entry are separate pieces of information; he does not yet know what the safeguard protects. The player moves on to Lesson 5 to configure the mobile unit's wireless connection.
 
-Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+Checkpoint progress saves after each completed stage. If the player leaves, that stage resumes with completed answers and prior progress preserved.
 
 ## Lesson 5: Wireless configuration and security
 
@@ -640,7 +650,9 @@ After changing settings, check that the unit can join the network and that the s
 
 > **Finch:** "A connection that only works when the unit stays in the Workshop would rather defeat the point."
 
-#### Guided practice: Read the alignment gauge
+### Checkpoint: Connect the diagnostic unit
+
+#### Guided stage: Read the alignment gauge
 
 The laptop includes a training version of the antenna alignment control. For this practice, the acceptable range is **30–40**, and the current reading is **25**.
 
@@ -648,7 +660,7 @@ The player uses left and right controls, or the keyboard, to raise the reading i
 
 Incorrect readings remain adjustable and do not affect lesson progress. The practice explains that this gauge is specific to the fictional equipment and is not universal antenna guidance. Three hints and unlimited penalty-free retries remain available.
 
-#### Checkpoint: Connect the diagnostic unit
+#### Main task: Connect the diagnostic unit
 
 The player reviews fictional capability cards, a wireless status report, and measurements taken near the satellite equipment.
 
@@ -719,7 +731,7 @@ Her explanation remains possible but unconfirmed. The unit reports that the **co
 
 Finch unlocks access to the **satellite equipment area**, and its door-unlock cutscene plays. The player can visit and examine the equipment.
 
-Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+Checkpoint progress saves after each completed stage. If the player leaves, that stage resumes with completed answers and prior progress preserved.
 
 ## Lesson 6: Virtualization and cloud technologies
 
@@ -781,7 +793,9 @@ A VM can run on a local laptop without using cloud services. Cloud providers may
 >
 > **Mara:** "Break it down: where is the application running, and where is the archive stored?"
 
-#### Guided practice: Identify the VM parts
+### Checkpoint: Prepare the recovery environment
+
+#### Guided stage: Identify the VM parts
 
 Using a supplied environment card, the player labels:
 
@@ -792,7 +806,7 @@ Using a supplied environment card, the player labels:
 
 Correct labels remain marked **Correct**; incorrect choices receive **Try again** feedback. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
-#### Checkpoint: Prepare the recovery environment
+#### Main task: Prepare the recovery environment
 
 The player reviews fictional equipment and service records, then prepares the simulated VM.
 
@@ -858,7 +872,7 @@ The archive finishes downloading into the restricted recovery environment. Finch
 
 The player moves on to Lesson 7 to evaluate the AI assistant's suggestions and distinguish original records from reconstructions. The archive has been downloaded, but its contents are not yet fully verified.
 
-Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+Checkpoint progress saves after each completed stage. If the player leaves, that stage resumes with completed answers and prior progress preserved.
 
 **Continuity note:** The VM has restricted access to the authorized archive, rather than being completely disconnected. The Chapter 3 `REMOTE ACCESS: DENIED` safeguard protects a separate evidence store; the player does not disable or bypass it.
 
@@ -923,7 +937,9 @@ A **digital signature** helps check who signed a record and whether it has chang
 
 For the recovery, check the manifest's signature first, download the file, and then compare the downloaded file's checksum with the checksum in the verified manifest. Read the log as evidence rather than assuming its claims are automatically true.
 
-#### Guided practice: Sort evidence types
+### Checkpoint: Review the assistant's work
+
+#### Guided stage: Sort evidence types
 
 The player classifies three short items:
 
@@ -935,7 +951,7 @@ The player classifies three short items:
 
 Correct choices remain marked **Correct**; incorrect choices receive **Try again** feedback and a reminder to compare the item with its source. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
-#### Checkpoint: Review the assistant's work
+#### Main task: Review the assistant's work
 
 The recovery assistant presents five items. The player compares each one with the supplied evidence and chooses how to handle it.
 
@@ -1027,7 +1043,7 @@ One readable archive record identifies a nearby **records room**. Finch unlocks 
 
 The player moves toward the boss, where the larger recovery and the original team's log become the focus.
 
-Completed activity progress saves automatically; an unfinished checkpoint restarts when the player returns.
+Checkpoint progress saves after each completed stage. If the player leaves, that stage resumes with completed answers and prior progress preserved.
 
 ## Boss: The Missing Archive Section
 

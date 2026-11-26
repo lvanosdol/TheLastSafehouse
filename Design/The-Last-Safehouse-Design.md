@@ -42,6 +42,8 @@ The app's final name and implementation remain open. Real-world use needs separa
 
 ### General checkpoint loop
 
+Each lesson ends with one checkpoint that serves as both guided practice and assessment. Separate practice activities are not used. Where the lesson needs scaffolding, the checkpoint begins with a guided stage and finishes with the main task. Progress saves after each completed stage, and returning resumes at the first incomplete stage.
+
 1. State the task clearly.
 2. Let the player interact with the relevant simulated tools or, when appropriate, inspect and run code in the practice workspace.
 3. Check both the actual result and the concept the checkpoint is intended to teach.
