@@ -1,4 +1,4 @@
-# Chapter 3 Design
+# Chapter 3: The Registry Investigation
 
 **Status:** Working design with six detailed database lessons and the Registry Investigation boss. Implementation rules are specified; story details remain open.
 **Updated:** 2026-11-25

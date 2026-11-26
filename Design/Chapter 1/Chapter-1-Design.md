@@ -1,4 +1,4 @@
-# The Last Safehouse — Chapter 1 Design
+# Chapter 1: The Workshop Restoration
 
 > This is the authoritative Chapter 1 design. Earlier drafts are historical and must not be treated as current requirements.
 

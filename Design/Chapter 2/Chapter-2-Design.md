@@ -1,4 +1,4 @@
-# Chapter 2 Design
+# Chapter 2: The Power Restoration
 
 **Status:** Working design with six detailed lessons and a complete boss. Implementation rules are specified; the timer duration remains subject to playtesting. The [previous Chapter 2 draft](../Previous%20Drafts/Chapter-2-Previous-Draft-2026-11-20.md) is preserved for historical reference.
 
