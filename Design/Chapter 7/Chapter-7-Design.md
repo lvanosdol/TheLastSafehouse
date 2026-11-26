@@ -416,15 +416,19 @@ A status indicator is a useful starting point, not always the full picture. Revi
 
 The player compares a current status panel with a recent alert and a responder's simulated check.
 
-#### Page 3: Use a troubleshooting method
+#### Page 3: Apply the troubleshooting method
 
-When a system reports a problem, identify the symptom, gather evidence, form a theory, test one change at a time, and verify the result. Document changes and avoid disturbing original records.
+Not a new method. Chapter 6's loop — identify the symptom, gather evidence, form a theory, test one change, then verify the result — is the method here too, and the lesson does not restate it.
+
+What changes is what is at stake while it runs. People are inside the systems being tested, so a change that would be merely inconvenient in a lab can be unsafe here, and a test that disturbs a Habitat's status can delay its release. Use the same loop and choose the least disruptive test first.
 
 The player reviews a fictional communications fault and chooses a safe next test instead of changing several settings at once.
 
-#### Page 4: Check network and communications
+#### Page 4: Apply the network checks
 
-A working local connection does not guarantee that a remote service is available. Check the relevant connection, approved route, and actual service. A timeout alone does not establish why a test failed.
+The checks are the Chapter 6 set — loopback, the approved gateway, name resolution, and the tunnel — applied to a Habitat's reporting path instead of to the archive. A passing local test says nothing about the remote service, and a timeout alone does not establish why a test failed.
+
+What is new is the consequence. If the communication path is down, the team cannot confirm a safe route before opening a door, so the release waits rather than proceeding on a green light elsewhere.
 
 The player checks a simulated Habitat communication channel and confirms that a test message is received and acknowledged.
 
