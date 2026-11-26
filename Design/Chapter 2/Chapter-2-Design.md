@@ -1,6 +1,6 @@
 # Chapter 2 Design
 
-**Status:** Working design with six lessons and a boss direction. The [previous Chapter 2 draft](../Previous%20Drafts/Chapter-2-Previous-Draft-2026-11-20.md) is preserved for historical reference.
+**Status:** Working design with six detailed lessons and a complete boss. Implementation rules are specified; the timer duration remains subject to playtesting. The [previous Chapter 2 draft](../Previous%20Drafts/Chapter-2-Previous-Draft-2026-11-20.md) is preserved for historical reference.
 
 Chapter 2 focuses on programming fundamentals. The lessons and boss remain working designs that can be refined during development. The reference images are guides, not text to copy.
 
@@ -12,7 +12,7 @@ Present teaching material one manageable section at a time, with Next and Back b
 
 Each lesson ends with one checkpoint that provides guided coaching and an assessed result. Earlier code samples and demonstrations are explanatory examples, not separate scored practice activities.
 
-Checkpoint progress saves after each completed step. If the player closes and returns during a checkpoint, that step resumes with prior answers and progress preserved. Lesson sticky notes continue to save automatically, and the boss follows its separate resume rules.
+Checkpoint progress saves after each completed stage. If the player leaves, the current stage resumes with completed answers and prior work preserved. Lesson sticky notes continue to save automatically, and the boss follows its separate resume rules.
 
 ## Learn & Try workspace
 
@@ -691,6 +691,19 @@ Finch uses the monitor to disconnect nonessential loads and restore local chargi
 > **Finch:** "One more thing survived the outage. I believe you've earned it."
 
 Inside is a thumb drive containing the Design Agent build component. Mara hands the drive to the player, who adds it to the in-game project build. The agent is not launched or used during gameplay. If the player earned the perfect boss bonus, the drive contains the upgraded Design Agent component instead; the player never receives both versions.
+
+## Accessibility requirements
+
+These apply to the lessons as well as the boss, which has its own section above.
+
+- The code editor and the test bench work with keyboard only, and every control has a screen-reader label.
+- Code, output, and error text are announced as text; running a lesson test never depends on color.
+- The binary chart and the word bank are navigable as labelled tables and lists, with each entry reading its position and value.
+- Locked word-bank letters stay out of accessibility output until they unlock.
+- Status such as **Correct**, **Incorrect**, **Perfect finish available**, and **Perfect finish forfeited** is written, not shown by color alone.
+- Timer warnings, remaining time, and the transition to unlimited time are announced without interrupting input.
+- Lessons have no time limit. The boss timer pauses for help, menus, accessibility overlays, lost focus, and a closed game.
+- Reduced-motion settings replace the boss's screen effects and progress animation with instant state changes.
 
 ## Playtest validation
 

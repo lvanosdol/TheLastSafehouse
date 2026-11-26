@@ -64,8 +64,8 @@
   "checks": 10,
   "volume": {
     "files": 39,
-    "lines": 22431,
-    "words": 204086
+    "lines": 22444,
+    "words": 204301
   },
   "generated": "2026-11-26",
   "template": "markdown",
@@ -77,7 +77,7 @@
       "headings_without_blank_line": 0
     },
     "Design/Chapter 2/Chapter-2-Design.md": {
-      "headings": 40,
+      "headings": 41,
       "duplicate_headings": 0,
       "bold_labels": 0,
       "headings_without_blank_line": 0

@@ -23,7 +23,7 @@ Audited:
 - `docs/roadmap.md`, `docs/decisions.md`, `docs/playtests/README.md`
 - `Design/Previous Drafts/*.md` (27 archived files, checked only for blocking issues)
 
-Volume: 22,431 lines and 204,086 words across the whole scope; 8,548 lines and 83,356 words in the active set.
+Volume: 22,444 lines and 204,301 words across the whole scope; 8,561 lines and 83,571 words in the active set.
 
 ## Executive summary
 
@@ -72,7 +72,7 @@ Per-document detail for the active set:
 | Document | Headings | Repeated | Bold labels | Missing blank line |
 |---|---:|---:|---:|---:|
 | Chapter 1 | 102 | 23 | 4 | 0 |
-| Chapter 2 | 40 | 0 | 0 | 0 |
+| Chapter 2 | 41 | 0 | 0 | 0 |
 | Chapter 3 | 97 | 22 | 18 | 0 |
 | Chapter 4 | 121 | 25 | 28 | 0 |
 | Chapter 5 | 127 | 19 | 6 | 0 |
@@ -205,8 +205,8 @@ The merged inventory, embedded so the next run can compute a delta without parsi
   "checks": 10,
   "volume": {
     "files": 39,
-    "lines": 22431,
-    "words": 204086
+    "lines": 22444,
+    "words": 204301
   },
   "generated": "2026-11-26",
   "template": "markdown",
@@ -218,7 +218,7 @@ The merged inventory, embedded so the next run can compute a delta without parsi
       "headings_without_blank_line": 0
     },
     "Design/Chapter 2/Chapter-2-Design.md": {
-      "headings": 40,
+      "headings": 41,
       "duplicate_headings": 0,
       "bold_labels": 0,
       "headings_without_blank_line": 0

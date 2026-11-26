@@ -535,7 +535,7 @@ Status panels, records, rule conditions, role permissions, and the plan work wit
 
 ## Final Boss: The Last Safehouse
 
-**Status:** Complete working design. Mechanics remain subject to implementation and playtesting.
+**Status:** Complete working design. Mechanics remain subject to playtesting.
 **Goal:** Use skills from across the game to stop Mara's purge, protect and free the inhabitants, and preserve the evidence.
 
 This is one connected operation, not a separate quiz for each chapter. Each part gives the player something needed for the next.

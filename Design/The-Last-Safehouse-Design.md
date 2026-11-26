@@ -1,10 +1,10 @@
 # The Last Safehouse — Working Design Record
 
-**Status:** Brainstorming draft; no implementation decisions are final unless explicitly confirmed below.
+**Status:** Design complete for Chapters 1–7. Implementation has not started; the engine choice, target operating-system version, and the app's name remain open.
 **Updated:** 2026-11-26
 **Purpose:** Serve as the main working record for the game's confirmed decisions, brainstormed drafts, and open questions. Keep it updated as planning continues.
 
-**Navigation:** [Authoritative Chapter 1](Chapter%201/Chapter-1-Design.md) | [Current campaign story (Section 15)](#15-campaign-story--working-narrative) | [Curriculum map (Section 16)](#16-seven-chapter-curriculum-scaffold) | [Current Chapter 2 design](Chapter%202/Chapter-2-Design.md) | [Earlier reward ideas](Previous%20Drafts/Earlier-Reward-Ideas.md) | [Archived historical sections](Superseded/Superseded-Design-Sections.md)
+**Navigation:** [Chapter 1](Chapter%201/Chapter-1-Design.md) | [Chapter 2](Chapter%202/Chapter-2-Design.md) | [Chapter 3](Chapter%203/Chapter-3-Design.md) | [Chapter 4](Chapter%204/Chapter-4-Design.md) | [Chapter 5](Chapter%205/Chapter-5-Design.md) | [Chapter 6](Chapter%206/Chapter-6-Design.md) | [Chapter 7](Chapter%207/Chapter-7-Design.md) | [Campaign story (Section 15)](#15-campaign-story--working-narrative) | [Curriculum map (Section 16)](#16-seven-chapter-curriculum-scaffold) | [Earlier reward ideas](Previous%20Drafts/Earlier-Reward-Ideas.md) | [Archived sections](Superseded/Superseded-Design-Sections.md)
 
 ## 1. Product vision
 
@@ -209,7 +209,7 @@ Historical details are retained in the [archive](Superseded/Superseded-Design-Se
 
 ## 15. Campaign story — working narrative
 
-**Status:** The apparent-villain and dual-reveal storyline below is the current direction. The player initially believes Mara is the ally and The Echo is the enemy; later, the player discovers they are The Echo and that Mara is the true villain. Exact reveal timing, foreshadowing, dialogue, and final outcomes remain open.
+**Status:** Confirmed direction, and now written into the chapters. The player initially believes Mara is the ally and The Echo is the enemy; the Chapter 6 boss reveals that the player is Echo and that Mara built and ran the laboratory, and the Chapter 7 ending decision resolves the outcome. Dialogue wording may still change in production.
 
 ### Premise and hidden history
 
@@ -241,7 +241,7 @@ In the late game, evidence links the player's own actions and identity to The Ec
 The previous endings based on joining Mara's Sentinel partnership or rejecting her rehabilitation are superseded. The final confrontation, player choices, and consequences need to be designed for the new reveal. Do not frame the player's anger or sense of betrayal as wrongdoing; future choices should center on safety, autonomy, evidence, and what happens to the lab's subjects.
 ## 16. Seven-chapter curriculum scaffold
 
-**Status:** Seven chapters is the campaign target. The subject map is a working direction, not a finalized chapter-by-chapter curriculum.
+**Status:** Seven chapters, each with its own design file. The subject map below is settled; the chapter files remain authoritative for detail.
 
 The campaign aims for a beginner-to-practical pathway in IT, networking, databases, troubleshooting, and task-appropriate automation. It teaches foundations and evidence-based judgment rather than trying to cover every specialization.
 
@@ -251,7 +251,7 @@ The campaign aims for a beginner-to-practical pathway in IT, networking, databas
 4. **Networking, cloud, and AI-assisted recovery:** See the [Chapter 4 design](Chapter%204/Chapter-4-Design.md).
 5. **Security, access control, and evidence handling:** See the [Chapter 5 design](Chapter%205/Chapter-5-Design.md).
 6. **Automation, troubleshooting, and data continuity:** See the [Chapter 6 design](Chapter%206/Chapter-6-Design.md).
-7. **Digital literacy, communication, and identity resolution:** See the [Chapter 7 design](Chapter%207/Chapter-7-Design.md). Apply the full curriculum, communicate the recovered evidence, protect the Safehouse’s inhabitants, and resolve the player’s identity as Echo. Final choices and endings remain open.
+7. **Digital literacy, communication, and identity resolution:** See the [Chapter 7 design](Chapter%207/Chapter-7-Design.md). Apply the full curriculum, communicate the recovered evidence, protect the Safehouse’s inhabitants, and resolve the player’s identity as Echo. Final choices and three endings are defined in the Chapter 7 design.
 
 Pace each chapter in manageable steps with practice and meaningful checks. Some topics need extensive lessons and reading to teach important information thoroughly; do not make brevity or interactivity a reason to leave it out. The campaign need not attempt to teach every specialization.
 ## 17. Chapter 2 — Redesign

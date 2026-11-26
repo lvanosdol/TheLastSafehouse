@@ -142,7 +142,7 @@ The recovered names and rooms appear on Finch's monitor.
 >
 > **Mara:** "Good. But knowing what a record says doesn't mean the registry is reliable. Let's look at how it's structured."
 
-This leads into Lesson 2. Completed activity progress saves automatically; if the player leaves before finishing the checkpoint, it restarts when they return.
+This leads into Lesson 2. Checkpoint progress saves after each completed stage. If the player leaves, the current stage resumes with completed answers and prior work preserved.
 
 ## Lesson 2: Schemas and primary keys
 
