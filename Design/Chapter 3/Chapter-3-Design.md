@@ -1123,6 +1123,8 @@ Finch notices an inventory entry for a sealed supply case in the Workshop.
 
 > **Finch:** "There's one more thing. The restored inventory lists a case nearby. It might be worth a look."
 
+### Reward
+
 The player finds and opens the case, then adds the **Development Setup Agent** component from its thumb drive to the in-game project build. Completing the boss earns the standard component; a perfect finish earns the upgraded version, never both. The component is not used during gameplay. In the finished downloadable app, this agent will help compare development tools while the user chooses and installs them.
 
 ## Accessibility requirements

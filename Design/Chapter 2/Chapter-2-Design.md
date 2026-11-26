@@ -704,6 +704,8 @@ Finch uses the monitor to disconnect nonessential loads and restore local chargi
 
 > **Finch:** "One more thing survived the outage. I believe you've earned it."
 
+### Reward
+
 Inside is a thumb drive containing the Design Agent build component. Mara hands the drive to the player, who adds it to the in-game project build. The agent is not launched or used during gameplay. If the player earned the perfect boss bonus, the drive contains the upgraded Design Agent component instead; the player never receives both versions.
 
 ## Accessibility requirements

@@ -976,6 +976,8 @@ After the checks pass and the file is blocked, the Workshop application starts n
 >
 > **Finch:** “Now, where did I put your welcome present?”
 
+### Reward
+
 A secret compartment opens at the end of the cutscene with a thumb drive containing the Project Planning Agent build component. The drive contains either its standard or earned perfect-finish version, never both.
 
 Finch is the Safehouse's system in holographic form, with a comedic personality and damaged memories. His system was destroyed years earlier when Echo destroyed the facility.
