@@ -1893,30 +1893,68 @@ PROTECTED EVIDENCE STORE: SEALED
 
 The final action is not a separate Submit button. When the last check passes, Finch brings the gateway online automatically.
 
-The door opens with a **Door unlocked** message, caption, and reduced-motion alternative. The player can choose when to enter.
-
 ### Ending
 
-The unresolved findings appear together:
+The Systems Wing door opens with a visible **Door unlocked** message and caption. Before the player enters, Finch brings the unresolved findings back into view:
 
 ```text
-HABITAT ACCESS CHANGED: M.VALE
+02:14  HABITAT ACCESS CHANGED: M.VALE
+       ORIGIN: WORKSHOP TERMINAL
+
 HIDDEN ROLE: RESEARCH-OBSERVATION
 LEGACY IDENTITY: E.C.H.O_Thread_01
 PROTECTED EVIDENCE STORE: STILL SEALED
 ```
 
-> **Finch:** "The same collection contains your authentication response and Mara's access changes."
->
-> **Mara:** "Stolen credentials and stale mappings. We've discussed this."
->
-> **Finch:** "We have. We haven't verified it."
+Mara sees the preserved records.
 
-Mara tells them to leave the records alone and proceed into the Systems Wing. Finch quietly preserves the Unresolved Records, including sources, uncertainties, and Mara's explanations alongside the original findings.
+> **Mara:** “Why is that still open? We agreed to leave those records alone.”
+>
+> **Finch:** “We agreed to leave the protected store sealed. I preserved the records we were already authorized to review.”
+>
+> **Mara:** “They are incomplete. Incomplete records are how people get accused of things they didn’t do.”
+>
+> **Finch:** “Then the complete record should help clear things up.”
+>
+> **Mara:** “We don’t have time for this.”
+
+The player can respond with either dialogue option. The choice records the player's tone for later conversations but does not change access, rewards, or the current objective.
+
+**Option A**
+
+> **Player:** “I’ll keep working. But we’re not leaving these questions buried.”
+
+**Option B**
+
+> **Player:** “Fine. The gateway comes first.”
+
+Finch confirms the incident result:
+
+```text
+MALWARE SPREAD: STOPPED
+RECOVERY SERVICE: AVAILABLE
+MFA: ENABLED
+ACCESS: LEAST PRIVILEGE
+PACKAGE: RESTRICTED AND VERIFIED
+```
+
+Mara immediately turns toward the Systems Wing.
+
+> **Mara:** “The automation core controls backups, maintenance routines, and the remaining environmental systems. It has to be restored.”
+>
+> **Finch:** “It also lists a fragmented audit archive.”
+>
+> **Mara:** “The audit archive is not the priority.”
+>
+> **Finch:** “It might be the only complete record of what happened.”
 
 ### Reward
 
-A sealed security case contains a physical thumb drive with the **Testing Agent build component**.
+Finch notices a sealed security case inside the gateway cabinet.
+
+> **Finch:** “One more item survived the lockdown. I believe this belongs to the project.”
+
+The case contains a physical thumb drive with the **Testing Agent build component**.
 
 - Standard boss completion provides the standard Testing Agent.
 - A perfect finish provides the upgraded Testing Agent instead.
@@ -1925,18 +1963,32 @@ A sealed security case contains a physical thumb drive with the **Testing Agent 
 - It is not launched or used during gameplay.
 - The finished app remains intended for download only after the full campaign and Chapter 7 boss.
 
-### Chapter 6 setup
+Mara barely acknowledges the case.
+
+> **Mara:** “Good. Bring it with you.”
+>
+> **Finch:** “She didn’t ask what it was.”
+
+Finch preserves the Unresolved Records, including each source, each uncertainty, and Mara's explanations kept separate from the original findings. Mara is already walking toward the Systems Wing.
+
+The chapter ends as the player crosses the unlocked threshold.
+
+### Chapter 6 handoff
 
 The Systems Wing opens onto the automation and recovery core:
 
 ```text
 SYSTEMS WING: ACCESS GRANTED
-AUTOMATION CORE: STANDBY
-AUDIT HISTORY: FRAGMENTED
-RECOVERY PATH: AVAILABLE
+AUTOMATION CORE: SAFE MODE
+BACKUP QUEUE: HALTED
+SCHEDULED MAINTENANCE: OFFLINE
+AUDIT ARCHIVE: FRAGMENTED
+RECOVERY LOGS: AVAILABLE
 ```
 
-Finch believes the deleted audit history may be reconstructed in the automation core. Mara wants the next system restored before anyone revisits the security evidence. That creates Chapter 6's immediate objective without resolving the identity reveal.
+Finch believes the halted recovery queue can reconstruct parts of the deleted audit history. Mara insists that restoring the automation core is the priority.
+
+Chapter 6 begins with the player entering the Systems Wing. Its immediate objective is to restore the Automation Core and recover the queued audit records before the remaining backups become unusable.
 
 ### Failure and retry behavior
 

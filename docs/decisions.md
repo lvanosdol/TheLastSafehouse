@@ -47,3 +47,8 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-25 | Redesign the Chapter 5 boss as a six-part security incident | Require the player to apply all eight lessons across the facility map while preserving the sealed evidence store. |
 | 2026-11-25 | Give the Chapter 5 boss a 35-minute automated containment reset | Add an in-world reason for urgency while preserving all original evidence, progress, and the standard reward after expiry. |
 | 2026-11-25 | Award the Testing Agent as a project build component in Chapter 5 | The standard or upgraded version joins the in-game app build but is not used during gameplay; the finished app is downloadable after Chapter 7. |
+| 2026-11-25 | End Chapter 5 with Mara seeing Finch's preserved evidence | Establish a visible breach in trust while keeping Mara's participation necessary and the full reveal reserved for Chapter 7. |
+| 2026-11-25 | Make the player's Chapter 5 closing response affect tone only | Preserve player agency without branching access, rewards, or the main campaign outcome. |
+| 2026-11-25 | Begin Chapter 6 at the Systems Wing automation core | Connect the practical need to restore backups and recovery services with Finch's investigation of the fragmented audit history. |
+| 2026-11-25 | Make the player's closing response in Chapter 5 affect dialogue tone only | Preserve player agency while keeping access, rewards, and the campaign path consistent. |
+| 2026-11-25 | Carry the Unresolved Records and sealed evidence store into Chapter 6 | Preserve the mystery and distinguish the recovered security records from the protected evidence that remains unavailable until Chapter 7. |
