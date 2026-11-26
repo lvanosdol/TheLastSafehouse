@@ -87,6 +87,8 @@ Finch opens the **Backup Planner**. The protected evidence store remains sealed;
 
 The left side explains each topic. The right side contains the same interactive planner throughout the lesson, so the player can try each idea as they learn rather than repeating it in a separate practice activity. The player can move back and review pages during the checkpoint. All tools and data are simulated.
 
+Examples use a temporary practice plan. Moving between lesson pages preserves the player's work on that example, while **Reset example** restores the demonstrated starting values without changing the checkpoint. The checkpoint begins from its own controlled snapshot.
+
 #### Page 1: Data continuity
 
 Data continuity means keeping important information available and recoverable when something goes wrong. A plan considers what needs protecting, how recently it must be backed up, and how quickly it needs to be restored.
@@ -121,7 +123,9 @@ The player sees how a changed practice file is added to an incremental backup wi
 
 Local storage is nearby and convenient but can be affected by the same incident as the original. A NAS is network-attached storage shared over a network. Cloud storage is hosted remotely. A system image describes what is backed up, not where it is stored.
 
-The player compares destinations and sees why copies in separate locations are safer than copies on the same device.
+A second copy must be in an independent failure domain. Two folders on the same drive do not protect against that drive failing, and two drives in the same computer may be lost together in the same incident. A local copy and a remote copy provide better separation.
+
+The player compares destinations and identifies which pairs provide genuinely independent protection.
 
 #### Page 7: Schedule, retention, and access
 
@@ -134,6 +138,8 @@ The player adjusts these settings and sees a plain-language summary.
 A completed backup job does not guarantee that the needed data can be recovered. A test restore checks that a copy can actually be read and restored.
 
 The player restores a practice file into a separate test location, leaving its source unchanged, and compares it with the expected version.
+
+A successful restore proves that the selected copy can be read and matches the expected backed-up version. It does not prove that the source was never altered before backup, that every file in a larger backup set is valid, or that the information inside the file is true.
 
 #### Page 9: Why RAID is not a backup
 
@@ -153,33 +159,42 @@ The player configures a plan for:
 - Audit archive fragments
 - Backup queue metadata
 
-The plan must include an initial full backup, incremental follow-up backups, two separate storage locations, and access limited to the authorized recovery role. The player also chooses a schedule and retention period; the planner explains their consequences instead of demanding an arbitrary single answer.
+The plan must include an initial full backup, incremental follow-up backups, two independent storage locations, and access limited to the authorized recovery role. The player also chooses a schedule and retention period; the planner explains their consequences instead of demanding an arbitrary single answer.
 
-The player runs the simulated backups and restores one file to a separate test location. The planner verifies that the restored file matches the expected backed-up version. A match confirms this test copy matches that version; it does not prove that the record's claims are true.
+The player then completes a restore-chain test:
+
+1. Run the initial full backup.
+2. Change one practice file and run the first incremental backup.
+3. Change the same file again and run the second incremental backup.
+4. Restore the latest version of that file using the full backup and the correct incremental copies.
+5. Restore an unchanged file from an earlier point to confirm which backup contains its expected version.
+6. Verify that each restored copy matches the expected backed-up version.
+
+All restores go to a separate test location and leave the original files unchanged. A match confirms that the test copy matches the backed-up version; it does not prove that the record's claims are true.
 
 ### Feedback and hints
 
-Incomplete choices remain editable and receive specific feedback. For example, two folders on the same device are identified as one storage location, and a restore attempted before the needed backup exists explains what is missing.
+Incomplete choices remain editable and receive specific feedback. For example, two folders on the same drive are identified as one failure domain, a restore attempted before the needed backup exists explains what is missing, and attempting to restore the latest version from an incomplete backup chain identifies the missing full or incremental copy.
 
 Three available hints focus on the purpose of the copies, the backup sequence, and how to verify recovery without giving away the complete plan. Hints and retries are unlimited and penalty-free.
 
 ### Completion and story clue
 
-The restored test file contains:
+The restored backup index contains:
 
 ```text
 AUDIT SHARD 03
 SOURCE: HABITAT NETWORK
-STATUS: FRAGMENTED
+BACKUP STATUS: INCOMPLETE
 ```
 
 > **Mara:** “Old maintenance traffic.”
 >
 > **Finch:** “I'll keep a copy anyway.”
 
-Finch adds the fragment and Mara's explanation to **Unresolved Records**, clearly marking her explanation as unverified. The fragment is preserved separately from any later interpretation or reconstruction. The lesson does not reveal what happened in the Habitat yet.
+Finch adds the manifest entry and Mara's explanation to **Unresolved Records**, clearly marking her explanation as unverified. The backup index reveals that a shard exists without exposing the shard's underlying records. The lesson does not reveal what happened in the Habitat yet.
 
-Completed activity progress saves automatically. If the player leaves during an unfinished checkpoint stage, that stage restarts on return.
+Checkpoint progress saves after each completed stage. If the player leaves, the current stage resumes with completed answers and prior work preserved.
 
 ### Accessibility
 
