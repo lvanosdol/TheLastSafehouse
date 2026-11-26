@@ -24,7 +24,7 @@ Build the game in **Unity** (current LTS release at project start), and render t
 
 ## Validation gate
 
-The web half of the spike is built — see `prototype/` and its `ACCESSIBILITY-TEST.md`. The decision is provisional until one spike passes:
+The web half of the spike is built — see `prototype/` and its `ACCESSIBILITY-TEST.md`, with results in `docs/playtests/2026-11-26-spike-web-layer.md`. **The accessible-UI half passed on 2026-11-26**: a screen reader read the permission table with its column headings, and Escape returned focus correctly. The remaining half is embedding the same page in the Unity shell.
 
 1. A Unity HDRP interior with a walkable camera.
 2. An embedded web page containing the Chapter 1 mock desktop, the folder Security dialog, and one terminal command.
