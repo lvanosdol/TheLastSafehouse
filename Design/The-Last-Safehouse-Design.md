@@ -157,10 +157,11 @@ Each chapter's earned component arrives on a separate in-game thumb drive. The p
 **Status:** Updated for the IT/networking direction. Chapter 1-specific questions are maintained in Section 18; the earlier Python-only lesson, f-string, and Console Repair timer questions are superseded.
 
 - Final engine and desktop/mobile architecture.
+- Which operating-system version the build targets, since some real wording differs between versions.
 - How to safely execute or simulate PowerShell, Bash, and any later Python/SQL practice without granting access to the player's real machine or network.
 - Exact command subsets, script-editor behavior, and equivalent-solution validation for cross-platform shell lessons.
-- Further development of Chapters 1–4 and the detailed direction for Chapters 5–7.
-- How deeply to cover each topic and which advanced subjects should remain optional as the seven-chapter curriculum develops.
+- The final name of the seven-agent app, and how it is presented after Chapter 7.
+- How deeply to cover each topic, and which advanced subjects stay optional now that all seven chapters are designed.
 - How the downloadable development app can responsibly support real-world use, including privacy, security, testing, reliability, and AI-service requirements.
 
 ## 11. Planning workflow

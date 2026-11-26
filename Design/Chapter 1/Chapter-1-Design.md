@@ -216,10 +216,10 @@ The player sorts four new examples:
 
 | Example | Correct job |
 |---|---|
-| Pressing a key | Input |
-| A processor calculating a total | Processing |
-| Sound playing through speakers | Output |
-| Saving a document to a drive | Storage |
+| Typing an address into a search field | Input |
+| A spreadsheet recalculating a column | Processing |
+| A photo being read from the drive into an editor | Storage |
+| A printer producing a page | Output |
 
 The player also answers where a reopened document must have been kept after shutdown: **storage**.
 
@@ -696,7 +696,7 @@ Installer choices and the Installed apps list support keyboard navigation. Sourc
 
 ### Status and approach
 
-The Chapter 1 boss is untimed. It checks the player's understanding and the actual simulated file, account, configuration, and protection state. It does not require shell commands, script execution, real system changes, or a separate final Submit.
+The Chapter 1 boss is untimed. It checks the player's understanding and the actual simulated file, account, configuration, and protection state. It does not require shell commands, script execution, real system changes, or a separate final Submit. The boss is a guided checklist rather than a test of unassisted choices: it walks the player through the loop the lessons taught, and later bosses introduce candidates, refusals, and judgment calls.
 
 The player applies the seven lessons to restore the Workshop and preserve its records.
 
@@ -804,7 +804,7 @@ After the evidence set is verified, Finch briefly reads the recovered logs.
 >
 > **Mara:** “Or an old record is missing context. Preserve it and keep moving.”
 
-The door record must include a date or source marker that distinguishes it from the player's own arrival. It is a story clue, not another objective.
+The door record carries an asset ID that is not the player's and a timestamp before the arrival record, with the gap shown relative rather than as a calendar date. It is a story clue, not another objective.
 
 Result:
 
@@ -916,7 +916,7 @@ Finch contributes short lines as each goal completes rather than remaining silen
 
 ### Fictional log contents
 
-The door entry is a story clue, not an additional boss objective. It must not be mistaken for the player's own arrival record; implementation must include a visible source, date, or location distinction.
+The door entry is a story clue, not an additional boss objective. It must not be mistaken for the player's own arrival record; the non-player asset ID and the earlier timestamp make the difference visible, and the gap is shown relative rather than as a calendar date.
 
 **door.log**
 
@@ -998,29 +998,20 @@ The in-game laptop is the player's computer for later lessons and checkpoints. E
 - Offer three hint levels without revealing the complete solution.
 - Lesson hints and retries never affect the perfect bonus.
 - The device-protection lesson introduces the simulated Windows Security interface and a benign notification. The actual threat alert and **Block threat** response remain reserved for the boss.
-- The player stays on the prepared standard account throughout the chapter. Mara cannot authorize administrator actions and never offers to do so.
+- The player stays on the prepared standard account throughout the chapter. Mara held the administrator identity before Echo took it and locked her out, so she cannot authorize administrator actions now and never offers to.
 - The Workshop folders and delegated security response exist because of the facility's old administration. This prepares the later reveal that Echo held the administrator identity.
 - The threat alert appears only after all earlier boss recovery checks are complete.
 - No Echo message or taunt appears in Chapter 1.
 
 ## Saving
 
-Automatically save progress after:
-
-- Completing the hardware assembly
-- Completing the evidence lesson
-- Completing the account and recovery lesson
-- Completing the device-protection lesson
-- Entering the boss
-- Completing each boss goal and individual recovery action
-
-Returning restores files, folders, account state, sign-in state, README progress, alert state, and the current boss goal.
+Progress saves after every completed interaction that changes state, not after every click. Returning resumes at the start of the current step with prior answers kept, and restores files, folders, account state, sign-in state, README progress, alert state, and the current boss goal.
 
 ## Perfect-run rules and rewards
 
 Ordinary mistakes, corrections, undos, and repeated attempts do not forfeit the perfect bonus.
 
-Using an optional boss hint or Mara's AI-powered help triggers a warning. Confirming help forfeits the upgrade; cancelling preserves eligibility. Lesson hints and retries never affect eligibility.
+Using the optional **Hint** control or **Ask Mara** triggers a warning. Confirming either forfeits the upgrade; cancelling preserves eligibility. Lesson hints and retries never affect eligibility.
 
 Completing the chapter adds the **Project Planning Agent** component to the in-game software project. Its standard version is designed to help the eventual real-world app's user brainstorm ideas and save approved drafts in an organized project folder. A perfect boss finish selects its upgraded version, designed to compare alternative ideas and create a more detailed development roadmap.
 
@@ -1039,6 +1030,10 @@ Finch is a story character and the Safehouse's holographic system, not a reward.
 - Captions accompany all spoken dialogue and system sounds.
 - Save-state, completion, and error feedback are available as text.
 - File permission tables and installed-app lists are screen-reader compatible.
+- Focus order runs predictably through the guidance pane, the practice environment, and the result panel.
+- Verification results, permission denials, and state changes are announced as text when they appear.
+- Permission and installed-app tables remain readable at large text sizes.
+- The simulated-machine marker is announced once when a simulated screen opens, not on every focus change.
 
 ## Simulation fidelity
 
@@ -1074,4 +1069,3 @@ The in-game computer behaves like a real computer, not a game menu with computer
 ## Open implementation questions
 
 - Final wording of the repair safety note after beginner review
-- Which operating-system version the build targets, since some real wording differs between Windows versions
