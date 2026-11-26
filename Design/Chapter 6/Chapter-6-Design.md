@@ -433,7 +433,7 @@ The requirement is a working export service with preserved originals, an attribu
 6. Enable the export service alone in the test profile and observe the result. Then apply the same single change to the simulated core.
 7. Run the four verification checks: the service runs and starts automatically, a scheduled test export reaches a separate destination complete and readable, the backup queue still works while the recovered fragments and originals are unchanged, and the service remains enabled and exports after the core restarts.
 8. Schedule the export check, run it once, then disable the service in a test and confirm that a single plain-language alert names the affected service and destination. Re-enable the service and confirm that the alert clears.
-9. Complete the troubleshooting record — symptom, evidence, theory, tests including the uninformative one, change, verification, and what remains unknown — and file it in **Unresolved Records** with its source linked. Choose the accurate conclusion: the service was disabled, and the evidence does not establish who used the account or why.
+9. Complete the troubleshooting record — symptom, evidence, theory, tests including the uninformative one, change, verification, and what remains unknown — and file it in **Unresolved Records** as the first entry in an **export path** thread, with its source linked. Choose the accurate conclusion: the service was disabled, and the evidence does not establish who used the account or why.
 
 The test profile is separate from the live core. No step exports, restores, or modifies the sealed evidence store.
 
@@ -462,7 +462,7 @@ LABEL: TEMPORARY MAINTENANCE
 
 Finch notes that the delegated maintenance role permits service changes without granting administrator actions, so nothing in the record was unauthorized. It also shows a temporary change that stayed in place while the audit archive was being recovered, and an export path that carried nothing out of the facility in that time.
 
-The player's filed record now holds the change record, the verification results, the unknowns, and Mara's explanation, each with its source. How the player raised it with her is recorded as tone only:
+The player's filed record now opens the **export path** thread in **Unresolved Records** with the change record, the verification results, the unknowns, and Mara's explanation, each with its source. How the player raised it with her is recorded as tone only:
 
 - **Option A:** “Your account disabled it. I filed that.”
 - **Option B:** “The service is back. Nothing else to report.”
@@ -484,35 +484,39 @@ The board and its controls work with keyboard and screen reader, without drag-on
 
 The audit export service is working again, but the Automation Core begins restarting before its services become available. Finch captures the last startup messages before the next restart.
 
-> **Finch:** “We repaired the export service. Now the core will not stay awake long enough to use it.”
+> **Finch:** “We repaired the export service, so the core left safe mode. Now it will not stay awake long enough to use it.”
 >
 > **Mara:** “It was running a moment ago.”
 >
-> **Finch:** “Then let's find out what changed before we change anything else.”
+> **Finch:** “It was running a limited startup a moment ago. This is the first full startup since the repairs, and something in it is failing. Let's find out what changed before we change anything else.”
 
-Finch opens the **Boot Lab**. It shows a simulated startup sequence, boot-device status, recovery options, and recent startup changes. The player can investigate without affecting a real computer. The protected evidence store remains sealed.
+Mara's manner follows the earlier choices. If the player filed the Lesson 3 change record openly, she glances at **Unresolved Records** before answering and keeps her replies short; if the player reported nothing, she is easier. If the Chapter 5 questions were left open, she is also clipped about the audit history. The difference is tone only.
+
+Finch opens the **Boot Lab**. It shows a simulated startup sequence, boot-device status, the startup component list, recovery options, and recent startup changes. The player can investigate without affecting a real computer. The protected evidence store remains sealed.
 
 ### Learn & Try pages
 
-The lesson stays on the left while the interactive Boot Lab appears on the right. The player can review pages during the checkpoint.
+The left pane explains each topic, and the right side keeps the same Boot Lab available throughout the lesson, so the player can step through a startup sequence, open each component, and watch what happens. All machines, logs, and recovery actions are simulated, and the protected evidence store remains sealed. The player can move back and review pages during the checkpoint.
+
+Examples use a temporary practice machine. Moving between lesson pages preserves the player's work on it, while **Reset example** returns the demonstration to its starting state without changing the checkpoint. The checkpoint begins from its own controlled snapshot of the core's startup loop.
 
 #### Page 1: How a computer starts
 
 A computer first performs hardware checks called **POST**: the power-on self-test. Its firmware, commonly called **BIOS** or **UEFI**, then helps locate a bootable device and start the operating system. Once the operating system loads, it starts additional drivers, services, and applications.
 
-The player steps through a labeled startup timeline and identifies where firmware checks end and the operating system begins loading.
+The practice timeline shows each stage in order, and stepping through it reveals where firmware checks end and the operating system begins loading.
 
 #### Page 2: Black screens and firmware messages
 
 A black screen can have several causes, including a display connection, hardware problem, or startup failure. A firmware message that no boot device is found suggests checking the drive and boot settings before assuming Windows itself is damaged. A black screen alone does not identify the cause.
 
-The player compares two fictional startup reports and selects what to inspect next without changing any settings.
+The practice machine reproduces a firmware message, and the Boot Lab shows which checks it points to and which it says nothing about.
 
 #### Page 3: Windows STOP errors and damaged files
 
 A **STOP error**, sometimes called a blue-screen error, occurs when Windows encounters a problem it cannot safely continue past. The displayed code and the timing can help narrow the investigation, but they do not automatically prove a cause. Damaged or missing system files can also prevent normal startup.
 
-The player records a sample STOP message and identifies whether it appeared before or during Windows startup.
+Opening the practice capture shows the STOP message beside the startup timeline, so the stage where it appeared is visible.
 
 #### Page 4: Safe Mode
 
@@ -524,27 +528,27 @@ The player enters a simulated Safe Mode and compares the smaller set of loaded c
 
 Safe Mode with Networking adds networking components when network access is needed for an approved troubleshooting task. Choose ordinary Safe Mode when networking is not needed; network access may not be available in every recovery situation.
 
-The player chooses the appropriate option for two fictional situations and receives an explanation for each.
+Both options open in the practice machine, and the loaded-component list shows what each one adds.
 
 #### Page 6: System Restore and System Configuration
 
 **System Restore** can return certain system files and settings to an earlier restore point when one is available. It is not a substitute for a backup of personal files or evidence, and its effects should be reviewed before use.
 
-**System Configuration**, also called **MSCONFIG**, can help inspect and change certain startup settings. Before making a change, record the original setting and understand how to undo it. If Safe Boot is selected there, it must be cleared when normal startup is desired.
+**System Configuration**, also called **MSCONFIG**, can help inspect and change certain startup settings. Its Safe Boot checkbox selects a limited startup; it is a different control from disabling a single service, and a change made in one place is not automatically reversed in the other. If Safe Boot is selected there, it must be cleared when normal startup is desired.
 
-The player inspects a simulated restore point and startup settings without applying either automatically.
+The player inspects a simulated restore point and the MSCONFIG startup settings without applying either.
 
 #### Page 7: Windows Recovery Environment
 
-The **Windows Recovery Environment**, or **WinRE**, provides recovery options when Windows cannot start normally. Available options can include Startup Repair, System Restore, and access to startup settings. The appropriate option depends on the symptoms and what is available; some recovery actions may require authorized credentials or recovery information.
+The **Windows Recovery Environment**, or **WinRE**, provides recovery options when Windows cannot start normally. It can open by itself after several failed startups, which is how a machine that keeps restarting can be reached at all. Available options can include Startup Repair, System Restore, and access to startup settings. The appropriate option depends on the symptoms and what is available, and some recovery actions may require authorized credentials or recovery information.
 
-The player explores a fictional recovery menu and chooses startup settings for a scenario where Safe Mode is the next appropriate step.
+The practice machine opens its recovery menu after repeated failures, and the player can read each option's description without choosing one.
 
 #### Page 8: Repair and reinstall as a last resort
 
 More invasive repairs or reinstalling the operating system can affect applications, settings, or data. Before using them, assess the impact, preserve evidence, confirm backups, and obtain the necessary authorization. Escalate when the next step exceeds the player's authority or the cause remains unclear.
 
-The player compares a targeted startup change with a reinstall and identifies which is less disruptive for the evidence presented.
+The practice machine offers a targeted startup change and a reinstall side by side, with each one's stated effect on applications, settings, and the preserved records.
 
 ### Checkpoint: Stop the restart loop
 
@@ -552,25 +556,30 @@ The player compares a targeted startup change with a reinstall and identifies wh
 
 Finch shows two sample errors: a firmware message reporting that no boot device was found, and a Windows STOP error shown while the operating system is starting. The player places each at the correct point in the startup timeline. Finch explains that the timing guides the next investigation but does not prove the cause.
 
+The samples are separate from the core's own startup, and nothing from the demonstration carries into the main task.
+
 #### Main task
 
-The player:
+The checkpoint begins from its own snapshot of the loop: the core is restarting, the captured startup log exists, and nothing has been changed yet. Nothing from the practice machine carries over.
 
-1. Reviews the startup messages and identifies that the simulated core reaches Windows startup before restarting.
-2. Preserves the available startup log and confirms the backup is available. The sealed evidence store remains untouched.
-3. Opens the simulated recovery environment and enters ordinary Safe Mode; network access is not needed for this test.
-4. Inspects the startup list and recent change information. The evidence points to a failing startup component associated with the **Habitat Archive Export Service**.
-5. Records its original setting and disables that one legacy startup service for the test. The core's current **audit export service**, repaired in Lesson 3, is a separate service and remains enabled.
-6. Restarts normally and checks that the core stays online. The player verifies that the current audit export service and backup queue are operational, including a simulated test export.
-7. Documents the symptom, test, setting changed, and verification result. If the test does not work, the player can restore the original setting and investigate another option without penalty.
+The requirement is a core that completes a normal startup twice in a row, with preserved records, an attributable cause, and a verified result.
 
-Disabling the legacy service is a targeted troubleshooting step, not deletion of its records or proof of why it was originally active.
+1. Read the captured startup messages and place the failure on the timeline. The core reaches the operating-system stage before it restarts, so the fault sits after the firmware checks.
+2. Preserve the startup log, work from an authorized copy, and leave the original unchanged.
+3. Reach recovery the way the machine actually offers it: repeated failed startups open **Automatic Repair**, which provides the recovery options. Choose ordinary Safe Mode, because no networking task is needed.
+4. Compare the startup component list with the recent startup changes and identify the failing component. The candidates include a recently updated driver, a user startup application, the legacy **Habitat Archive Export Service**, and an unrelated facility service. Link the supporting evidence, and record what argues against at least one alternative.
+5. Record the service's original setting and disable only that service. Disabling it is a separate control from MSCONFIG's Safe Boot option, and the service's files and records stay in place as evidence.
+6. Restart normally and confirm that the core stays online. Restart again and confirm that the second normal startup also completes, because a loop can return on the next boot.
+7. Verify the repair: the audit export service and backup queue are operational, a scheduled test export reaches a separate destination complete and readable, the Lesson 3 export check runs and reports healthy for the first time since the loop began, and the original startup log is unchanged.
+8. Append the finding to the existing **export path** entry in **Unresolved Records**, with its source linked and what remains unknown, and choose the accurate conclusion: the obsolete startup service was causing the loop, and the record does not establish why it was still enabled or what it exported.
+
+Only the simulated core is affected. No step deletes the legacy service's files or records, and no step opens or modifies the sealed evidence store.
 
 ### Feedback and hints
 
-The Boot Lab labels each startup stage and explains why an option is relevant or premature. Unsafe or overly disruptive choices receive an explanation and remain reversible in the simulation.
+The Boot Lab explains what each stage, component, and recovery option does, and keeps incomplete choices editable. For example, reinstalling before testing the startup list is identified as more disruptive than the evidence justifies, Safe Mode with Networking is returned when no networking task needs it, deleting the legacy service instead of disabling it is blocked as evidence loss, a single clean startup is not accepted as proof that the loop is gone, and a startup item chosen without supporting evidence is returned for evidence.
 
-Three hints point toward where the failure occurs, using a limited startup environment, and testing one startup change. They do not reveal the entire solution. Hints and retries are unlimited and penalty-free.
+Three hints point toward where the failure occurs in the timeline, how a restarting machine reaches recovery at all, and testing one startup change rather than rebuilding. They do not reveal the entire solution. Hints and retries are unlimited and penalty-free.
 
 ### Completion and story clue
 
@@ -584,15 +593,19 @@ LAST RECORDED ACTIVITY: FACILITY FAILURE
 
 > **Mara:** “That service was obsolete.”
 >
-> **Finch:** “Its history shows it was active until the facility failure. I'll preserve the record.”
+> **Finch:** “It was skipped while the core ran in safe mode. The first full startup after the repairs tried to load it. I'll preserve the record.”
 
-Finch links the service history and Mara's statement in **Unresolved Records**. The activity record shows the service was active; it does not, by itself, explain what it exported or why.
+Finch explains that safe mode hides most startup components, which is why the loop only appeared once the core returned to a full startup and why the earlier restart check looked clean. The entry was never removed, only left unloaded.
 
-The core starts normally, but device and application issues remain for the next lesson. Completed activity progress saves automatically; an unfinished checkpoint stage restarts if the player leaves.
+Finch adds his explanation and Mara's statement to the same **export path** thread, beside the player's entry and the Lesson 3 change record. The thread now shows a modern export service switched off four minutes after its last successful export, and an older one that stayed active until the facility failure. Neither record explains what was exported or where it went.
+
+Mara's reply follows the earlier tone. If the player has been filing records openly, she checks **Unresolved Records** before she answers; otherwise she moves on without looking.
+
+The core starts normally, but device and application issues remain for the next lesson. Checkpoint progress saves after each completed stage. If the player leaves, the current stage resumes with completed answers and prior work preserved.
 
 ### Accessibility
 
-The startup timeline, recovery menus, messages, and service controls work with keyboard and screen reader. Startup stages, errors, selections, and results are presented in text as well as visually. The player can review the lesson and logs without a time limit.
+The startup timeline, recovery menus, startup component list, messages, and service controls work with keyboard and screen reader, without drag-only actions. Focus moves in a predictable order through the timeline, each captured message, the component list, and the recovery options, and every control has a descriptive label. Stages, errors, selections, and results are announced as text and never rely on color alone, boot animations have captions and a reduced-motion alternative, and the log can be read back in full. The player can review the lesson and logs without a time limit.
 
 ## Lesson 5: Hardware, Devices, Drivers, and Applications
 
