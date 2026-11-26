@@ -1,6 +1,6 @@
 # Chapter 5: The Security Gateway
 
-**Status:** Working design with five condensed lessons and a complete boss design. Mechanics remain subject to implementation and playtesting.
+**Status:** Working design with five condensed lessons and a complete boss. Implementation rules are specified; the timer duration remains subject to playtesting.
 **Updated:** 2026-11-25
 
 Each lesson ends with one checkpoint containing a guided stage and an independent task. Progress saves after each completed stage.
@@ -46,6 +46,21 @@ PROTECTED EVIDENCE: SEALED
 Finch creates an **Unresolved Records** panel beside the map. Its first entry links to the original Tomas and Nia log and notes Mara's explanation as a claim, not a proven fact. Future entries can link back to their sources and distinguish observations from interpretations.
 
 The player can reach the area outside the Systems Wing, but the wing itself remains locked until the boss is completed. Finch directs the player to the first security lesson before they work on the gateway.
+
+## Facility map and progress lights
+
+The facility map is the campaign's record of what the player has restored. It does two jobs, and keeping them separate is what makes the map feel earned rather than decorative.
+
+- **Fixture lights — every lesson checkpoint.** Completing a checkpoint brings one visible fixture in a room already on the map back to life: the gateway cabinet's status strip, the security office camera feed, the communications room link indicator, the Workshop terminal display, the records room lamp. No new area opens; something that was dark stops being dark.
+- **Section unlocks — chapter and story milestones.** Finishing the chapter opens the Systems Wing. A new area is added to the map rather than merely lit, and the player chooses when to enter it.
+
+Rules that keep the map honest:
+
+- **Every checkpoint produces at least one visible change.** A map that sometimes stays dark teaches players to stop looking at it.
+- **A lit fixture reflects real saved state.** If a room shows a console online, that system is genuinely repaired in the save. Purely decorative lights are visibly decorative — a lamp or a display, never a service indicator.
+- **Restored state persists and can be reviewed.** The map shows everything restored so far and can be opened at any time during the boss without pausing the timer.
+- **The same information exists as text.** A text list gives every room and fixture with its state — dark, lit, or unlocked — and each change is announced when it happens. The map is never the only place a change is recorded.
+- **Reduced motion replaces the sweep.** Instead of light travelling along a cable, the fixture changes state with its label.
 
 ## Lesson 1: Security Foundations
 
@@ -550,6 +565,10 @@ A **standard account** has limited permissions. An **administrator account** can
 
 Systems can combine models. A **classification** describes how information must be protected. An **access control list (ACL)** identifies who may perform which actions on a resource.
 
+#### How the matrix shows combined controls
+
+Each cell shows the effective decision and the controls behind it, in text: **Allow — role: recovery; condition: Workshop terminal**. Where a role and a rule disagree, the effective result is **Deny** and the cell names the conflict, so a player can see that a location rule restricted an otherwise allowed role instead of guessing why access failed.
+
 ### Checkpoint: Restore secure access
 
 #### Guided stage: Reasons and restrictions
@@ -745,7 +764,7 @@ The player labels each item, then decides which three fields an incident auditor
 **Needed:** timestamps, configuration changes, and necessary account identifiers.
 **Not needed:** unrelated addresses and fingerprint images.
 
-Feedback connects evidence limits to privacy minimization. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
+Feedback connects evidence limits to privacy minimization. Each item is judged as it is classified, so a wrong label names the property that was missed without waiting for the whole set, and the completed set is then verified once as a whole. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
 #### Main task: Build the timeline and package
 
@@ -772,6 +791,8 @@ The player orders the events, identifies each source, and marks what is establis
 ```
 
 Supporting records include the independent security monitor, a camera clip with an obscured face, browser history, device location, a signed manifest, and a transfer receipt. The signed manifest can show that signed content has not changed since signing; it does not prove who made an earlier change.
+
+Validation for each event: a source must be linked from the available records; the uncertainty label is chosen from **Established**, **Not established**, and **Inferred**; **Established** requires a primary source, **Inferred** requires a short reason, and an event with no linked source cannot be marked **Established**. The order is checked against the timestamps, and an order the evidence cannot settle is shown as unresolved rather than guessed.
 
 #### Part 2: Select the supported conclusion
 
@@ -897,9 +918,33 @@ The player uses an incident console with:
 - Temporary boss sticky notes
 - The **Unresolved Records** panel
 
-The player moves between rooms manually. Completed objectives remain accessible for review. Correct actions visibly calm the alert state; unsafe actions are blocked with an explanation and can be retried without penalty.
+The player moves between rooms manually, on the map or through the room list. Completed objectives remain accessible for review. Correct actions visibly calm the alert state; unsafe actions are blocked with an explanation and can be retried without penalty.
 
 The Systems Wing door remains visibly locked until the final checks pass.
+
+### Rooms, order, and prerequisites
+
+All five rooms are open from the start; the Systems Wing is the only door that stays sealed. Objectives may be completed in any order that satisfies their prerequisites, so two players can take different routes through the same incident.
+
+| Part | Location | Prerequisite |
+|---|---|---|
+| 1 Protect what matters | Gateway cabinet | none |
+| 2 Stop the human attack | Workshop terminal | Part 1 identifies the human vector |
+| 3 Contain the technical attack | Communications room | Parts 1 and 2 |
+| 4 Restore trusted access | Workshop recovery terminal | Parts 1 and 2 |
+| 5 Reconstruct the incident | Records room | Part 3, because the records become readable once the share is restricted |
+| 6 Preserve and share | Records room sharing console | Part 5's verified timeline |
+
+A blocked part names what it is waiting for in the same words as its prerequisite, and the map marks its room **waiting** rather than hiding it. The Systems Wing opens only when all six checks pass.
+
+### How actions are validated
+
+Actions are judged by observed results, not by which control was pressed — the same rule as Chapter 4.
+
+- **Traffic rule:** two simulated probes. A recovery request must succeed and the malicious request pattern must be limited. *Block all* fails the availability probe; *allow all* fails the containment probe; only the third option passes both.
+- **Quarantine:** the infected hosts must be isolated while two essential probes still succeed — the recovery service and the life-support link. Isolating an essential host fails and names the service it took down.
+- **Backup:** judged by a restore test plus a service probe, not by which backup's name was selected.
+- **UPS:** judged by the indicator reading **Connected** and the gateway staying up through a simulated power dip.
 
 ### Goal
 
@@ -1035,7 +1080,7 @@ A fourth alert shows a wireless link interrupted by unexplained interference. Th
 
 The player:
 
-- Connects essential gateway equipment to the UPS
+- Visits the Satellite Equipment Area and connects the essential gateway equipment to the UPS, then confirms from the communications room console that the indicator reads **Connected**
 - Applies the verified patch from the trusted package
 - Chooses the checked, clean backup
 - Restores the affected files
@@ -1059,6 +1104,8 @@ As the incident is contained:
 - The service-load indicator falls
 - The UPS indicator changes to **Connected**
 - The quarantine count stops increasing
+
+Each completed objective also writes one line to the incident log (**Containment: 3 of 6 parts complete**) and plays a single calm confirmation tone with a caption. Nothing flashes, and no state depends on color: Containment, Integrity, Availability, and Trusted Access always carry text. Reduced motion replaces the map fade with an instant state change.
 
 If an alert remains, the console identifies the unresolved condition without revealing the exact control.
 
@@ -1336,6 +1383,8 @@ Finch preserves the Unresolved Records, including each source, each uncertainty,
 
 The chapter ends as the player crosses the unlocked threshold.
 
+The **Unresolved Records** panel carries forward into Chapter 6 with its entries, linked sources, uncertainty labels, and Mara's claims intact. Entries are read-only history: later chapters add to the record without editing what was already filed.
+
 ### Chapter 6 handoff
 
 The Systems Wing opens onto the automation and recovery core:
@@ -1387,11 +1436,14 @@ The timer gives calm warnings at 15 and 5 minutes. If nothing prevents expiry:
 
 The recovery workspace resets to manual mode, the perfect bonus is forfeited, and the player receives unlimited time to finish. The standard component remains available. The protected evidence store and original records are unaffected.
 
-Boss progress saves automatically after each completed objective and individual action. Closing the game pauses the countdown; reopening restores the current room, objectives, evidence selections, authentication state, package settings, remaining time, and bonus eligibility. Boss sticky notes are removed when the boss ends.
+The reset announces itself in three places so it never depends on hearing the dialogue: the console banner **CONTAINMENT RESET — MANUAL MODE**, Finch's line above, and the status line **PERFECT FINISH: FORFEITED**.
+
+Boss progress saves automatically after each completed objective and individual action. Closing the game pauses the countdown; reopening restores the current room, objectives, evidence selections, authentication state, package settings, remaining time, and bonus eligibility. Closing during an authentication step restarts that step with no credential retained; closing during an evidence preview discards the preview and keeps the selections; closing during the sharing test restores the pre-test state so the test can be rerun. None of these affects the bonus. Boss sticky notes are removed when the boss ends.
 
 ### Accessibility requirements
 
-- The room map has a text alternative and supports keyboard navigation.
+- The room map has a text alternative and supports keyboard navigation. On narrow screens it becomes a list of rooms with their state, and fixtures carry the same dark, lit, or unlocked labels.
+- On narrow screens, evidence cards open one at a time with a text list beside them, the permission matrix becomes a per-principal list of allow and deny rows, and the timeline stays a vertical list with its move-up and move-down controls.
 - Every incident card, evidence card, classification control, permission row, authentication step, sharing setting, and cookie choice is keyboard operable.
 - Focus moves predictably between navigation, objectives, evidence, action controls, and help panels.
 - Screen readers announce the current objective, available actions, selected values, and result of every action.
@@ -1405,14 +1457,4 @@ Boss progress saves automatically after each completed objective and individual 
 
 ## Open implementation questions
 
-- Final timer after beginner playtesting and the exact wording of the containment-reset event
-- Exact room-navigation layout and whether any objectives may be completed out of order
-- Exact evidence needed to unlock each boss part
-- Supported controls and validation for the traffic rule, quarantine, backup, and UPS tasks
-- How the permission matrix represents combined role and rule-based controls
-- Whether partially correct evidence classifications receive staged feedback or one combined result
-- How timeline source and uncertainty fields are validated
-- Exact save state when closing during an authentication step, evidence preview, or sharing test
-- How the Unresolved Records panel persists into Chapter 6
-- Mobile layouts for the room map, evidence cards, permission matrix, and timeline
-- Exact visual and audio feedback for containment progress
+None outstanding. The 35-minute timer stands subject to playtesting; the room order, part prerequisites, action validation, matrix display, classification feedback, timeline validation, save state, panel persistence, mobile layouts, and containment feedback are all specified above.
