@@ -223,7 +223,7 @@ The player configures a plan for:
 - Audit archive fragments
 - Backup queue metadata
 
-The plan must include an initial full backup, incremental follow-up backups, two independent storage locations, and access limited to the authorized recovery role. The player also chooses a schedule and retention period; the planner explains their consequences instead of demanding an arbitrary single answer.
+The requirement is a plan with an initial full backup, incremental follow-up backups, two independent storage locations, access limited to the authorized recovery role, and a restore chain that reproduces the expected versions. The player also chooses a schedule and retention period; the planner explains their consequences instead of demanding an arbitrary single answer.
 
 The player then completes a restore-chain test:
 

@@ -104,6 +104,8 @@ One incident can affect more than one goal.
 
 ### Checkpoint: Review the gateway's assets
 
+The requirement is every asset carrying all the labels its record supports, with no label added or withheld without a reason in the record.
+
 #### Guided stage: Classify one asset
 
 Finch presents a maintenance visitor log containing a visitor name, organization, arrival time, and employee contact.
@@ -220,6 +222,8 @@ Verify unexpected requests through a separate trusted channel. Preserve suspicio
 Locks, badges, visitor checks, screen privacy, and secured cabinets reduce risk. A badge record shows which authorization was used, not who held the badge.
 
 ### Checkpoint: Investigate the security incidents
+
+The requirement is a concern and a matching response for each incident, including the cases where the correct response is to preserve and verify rather than act.
 
 #### Guided stage: Name the threat
 
@@ -365,6 +369,8 @@ Antimalware tools can use **signatures** or behavior to detect suspicious files,
 **Quarantine** prevents normal use while a file is reviewed. A backup called “clean” is not trusted until checked.
 
 ### Checkpoint: Triage and contain the incident
+
+The requirement is the spread stopped with the sample preserved, the approved traffic rule in place, a verified backup restored, and the UPS connected — judged by the console's probes rather than by which controls were touched.
 
 #### Guided stage: Triage one incident
 
@@ -571,6 +577,8 @@ Each cell shows the effective decision and the controls behind it, in text: **Al
 
 ### Checkpoint: Restore secure access
 
+The requirement is factors counted by category rather than by prompt, MFA enabled, the recovery role limited to what the task needs, the terminal condition recorded, and the protected evidence still sealed.
+
 #### Guided stage: Reasons and restrictions
 
 Finch presents two practice cases:
@@ -741,6 +749,8 @@ Safer sharing means limiting information and recipients, requiring MFA, using ex
 A **cookie** is information a site stores in a browser. First-party cookies belong to the visited site; third-party cookies belong to another content provider. Essential cookies may support required functions; analytics and advertising are optional in this task.
 
 ### Checkpoint: Reconstruct and preserve the incident
+
+The requirement is a timeline whose every event has a linked source and an honest uncertainty label, a conclusion the evidence supports, and a package carrying only what the auditor needs.
 
 #### Guided stage: Separate evidence from interpretation
 
