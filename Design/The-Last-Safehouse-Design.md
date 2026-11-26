@@ -1,7 +1,7 @@
 # The Last Safehouse — Working Design Record
 
 **Status:** Brainstorming draft; no implementation decisions are final unless explicitly confirmed below.
-**Updated:** 2026-11-25
+**Updated:** 2026-11-26
 **Purpose:** Serve as the main working record for the game's confirmed decisions, brainstormed drafts, and open questions. Keep it updated as planning continues.
 
 **Navigation:** [Authoritative Chapter 1](Chapter%201/Chapter-1-Design.md) | [Current campaign story (Section 15)](#15-campaign-story--working-narrative) | [Curriculum map (Section 16)](#16-seven-chapter-curriculum-scaffold) | [Current Chapter 2 design](Chapter%202/Chapter-2-Design.md) | [Earlier reward ideas](Previous%20Drafts/Earlier-Reward-Ideas.md) | [Archived historical sections](Superseded/Superseded-Design-Sections.md)
