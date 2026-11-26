@@ -259,7 +259,7 @@ Pace each chapter in manageable steps with practice and meaningful checks. Some 
 
 ## 18. Chapter 1 — current design
 
-**Status:** Authoritative. The chapter uses seven focused lessons and a four-goal Restoration boss. Mara cannot authorize administrator actions; the pre-provisioned standard account and delegated recovery permissions are part of the Echo mystery.
+**Status:** Authoritative. The chapter uses seven focused lessons and a four-goal Restoration boss. Mara held the administrator identity before Echo took it and locked her out, so she cannot authorize administrator actions now; the pre-provisioned standard account and delegated recovery permissions are part of the Echo mystery.
 
 For the current Chapter 1 design, see the [Chapter 1 design file](Chapter%201/Chapter-1-Design.md).
 

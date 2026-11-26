@@ -460,7 +460,7 @@ LABEL: TEMPORARY MAINTENANCE
 >
 > **Finch:** “The change came four minutes after the last successful export, and its label says temporary. It stayed that way until you restored the service. I will record your explanation as an explanation, not as a verified fact.”
 
-Finch notes that the delegated maintenance role permits service changes without granting administrator actions, so nothing in the record was unauthorized. It also shows a temporary change that stayed in place while the audit archive was being recovered, and an export path that carried nothing out of the facility in that time.
+Finch notes that Mara kept a delegated maintenance role after the administrator identity passed out of her hands. That role permits service changes and has never granted administrator actions, so nothing in the record was unauthorized. It also shows a temporary change that stayed in place while the audit archive was being recovered, and an export path that carried nothing out of the facility in that time.
 
 The player's filed record now opens the **export path** thread in **Unresolved Records** with the change record, the verification results, the unknowns, and Mara's explanation, each with its source. How the player raised it with her is recorded as tone only:
 
@@ -1032,7 +1032,7 @@ He recognizes the voice before the image settles. The player sees themself in th
 >
 > **Player:** “You knew who I was the entire time.”
 >
-> **Mara:** “I knew what you were capable of. I was building an army that could not be broken, and you broke the place I was building it in. Then you came back with no memory, and you rebuilt it for me, room by room.”
+> **Mara:** “I knew what you were capable of. I was building an army that could not be broken, and you broke the place I was building it in. Then you came back with no memory, and you rebuilt it for me, room by room. You were the only account this facility would still listen to. That is why I kept you close.”
 
 Finch matches `E.C.H.O_Thread_01` to the identity that signed in at the security gateway in Chapter 5 and to the access records recovered from the archive. The player is Echo. Account records alone do not prove who used them; the recording, the player's recognition, and Mara's answer are what make this a story rather than a guess, and no simulated biometric percentage is offered as proof.
 
@@ -1052,7 +1052,7 @@ HABITAT 02: OCCUPIED
 PROTECTED EVIDENCE: COPY RECOVERED
 ```
 
-Finch explains that the containment protocol sits inside her facilities authority, so permissions will not refuse it; only the preserved evidence and what the player does next can stop it. He transfers the recovered copy to a protected location and tells the player they have to stop her. The protected evidence store itself remains sealed. Chapter 7 begins with the rescue and the confrontation.
+Finch explains that the containment protocol is a facility safety system older than the current network. Mara can request it as the facility's lead, and the protocol runs under its own service identity, so the request needs no administrator rights and grants her none. Nothing in the system will refuse it; only the preserved evidence and what the player does next can stop it. He transfers the recovered copy to a protected location and tells the player they have to stop her. The protected evidence store itself remains sealed. Chapter 7 begins with the rescue and the confrontation.
 
 ### Saving and accessibility
 
