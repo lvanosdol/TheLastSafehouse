@@ -741,7 +741,7 @@ Repair tickets, the device tree, status codes, driver history, diagnostic result
 
 ### Story opening
 
-With the local repairs complete, Finch finds that the last audit shard is stored in an offsite archive. The Automation Core can communicate with devices on its local network, but it cannot reach the archive.
+With the local repairs complete, Finch finds that the last audit shard is stored in the offsite archive the player reached in Chapter 4. The Automation Core can communicate with devices on its local network, but it cannot reach the archive.
 
 > **Finch:** “The final shard is outside the facility. Unfortunately, our connection appears to have misplaced the outside.”
 >
@@ -749,85 +749,94 @@ With the local repairs complete, Finch finds that the last audit shard is stored
 >
 > **Finch:** “Because the archive is still incomplete.”
 
-Finch opens the **Network Workbench**, containing a simulated command console, network-status panel, route information, VPN client, and archive viewer. Every address, command, credential, and connection in the exercise is fictional; nothing runs on the player's real network.
+Mara's manner follows the earlier choices. If the player has been filing records openly, she stays at the console and reads what it shows; if not, she leaves the work to Finch. The difference is tone only.
+
+Finch opens the **Network Workbench**. It contains a simulated command console, network-status panel, route information, VPN client, archive viewer, and the approved network profile from Chapter 4. The archive's name, address, and satellite route are already known: `archive.safehouse7.test` at `203.0.113.80`. What the core lacks is a correct route and the approved recovery VPN, which the archive requires for automated retrieval. Every address, command, credential, and connection is fictional; nothing runs on the player's real network.
 
 ### Learn & Try pages
 
-The lesson stays on the left while the workbench appears on the right. The player can review pages during the checkpoint.
+The left pane explains each topic, and the right side keeps the same Network Workbench available throughout the lesson, so the player can run each command, open each panel, and watch what changes. All addresses, commands, credentials, and connections are simulated, and nothing runs on the player's real network. The player can move back and review pages during the checkpoint.
+
+Examples use a temporary practice target. Moving between lesson pages preserves the player's work on it, while **Reset example** returns the demonstration to its starting state without changing the checkpoint. The checkpoint begins from its own controlled snapshot of the core's connection.
 
 #### Page 1: Work from close to far
 
-A useful troubleshooting approach is to check the local system first, then the local network, then more distant systems. Each result narrows the investigation; no single test explains every possible failure.
+A useful troubleshooting approach is to check the local system first, then the local network, then more distant systems. Each result narrows the investigation, and no single test explains every possible failure. Chapter 4's chain — address, name lookup, web request, firewall rule — is still the map; this lesson is about finding which link broke.
 
-The player arranges simulated tests from local to remote and sees which part of the connection each test can examine.
+The workbench runs each test and marks which part of the connection it can examine, from loopback outward.
 
 #### Page 2: Loopback and localhost
 
-The loopback address `127.0.0.1` refers back to the same computer. `localhost` normally refers to the local computer as well. A successful loopback test shows that the local system can respond through its own networking software; it does **not** prove that the physical network adapter, cable, or outside network is working.
+The loopback address `127.0.0.1` refers back to the same computer, `::1` is its IPv6 equivalent, and `localhost` normally refers to the local computer as well. A successful loopback test shows that the local system can respond through its own networking software; it does **not** prove that the physical adapter, cable, or outside network is working.
 
-The player runs `ping 127.0.0.1` and `ping localhost` in the simulated console and compares their results with the adapter's separate status panel.
+The player runs `ping 127.0.0.1` and `ping localhost` in the simulated console and sees both succeed while the adapter panel reports a separate state.
 
-#### Page 3: The local adapter and gateway
+#### Page 3: The adapter and the approved profile
 
-The network adapter connects the computer to a network. The **default gateway** is normally the local router used to reach other networks. A device can reach some local addresses even when its gateway setting is wrong.
+A device can reach addresses close to it even when its route beyond them is wrong, which is why a working local test can sit beside a broken remote one. Chapter 4 identified the router that leads off the local network; here the question is narrower: does this core's configured gateway match the approved profile?
 
-The player checks the adapter's connection and address, compares its configured gateway with the approved network profile, and tests the gateway shown in that profile.
+The workbench shows the adapter's address and configured gateway beside the approved profile and marks a difference without deciding what it means.
 
 #### Page 4: Ping and interpreting results
 
 `ping` sends a request and reports whether a reply arrives. A reply is useful evidence of reachability at that moment. A timeout does not always mean a device or service is down: a firewall or device may simply block ping. A successful ping also does not prove that a particular application works.
 
-The player compares simulated replies and timeouts with service-status information.
+The player compares simulated replies and timeouts with service-status information, and the workbench labels each result as reachable, no reply, or blocked.
 
 #### Page 5: Tracing a route
 
-`tracert` shows responding steps, or **hops**, along a route toward a destination. A hop that does not respond does not necessarily mean traffic stopped there; some routers do not answer trace requests. Read the trace alongside other tests and the network configuration.
+`tracert` shows responding steps, or **hops**, along a route toward a destination; macOS uses `traceroute`. A hop that does not respond does not necessarily mean traffic stopped there, because some routers do not answer trace requests. Read the trace alongside the other tests and the configuration.
 
-The player runs a simulated trace and compares it with the adapter's configured route and the approved gateway information.
+The player runs a simulated trace and sees each hop beside the adapter's configured route and the approved profile.
 
 #### Page 6: Local, name-resolution, internet, and remote-service problems
 
-A problem can occur in the local connection, address configuration, name resolution, the route to another network, or the remote service itself. For example, reaching a host by address but not by its name can point toward name resolution; reaching a host while its application remains unavailable can point toward the service. Further checks are needed before concluding the cause.
+A problem can occur in the local connection, the address configuration, name resolution, the route to another network, or the remote service itself. Reaching a host by address but not by its name points toward name resolution; reaching a host while its application stays unavailable points toward the service. The categories overlap, and a further check is usually needed before naming a cause.
 
-The player reviews short scenarios and selects the next useful check rather than treating one test as conclusive.
+The workbench runs one scenario at a time and shows which check separates two categories that look alike. The console's `nslookup` asks the name service directly, so a matching address can rule name resolution out.
 
 #### Page 7: VPN access
 
-A **VPN** creates an encrypted connection to an approved network over another network. It can allow an authorized user to reach a private resource, but it does not automatically repair a broken local connection or grant permission to every resource.
+A **VPN** creates an encrypted connection to an approved network over another network. It can allow an authorized user or system to reach a private resource, but it does not repair a broken local connection or grant permission to every resource. This archive accepts automated retrieval only through the approved recovery VPN, which is why the satellite route and name known from Chapter 4 are not enough on their own.
 
-The player inspects an approved fictional VPN profile and connects using simulated authentication. No real credentials or biometric information are requested.
+The player opens an approved fictional VPN profile, connects with simulated authentication, and sees the tunnel state change while the local settings stay as they were.
 
 #### Page 8: Verify the actual resource
 
-After fixing a connection, test the intended task—not just the network status. Confirm the approved VPN is connected and use the archive viewer to check the authorized remote resource. Preserve retrieved records separately from interpretations or later reconstructions.
+After fixing a connection, test the intended task, not just the network status. Confirm the approved VPN is connected, open the authorized archive, and check the retrieved file against the archive's index entry for its size and checksum. Preserve retrieved records separately from interpretations or later reconstructions.
 
-The player opens a simulated test record through the VPN and confirms it loads without modifying the source.
+The player opens a simulated test record through the VPN, compares it with its index entry, and confirms that it loads without modifying the source.
 
 ### Checkpoint: Reach the offsite archive
 
 #### Guided stage
 
-Finch asks the player to run a loopback test and inspect the adapter status. The player identifies that loopback confirms a local software response but does not confirm the physical adapter or external connection.
+Finch demonstrates the order on a target inside the facility: the Workshop file server. The player runs loopback, pings the file server, and sees the local path work while the archive stays unreachable. Finch points out that the working local test ruled out only the local stage; it says nothing about the name lookup, the route off the network, or the archive itself.
+
+The file server is not the archive, and nothing from the demonstration carries into the main task.
 
 #### Main task
 
-The workbench provides an approved fictional network profile, the current adapter settings, an offsite VPN endpoint, and the private archive address.
+The checkpoint begins from its own snapshot: the adapter is as found, the VPN is disconnected, and no test has been run. Nothing from the practice target carries over.
 
-1. Run the loopback test and inspect the local adapter's status.
-2. Test the approved local gateway. It responds, showing that the local network can be reached.
-3. Test the fictional offsite VPN endpoint and run `tracert`. The trace and adapter settings reveal that the configured default gateway differs from the approved gateway. Finch notes that a timeout alone would not have established the cause.
-4. Change only the incorrect gateway setting to match the approved profile. Retest the offsite VPN endpoint and review the route.
-5. Connect the approved fictional VPN profile using simulated authentication. The private archive is intended to be accessed through this VPN; a failed test of its private address before connecting is not treated as proof that the archive is down.
-6. Use the archive viewer to verify access to the authorized remote archive and download the final available shard. Confirm the downloaded file is complete; the larger archive's verification remains pending.
-7. Record the observed symptoms, setting changed, and verification results. Original records remain unmodified.
+The requirement is a verified archive session through the approved path, one changed setting with a known reason, the retrieved shard checked against its index entry, and a preserved record.
 
-All changes are confined to the simulated workbench. The player can inspect and undo the gateway change, and unsuccessful tests can be repeated without penalty.
+1. Run the loopback test and inspect the adapter panel. Record what each result proves and what it does not.
+2. Test the approved gateway. A reply shows that the local path to the router works, and the record notes that this still says nothing about the archive.
+3. Resolve the archive's name with `nslookup` and confirm it matches the verified address `203.0.113.80`. A match rules name resolution out and leaves the route and the tunnel.
+4. Trace the offsite VPN endpoint and compare the adapter's configured gateway with the approved profile. Identify the single setting that differs; a hop that fails to respond on its own is not treated as the cause.
+5. Change only that gateway setting. A tempting combined change — gateway, name service, and adapter address together — is allowed, reported as unattributable, and must be reverted before continuing.
+6. Connect the approved VPN profile with simulated authentication and confirm the tunnel state. A failed test of the private address before the tunnel exists is not treated as proof that the archive is down.
+7. Verify the actual resource: open the authorized archive, download the final shard, compare its size and checksum with the index entry, and confirm that the Lesson 3 export check is still healthy.
+8. Record the symptoms, the tests and what each ruled out, the one setting changed, the verification results, and what remains unknown, then file it in the **export path** thread with its source linked. Choose the accurate conclusion: the route was wrong and the archive required the approved tunnel, while the archive's contents are not yet verified.
+
+All changes stay inside the simulated workbench, and the gateway change can be undone. No step reaches a real network or opens the sealed evidence store.
 
 ### Feedback and hints
 
-The workbench explains what each test can and cannot establish. A timeout is reported as a timeout, not automatically as a confirmed outage. The player can review the approved profile and try a different test.
+The workbench explains what each test can and cannot establish and keeps incomplete choices editable. For example, a timeout is reported as a timeout rather than a confirmed outage, loopback success is not accepted as proof that the adapter or route works, a working local ping is not accepted as proof that the archive is reachable, a combined change is reported as unattributable, and a failed private-address test before the VPN connects is returned as premature rather than conclusive.
 
-Three hints point toward testing close to the core first, comparing the configured route with the approved profile, and checking whether the private archive requires a VPN. They do not reveal the entire solution. Hints and retries are unlimited and penalty-free.
+Three hints point toward testing close to the core first, comparing the configured route with the approved profile, and checking whether the archive requires the approved VPN. They do not reveal the entire solution. Hints and retries are unlimited and penalty-free.
 
 ### Completion and story result
 
@@ -839,19 +848,23 @@ ARCHIVE INDEX: COMPLETE
 VERIFICATION: PENDING
 ```
 
-A complete index means the expected shard entries have been collected; it does not yet verify their contents or establish the truth of their claims.
+Finch explains the numbering. The index expects twelve entries, the recovery queue has been filling the gaps since the backup service came back in Lesson 1, and the shards the player found — 03, 04, and 06 — were the ones that needed a person to trace them. This is the last entry that had to come from outside the facility.
+
+A complete index means that the expected entries have been collected; it does not yet verify their contents or establish the truth of their claims.
 
 > **Mara:** “Finch, wipe the archive. It is causing too many problems.”
 >
 > **Finch:** “No. We have worked too hard to preserve it, and we still do not know what it shows.”
 
-Finch preserves the recovered material, records Mara's request in **Unresolved Records**, and begins the verification process. The protected evidence store remains sealed. Verification leads into the **Recovery Cascade** boss; the identity reveal has not happened yet.
+Mara's tone follows the earlier choices. If the player has been filing records openly, the order is sharper and she looks at the thread before giving it; if not, she says it as a suggestion rather than an instruction. The difference is tone only.
 
-Completed activity progress saves automatically. An unfinished checkpoint stage restarts if the player leaves.
+Finch preserves the recovered material, adds the completed index and Mara's request to the **export path** thread, and begins the verification process. The protected evidence store remains sealed. Verification leads into the **Recovery Cascade** boss; the identity reveal has not happened yet.
+
+Checkpoint progress saves after each completed stage. If the player leaves, the current stage resumes with completed answers and prior work preserved.
 
 ### Accessibility
 
-The console has a keyboard-operable command entry and selectable command examples. Screen readers can access command output, route hops, adapter settings, VPN status, and archive results in a logical order. Status and errors use text as well as visual indicators; the lesson has no time limit.
+The console has a keyboard-operable command entry and selectable command examples, without drag-only actions. Screen readers can access command output, route hops, adapter settings, the approved profile, name-resolution results, VPN status, checksum comparisons, and archive results in a logical order. Status, errors, and tunnel changes are announced as text and never rely on color alone, each trace hop can be stepped through and read back on its own, and the lesson has no time limit.
 
 ## Boss: The Recovery Cascade
 
