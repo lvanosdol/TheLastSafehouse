@@ -249,8 +249,8 @@ The campaign aims for a beginner-to-practical pathway in IT, networking, databas
 3. **Databases:** See the [Chapter 3 design](Chapter%203/Chapter-3-Design.md).
 4. **Networking, cloud, and AI-assisted recovery:** See the [Chapter 4 design](Chapter%204/Chapter-4-Design.md).
 5. **Security, access control, and evidence handling:** See the [Chapter 5 design](Chapter%205/Chapter-5-Design.md).
-6. **Automation and recovery:** Opening designed; lesson topics and boss remain to be developed. See the [Chapter 6 design](Chapter%206/Chapter-6-Design.md).
-7. **IT capstone and identity resolution:** Apply the curriculum, discover that the player is The Echo (`E.C.H.O_Thread_01`), learn that Echo destroyed Mara's lab to save its subjects, and uncover Mara's manipulation. Final choices and endings remain open.
+6. **Automation, troubleshooting, and data continuity:** See the [Chapter 6 design](Chapter%206/Chapter-6-Design.md).
+7. **Digital literacy, communication, and identity resolution:** See the [Chapter 7 design](Chapter%207/Chapter-7-Design.md). Apply the full curriculum, communicate the recovered evidence, protect the Safehouse’s inhabitants, and resolve the player’s identity as Echo. Final choices and endings remain open.
 
 Pace each chapter in manageable steps with practice and meaningful checks. Some topics need extensive lessons and reading to teach important information thoroughly; do not make brevity or interactivity a reason to leave it out. The campaign need not attempt to teach every specialization.
 ## 17. Chapter 2 — Redesign

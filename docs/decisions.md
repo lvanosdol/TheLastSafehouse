@@ -56,3 +56,4 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-25 | Begin Chapter 6 at the Systems Wing automation core | Connect the practical need to restore backups and recovery services with Finch's investigation of the fragmented audit history. |
 | 2026-11-25 | Make the player's closing response in Chapter 5 affect dialogue tone only | Preserve player agency while keeping access, rewards, and the campaign path consistent. |
 | 2026-11-25 | Carry the Unresolved Records and sealed evidence store into Chapter 6 | Preserve the mystery and distinguish the recovered security records from the protected evidence that remains unavailable until Chapter 7. |
+| 2026-11-25 | Keep Chapter 6 technical and move the remaining finale material into a new Chapter 7 design | Separate troubleshooting and data continuity from digital literacy, communication, rescue, and identity resolution. |
