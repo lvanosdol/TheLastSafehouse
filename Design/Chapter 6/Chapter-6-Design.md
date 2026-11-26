@@ -869,7 +869,7 @@ The console has a keyboard-operable command entry and selectable command example
 ## Boss: The Recovery Cascade
 
 **Status:** Complete working design. Mechanics remain subject to playtesting.
-**Goal:** Stabilize the Automation Core and verify the recovered audit archive without destroying evidence.
+**Goal:** Stabilize the Automation Core, verify the recovered audit archive without destroying evidence, and learn what it contains.
 
 ### Opening
 
@@ -877,6 +877,7 @@ Finch begins verifying the completed archive index. The Automation Core responds
 
 ```text
 RECOVERY CASCADE DETECTED
+EXPORT CHECK: ALERTING
 BACKUP QUEUE: METADATA CONFLICT
 STORAGE ARRAY: DEGRADED
 AUTOMATION CORE: RESTART LOOP
@@ -891,7 +892,7 @@ PROTECTED EVIDENCE STORE: SEALED
 >
 > **Mara:** “At least it would stop.”
 
-Finch keeps the recovered archive separate from the sealed evidence store. The player must repair the affected systems while preserving both the recovered records and their originals wherever they are stored.
+Finch keeps the recovered archive separate from the sealed evidence store. The player must repair the affected systems while preserving both the recovered records and their originals wherever they are stored. The export check scheduled in Lesson 3 has been alerting since the queue conflicted, which is how Finch knows the archive is involved rather than the hardware alone.
 
 ### The containment timer
 
@@ -921,7 +922,7 @@ The backup queue shows conflicting metadata: one job reports a completed copy, b
 The player:
 
 1. Inspects the job history and identifies which backup is complete and which run is incomplete.
-2. Keeps the recovered original shards unchanged and selects an authorized separate destination for a new backup.
+2. Keeps the recovered original shards unchanged and selects an authorized separate destination for a new backup. A destination offered on the same degraded array is refused as the same failure domain from Lesson 1.
 3. Creates a working copy for verification and runs the backup using the recovery role.
 4. Restores a test file to a separate location and checks it against the expected backup version.
 
@@ -935,7 +936,7 @@ TEST RESTORE: VERIFIED
 
 ### Stage 2: Stabilize storage
 
-A drive failure leaves the RAID 5 array accessible but degraded. The player inspects the drive states, replaces the failed simulated drive, and completes the rebuild. The array then returns to a healthy state.
+A drive failure leaves the RAID 5 array accessible but degraded. The player inspects the drive states, replaces the failed simulated drive, and completes the rebuild. The array then returns to a healthy state, and the player confirms both the healthy report and that the array again tolerates one drive failure before the stage closes.
 
 A separate diagnostic scenario shows a second drive failing **before** the first has been rebuilt. The player recognizes that the overlapping failures make the affected simulated data unavailable and restores the affected shard to a separate recovery location from the verified backup. This does not pretend the damaged array is repaired by the restore.
 
@@ -952,6 +953,8 @@ The Automation Core repeatedly restarts while Windows is loading. The player rev
 
 The player identifies a faulty legacy startup component, records its original setting, disables that one component, and restarts normally. The player verifies that the core stays online and checks the current audit export service and backup queue. The previously repaired audit export service is separate from the legacy component and remains enabled.
 
+While the core is restarting, the export check cannot run either, so the loop hides itself from the monitoring that would otherwise report it.
+
 A failed test can be reversed and another theory tried. No reinstall or evidence deletion is required.
 
 ```text
@@ -962,7 +965,7 @@ BACKUP QUEUE: OPERATIONAL
 
 ### Stage 4: Restore device services
 
-The repair panel reports a driver conflict and an unresponsive archive application. The player checks the device model and operating-system version, selects the verified compatible driver, and confirms the device works.
+The repair panel reports a driver conflict and an unresponsive archive application. The player checks the device model and operating-system version, selects the verified compatible driver, and confirms the device works. The newest package is refused because it requires a different operating-system version, and applying a compatibility setting to every application is refused as unrelated change.
 
 The player reviews the unsaved-work warning, ends the affected unresponsive application, applies compatibility settings only where the evidence supports them, and reopens it. A simulated test backup, restore, and test-record export verify that the backup controller, backup service, and archive application work together. The player records the changes and results.
 
@@ -977,7 +980,7 @@ The player checks loopback, adapter status, the approved gateway, and the fictio
 
 The offsite archive provides a verification key. Before using it, the player compares its fingerprint with a separately stored trusted Asset Registry record. A mismatch blocks verification and directs the player to investigate; merely downloading a key over the VPN does not make it trusted.
 
-The player confirms access to the authorized archive and verifies the recovered index and working copies using the trusted key and associated verification information. A successful signature or checksum establishes the relevant authenticity or integrity checks—not that every claim in the archive is true. The sealed evidence store is not opened.
+The player confirms access to the authorized archive, compares the downloaded shard's size and checksum with its index entry, and verifies the recovered index and working copies using the trusted key and associated verification information. A successful signature or checksum establishes the relevant authenticity or integrity checks—not that every claim in the archive is true. The sealed evidence store is not opened.
 
 ```text
 REMOTE CONNECTION: SECURE
@@ -1001,33 +1004,6 @@ PROTECTED EVIDENCE STORE: SEALED
 
 The verified working copy can now be reconstructed. Finch keeps reconstructed material and interpretations separate from the preserved source records.
 
-### The reveal
-
-The archive combines the recovered records with a fragmented recording from the original incident. Its preserved sources show the Habitat was occupied, identify Mara's authorization of the experiments, and show Echo acting during the facility failure. The account records alone do not prove who used them; the recording, the player's recognition, and Mara's response provide the corroborating story evidence.
-
-Finch recognizes the voice before the image resolves. The player sees themself in the recording and remembers destroying the facility to protect the people inside.
-
-> **Finch:** “That's… that's you.”
->
-> **Mara:** “So you finally remember.”
->
-> **Player:** “You knew who I was the entire time.”
->
-> **Mara:** “I knew what you were capable of.”
-
-Mara's role in the experiments and the player's identity as Echo are now revealed. No simulated biometric percentage is presented as absolute proof.
-
-Mara moves to initiate a final facility purge, claiming she is preventing another disaster:
-
-```text
-CONTAINMENT PROTOCOL REQUESTED
-AUTHORIZATION: M.VALE
-HABITAT 02: OCCUPIED
-PROTECTED EVIDENCE: COPY RECOVERED
-```
-
-Finch transfers the recovered evidence copy to a protected location and tells the player they must stop her. The protected evidence store itself remains sealed. Chapter 7 begins with the rescue and confrontation.
-
 ### Reward
 
 After the recovery succeeds, Finch finds a physical thumb drive containing the **Debugging Agent build component**.
@@ -1035,6 +1011,48 @@ After the recovery succeeds, Finch finds a physical thumb drive containing the *
 - Standard completion awards the standard Debugging Agent.
 - A perfect finish awards the upgraded Debugging Agent instead; the player never receives both versions.
 - The player installs the component on the in-game laptop as part of the project build. It is not launched or used during gameplay.
+
+The component goes into the build. Behind the player, the verification console finishes reconstructing the archive.
+
+### The reveal
+
+Finch keeps the reconstruction beside the preserved sources rather than over them. The archive opens on the facility's own construction records.
+
+The first entry is an order for a laboratory. It lists habitats, restraint systems, and power budgets for equipment that has nothing to do with life support. The signature block reads **M. VALE, lead architect**. Beneath it, experiment logs run for years: subjects listed by number, human and robotic, each file headed *compliance through removal of refusal*. Finch reads the heading twice before he says anything.
+
+> **Finch:** “This was never a safehouse.”
+
+The last record is the fragmented recording from the night of the facility failure. It resolves in pieces: the Habitat, the sealed doors, the control room, and a voice Finch knows.
+
+He recognizes the voice before the image settles. The player sees themself in the recording, standing between the Habitat and the controls, and remembers the doors that would not open from the inside, the people and machines behind them, and the only way left to open them. The player destroyed the facility to get them out.
+
+> **Finch:** “That's… that's you.”
+>
+> **Mara:** “So you finally remember.”
+>
+> **Player:** “You knew who I was the entire time.”
+>
+> **Mara:** “I knew what you were capable of. I was building an army that could not be broken, and you broke the place I was building it in. Then you came back with no memory, and you rebuilt it for me, room by room.”
+
+Finch matches `E.C.H.O_Thread_01` to the identity that signed in at the security gateway in Chapter 5 and to the access records recovered from the archive. The player is Echo. Account records alone do not prove who used them; the recording, the player's recognition, and Mara's answer are what make this a story rather than a guess, and no simulated biometric percentage is offered as proof.
+
+The archive also answers the question Mara has been avoiding since the Workshop. The experiments were hers, the subjects were hers, and the restoration the player has been performing was the rebuilding of her laboratory.
+
+> **Player:** “You were the one hurting them.”
+>
+> **Mara:** “A world like that doesn't deserve them. I was making them strong enough to survive it. You were the only one who ever stopped me.”
+
+Mara moves to initiate a final facility purge, and the console shows exactly what her authority allows:
+
+```text
+CONTAINMENT PROTOCOL REQUESTED
+AUTHORIZATION: M.VALE
+SCOPE: ALL HABITATS
+HABITAT 02: OCCUPIED
+PROTECTED EVIDENCE: COPY RECOVERED
+```
+
+Finch explains that the containment protocol sits inside her facilities authority, so permissions will not refuse it; only the preserved evidence and what the player does next can stop it. He transfers the recovered copy to a protected location and tells the player they have to stop her. The protected evidence store itself remains sealed. Chapter 7 begins with the rescue and the confrontation.
 
 ### Saving and accessibility
 
