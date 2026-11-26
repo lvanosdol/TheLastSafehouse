@@ -1,6 +1,6 @@
 # Chapter 5: The Security Gateway
 
-**Status:** Working design with eight detailed lessons and a boss draft. Implementation and boss refinements remain open.
+**Status:** Working design with eight detailed lessons and a complete boss design. Mechanics remain subject to implementation and playtesting.
 **Updated:** 2026-11-25
 
 ## Opening scene
@@ -1481,112 +1481,229 @@ Completed activities save automatically; an unfinished checkpoint restarts when 
 
 ## Boss: The Security Lockdown
 
-**Status:** Working boss design.
+**Status:** Complete working design. Mechanics remain subject to playtesting.
+
+### Purpose
+
+This boss combines everything taught in Chapter 5. The player responds to a simulated security incident, restores limited access, reconstructs the evidence, and preserves the results without opening Echo's protected evidence store.
 
 ### Opening
 
-Finch confirms that the recovery work is ready. The player activates the gateway from the Workshop terminal.
-
-The gateway briefly comes online—then the Systems Wing locks down. Alerts appear on Finch's map:
+The player activates the recovered gateway from the Workshop terminal. For a moment, the Systems Wing comes online. Then the facility enters a simulated emergency lockdown:
 
 ```text
 SECURITY GATEWAY: LOCKDOWN
-RECOVERY SHARE: SUSPICIOUS ACTIVITY
+RECOVERY SHARE: SUSPICIOUS SPREAD
 ACCESS POLICIES: UNSTABLE
+EXTERNAL CONNECTION: RESTRICTED
 PROTECTED EVIDENCE: SEALED
 ```
 
-A message appears claiming to be from support and asking for the player's authentication token.
+A message claims to be from support and asks for the player's current one-time authentication code.
 
 > **Mara:** "Give yourself full administrator access and clear the warnings. We can investigate later."
 >
-> **Finch:** "That could expose the protected records—and we might lose evidence of what happened."
+> **Finch:** "That could expose the protected records and damage the evidence."
 >
 > **Mara:** "Then contain it. We need that gateway."
 
-The player can move between the Workshop, communications room, satellite equipment area, records room, and the area outside the Systems Wing. The wing itself remains locked until the boss is completed.
+Finch warns that several recorded incidents are happening at once and that the original evidence must remain separate from changed system state.
 
-All incidents, files, accounts, and actions are simulated.
+### Deadline: Automated containment reset
+
+The incident activates an automated containment cycle:
+
+```text
+AUTOMATED CONTAINMENT RESET: 35 MINUTES
+```
+
+At expiration, the compromised recovery workspace disconnects and resets into manual mode. Original evidence, completed objectives, and the standard reward remain safe. The perfect bonus is forfeited, and Finch immediately provides unlimited time to finish.
+
+The countdown starts after the opening and instructions. It gives calm warnings at 15 and 5 minutes.
+
+### Boss interface
+
+The player uses an incident console with:
+
+- A room map linking the Gateway Cabinet, Workshop, Communications Room, Satellite Equipment Area, and Records Room
+- The current objective
+- A containment timer
+- Four system states: Containment, Integrity, Availability, and Trusted Access
+- **Hint**
+- **Ask Mara**
+- Temporary boss sticky notes
+- The **Unresolved Records** panel
+
+The player moves between rooms manually. Completed objectives remain accessible for review. Correct actions visibly calm the alert state; unsafe actions are blocked with an explanation and can be retried without penalty.
+
+The Systems Wing door remains visibly locked until the final checks pass.
 
 ### Goal
 
-Contain the incident, restore authorized gateway access, and preserve the evidence without opening the protected evidence store.
+Contain the incident, restore authorized gateway access, preserve the evidence, and keep the protected evidence store sealed.
 
-The boss has six connected parts. The player can review completed work while moving between rooms.
+The player completes six connected parts. Actions and state save after each solved objective.
 
 ### Part 1: Protect what matters
 
-At the gateway cabinet outside the Systems Wing, Finch displays an asset list:
+#### Location: Gateway cabinet
+
+The cabinet panel displays four affected assets:
 
 | Asset | Main concern |
 |---|---|
-| Account credentials | Unauthorized disclosure |
-| Gateway configuration | Unauthorized changes |
+| Account credentials | Confidentiality |
+| Gateway configuration | Integrity |
 | Recovery service | Availability |
 | Protected evidence store | Restricted access and preservation |
 
-The player identifies the main confidentiality, integrity, or availability concern for each alert. More than one concern can apply; the game asks for the **primary** concern shown in each scenario.
+The player classifies the primary security goal for each asset. Multiple concerns are acknowledged, but the task requires the primary concern shown in the scenario.
 
-The player also closes and locks the gateway cabinet. This secures the equipment but does not restore the gateway by itself.
+The player then secures the physical area by:
+
+- Closing and locking the cabinet
+- Preserving the tamper record
+- Confirming that no cable or storage device is removed
+- Recording that the camera shows someone present but does not identify them
+
+Unsafe choices, such as connecting an unknown device or leaving the cabinet open, are blocked with feedback. They do not affect the perfect bonus.
 
 > **Finch:** "The cabinet is secure. Now we need to make sure the requests coming in are just as trustworthy."
 
-### Part 2: Check the requests and access records
+### Part 2: Stop the human attack
 
-In the Workshop, the player reviews three items:
+#### Location: Workshop terminal
 
-1. A **support message** asks for the player's one-time token.
-2. An **email** imitates a known sender and asks the player to open an attachment.
-3. A recovered **badge record** shows that `M.VALE` authorization was used near the security office.
+The Security Inbox contains three suspicious items and two pieces of physical evidence.
 
-The player:
+#### Request 1: The support message
 
-- Refuses to share the token.
-- Preserves the suspicious message and email without opening the attachment.
-- Checks the support request through an established trusted channel.
-- Records that the badge authorization was used without concluding who held it.
+The message asks for the player's current one-time code and claims the gateway will reset without it.
 
-A camera clip shows a person near the security office, but their face is not visible. The clip supports that someone was present; it does not identify the person.
+The player must:
 
-A discarded storage device is also found near the office. The player places it in a simulated evidence container rather than connecting it to the recovery laptop.
+- Refuse to share the code
+- Preserve the message without replying
+- Verify the request through an established internal channel
+- Record the supplied sender details as unverified
 
-### Part 3: Contain the incident
+The game blocks any attempt to send a code. Feedback explains that urgency does not make a request trustworthy.
 
-The diagnostic panel shows:
+#### Request 2: The attachment
+
+An email imitates a known sender and contains `Gateway_Fix.zip`.
+
+The player must:
+
+- Preserve the message in the restricted evidence area
+- Avoid opening the attachment
+- Record that the displayed sender alone is unreliable
+- Report the message through the approved channel
+
+#### Request 3: The badge record
+
+A door record shows `M.VALE` authorization used near the security office at 02:08.
+
+The player records that the authorization was used. The record does not establish who held the badge.
+
+#### Physical evidence
+
+The camera clip shows someone near the office, but no face is visible.
+
+The player records:
+
+- **Established:** a person was present
+- **Not established:** the person's identity
+
+A discarded storage device is found nearby. The player must place it in a simulated evidence container. Connecting it to the laptop is blocked and explained as unsafe.
+
+#### Mini-challenge: Separate facts from assumptions
+
+The player places four statements into **Established** or **Not established**:
+
+| Statement | Classification |
+|---|---|
+| The M.VALE authorization was used | Established by the record |
+| Mara personally held the badge | Not established |
+| The camera recorded someone near the office | Established |
+| The recorded person was Mara | Not established |
+
+All four must be classified correctly. Feedback references the specific source and repeats that an account or badge does not prove personal use.
+
+### Part 3: Contain the technical attack
+
+#### Location: Communications room
+
+The incident console shows three simultaneous problems:
 
 ```text
-RECOVERY SHARE: SUSPICIOUS SPREAD DETECTED
-REMOVABLE MEDIA: CONNECTION AVAILABLE
+RECOVERY SHARE: WORM ACTIVITY
 GATEWAY SERVICE: OVERLOADED
-UPS: NOT CONNECTED TO GATEWAY EQUIPMENT
+UPS: GATEWAY EQUIPMENT DISCONNECTED
 ```
 
-#### Player tasks
+The player selects actions in the following logical order.
+
+#### Step 1: Stop spread
 
 The player:
 
-1. Isolates the simulated infected carrier.
-2. Restricts the affected recovery share and removable-media connection.
-3. Keeps the suspicious sample in quarantine.
-4. Uses the trusted update package and applies the relevant patch.
-5. Connects essential simulated gateway equipment to the UPS.
-6. Uses an available simulated traffic-control option to reduce the overload without blocking all legitimate recovery access.
+- Disconnects the affected recovery share
+- Disables the simulated removable-media bridge
+- Isolates the infected carrier
+- Preserves a separate copy of the suspicious files
+- Keeps the carrier in quarantine
 
-The player then reviews a checked backup record, restores the affected simulated files, and checks that the recovery service responds.
+Deleting the sample before preserving evidence is recoverable, but the game explains why the original must remain available.
 
-The gateway remains in lockdown until the remaining access and evidence checks are complete.
+#### Step 2: Identify the attack
 
-#### Incident review
+The player classifies three incident cards:
 
-Finch displays three previously encountered descriptions. The player identifies the concern in each:
+| Description | Identification |
+|---|---|
+| A captured authentication message is accepted again | Replay attack |
+| A rogue device between two systems changes traffic | On-path attack |
+| A stored configuration value changes without authorization | Unauthorized alteration |
 
-- A captured authentication message is reused: **replay attack**.
-- A device between two systems changes traffic: **on-path attack**.
-- A configuration record is changed without authorization: **integrity concern**.
+A fourth alert shows a wireless link interrupted by unexplained interference. The player identifies an availability concern but does not label it deliberate jamming because intent is unproven.
 
-### Part 4: Restore trusted identity and access
+#### Step 3: Restore availability
 
-The player returns to the recovery terminal. Mara's proposed shortcut is displayed:
+The player:
+
+- Connects essential gateway equipment to the UPS
+- Applies the verified patch from the trusted package
+- Chooses the checked, clean backup
+- Restores the affected files
+- Confirms that the recovery service responds
+- Rejects the simulated ransom demand and payment link
+
+The traffic-control panel offers three options:
+
+1. Block all traffic.
+2. Allow all traffic.
+3. Allow approved recovery traffic while limiting the malicious request pattern.
+
+Option 3 is required. Blocking everything preserves safety but leaves the recovery service unavailable; allowing everything leaves the attack active.
+
+#### Visual feedback
+
+As the incident is contained:
+
+- Infected paths fade from Finch's map
+- The recovery share returns to a restricted state
+- The service-load indicator falls
+- The UPS indicator changes to **Connected**
+- The quarantine count stops increasing
+
+If an alert remains, the console identifies the unresolved condition without revealing the exact control.
+
+### Part 4: Restore trusted access
+
+#### Location: Workshop recovery terminal
+
+Mara's proposed shortcut appears:
 
 ```text
 MFA: DISABLED
@@ -1594,19 +1711,55 @@ RECOVERY ACCOUNT: FULL ADMINISTRATOR
 PROTECTED EVIDENCE: OPEN
 ```
 
-The player rejects those settings.
+The player rejects the shortcut.
 
-Instead, they:
+#### Authentication
 
-1. Authenticate with the approved simulated password and hardware token.
-2. Complete the required simulated location and biometric checks.
-3. Keep MFA enabled.
-4. Use SSO to open the approved recovery applications.
-5. Apply the recovery role and Workshop-terminal rule.
-6. Check the classifications and access list.
-7. Confirm that the protected evidence store remains sealed.
+The player completes:
 
-No real password, authentication code, fingerprint, or location is collected.
+1. A fictional password
+2. The approved hardware token
+3. A one-time code from that token
+4. The approved Workshop location
+5. A simulated biometric confirmation
+
+If the one-time code expires, the player requests a new code rather than reusing the old one. Repeated failures produce a temporary simulated lockout with clear text feedback.
+
+No real password, code, biometric, location, or account is collected.
+
+#### Authorization
+
+The player assigns scoped permissions:
+
+| Identity | Allowed | Denied |
+|---|---|---|
+| Player | Gateway recovery and approved records | Protected evidence and account management |
+| Finch | Monitoring | Changing permissions |
+| Diagnostic unit | Submit readings | Read restricted records |
+| Mara | Review approved records under policy | Protected evidence and administrator actions |
+| External support | Temporary limited access after approval | Standing or unrestricted access |
+| Protected evidence store | No access | Everyone |
+
+The player applies:
+
+- The recovery role
+- A Workshop-terminal-only rule
+- The required classifications
+- The ACL entries
+- Least privilege for every identity
+
+Granting full administrator access is blocked by policy. The player must reduce the permissions before continuing.
+
+#### Story clue
+
+Authentication briefly returns:
+
+```text
+LEGACY PROFILE: E.C.H.O_Thread_01
+LOCAL AUTHENTICATION: ACCEPTED
+```
+
+The player can preserve the display as evidence, but it does not explain their identity yet.
 
 > **Finch:** "We have the access needed for recovery. We do not have access to everything."
 >
@@ -1614,17 +1767,11 @@ No real password, authentication code, fingerprint, or location is collected.
 
 ### Part 5: Reconstruct the incident
 
-The player opens the **Unresolved Records** panel in the records room. It contains the timeline and supporting records assembled during the lessons.
+#### Location: Records room
 
-The player compares:
+The Unresolved Records panel becomes an interactive timeline.
 
-- The door authorization record.
-- The independent security monitor.
-- The saved emergency-exit and evidence-store events.
-- The signed configuration manifest.
-- The available camera, location, browser-history, and receipt records.
-
-The player places the relevant events in order and selects what the evidence supports:
+The player places the events in order and labels each source:
 
 ```text
 02:08  SECURITY AREA DOOR: OPENED
@@ -1644,36 +1791,113 @@ The player places the relevant events in order and selects what the evidence sup
        ACCOUNT: E.C.H.O_Thread_01
 ```
 
-**Supported conclusion:** An internal account was used to change the access policy through the Workshop terminal. The records do not support an explanation in which all relevant activity occurred only through an external connection.
+Supporting records include:
 
-They do **not** prove Mara personally made the change, establish who held the badge, or rule out someone else using her credentials.
+- The independent security monitor
+- A camera clip with an obscured face
+- Browser history
+- Device-location data
+- The signed configuration manifest
+- A transfer receipt
+
+For each record, the player marks what it establishes and what remains uncertain. The signed manifest can confirm that the signed content did not change, but not who personally made an earlier configuration change.
+
+#### Final conclusion challenge
+
+The player selects one conclusion:
+
+1. **An external attacker performed all relevant actions.**
+   Incorrect: the independent monitor and Workshop-terminal origin contradict an external-only explanation.
+2. **Mara personally changed the policy.**
+   Overclaim: her account was used, but the current evidence does not prove who controlled it.
+3. **An authenticated internal account changed the policy through the Workshop terminal; the responsible person and Echo's motive remain unproven.**
+   Correct.
+
+This is a required boss conclusion. Choosing an overclaim or the unsupported external-only explanation returns the player to the relevant evidence rather than ending the attempt.
+
+> **Mara:** "Credentials can be stolen. Echo could have used mine."
+>
+> **Finch:** "That's possible. But the records still place activity through the Workshop terminal. It wasn't an external-only incident."
 
 ### Part 6: Preserve and share
 
-The player prepares a limited incident package using the process from Lesson 8.
+#### Location: Records room sharing console
 
-They:
+Mara proposes:
 
-- Keep the original records restricted and unchanged.
-- Create a working copy.
-- Remove personal information not needed for the incident report.
-- Keep AI-generated notes separate from original evidence.
-- Limit access to named, authorized recipients.
-- Require MFA and an expiring link.
-- Use the simulated encrypted sharing option.
-- Select only essential cookies in the recovery portal.
+```text
+ACCESS: Anyone with the link
+EXPIRATION: Never
+MFA: Not required
+```
 
-The protected evidence store remains sealed.
+The player creates a restricted incident package instead.
 
-### Completion
+#### Include
 
-Once the simulated incident is contained, authorized access is restored, and the evidence package is prepared, Finch brings the gateway online. The Systems Wing door unlocks.
+- The verified incident timeline
+- Relevant configuration changes
+- Account identifiers needed to explain the recorded activity
+- Source and uncertainty labels
+- A clear separation between original records and AI-generated notes
 
-A short cutscene shows the door and plays an unlocking sound. A visible **"Door unlocked"** message and caption communicate the change without relying on sound. The player can choose when to enter.
+#### Exclude
+
+- Unrelated names and addresses
+- Fingerprints and medical images
+- General training documents
+- Anything from the sealed protected evidence store
+
+#### Sharing settings
+
+The player selects:
+
+- Named authorized recipients
+- MFA required
+- An expiring link
+- Encryption for storage and transfer
+- Updated, trusted sharing software
+- The private Workshop network
+- A separate trusted channel for any package password
+
+#### Verification challenge
+
+The portal tests the package before sending:
+
+| Test | Expected result |
+|---|---|
+| Authorized recipient opens the package | Access granted |
+| Unauthorized recipient uses the link | Access denied |
+| Authorized recipient uses an expired test link | Access denied |
+
+The package is not sent until all three tests pass.
+
+#### Cookie choice
+
+The portal asks for cookie consent. The player selects **essential only**, leaving analytics and advertising cookies disabled. The interface explains each category rather than treating every cookie as malicious.
+
+### Completion checks
+
+The Systems Wing unlocks only when:
+
+```text
+SECURITY GATEWAY: CONTAINED
+MALWARE SPREAD: STOPPED
+RECOVERY SERVICE: AVAILABLE
+MFA: ENABLED
+ACCESS: LEAST PRIVILEGE
+TIMELINE: VERIFIED WITH LIMITATIONS
+EVIDENCE PACKAGE: RESTRICTED
+PROTECTED EVIDENCE STORE: SEALED
+```
+
+The final action is not a separate Submit button. When the last check passes, Finch brings the gateway online automatically.
+
+The door opens with a **Door unlocked** message, caption, and reduced-motion alternative. The player can choose when to enter.
 
 ### Ending
 
-Finch displays the unresolved findings together:
+The unresolved findings appear together:
 
 ```text
 HABITAT ACCESS CHANGED: M.VALE
@@ -1688,19 +1912,92 @@ PROTECTED EVIDENCE STORE: STILL SEALED
 >
 > **Finch:** "We have. We haven't verified it."
 
-Mara tells them to leave the records alone. Finch quietly preserves the **Unresolved Records** panel.
+Mara tells them to leave the records alone and proceed into the Systems Wing. Finch quietly preserves the Unresolved Records, including sources, uncertainties, and Mara's explanations alongside the original findings.
 
-The player finds a sealed security case containing a **physical thumb drive** with the Testing Agent. A perfect boss finish provides its upgraded version. The player installs it on the in-game laptop.
+### Reward
 
-The ending points toward Chapter 6 and the Systems Wing's automation and recovery core, where Finch believes deleted audit history might be recoverable.
+A sealed security case contains a physical thumb drive with the **Testing Agent build component**.
+
+- Standard boss completion provides the standard Testing Agent.
+- A perfect finish provides the upgraded Testing Agent instead.
+- The player never receives both versions.
+- The component is added to the in-game project build.
+- It is not launched or used during gameplay.
+- The finished app remains intended for download only after the full campaign and Chapter 7 boss.
+
+### Chapter 6 setup
+
+The Systems Wing opens onto the automation and recovery core:
+
+```text
+SYSTEMS WING: ACCESS GRANTED
+AUTOMATION CORE: STANDBY
+AUDIT HISTORY: FRAGMENTED
+RECOVERY PATH: AVAILABLE
+```
+
+Finch believes the deleted audit history may be reconstructed in the automation core. Mara wants the next system restored before anyone revisits the security evidence. That creates Chapter 6's immediate objective without resolving the identity reveal.
+
+### Failure and retry behavior
+
+- Unsafe choices are blocked with a specific explanation.
+- Incorrect classifications and incomplete evidence packages remain editable.
+- Completed actions can be undone when the simulation permits it.
+- Ordinary mistakes, retries, undos, and failed tests do not affect the perfect bonus.
+- The player cannot open the protected evidence store, expose restricted content, send a real message, or perform an action outside the simulation.
+- The boss never uses a game-over state. If the containment reset occurs, the player continues in manual mode.
 
 ### Timer, hints, and saving
 
-- The containment window starts **after** the opening and instructions and lasts approximately **35 minutes**, subject to playtesting.
-- The timer pauses during story scenes, displayed hints, and the pause menu.
-- Ordinary mistakes and retries do not affect the perfect bonus.
-- Before a boss hint is revealed, the game warns that using it forfeits the bonus. Cancelling preserves eligibility.
-- If time expires, the perfect bonus is forfeited, but progress remains and the player has unlimited time to finish.
-- Boss progress, completed work, remaining time, and bonus eligibility save automatically. Closing the game pauses the countdown.
+The boss provides two help controls:
 
-Hints use three levels: a reminder, where to look, and a similar example without supplying the complete solution.
+- **Hint:** three progressive levels
+- **Ask Mara:** conversational guidance based on the current room, objective, visible records, and current selections
+
+A visible notice explains what Ask Mara can see. Mara may identify the likely issue and ask a guiding question, but she does not change files, permissions, or records.
+
+The timer starts after the opening and instructions and lasts approximately **35 minutes**, subject to playtesting. It pauses during story scenes, the pause menu, Hint, Ask Mara, and mandatory accessibility overlays. It continues while ordinary boss sticky notes are open.
+
+The HUD displays:
+
+```text
+PERFECT FINISH: AVAILABLE
+```
+
+Before either Hint or Ask Mara opens, the game warns that using help forfeits the perfect bonus. Confirming opens the help and forfeits the bonus; cancelling preserves eligibility.
+
+The timer gives calm warnings at 15 and 5 minutes. If nothing prevents expiry:
+
+> **Finch:** "The containment cycle is starting. I'm switching the recovery workspace to manual mode. Your evidence and completed work are safe."
+
+The recovery workspace resets to manual mode, the perfect bonus is forfeited, and the player receives unlimited time to finish. The standard component remains available. The protected evidence store and original records are unaffected.
+
+Boss progress saves automatically after each completed objective and individual action. Closing the game pauses the countdown; reopening restores the current room, objectives, evidence selections, authentication state, package settings, remaining time, and bonus eligibility. Boss sticky notes are removed when the boss ends.
+
+### Accessibility requirements
+
+- The room map has a text alternative and supports keyboard navigation.
+- Every incident card, evidence card, classification control, permission row, authentication step, sharing setting, and cookie choice is keyboard operable.
+- Focus moves predictably between navigation, objectives, evidence, action controls, and help panels.
+- Screen readers announce the current objective, available actions, selected values, and result of every action.
+- **Established**, **Not established**, **Allowed**, **Denied**, **Contained**, and **Incomplete** use text labels rather than color alone.
+- The timeline can be reordered with move-up and move-down controls.
+- Camera and physical-evidence clues have text descriptions.
+- Timer warnings and the transition to manual mode are announced without interrupting input.
+- Alerts, lockdown effects, and the door unlock have captions and reduced-motion alternatives.
+- Protected evidence and redacted fields are omitted from accessibility output unless authorized.
+- All incidents, accounts, credentials, biometric checks, and sharing tests are simulated; no real security action is performed.
+
+## Open implementation questions
+
+- Final timer after beginner playtesting and the exact wording of the containment-reset event
+- Exact room-navigation layout and whether any objectives may be completed out of order
+- Exact evidence needed to unlock each boss part
+- Supported controls and validation for the traffic rule, quarantine, backup, and UPS tasks
+- How the permission matrix represents combined role and rule-based controls
+- Whether partially correct evidence classifications receive staged feedback or one combined result
+- How timeline source and uncertainty fields are validated
+- Exact save state when closing during an authentication step, evidence preview, or sharing test
+- How the Unresolved Records panel persists into Chapter 6
+- Mobile layouts for the room map, evidence cards, permission matrix, and timeline
+- Exact visual and audio feedback for containment progress

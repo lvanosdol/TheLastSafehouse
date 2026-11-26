@@ -44,3 +44,6 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-25 | Distinguish the historical and live satellite windows in Chapter 4 | Keep the Lesson 1 estimate and the boss timer from appearing contradictory. |
 | 2026-11-25 | Expand all eight Chapter 5 lessons with guided practice and accessibility details | Prepare players for the larger security tasks and make evidence, permissions, authentication, and privacy controls usable without color, sound, or precise pointer input. |
 | 2026-11-25 | Keep Mara on limited policy review in Chapter 5 access assignments | Echo holds the administrator identity, so Mara cannot be assigned administrator authority. |
+| 2026-11-25 | Redesign the Chapter 5 boss as a six-part security incident | Require the player to apply all eight lessons across the facility map while preserving the sealed evidence store. |
+| 2026-11-25 | Give the Chapter 5 boss a 35-minute automated containment reset | Add an in-world reason for urgency while preserving all original evidence, progress, and the standard reward after expiry. |
+| 2026-11-25 | Award the Testing Agent as a project build component in Chapter 5 | The standard or upgraded version joins the in-game app build but is not used during gameplay; the finished app is downloadable after Chapter 7. |

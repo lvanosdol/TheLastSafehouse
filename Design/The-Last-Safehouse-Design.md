@@ -229,7 +229,7 @@ The campaign aims for a beginner-to-practical pathway in IT, networking, databas
 2. **Programming fundamentals:** See the [Chapter 2 design](Chapter%202/Chapter-2-Design.md).
 3. **Databases:** See the [Chapter 3 design](Chapter%203/Chapter-3-Design.md).
 4. **Networking, cloud, and AI-assisted recovery:** See the [Chapter 4 design](Chapter%204/Chapter-4-Design.md).
-5. **Later chapter:** Assignment to be decided.
+5. **Security, access control, and evidence handling:** See the [Chapter 5 design](Chapter%205/Chapter-5-Design.md).
 6. **Later chapter:** Assignment to be decided.
 7. **IT capstone and identity resolution:** Apply the curriculum, discover that the player is The Echo (`E.C.H.O_Thread_01`), learn that Echo destroyed Mara's lab to save its subjects, and uncover Mara's manipulation. Final choices and endings remain open.
 
