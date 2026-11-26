@@ -1371,7 +1371,7 @@ The boss provides two help controls:
 
 A visible notice explains what Ask Mara can see. Mara may identify the likely issue and ask a guiding question, but she does not change files, permissions, or records.
 
-The timer starts after the opening and instructions and lasts approximately **35 minutes**, subject to playtesting. It pauses during story scenes, the pause menu, Hint, Ask Mara, and mandatory accessibility overlays. It continues while ordinary boss sticky notes are open.
+The timer starts after the opening and instructions and lasts approximately **35 minutes**, subject to playtesting. It pauses during story scenes, the pause menu, Hint, Ask Mara, mandatory accessibility overlays, and whenever the game window loses focus. It continues while ordinary boss sticky notes are open.
 
 The HUD displays:
 

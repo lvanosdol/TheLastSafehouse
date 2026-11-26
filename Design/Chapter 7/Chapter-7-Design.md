@@ -567,7 +567,7 @@ A **35-minute containment window** begins after the opening and instructions, wi
 
 If it expires, the simulated workspace switches to manual recovery. The hold and life support remain safe, completed work and evidence are preserved, and the player has unlimited time to finish. The perfect bonus is forfeited, but the standard reward remains available. There is no game over.
 
-The timer pauses during story scenes, the pause menu, help panels, mandatory accessibility overlays, while the game is closed, and during the final ending decision. It continues while ordinary boss sticky notes are open.
+The timer pauses during story scenes, the pause menu, help panels, mandatory accessibility overlays, while the game is closed, whenever the game window loses focus, and during the final ending decision. It continues while ordinary boss sticky notes are open.
 
 **Hint** has three progressive levels and comes from Finch. Before it opens, a warning says that using help forfeits the perfect bonus; confirming opens it, and cancelling preserves eligibility.
 

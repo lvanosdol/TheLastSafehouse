@@ -905,7 +905,7 @@ PERFECT FINISH: AVAILABLE
 
 The timer begins after the opening and instructions, with calm warnings at 15 and 5 minutes. At expiry, the interface switches to manual recovery mode. Completed actions, original evidence, and recovered copies remain safe; the player has unlimited time to finish and can still earn the standard reward. The perfect bonus is forfeited.
 
-The timer pauses during story scenes, the pause menu, help panels, mandatory accessibility overlays, and while the game is closed. It continues while ordinary boss sticky notes are open. The 35-minute duration is subject to playtesting.
+The timer pauses during story scenes, the pause menu, help panels, mandatory accessibility overlays, while the game is closed, and whenever the game window loses focus. It continues while ordinary boss sticky notes are open. The 35-minute duration is subject to playtesting.
 
 ### Boss interface
 

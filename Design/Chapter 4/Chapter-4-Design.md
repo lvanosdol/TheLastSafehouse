@@ -1308,7 +1308,7 @@ The player adds the standard component to the in-game project build for completi
 The boss provides two separate optional help controls. **Hint** offers Finch's three progressive hint levels. **Ask Mara** opens in-character conversational guidance using the current objective, network state, current selections, and available results; a visible notice explains what she can see. Mara may identify the likely issue and ask a guiding question, but she does not complete the task or change network settings.
 
 - The timer starts **after** the opening and instructions.
-- It pauses during story scenes, the pause menu, displayed Hint overlays, Ask Mara help, and mandatory accessibility overlays. It resumes at the remaining time when the overlay closes.
+- It pauses during story scenes, the pause menu, displayed Hint overlays, Ask Mara help, mandatory accessibility overlays, and whenever the game window loses focus. It resumes at the remaining time when the overlay closes or the window returns.
 - Ordinary mistakes and retries do not affect the perfect bonus.
 - Before either **Hint** or **Ask Mara** opens, warn that using help forfeits the perfect bonus. Confirming opens the help and forfeits the bonus; cancelling preserves eligibility.
 - If the satellite window closes during the transfer, Finch reports that the connection has paused. The game saves the partial download and completed work; the perfect bonus is forfeited.

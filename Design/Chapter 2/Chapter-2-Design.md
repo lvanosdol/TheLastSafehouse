@@ -37,7 +37,7 @@ The next morning, the player sits down with their in-game laptop and the thumb d
 >
 > **Mara:** "First, let's add your Project Planning Agent component to the project build."
 
-The player plugs the drive into the in-game laptop and selects **Add component for current user**. The simulated installer does not request administrator approval, change system-wide settings, or affect the player's real computer:
+The player plugs the drive into the in-game laptop. A small installer window opens with the package details and a single choice, **Install for me only**, followed by a progress step and a completion line naming the **Installed apps** entry it now occupies. No administrator prompt appears, because a per-user install does not need one, and the window says so:
 
 ```text
 APPLICATION COMPONENT: PROJECT PLANNING AGENT
@@ -527,7 +527,9 @@ The word bank initially shows each missing word as blank letter slots with its l
 2. A correct conversion reveals the corresponding letter everywhere it appears in the word bank. One conversion unlocks all occurrences of that letter; the player does not need to learn a letter-to-number key.
 3. When all the letters in a word are unlocked, its full text appears with an **Unlocked** label and the player can type it into a blank in the terminal.
 4. The player can type an unlocked word into any blank, using the code, comments, and earlier lessons to work out where it belongs rather than being told its position.
-5. Once all words are entered, the player presses **Run**. The word bank marks correctly placed words green and incorrectly placed words red, with **Correct** and **Incorrect** text labels so the feedback does not depend on color alone. The player can edit the code and run it again; all words must be correctly placed for the repair to succeed.
+5. When every blank is filled, the player presses **Run**. The word bank marks correctly placed words green and incorrectly placed words red, with **Correct** and **Incorrect** text labels so the feedback does not depend on color alone. The player can edit the code and run it again; all words must be correctly placed for the repair to succeed.
+
+Run stays pressable while a blank is unfilled. Pressing it then shows **Not yet: 3 required words are still missing** and does not count as a Run, does not enter the Run history, and never affects the perfect bonus. That keeps an incomplete submission separate from an incorrect placement, which is the distinction the perfect-finish rule depends on.
 
 The first Run is free and does not forfeit the perfect bonus. If the player runs the code again and any words are still in the wrong places, the perfect bonus is forfeited, even if different words are wrong. A correct Run after the first preserves the bonus unless another forfeit already applied. The player keeps their progress and can continue correcting the code to earn the standard reward. Explain this rule before the boss begins.
 
@@ -551,7 +553,7 @@ Before every Run after the first, display a confirmation:
 >
 > **Run anyway** · **Return to code**
 
-**Return to code** cancels without counting a Run or affecting eligibility. A correct Run preserves the bonus. An incorrect Run changes the status to **Perfect finish forfeited**, preserves all progress, and leaves the standard reward available. If the bonus was already forfeited through time or help, the warning states that instead of implying it can still be protected.
+**Return to code** cancels without counting a Run or affecting eligibility, and cancelling changes nothing about the risk: the next Run shows the same confirmation, and cancelling again is equally free. A correct Run preserves the bonus. An incorrect Run changes the status to **Perfect finish forfeited**, preserves all progress, and leaves the standard reward available. If the bonus was already forfeited through time or help, the warning states that instead of implying it can still be protected.
 
 The comments are part of the task, not optional boss hints. Code and system interactions remain inside the game's simulation.
 
@@ -561,7 +563,9 @@ Keep the Workshop appearance of the screen reference, but arrange the chart like
 
 The player enters the position's value beneath each `1`. Beneath a `0`, either a blank entry or `0` is correct. The player adds the contributions, enters the total, and submits. A correct submission unlocks its letter; an incorrect submission marks the entries or total needing attention without revealing the answers. Preserve entries for revision. Incorrect submissions do not count as a boss Run or affect the perfect bonus.
 
-Show one binary puzzle at a time with a **Skip** button. Skip moves past the current puzzle without solving it or counting as a Run; skipped, unsolved puzzles return in the cycle. Solved puzzles stay solved, and partially entered answers remain when the player returns. The timer continues during puzzle navigation. Playtest the time needed to enter all place-value contributions.
+Tab order runs through the contribution fields in position order, then the total, then **Submit**; Enter advances and no field traps focus. Errors are specific without giving answers: a wrong contribution reports **Check the contribution at position 16**, while a total that does not match the entries already present reports **Your total does not match the contributions you entered**, so arithmetic and knowledge produce different feedback.
+
+Show one binary puzzle at a time with a **Skip** button. Skip moves past the current puzzle without solving it or counting as a Run, and a skipped puzzle re-enters at the end of the queue rather than at the front. A conversion list is always available showing all twelve with their solved or unsolved state, so the player can jump to any unsolved puzzle; when only skipped puzzles remain, the console says so and points at the list instead of offering another Skip. Skipped puzzles never block progress, solved puzzles stay solved, and partially entered answers remain when the player returns. The timer continues during puzzle navigation.
 
 ### Boss program
 
@@ -621,10 +625,12 @@ Incorrect conversions can be retried and do not count as a Run. Playtest whether
 
 ### Boss accessibility
 
-- Each word displays its length and **Locked** or **Unlocked** state as text.
+- Each word displays its length and **Locked** or **Unlocked** state as text, read as a list item such as “Locked, five letters” or “Unlocked: print”.
 - A screen-reader list reports unlocked letters, completed words, and progress such as “E unlocked. Four of twelve letters found.”
+- Placement feedback is announced as a sentence: “Placement check: four of seven correct. Incorrect: blank two, blank five.”
 - Locked letters are not present in accessibility output or conveyed through faintness.
 - Correctly and incorrectly placed words use the words **Correct** and **Incorrect**, not only green and red.
+- The current puzzle or chart and the unlocked-letter list stay visible at the same time. Narrow screens use tabs with the solved count on the tab label, so progress is never hidden.
 - Players can review the current word bank, code, and unlocked-letter list at any time.
 
 ### Hints
@@ -643,6 +649,8 @@ Before revealing any Hint or opening Ask Mara, warn that using either help metho
 
 **Timer and rewards:** Use the standard timer only, without separate extended-time or no-timer settings. The initial limit is approximately **30 minutes**, subject to playtesting, and starts after the opening cutscene and instructions. Give the player calm warnings at **15 minutes** and **5 minutes** remaining during the initial countdown. Explain before the countdown that letting time run out forfeits the perfect bonus.
 
+**Pacing budget for playtesting:** the twelve conversions should take no more than twelve minutes, reading and placement no more than fifteen, leaving about three minutes of slack. If testers average longer on the conversions, the chart or the entry flow needs attention before the timer does.
+
 > **Finch, at 15 minutes:** "We have fifteen minutes left. Power use hasn't changed."
 >
 > **Finch, at 5 minutes:** "Five minutes until safe mode. Take a breath—we're getting closer."
@@ -651,7 +659,11 @@ Before revealing any Hint or opening Ask Mara, warn that using either help metho
 
 If time runs out, the game clearly reports that the perfect bonus has been forfeited. The player keeps their progress and has unlimited time to finish, with no second countdown. They can still complete the chapter and receive the standard component. Accepting a **Hint** or **Ask Mara** help also forfeits the bonus, but only after a warning and confirmation; cancelling preserves eligibility.
 
-The countdown pauses during cutscenes, the pause menu, displayed Hint overlays, Ask Mara help, and mandatory accessibility overlays. It resumes at the remaining time when the overlay closes. Closing the game stops the countdown; reopening resumes with the remaining time. Restore solved puzzles, partial answers, code, boss sticky notes, remaining time, Run history, and perfect-bonus eligibility so closing the game does not reset the attempt. Boss sticky notes are still removed when the boss ends.
+The countdown pauses during cutscenes, the pause menu, displayed Hint overlays, Ask Mara help, mandatory accessibility overlays, and whenever the game window loses focus. It resumes at the remaining time when the overlay closes or the window returns. Closing the game stops the countdown; reopening resumes with the remaining time.
+
+Closing during a confirmation never decides it: a pending Run confirmation is discarded on close, so quitting forfeits nothing, while a Hint or Ask Mara forfeit that was already confirmed stands because it was chosen before closing. Reopening returns to the code with any overlay closed and the Run history intact.
+
+Restore solved puzzles, partial answers, code, boss sticky notes, remaining time, Run history, and perfect-bonus eligibility so closing the game does not reset the attempt. Boss sticky notes are still removed when the boss ends.
 
 The [sticky note app](../The-Last-Safehouse-Design.md#sticky-notes) is available during the boss, but lesson notes are hidden and boss notes are removed when the boss ends. The timer continues while a note is open or being edited.
 
@@ -680,14 +692,5 @@ Inside is a thumb drive containing the Design Agent build component. Mara hands 
 
 ## Open implementation questions
 
-- Final initial timer after beginner playtesting; the current baseline is 30 minutes
-- Exact binary-entry focus order, keyboard controls, and error formatting
-- How skipped puzzles cycle without creating a soft lock
-- Whether partially completed puzzles and the unlocked-letter list remain visible together
-- Exact meaning of a Run when required words are missing
-- Whether the second-Run warning appears again after cancellation without counting as a Run
-- Whether the timer pauses when the application loses focus
-- Exact saved state when closing during a Hint, Ask Mara, or Run confirmation
-- How the per-user project-build installation is represented visually
-- How the word bank and placement feedback adapt for screen readers and mobile
-- Final timing and readability checks for all 12 conversions on the target display sizes
+- First beginner playtest results: the average time for the twelve conversions, and whether it fits the twelve-minute budget
+- Whether the chart, entry fields, and word bank fit the smallest supported display without scrolling
