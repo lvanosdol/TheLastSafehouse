@@ -106,6 +106,8 @@ A record can have missing information. A shared device ID can help match a recor
 
 ### Checkpoint: Identify the devices
 
+The requirement is every unknown field resolved from a supporting record, each field's data type named, and no value guessed.
+
 #### Guided stage
 
 There is no separate practice activity. The player sees these incomplete records:
@@ -192,6 +194,8 @@ A missing ID is also a problem for a primary key. Before the rule can be enforce
 > **Mara:** "Exactly. The rule protects the table once its existing records follow it."
 
 ### Checkpoint: Repair duplicate IDs
+
+The requirement is each device keeping a unique ID, the duplicate corrected from the equipment list and serial numbers, and the primary-key rule enabled only once validation passes.
 
 #### Guided stage
 
@@ -309,6 +313,8 @@ ORDER BY priority ASC;
 The clauses appear in this order: `SELECT`, `FROM`, `WHERE`, then `ORDER BY`. This example returns Workshop devices sorted from the smallest priority number to the largest. It does not change any records.
 
 ### Checkpoint: Find the offline devices
+
+The requirement is a read-only query that returns exactly the offline devices, with the requested fields and nothing else.
 
 #### Guided stage: Complete a basic query
 
@@ -438,6 +444,8 @@ For this simulated lesson, pressing **Preview** shows the records a statement wo
 > **Finch:** "A chance to look before we change anything? I approve of this system."
 
 ### Checkpoint: Correct the registry
+
+The requirement is each change previewed, applied to the intended record only, with the Archived record and unrelated devices left untouched.
 
 #### Guided stage: Preview one change
 
@@ -602,6 +610,8 @@ After joining tables, `SELECT` can include fields from any of them. Use the tabl
 
 ### Checkpoint: Build a maintenance report
 
+The requirement is a join on the correct keys that returns the requested fields for each device and its matching events, with a stated account of what the join leaves out.
+
 #### Guided stage: Match the join keys
 
 The player is shown the `devices`, `rooms`, and `maintenance_events` fields and selects the two matching key pairs:
@@ -761,6 +771,8 @@ When a check finds a problem:
 > **Mara:** "Exactly. Correcting a problem is part of verification."
 
 ### Checkpoint: Verify the recovered records
+
+The requirement is a verification report that names each failing rule with its record and field, and marks whether the failure leaves the record usable.
 
 #### Guided stage: Read a verification result
 
