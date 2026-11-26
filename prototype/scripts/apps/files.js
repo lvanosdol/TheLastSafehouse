@@ -105,7 +105,6 @@ export function explorerBody(container, startPath) {
     const details = document.createElement('div');
     details.setAttribute('role', 'group');
     details.setAttribute('aria-label', 'Selected item');
-    details.setAttribute('aria-live', 'polite');
 
     if (selected) {
       const summary = document.createElement('p');

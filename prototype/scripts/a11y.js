@@ -54,11 +54,11 @@ export function openModal({ title, body, actions = [], onClose }) {
   const actionBar = document.createElement('div');
   actionBar.className = 'dialog-actions';
 
-  const close = (label = 'Close') => {
+  const close = () => {
     scrim.remove();
     if (opener && typeof opener.focus === 'function') opener.focus();
     if (onClose) onClose();
-    announce(label + ' closed.');
+    announce(title + ' closed.');
   };
 
   actions.forEach((action) => {

@@ -1,5 +1,4 @@
 import { ROOT, list } from '../data.js';
-import { announce } from '../a11y.js';
 
 const COMMANDS = ['dir', 'whoami', 'help', 'cls'];
 
@@ -68,16 +67,12 @@ export function terminalBody(container) {
 
     if (command === 'help') {
       write('Available commands: dir, whoami, help, cls.\n\n');
-      announce('Help printed. Four commands are available.');
     } else if (command === 'dir') {
       write(dirOutput(cwd));
-      announce('Directory listing printed for ' + cwd + '.');
     } else if (command === 'whoami') {
       write('SAFEHOUSE7\\recovery\n\n');
-      announce('Current account is SAFEHOUSE7 recovery.');
     } else if (command === 'cls') {
       output.textContent = '';
-      announce('Terminal cleared.');
     } else {
       write(
         'Command not recognized: ' +
@@ -86,7 +81,6 @@ export function terminalBody(container) {
           COMMANDS.join(', ') +
           '.\n\n'
       );
-      announce('Command not recognized: ' + raw + '.', { urgent: true });
     }
 
     input.value = '';

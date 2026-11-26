@@ -187,7 +187,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible, a:focus-vis
     </div>
   </header>
 
-  <main id="desktop" aria-label="Simulated desktop">
+  <main id="desktop" tabindex="-1" aria-label="Simulated desktop">
     <h1 class="desktop-title">Safehouse 7 — Workshop computer</h1>
     <ul class="icons" id="desktop-icons"></ul>
     <div id="windows" class="windows" aria-label="Open windows"></div>
@@ -365,11 +365,11 @@ function openModal({ title, body, actions = [], onClose }) {
   const actionBar = document.createElement('div');
   actionBar.className = 'dialog-actions';
 
-  const close = (label = 'Close') => {
+  const close = () => {
     scrim.remove();
     if (opener && typeof opener.focus === 'function') opener.focus();
     if (onClose) onClose();
-    announce(label + ' closed.');
+    announce(title + ' closed.');
   };
 
   actions.forEach((action) => {
@@ -673,7 +673,6 @@ function explorerBody(container, startPath) {
     const details = document.createElement('div');
     details.setAttribute('role', 'group');
     details.setAttribute('aria-label', 'Selected item');
-    details.setAttribute('aria-live', 'polite');
 
     if (selected) {
       const summary = document.createElement('p');
@@ -779,16 +778,12 @@ function terminalBody(container) {
 
     if (command === 'help') {
       write('Available commands: dir, whoami, help, cls.\n\n');
-      announce('Help printed. Four commands are available.');
     } else if (command === 'dir') {
       write(dirOutput(cwd));
-      announce('Directory listing printed for ' + cwd + '.');
     } else if (command === 'whoami') {
       write('SAFEHOUSE7\\recovery\n\n');
-      announce('Current account is SAFEHOUSE7 recovery.');
     } else if (command === 'cls') {
       output.textContent = '';
-      announce('Terminal cleared.');
     } else {
       write(
         'Command not recognized: ' +
@@ -797,7 +792,6 @@ function terminalBody(container) {
           COMMANDS.join(', ') +
           '.\n\n'
       );
-      announce('Command not recognized: ' + raw + '.', { urgent: true });
     }
 
     input.value = '';
