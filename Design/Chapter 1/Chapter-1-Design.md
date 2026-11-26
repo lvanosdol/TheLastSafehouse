@@ -960,7 +960,7 @@ Later context reveals that `WorkshopSync_ECHO-01.ps1` was a corrupted safeguard 
 
 ### Boss completion and cutscene
 
-After the checks pass and the file is blocked, Finch's hologram flickers into view and steadies.
+After the checks pass and the file is blocked, the Workshop application starts normally for the first time since the shutdown, and Finch's hologram flickers into view and steadies.
 
 > **Finch:** “Oh! There I am. For a moment, I thought I’d misplaced myself.”
 >
