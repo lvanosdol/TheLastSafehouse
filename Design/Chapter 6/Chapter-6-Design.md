@@ -324,7 +324,16 @@ All simulator controls work by keyboard and screen reader, without drag-only act
 
 ### Story opening
 
-The storage array is stable, but the Automation Core still cannot export the recovered audit fragments. Its status panel reports that the audit export service is unavailable.
+The storage array is stable, but the Automation Core still cannot export the recovered audit fragments. Its status panel reports no export since the service stopped.
+
+```text
+AUDIT EXPORT SERVICE: UNAVAILABLE
+EXPORT SCHEDULE: PRESENT
+BACKUP QUEUE: OPERATIONAL
+STORAGE ARRAY: HEALTHY
+SCHEDULED MAINTENANCE: OFFLINE
+LAST SUCCESSFUL EXPORT: 02:40
+```
 
 > **Mara:** “Restart it and see what happens.”
 >
@@ -332,84 +341,107 @@ The storage array is stable, but the Automation Core still cannot export the rec
 >
 > **Mara:** “Then use a methodology. Quickly.”
 
-Finch opens the **Troubleshooting Board**. It displays the symptom, service status, recent changes, available tests, and a place to record findings. All systems and tests are simulated; the protected evidence store remains sealed.
+Mara's patience follows the Chapter 5 choice. If the player kept the evidence questions open, she is clipped and checks what the board is recording; if the player put the gateway first, she is easier but steers the conversation away from the change history. The difference is tone only.
+
+Finch opens the **Troubleshooting Board**. It shows the reported symptom and the panels used to check it: service status, the export schedule, the backup queue, the storage summary, and the change history. All systems, records, and tests are simulated; the protected evidence store remains sealed.
 
 ### Learn & Try pages
 
-The lesson stays visible on the left while the interactive board appears on the right. The player can review pages during the checkpoint.
+The left pane explains each topic, and the right side keeps the same Troubleshooting Board available throughout the lesson, so the player can open each panel, run each test, and watch what happens. All systems, records, and tests are simulated, and the protected evidence store remains sealed. The player can move back and review pages during the checkpoint.
+
+Examples use a temporary practice incident. Moving between lesson pages preserves the player's work on that incident, while **Reset example** returns the demonstration to its starting state without changing the checkpoint. The checkpoint begins from its own controlled snapshot of the export incident.
 
 #### Page 1: Identify the problem
 
-A symptom is something observable, not necessarily its cause. “The audit export is unavailable” describes the problem; “the storage drive caused it” is a possible explanation that still needs testing.
+A symptom is something observable, not necessarily its cause. “No audit export ran overnight” is a symptom. “The storage array failed again” and “someone switched the service off” are possible explanations that still need testing.
 
-The player selects the reported symptom from a set of observations and assumptions.
+In the practice incident, the board shows a report, a service panel, a queue, a storage summary, and a change history. The report says what someone noticed; the panels show what the system itself reports. They are allowed to disagree.
 
 #### Page 2: Gather information
 
-Check relevant status messages, recent changes, and what is or is not working. Ask when the problem began and whether anything changed. Information from a person is useful, but it should be distinguished from an independently observed system status.
+Check relevant status messages, recent changes, and what is and is not working. Ask when the problem began and whether anything changed. Compare the last successful run with the change record in one time zone: a change that lands just after the last success is a lead, and a change that lands well before it is probably not the cause.
 
-The player inspects the service panel and change history without altering either.
+Information from a person is useful, but it should be kept separate from an independently observed system status.
+
+Opening the practice panel and change history shows both timestamps side by side.
 
 #### Page 3: Form a theory
 
-A theory is a possible cause supported by the available evidence. Start with a likely explanation, but remain willing to change it. Several problems can have similar symptoms.
+A theory is a possible explanation supported by the evidence. Keep more than one candidate until the evidence separates them, and note what would count against the one you prefer. Several problems can produce the same symptom, and the first theory that fits is not automatically the cause.
 
-The board presents possible causes. The player links a theory to the observation that supports it rather than selecting a cause at random.
+The practice incident offers several candidates. Choosing one shows which evidence supports it and which evidence from the other panels does not.
 
 #### Page 4: Test one variable at a time
 
 A controlled test changes one thing and checks the result. If several settings change at once, it is harder to know which change helped or caused a new problem. Record the original setting so it can be restored if the test fails.
 
-The player applies one simulated change in a test environment, observes the result, and can revert it. A failed test provides information; it is not a penalty.
+The practice board allows a single change or a combined one. A combined test completes, but the board reports that the result cannot be attributed to any one change; the player can revert it and try again. A failed or uninformative test provides information; it is not a penalty.
 
-#### Page 5: Plan and implement a safe fix
+#### Page 5: Preserve evidence
 
-Before changing a live system, consider authorization, risk, available backups, and whether the change might interrupt another service or alter evidence. Use the least disruptive appropriate action. If the cause or authority is unclear, stop and escalate rather than guessing.
+Troubleshooting should not erase the records needed to understand what happened. Preserve the original records before editing anything, work from an authorized copy, and record observations separately from explanations or assumptions. A username in a record identifies an account, not necessarily the person who used it.
 
-The board shows a proposed change, its expected effect, and a way to undo it. In this fictional scenario, Finch confirms that the recovery role is authorized to restore the export service and that the available backup has been verified.
+Finch has preserved records since the lockdown and treats the originals as untouchable. In the practice incident, the original change history opens read-only, and any note the player adds is stored beside it rather than inside it.
 
-#### Page 6: Verify full functionality
+#### Page 6: Plan and implement a safe fix
 
-A service showing “running” does not by itself prove it performs its job. Check that the intended task works and that related services are still functioning.
+Before changing a live system, consider authorization, risk, available backups, and whether the change might interrupt another service or alter evidence. Use the least disruptive appropriate action, and capture the current configuration first so the change can be undone. If the cause or the authority is unclear, stop and record the question instead of guessing.
 
-The player checks the service status and runs a simulated export of a test file to a separate destination. The player also checks that the backup queue remains operational.
+The board shows a proposed change, its expected effect, and its undo. In this scenario, Finch confirms that the recovery role is authorized to restore the export service, that the Lesson 1 backup is verified, and that the test profile cannot touch the live core, the original records, or the sealed store.
 
-#### Page 7: Document and escalate
+#### Page 7: Verify full functionality
 
-Record the symptom, evidence, theory, test, change, and verification result. Good documentation helps someone else understand what happened and reverse a change if necessary. Escalate when the issue exceeds the player's authority, skills, or available evidence.
+A service showing “running” does not by itself prove it performs its job. Four checks confirm a repair: the service reports running and is set to start automatically; a scheduled export of a test file reaches a separate destination complete and readable; the backup queue still works and the recovered fragments and original records are unchanged; and the service remains enabled and still exports after the core restarts.
 
-The player completes a short troubleshooting record and identifies a separate example that should be escalated rather than repaired by guesswork.
+A single successful test shows that the repair works now. It does not prove that every future export will run, or that exports already missed can be recovered.
 
-#### Page 8: Preserve evidence
+The practice board runs all four checks and labels each result as passed, not yet checked, or failed.
 
-Troubleshooting should not erase the records needed to understand what happened. Preserve original logs, work with authorized copies where appropriate, and record observations separately from explanations or assumptions. A username in a log identifies an account, not necessarily the person who used it.
+#### Page 8: Prevent recurrence
 
-The player marks the original change log as preserved and links it to the troubleshooting record without editing it.
+A repair restores service; it does not make the next failure visible. A scheduled check can run a harmless test export on a regular interval and raise one plain-language alert when it fails. A check nobody reads is not detection, and an alert that fires constantly gets ignored, so one clear message is better than many. Monitoring also does not replace recovery: if the core itself is offline, the check cannot run.
+
+Finch schedules a check for the export service. Mara objects that it will generate noise and delay the recovery, and she does not block it. The player runs the check, disables the export service in the practice incident, and watches a single alert identify the affected service and destination.
+
+#### Page 9: Document and escalate
+
+Record the symptom, the observed evidence, the theory, each test, the change, the verification results, and what remains unknown. Good documentation lets someone else understand what happened, reverse a change, or challenge an explanation, and it keeps a claim from becoming a fact through repetition.
+
+In this facility there is no separate security team to notify. Mara holds authority but is the subject of the record, and Finch is a system, so the record itself is the escalation. Escalate when the issue exceeds the player's authority, skills, or available evidence.
+
+The practice board shows a completed example record with sources linked and unknowns listed.
 
 ### Checkpoint: Restore the audit export service
 
 #### Guided stage
 
-Finch shows the player a report that an export did not run and a service panel showing that the export service is disabled. The player chooses “the service may be disabled” as a theory and links it to the observed status. Finch explains that the status supports the theory but does not yet explain why the service was disabled.
+Finch demonstrates the loop on a separate report from earlier in the week: a scheduled maintenance summary that never ran. The player checks the schedule, sees that it was set to the wrong hour, changes only that setting, and watches the report complete. Finch points out that the fix followed from the schedule rather than from the guess that the report was broken, and that changing the hour and the format together would have left both changes unproven.
+
+The demonstration does not touch the audit export service, and nothing from it carries into the main task.
 
 #### Main task
 
-The player:
+The checkpoint begins from its own snapshot of the export incident: the service is unavailable, the original records exist, and nothing has been changed yet. Nothing from the practice incident carries over.
 
-1. Identifies the unavailable export as the symptom and inspects the service status and recent change record.
-2. Selects the disabled service as a probable cause and records the evidence supporting that theory.
-3. Checks that the original log is preserved, a verified backup is available, and the recovery role is authorized to make the change.
-4. Tests enabling only the export service in the simulated test environment. If another test is chosen first, the player can observe its result, revert it, and try again without penalty.
-5. Applies the authorized fix to the simulated core and verifies both service status and a successful test-file export. The player also checks the backup queue.
-6. Documents the symptom, relevant evidence, test, change, and result. The original log remains unchanged.
+The requirement is a working export service with preserved originals, an attributable cause, and a verified result.
 
-The test export uses a separate destination and does not open or modify the sealed evidence store.
+1. Separate the claim from the observation. The overnight report says the export did not run; the status panel reports the service unavailable while the export schedule is present, the backup queue is operational, and the storage array is healthy. Record what was claimed, what was observed, and which panels were checked.
+2. Compare the timestamps in the facility's time zone. The last successful export is 02:40, the change record shows a service change at 02:44, and no export has run since. Record what the ordering supports and what it does not establish.
+3. Choose the candidate cause the evidence supports, and record supporting and contradicting evidence for at least one alternative. The candidates include a storage fault, a queue conflict, a disabled service, and an unreachable archive.
+4. Handle Mara's shortcut — restart the core, clear the queue, and enable the service in one action. The board allows it, reports that the combined result cannot be attributed, and requires a revert before continuing. Only the single change keeps the cause attributable, and the retry costs nothing.
+5. Preserve the original service record and change history, capture the current configuration, and confirm that the recovery role is authorized, the Lesson 1 backup is verified, and the test profile cannot touch the live core, the original records, or the sealed store.
+6. Enable the export service alone in the test profile and observe the result. Then apply the same single change to the simulated core.
+7. Run the four verification checks: the service runs and starts automatically, a scheduled test export reaches a separate destination complete and readable, the backup queue still works while the recovered fragments and originals are unchanged, and the service remains enabled and exports after the core restarts.
+8. Schedule the export check, run it once, then disable the service in a test and confirm that a single plain-language alert names the affected service and destination. Re-enable the service and confirm that the alert clears.
+9. Complete the troubleshooting record — symptom, evidence, theory, tests including the uninformative one, change, verification, and what remains unknown — and file it in **Unresolved Records** with its source linked. Choose the accurate conclusion: the service was disabled, and the evidence does not establish who used the account or why.
+
+The test profile is separate from the live core. No step exports, restores, or modifies the sealed evidence store.
 
 ### Feedback and hints
 
-The board explains whether an action gathers evidence, tests a theory, changes a setting, or verifies a result. If a choice is unsafe or unsupported, it explains why and lets the player choose again.
+The board explains whether an action gathers evidence, tests a theory, changes a setting, or verifies a result, and keeps incomplete choices editable. For example, a report treated as a cause is separated back into a claim, a theory with no supporting evidence is returned for evidence, a combined change is reported as unattributable, editing an original record is blocked with an explanation, a service accepted as verified on status alone is returned to the unfinished checks, and a missing timestamp comparison is identified as the gap.
 
-Three hints point toward distinguishing symptoms from causes, checking the most relevant service status, and verifying the service's actual work. Hints and retries are unlimited and penalty-free; the hints do not provide the complete sequence.
+Three hints point toward which panel and record matter, the timestamp comparison, and the difference between a service reporting running and performing its job. They do not provide the complete sequence. Hints and retries are unlimited and penalty-free.
 
 ### Completion and story clue
 
@@ -419,20 +451,29 @@ The preserved change record shows:
 AUDIT EXPORT SERVICE
 STATE: DISABLED
 CHANGE SOURCE: M.VALE
+ROLE: DELEGATED MAINTENANCE
+RECORDED: 02:44
 LABEL: TEMPORARY MAINTENANCE
 ```
 
 > **Mara:** “I was preventing further damage.”
 >
-> **Finch:** “I will record that as your explanation, not as a verified fact.”
+> **Finch:** “The change came four minutes after the last successful export, and its label says temporary. It stayed that way until you restored the service. I will record your explanation as an explanation, not as a verified fact.”
 
-Finch links the original record and Mara's explanation in **Unresolved Records**. The account name does not prove who used it, and the maintenance label does not prove why the change was made.
+Finch notes that the delegated maintenance role permits service changes without granting administrator actions, so nothing in the record was unauthorized. It also shows a temporary change that stayed in place while the audit archive was being recovered, and an export path that carried nothing out of the facility in that time.
 
-The export service is working after the repair, but other Automation Core problems remain. Completed activity progress saves automatically; an unfinished checkpoint stage restarts if the player leaves.
+The player's filed record now holds the change record, the verification results, the unknowns, and Mara's explanation, each with its source. How the player raised it with her is recorded as tone only:
+
+- **Option A:** “Your account disabled it. I filed that.”
+- **Option B:** “The service is back. Nothing else to report.”
+
+Mara answers in kind — “File whatever you like. It doesn't change what I was preventing.” or “Good. Then we keep moving.” — and the next problem interrupts before she can say more.
+
+The export service is working after the repair, but other Automation Core problems remain. If the core itself goes down, the new check cannot run. Checkpoint progress saves after each completed stage. If the player leaves, the current stage resumes with completed answers and prior work preserved.
 
 ### Accessibility
 
-The board and its controls work with keyboard and screen reader. Observations, theories, tests, and results are labeled in text, not color alone. The player can review the troubleshooting record and lesson pages without a time limit.
+The board and its controls work with keyboard and screen reader, without drag-only actions. Focus moves in a predictable order through the report, each status panel, the change history, the candidate causes, the tests, and the record, and every control has a descriptive label. Observations, theories, tests, results, and verification checks are announced as text and never rely on color alone. The troubleshooting record is a labeled form whose fields can be read back, the change history stays readable as a table at large text sizes, and new results are announced when they arrive. The player can review the record and lesson pages without a time limit.
 
 ## Lesson 4: Operating-System and Boot Recovery
 
