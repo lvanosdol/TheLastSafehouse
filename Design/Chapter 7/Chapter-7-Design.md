@@ -8,18 +8,20 @@
 Chapter 6 ends with the recovered archive confirming that:
 
 - The player is Echo.
-- Mara authorized the experiments conducted in the Habitat.
+- Mara built the laboratory and ran the experiments conducted in the Habitat.
 - Echo acted during the facility failure and remembers destroying the facility to protect the people inside.
-- Mara initiates a containment purge after Finch preserves a verified copy of the evidence.
+- Mara requests a containment purge after Finch preserves a verified copy of the evidence.
 - The protected evidence store itself remains sealed.
 
 Chapter 7 begins immediately after that revelation.
 
 ## Opening scene: Containment
 
-The Systems Wing alarm changes from amber to red. The archive has revealed that the player is Echo, that Mara authorized the experiments, and that Echo destroyed the facility to protect the people inside.
+The Systems Wing alarm changes from amber to red. The archive has revealed that the player is Echo, that Mara built the laboratory and ran the experiments, and that Echo destroyed the facility to protect the people inside.
 
 Mara’s containment request threatens **all Habitats**. Habitat 02 is occupied, and the recovered evidence copy is safe, but the protected evidence store remains sealed.
+
+The administrator identity that was once hers belongs to the account the facility still accepts. Stopping her will not require taking control; it will require deciding what to do with control the player already holds.
 
 > **Mara:** “You destroyed this place once. I’m not letting you do it again.”
 >
@@ -322,7 +324,7 @@ The player chooses who should handle a simulated life-support warning and keeps 
 
 #### Page 5: Challenge an unsafe instruction
 
-When an instruction risks people, privacy, or evidence, pause the unsafe action, explain the concern, and seek an appropriate review. An instruction can come from someone with authority and still need to be challenged. In this story, Mara's facilities authority permits her containment request; the player cannot assume a permissions check will block it.
+When an instruction risks people, privacy, or evidence, pause the unsafe action, explain the concern, and seek an appropriate review. An instruction can come from someone with authority and still need to be challenged. In this story, the containment protocol is a facility safety system older than the network and runs under its own service identity, so Mara can request it as the facility's lead without any administrator rights; the player cannot assume a permissions check will block it.
 
 The player responds to a fictional request to delete an evidence copy while continuing a separate authorized safety task.
 
@@ -616,7 +618,7 @@ The player also checks that a failed or incomplete test is not shown as a succes
 
 **Skills:** Chapters 5–7 security, troubleshooting, communication, and collaboration.
 
-Mara's existing facilities authority allows her containment request; the game does not pretend a permissions check will reject it. The player uses the approved simulated recovery procedure to isolate the **purge execution path**, while keeping the separate life-support and Habitat communication services online.
+The containment protocol is older than the network and runs under its own service identity, so Mara's request needs no administrator rights and grants her none; the game does not pretend a permissions check will reject it. The player uses the approved simulated recovery procedure to isolate the **purge execution path**, while keeping the separate life-support and Habitat communication services online.
 
 The console shows the proposed impact before the change. The authorized recovery teammate confirms the technical step, an independent reviewer checks it, and the player verifies that the purge is no longer executing or queued. Life support and communications are checked afterward, and the action is recorded.
 
