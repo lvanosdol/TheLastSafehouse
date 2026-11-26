@@ -523,7 +523,9 @@ The Workshop lights flicker, then the main power shuts down. Backup lights come 
 
 The countdown begins after the cutscene and boss instructions, not during Finch's dialogue. The initial 30-minute limit can be adjusted after playtesting.
 
-## Chapter 2 boss: Working direction
+## Boss: The Blackout Program
+
+**Status:** Complete working design. Mechanics remain subject to playtesting.
 
 After main power fails, the player repairs a program on the Safehouse system to restore power and the auxiliary monitor.
 
