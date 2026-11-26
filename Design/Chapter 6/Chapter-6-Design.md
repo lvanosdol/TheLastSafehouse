@@ -1059,3 +1059,22 @@ Finch explains that the containment protocol sits inside her facilities authorit
 Boss progress saves automatically after each completed objective and individual action. Closing the game pauses the timer; reopening restores the current stage, completed actions, evidence selections, remaining time, and perfect-bonus eligibility. Sticky notes are removed when the boss ends.
 
 Every panel and control works by keyboard and screen reader. System states, drive status, timer warnings, and verification results have text labels and announcements, not color alone. Story scenes and alerts have captions and reduced-motion alternatives. Timer expiry is announced without interrupting input. Restricted content remains unavailable through accessibility output unless authorized.
+
+## Open implementation questions
+
+- Final boss timer after beginner playtesting, and the exact wording of the automated-reset event
+- Exact drive sizes, capacity display, and rebuild pacing in the RAID Simulator, including how the overlapping-failure scenario is opened without implying the repaired array was damaged
+- How the Backup Planner conveys schedule and retention consequences without demanding one arbitrary correct answer
+- Exact candidate wording for the export-service causes, how supporting and contradicting evidence are recorded, and how a combined change reports an uninformative result before its revert
+- Whether the troubleshooting record uses fixed fields or free text, and how "what remains unknown" is validated
+- The monitoring check's interval, alert wording, and where its state appears during the boss and in Chapter 7
+- Exact startup messages, how many failed starts open Automatic Repair, and how disabling one startup service is represented
+- The Asset Registry entry format for driver versions, and how a mismatch is shown in the device view
+- The supported console command subset, and how simulated output, route hops, and errors are generated and read back
+- How the VPN profile, simulated authentication, and tunnel state are presented, and whether the archive viewer is a separate panel
+- How the export path thread is displayed, whether the player can annotate it, and how each entry links back to its source
+- How the twelve-entry archive index is displayed so the collected gaps read as filled rather than missing
+- Which tone flags persist into Chapter 7, and how they change Mara's and Finch's dialogue
+- Whether the reveal can be skipped or replayed from the thread, and how its more disturbing material is signposted
+- Mobile layouts for the Backup Planner, RAID Simulator, Troubleshooting Board, Boot Lab, Repair Bench, and Network Workbench
+- Exact saved state when closing during a governed change, a rebuild, or an unsaved-work confirmation
