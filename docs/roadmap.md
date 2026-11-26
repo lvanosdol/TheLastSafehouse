@@ -16,7 +16,7 @@ The campaign target is seven chapters. Each chapter awards one development-agent
 - [x] Chapter 5 — five condensed security lessons and The Security Lockdown boss
 - [x] Chapter 6 — six automation lessons and The Recovery Cascade boss, ending in the Echo and Mara reveals
 - [x] Chapter 7 — four lessons, the six-stage final boss, the ending decision, and the three endings (individual ending scenes remain to be written)
-- [ ] Final design pass: resolve every chapter's open implementation questions with the owner before implementation is treated as final
+- [x] Final design pass: resolve every chapter's open implementation questions with the owner before implementation is treated as final
 
 ### Design records and decisions
 

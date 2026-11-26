@@ -76,3 +76,5 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-26 | Move Chapter 5's UPS connection into the Satellite Equipment Area | Give the fifth map room a function and match the console's "gateway equipment disconnected" report to a physical location. |
 | 2026-11-26 | Run the Chapter 6 monitoring check hourly, and surface it in the boss and Chapter 7 | Make the alert feel immediate in the finale and keep the player's Lesson 3 work visible through to the ending. |
 | 2026-11-26 | Signpost the Chapter 6 reveal with a content note, skip, replay, and a text summary | Keep the disturbing material honest while leaving every fact it establishes available to every player. |
+| 2026-11-26 | Give each Chapter 7 ending a fixed spine, varied by recorded conduct and never scored | Keep the three outcomes equal while letting consent, access, evidence, and warnings show in the detail. |
+| 2026-11-26 | Send the evidence to the inhabitants and the preserved record, and only to an outside authority the inhabitants name | Avoid the player appointing someone to judge on the inhabitants' behalf, and keep accountability resting on the evidence. |

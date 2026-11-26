@@ -788,17 +788,74 @@ Across every ending:
 - Echo chooses what his identity means rather than returning to who Mara wanted him to be.
 - The completed software project is released separately from the story’s outcome.
 
+## Final scene rules
+
+### What the decision scene shows
+
+- Each Habitat appears as one row: whether it answered, up to two individual responses quoted verbatim, and how many remain unanswered.
+- The full decision log opens from a single **Open full log** control rather than filling the screen.
+- Responses are never aggregated into a preference meter or a single "the inhabitants want…" line.
+
+### How each epilogue is written
+
+- Every ending has a fixed five-beat spine: the immediate outcome, who holds authority, what happens to the inhabitants, what happens to Mara, and what becomes of the facility. The spine never changes with conduct.
+- Three or four sentences inside that spine vary with recorded facts — consent coverage, access distribution, evidence delivery, and acknowledged warnings. Variations change wording and small visual details, never the outcome.
+- No score, meter, or "good ending" label is shown. Two players who choose the same action can read different details without one being marked better.
+
+### Where the evidence goes
+
+Three destinations, and only the first two happen automatically:
+
+1. The inhabitants, through Lesson 2's Habitat channel.
+2. The preserved record: the export path thread plus the sealed archive copy.
+3. Any outside recipient the inhabitants name. The player does not choose one on their behalf; without a designation the package stays in the preserved record, with the thread as its index.
+
+### Mara's accountability
+
+She is heard, she loses her authority, and the decision about her is made by the people she harmed rather than by the player alone.
+
+- **Open Doors:** the residents decide whether she stays confined, leaves under supervision, or is handed to an authority they name.
+- **Empty Foundations:** she leaves with the preserved evidence under escort, and the record carries her claims.
+- **The Watchful Echo:** the player suspends her access and must name the condition and date for handing the decision on.
+
+In every case her claims stay in the thread, marked as claims. The evidence carries the accountability, not the player's verdict.
+
+### The surviving subjects
+
+Their stated preferences decide where they go, and the game never invents one.
+
+- Those who asked to stay remain under resident control, or move with the evacuation.
+- Those who asked to leave are helped to leave.
+- Anyone who never answered is treated as undecided: the epilogue shows a second contact attempt, and no one is moved on the strength of silence.
+
+### Finch if the facility is dismantled
+
+His core is copied into the offsite archive before the shutdown, so he survives without the hologram projector. He chooses whether to travel with the inhabitants or remain as the archive's custodian, the ending states which, and he appears in the coda either way.
+
+### The app release
+
+After the coda, a separate **release** screen assembles the seven earned components — including which version of each was earned — and offers the download with its safety, privacy, and compatibility notice. The app's name comes from the campaign-level setting, still open in the master design. The release is available from the main menu afterwards and is explicitly independent of which ending was chosen.
+
+### Mobile
+
+The three actions stack as expandable cards, each revealing its preview and cost when opened; the Habitat rows and log collapse into one panel above them. Confirming is the same deliberate two-step action, with no timer and no dragging.
+
+### Accessibility
+
+Every Habitat row, log entry, action, preview, and confirmation is text with labelled controls, keyboard operable, and announced when it changes. Each action reads with its full costs. The coda has captions, reduced-motion alternatives, and no time limit.
+
+### Boss timer and help
+
+Confirmed at 35 minutes, with the ending decision untimed and the timer paused for it. **Hint** forfeits the perfect bonus; **Hear Mara** does not.
+
+### Tone flags
+
+Three flags change wording only — Mara's opening, her three countermoves, her final statement, and Finch's framing: the Chapter 5 closing response, whether the Lesson 3 record was filed openly, and whether the Chapter 6 archive order was sharp. They never change access, timing, rewards, or which endings are available.
+
+### Source material check
+
+The four lessons cover the identified Digital Literacy and Communication topics. If further source material arrives, it becomes an optional page inside Lesson 1 rather than a fifth lesson.
+
 ## Open questions
 
-- Whether the source material contains any Digital Literacy or Communication subtopic not yet covered by Lessons 1–4
-- How much of the decision log and Habitat responses are shown during the final ending scene
-- How each ending's epilogue is written, and how conduct variations are presented without scoring them
-- The final boss timer after playtesting and exact interaction details
-- How the player communicates the evidence and to whom
-- How Mara's accountability is shown after the decision, and who receives it
-- The exact fate and choices of the surviving subjects
-- How the player’s Chapter 5 dialogue tone affects the finale
-- What happens to Finch if the facility is dismantled
-- How the ending decision is presented on mobile screens
-- How the completed seven-agent app is presented after the story resolves
-- Accessibility requirements for the final communication and decision interfaces
+None outstanding. The ending scenes themselves still need prose, which is writing work rather than design; everything they depend on is specified above and in the ending framework.
