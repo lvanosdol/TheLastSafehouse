@@ -1,6 +1,6 @@
 # Chapter 6: The Automation Core
 
-**Status:** Working design with six detailed lessons and a complete boss. Mechanics remain subject to implementation and playtesting.
+**Status:** Working design with six detailed lessons and a complete boss. Implementation rules are specified; the timer duration remains subject to playtesting.
 **Updated:** 2026-11-26
 
 ## Opening scene
@@ -53,6 +53,70 @@ Each lesson uses the split-screen workspace. The interactive side changes accord
 - **Lesson 6:** Network Workbench with simulated console and VPN client
 
 Examples load without running automatically, exploration remains separate from checkpoint state, and no automation runs on the player's real computer. Narrow displays use **Lesson** and **Try It** tabs.
+
+## Implementation details
+
+### Backup Planner
+
+No single right answer, but a checkable one: the plan passes when it risks at most **24 hours** of work and keeps at least **14 days** of recovery points. After each choice the planner prints the consequence in one line — "Daily at 02:00 → up to 24 hours of work at risk; 30-day retention → 30 recovery points, about 45 GB." A failing choice names the requirement it missed rather than saying "wrong".
+
+### RAID Simulator
+
+Three drives of **500 GB** each. Capacity and tolerance are shown as a comparison table: RAID 0 — 1.5 TB, tolerates no failure; RAID 1 — 500 GB, tolerates one; RAID 5 — 1 TB, tolerates one.
+
+Rebuilds are simulated: a progress bar with a text percentage, about fifteen seconds, ending with a **Rebuild complete** announcement. The overlapping-failure scenario loads from its own menu item, **Second failure scenario**, on a separately labelled screen, so it can never be mistaken for the repaired array.
+
+### Troubleshooting Board
+
+Four candidates, worded as observations: *the storage array failed again*, *the backup queue is conflicting with the export job*, *the export service is stopped*, *the archive cannot be reached*.
+
+Each candidate carries two fields — **Supports** and **Argues against** — filled by picking observed facts from the board, each fact usable once, with an optional note. The checkpoint passes when the chosen cause has at least one supporting fact and at least one alternative has a contradicting fact.
+
+The combined change runs, reports **Unattributed — more than one setting changed**, and its revert restores all three settings together.
+
+### Troubleshooting record
+
+Fixed fields, each with an optional note: symptom, evidence, theory, tests, change, verification, and **what remains unknown**. Every field is required, and the last must name something the evidence cannot settle — it cannot be blank or a copy of a fact already entered.
+
+### Monitoring check
+
+The scheduled check runs every **hour**, exporting a 1 KB canary file to the archive destination. Its alert reads **"AUDIT EXPORT FAILED — SERVICE STOPPED. Destination: offsite archive. Last success: 1 hour ago."**
+
+In the boss it appears as the alerting banner in Stage 1 and a log line; in Chapter 7 the Facility Response Console shows one status line, and the check also appears in the export path thread. While the core is down, its state reads **not running**, not *failing*.
+
+### Boot Lab
+
+Eight startup stages. **Automatic Repair opens after three consecutive failed starts.** The startup list shows entries such as `Habitat Archive Export Service — Automatic — Running`. Disabling one records its original value first, changes its startup type to **Disabled**, and asks for confirmation.
+
+### Repair Bench
+
+An Asset Registry entry carries asset ID, device model, OS version, driver version, package source, signature fingerprint, and verified date. A mismatch shows as text on the device row — **"Driver 4.1 — not verified for this OS (requires 11.2)"** — with a link to the registry entry.
+
+### Network Workbench
+
+Supported commands: `ping`, `tracert` (with `traceroute` accepted), `nslookup`, and `ipconfig`. Output is generated from the simulated topology. An unknown command lists what is available; a missing name returns **Non-existent domain**; a blocked probe returns **Request timed out**.
+
+Output renders as a labelled text block, and trace hops as a numbered list that can be read one hop at a time.
+
+### VPN and archive viewer
+
+The profile card shows name, endpoint, protocol, and certificate status, with a single **Connect** control — the simulated profile authenticates itself, so no credentials are typed. Tunnel states are **Disconnected → Connecting → Connected** with the assigned address. The archive viewer is its own panel, not a console command.
+
+### Export path thread
+
+A chronological list, newest last, with id, date, title, source link, and whether the entry is an **observation** or a **claim**. The player can append a **Player note** and add new entries, but never edit what was filed. Selecting a source opens it in a reader panel beside the thread.
+
+### Archive index
+
+A twelve-cell grid, each cell showing its number, source, and state — **recovered**, **recovered by queue**, or **pending** — so the entries the queue filled read as filled rather than as holes.
+
+### Tone flags
+
+Three flags save with the player: the Chapter 5 closing response, whether the Lesson 3 record was filed openly, and whether the Chapter 6 archive order was sharp. They change **Mara's and Finch's dialogue only** — Finch cites the thread more when records were filed openly and is more cautious when they were not. They never affect access, rewards, or the endings.
+
+### Mobile layouts
+
+Backup Planner becomes settings plus a summary; the RAID Simulator becomes stacked drive cards above the capacity table; the Troubleshooting Board becomes one tab per panel; the Boot Lab becomes a timeline list plus the service list; the Repair Bench shows one ticket at a time; the Network Workbench puts a command palette above the output. No tool requires dragging.
 
 ## Story state at chapter start
 
@@ -905,6 +969,8 @@ PERFECT FINISH: AVAILABLE
 
 The timer begins after the opening and instructions, with calm warnings at 15 and 5 minutes. At expiry, the interface switches to manual recovery mode. Completed actions, original evidence, and recovered copies remain safe; the player has unlimited time to finish and can still earn the standard reward. The perfect bonus is forfeited.
 
+The reset announces itself in three places, so it never depends on hearing the dialogue: the console banner **AUTOMATED RESET — MANUAL RECOVERY**, Finch's line, and the status line **PERFECT FINISH: FORFEITED**.
+
 The timer pauses during story scenes, the pause menu, help panels, mandatory accessibility overlays, while the game is closed, and whenever the game window loses focus. It continues while ordinary boss sticky notes are open. The 35-minute duration is subject to playtesting.
 
 ### Boss interface
@@ -1016,6 +1082,8 @@ The component goes into the build. Behind the player, the verification console f
 
 ### The reveal
 
+**Presentation.** A content note precedes the scene: "This scene describes experiments on people and machines." The player can **skip the scene** and still receive the facts it establishes, replay it later from its entry in the export path thread (**Replay preserved recording**), or read a **text summary** instead of watching it. The material is clinical rather than graphic, and reduced-intensity settings remove the audio distortion without hiding information.
+
 Finch keeps the reconstruction beside the preserved sources rather than over them. The archive opens on the facility's own construction records.
 
 The first entry is an order for a laboratory. It lists habitats, restraint systems, and power budgets for equipment that has nothing to do with life support. The signature block reads **M. VALE, lead architect**. Beneath it, experiment logs run for years: subjects listed by number, human and robotic, each file headed *compliance through removal of refusal*. Finch reads the heading twice before he says anything.
@@ -1056,25 +1124,10 @@ Finch explains that the containment protocol is a facility safety system older t
 
 ### Saving and accessibility
 
-Boss progress saves automatically after each completed objective and individual action. Closing the game pauses the timer; reopening restores the current stage, completed actions, evidence selections, remaining time, and perfect-bonus eligibility. Sticky notes are removed when the boss ends.
+Boss progress saves automatically after each completed objective and individual action. Closing the game pauses the timer; reopening restores the current stage, completed actions, evidence selections, remaining time, and perfect-bonus eligibility. A staged but unapplied change returns still staged and is never applied on its own; a rebuild resumes at its saved percentage and continues; closing during an unsaved-work confirmation returns to that confirmation, with the recovery copy already made if the player had chosen it and the warning repeated if not. Sticky notes are removed when the boss ends.
 
 Every panel and control works by keyboard and screen reader. System states, drive status, timer warnings, and verification results have text labels and announcements, not color alone. Story scenes and alerts have captions and reduced-motion alternatives. Timer expiry is announced without interrupting input. Restricted content remains unavailable through accessibility output unless authorized.
 
 ## Open implementation questions
 
-- Final boss timer after beginner playtesting, and the exact wording of the automated-reset event
-- Exact drive sizes, capacity display, and rebuild pacing in the RAID Simulator, including how the overlapping-failure scenario is opened without implying the repaired array was damaged
-- How the Backup Planner conveys schedule and retention consequences without demanding one arbitrary correct answer
-- Exact candidate wording for the export-service causes, how supporting and contradicting evidence are recorded, and how a combined change reports an uninformative result before its revert
-- Whether the troubleshooting record uses fixed fields or free text, and how "what remains unknown" is validated
-- The monitoring check's interval, alert wording, and where its state appears during the boss and in Chapter 7
-- Exact startup messages, how many failed starts open Automatic Repair, and how disabling one startup service is represented
-- The Asset Registry entry format for driver versions, and how a mismatch is shown in the device view
-- The supported console command subset, and how simulated output, route hops, and errors are generated and read back
-- How the VPN profile, simulated authentication, and tunnel state are presented, and whether the archive viewer is a separate panel
-- How the export path thread is displayed, whether the player can annotate it, and how each entry links back to its source
-- How the twelve-entry archive index is displayed so the collected gaps read as filled rather than missing
-- Which tone flags persist into Chapter 7, and how they change Mara's and Finch's dialogue
-- Whether the reveal can be skipped or replayed from the thread, and how its more disturbing material is signposted
-- Mobile layouts for the Backup Planner, RAID Simulator, Troubleshooting Board, Boot Lab, Repair Bench, and Network Workbench
-- Exact saved state when closing during a governed change, a rebuild, or an unsaved-work confirmation
+None outstanding. The 35-minute timer stands subject to playtesting; the tool rules, monitoring interval, boot and repair specifics, console subset, VPN flow, thread and index presentation, tone flags, mobile layouts, reveal presentation, and save behaviour are all specified above.
