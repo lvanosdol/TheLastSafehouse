@@ -1,6 +1,6 @@
 # Chapter 4: The Archive Recovery
 
-**Status:** Working design with seven detailed lessons and a complete boss draft. Timer values and some interaction details remain provisional.
+**Status:** Working design with seven detailed lessons and a complete boss. Implementation rules are specified; the timer duration remains subject to playtesting.
 **Updated:** 2026-11-25
 
 Each lesson ends with one checkpoint. Where a separate practice previously existed, it is now the checkpoint's guided first stage. Progress saves after each completed stage.
@@ -18,6 +18,31 @@ The lab is a learning copy, separate from the facility map used by the story and
 
 The checkpoint opens its own controlled topology and clearly identifies any exploration state that may be carried forward. Wide screens show the split view; narrow screens use **Lesson** and **Try It** tabs. No real network command, scan, connection, or device configuration is performed.
 
+## Network configuration and validation
+
+The simulated lab validates the **resulting configuration, not the sequence of steps**, so equivalent working answers pass.
+
+The required end state is a short list of invariants:
+
+- The device has an approved address from the permitted range, with no duplicate.
+- The gateway matches the approved profile.
+- The archive name `archive.safehouse7.test` resolves to `203.0.113.80`.
+- The firewall permits TCP 443 to that host and nothing broader.
+
+Any route that reaches that state passes: renewing the DHCP assignment or entering an in-pool address, selecting the resolved record or typing it. A working but unsafe configuration is still refused — "allow all outbound" is named as broader than the task permits and must be narrowed.
+
+DHCP rejects an out-of-pool or duplicate address by name. DNS names the mismatch when a stale record points elsewhere. The firewall accepts one rule for TCP 443 to the archive host and refuses anything wider. **NAT is read, not edited**: the router creates the mapping itself, so the player identifies which side is private, which is translated, and where the traffic is going, exactly as Lesson 4 requires.
+
+## Transfers and saved state
+
+A download is a **transfer job with saved progress**: bytes transferred, window time remaining, and a partial checksum.
+
+- Closing the game mid-transfer saves the job; returning resumes it while the satellite window is still open.
+- If the window expires while the game is closed, the job fails, Finch reports why, and the next pass restarts it. Nothing else is lost.
+- Until the download completes, the file is labelled **Incomplete** and is never treated as recovered evidence; the checksum is checked only after it finishes.
+- Closing during dialogue resumes at the start of the current scene, never mid-line.
+- Closing during an unconfirmed Hint or Ask Mara overlay discards it with no forfeit; a forfeit already confirmed stands, as in Chapter 2.
+
 ## Story setup
 
 The Asset Registry identifies a backup called `ARCHIVE-09`, but its local copy is damaged. A remote copy still exists in Safehouse storage.
@@ -32,7 +57,7 @@ The chapter progresses from restoring the network, to reaching the archive, to e
 
 Finch's map shows connections and systems coming online as the player completes checkpoints. Newly accessible records appear separately. Some story milestones also unlock rooms for the player to explore; later chapters can make use of these spaces, including a possible scavenger-hunt boss.
 
-When a room unlocks, a short cutscene shows its door and plays an unlocking sound. A visible **Door unlocked** message and a caption communicate the change without relying on sound. The player can choose when to enter.
+When a room unlocks, a short cutscene shows its door and plays an unlocking sound. A visible **Door unlocked** message and a caption communicate the change without relying on sound. The player can choose when to enter. Rooms that unlock stay accessible for review after the boss is complete, and nothing story-critical is placed there afterwards.
 
 ### Opening scene: The Archive
 
@@ -909,6 +934,17 @@ The player opens the lesson on their laptop.
 
 The player uses **Next** and **Back** and can review the pages during the checkpoint. The assistant, archive, and recovery tools are simulated.
 
+**Workspace layout.** The archive view separates four kinds of material, and each one carries both a visual treatment and a text label, because the label is what carries the meaning:
+
+| Category | Treatment |
+|---|---|
+| **Original** | Read-only card with a lock marker and “Original — read-only” |
+| **Checked summary** | “Checked against source”, with the source linked |
+| **AI-generated** | Dashed outline and “AI-generated — unverified” |
+| **Rejected** | A separate list; nothing is deleted |
+
+A reconstruction never sits inside an original. When the assistant fills missing words, each inserted word is marked on its own and cannot be selected as a quotation. Every card carries a provenance line — source, generator, and date — and a toggle shows originals only.
+
 ##### Page 1: AI assistants
 
 An **AI chatbot** can respond to questions in a conversation. An **AI assistant** can help with tasks such as summarizing information, suggesting steps, or explaining a problem. Some tools can do both.
@@ -1074,7 +1110,7 @@ After reviewing the archive, Finch finds a reference to a separate file: the **O
 
 Finch tries to open the archive service again, but the connection fails. A new satellite window is approaching, separate from the historical six-minute record used in Lesson 1.
 
-The boss begins after the opening scene and instructions. The player has approximately **30–35 minutes**, subject to playtesting.
+The boss begins after the opening scene and instructions. The player has approximately **35 minutes**, subject to playtesting, matching the later chapters.
 
 ### Goal
 
@@ -1159,7 +1195,7 @@ The player tests the association before continuing. This reuses the Lesson 5 dec
 
 The player then visits the satellite equipment area. The unit's camera can show the equipment, but its **status report** identifies the alignment problem.
 
-The player inspects the terminal and finds an alignment guide and a fictional alignment display. The guide says this antenna's acceptable range is **45–55**; the display shows a current reading of **30**.
+The player inspects the terminal and finds an alignment guide and a fictional alignment display. The guide says this antenna's acceptable range is **45–55**; the display shows a current reading of **30**. The controls are the ones used in the Lesson 5 practice; only the range and the starting reading differ, and the guide stays on screen beside the gauge so the number never has to be remembered.
 
 The player adjusts the setting with left and right buttons or keyboard controls. The number and a text label update as they work: **Below range**, **Within range**, or **Above range**. Nothing depends on color, speed, or precise mouse movement. Once the reading is within range, the player selects **Test connection**. Incorrect settings can be adjusted and tested again without affecting the perfect bonus.
 
@@ -1327,27 +1363,18 @@ The `REMOTE ACCESS: DENIED` safeguard protects a separate evidence store contain
 
 These requirements apply to the lessons, checkpoints, room interactions, and boss.
 
-- The network map has a text alternative describing every device, connection, and current state.
+- The network map has a text alternative describing every device, connection, and current state. On narrow screens it becomes a scrollable list grouped by area, using the same state words.
 - Device placement and cable/path selection support keyboard-only input.
-- Tables, capability cards, status reports, recovery records, and query results use labeled headers and screen-reader-compatible structure.
+- Tables, capability cards, status reports, recovery records, and query results use labeled headers and screen-reader-compatible structure. Wide tables scroll horizontally inside their own pane with the key column pinned, and values never wrap mid-value.
 - Focus moves predictably among the map, lesson pages, objectives, outputs, preview panels, and help controls.
 - Antenna alignment and transfer controls are keyboard operable.
 - Connection and alignment states use text such as **Connected**, **Disconnected**, **Below range**, and **Within range**, not only color.
 - Correct, incorrect, changed, incomplete, and verified states include text labels.
 - Door unlocks, equipment alerts, timer warnings, and other meaningful sounds have captions or visual equivalents.
-- Screen readers announce timer warnings, remaining time, transfer progress milestones, and completion.
+- Screen readers announce timer warnings, remaining time, transfer progress milestones, and completion. Warnings are non-modal: Finch's line, a banner, a polite announcement, and a persistent remaining-time readout, with no focus change, no modal, and no pause. Expiry announces assertively without taking over the screen.
 - Reduced-motion settings replace or simplify map animation, transfer progress, door transitions, and equipment effects.
 - Any clue-bearing camera view has a text description of the information needed to solve the task.
 
 ## Open implementation questions
 
-- Final initial timer after playtesting; the current design range is 30–35 minutes
-- Exact supported network configuration and whether equivalent answers are accepted
-- How DNS, DHCP, firewall, and NAT changes are validated
-- How partial transfers and satellite-pass resumption affect saved state
-- Exact save behavior when closing during a transfer, dialogue, or help overlay
-- Whether the alignment practice and boss use the same control model
-- How the AI evidence workspace visually separates originals, summaries, scripts, and reconstructions
-- How the network map, tables, equipment labels, and camera clues adapt for mobile and screen readers
-- Whether unlocked rooms remain accessible after the boss
-- How timer warnings are announced without interrupting the current task
+None outstanding. The 35-minute duration is confirmed and subject to playtesting; the validator rules, transfer save state, AI workspace layout, room persistence, layout adaptations, and timer announcements are all specified above.
