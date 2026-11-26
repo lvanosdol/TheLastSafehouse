@@ -1,6 +1,6 @@
 # Chapter 6: The Automation Core
 
-**Status:** Working opening, detailed Lessons 1 through 6, and complete boss design. Mechanics remain subject to implementation and playtesting.
+**Status:** Working design with six detailed lessons and a complete boss. Mechanics remain subject to implementation and playtesting.
 **Updated:** 2026-11-25
 
 ## Opening scene
@@ -39,21 +39,22 @@ This provides two connected goals:
 - **Practical:** restore backups, scheduled maintenance, and automated recovery services.
 - **Story:** recover the audit history that might explain the M.VALE records, the hidden role, and the player's `E.C.H.O_Thread_01` authentication.
 
-The chapter should connect its eventual lessons to this recovery objective rather than treating automation as an unrelated subject. Exact lesson topics, sequence, checkpoints, and the boss remain open.
+The six lessons connect directly to that recovery objective. Each one restores another service or recovers another piece of the audit history.
 
-## Planned Learn & Try workspace
+## Learn & Try workspace
 
-Once the lesson topics are selected, Chapter 6 should use the split-screen learning workspace documented in the master design. The expected right-side panels include:
+Each lesson uses the split-screen workspace. The interactive side changes according to the task:
 
-- Automation code or rule editor
-- Simulated terminal and output
-- Scheduled-job and backup-queue status
-- Log viewer
-- Recovery and restore controls
+- **Lesson 1:** Backup Planner
+- **Lesson 2:** RAID Simulator
+- **Lesson 3:** Troubleshooting Board
+- **Lesson 4:** Boot Lab
+- **Lesson 5:** Repair Bench
+- **Lesson 6:** Network Workbench with simulated console and VPN client
 
 Examples load without running automatically, exploration remains separate from checkpoint state, and no automation runs on the player's real computer. Narrow displays use **Lesson** and **Try It** tabs.
 
-## Story state carried forward
+## Story state at chapter start
 
 - The Systems Wing is accessible.
 - The protected evidence store remains sealed and is not accessed in the opening.
@@ -64,17 +65,6 @@ Examples load without running automatically, exploration remains separate from c
 - The player still lacks proof of Mara's personal actions or their own connection to Echo.
 - Mara wants the automation core restored before the security evidence is investigated.
 - Finch believes the same core can recover the deleted audit history.
-
-## Open questions
-
-- Which lesson topics and technical objectives belong in Chapter 6
-- How restoring automation, backups, and recovery connects to the audit archive
-- What condition makes the audit shards time-sensitive without creating a punishing timer
-- What the player can inspect in the Unresolved Records panel during Chapter 6
-- How Mara attempts to separate the practical recovery from the evidence investigation
-- What new clue or contradiction appears at the end of Chapter 6
-- Exact layout and interaction flow for the automation console and server cabinets
-- Accessibility requirements for logs, backup queues, automation controls, and recovery jobs
 
 ## Lesson 1: Backup and Data Continuity
 
