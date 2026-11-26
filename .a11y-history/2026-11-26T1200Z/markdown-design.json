@@ -1,0 +1,146 @@
+{
+  "skills": [
+    "manual-structural-scan"
+  ],
+  "scope": [
+    "Design/Chapter 1/Chapter-1-Design.md through Design/Chapter 7/Chapter-7-Design.md",
+    "Design/The-Last-Safehouse-Design.md",
+    "Design/Superseded/Superseded-Design-Sections.md",
+    "docs/roadmap.md",
+    "docs/decisions.md",
+    "docs/playtests/README.md",
+    "Design/Previous Drafts/*.md (27 files)"
+  ],
+  "findings": [],
+  "passed": [
+    "single level-1 heading per document",
+    "no skipped heading levels",
+    "table header separator rows present",
+    "code fences declare a language",
+    "no empty or generic link text",
+    "internal links resolve after percent-decoding",
+    "embedded images have alt text",
+    "no bare URLs outside code blocks",
+    "no tabs or trailing whitespace on prose lines"
+  ],
+  "observations": {
+    "duplicate_headings": 406,
+    "bold_labels": 235,
+    "headings_without_blank_line": 21,
+    "active_documents": {
+      "duplicate_headings": 145,
+      "bold_labels": 56,
+      "headings_without_blank_line": 7
+    }
+  },
+  "notes": [
+    {
+      "skill": "manual-structural-scan",
+      "note": "Structure only. Heading descriptiveness, reading level, and link usefulness need a human."
+    },
+    {
+      "skill": "manual-structural-scan",
+      "note": "markdownlint-cli2 was unavailable, so no lint baseline was captured."
+    },
+    {
+      "skill": "manual-structural-scan",
+      "note": "a11y-mcp-server is not present in this environment; no automated screen-reader simulation ran."
+    },
+    {
+      "skill": "manual-structural-scan",
+      "note": "Long physical lines are intentional and are not counted as observations."
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 662
+  },
+  "components": [],
+  "score": 100,
+  "grade": "A",
+  "penalty": 0,
+  "checks": 10,
+  "volume": {
+    "files": 39,
+    "lines": 22431,
+    "words": 204086
+  },
+  "generated": "2026-11-26",
+  "template": "markdown",
+  "per_file": {
+    "Design/Chapter 1/Chapter-1-Design.md": {
+      "headings": 102,
+      "duplicate_headings": 23,
+      "bold_labels": 4,
+      "headings_without_blank_line": 0
+    },
+    "Design/Chapter 2/Chapter-2-Design.md": {
+      "headings": 40,
+      "duplicate_headings": 0,
+      "bold_labels": 0,
+      "headings_without_blank_line": 0
+    },
+    "Design/Chapter 3/Chapter-3-Design.md": {
+      "headings": 97,
+      "duplicate_headings": 22,
+      "bold_labels": 18,
+      "headings_without_blank_line": 0
+    },
+    "Design/Chapter 4/Chapter-4-Design.md": {
+      "headings": 121,
+      "duplicate_headings": 25,
+      "bold_labels": 28,
+      "headings_without_blank_line": 0
+    },
+    "Design/Chapter 5/Chapter-5-Design.md": {
+      "headings": 127,
+      "duplicate_headings": 19,
+      "bold_labels": 6,
+      "headings_without_blank_line": 0
+    },
+    "Design/Chapter 6/Chapter-6-Design.md": {
+      "headings": 136,
+      "duplicate_headings": 34,
+      "bold_labels": 0,
+      "headings_without_blank_line": 0
+    },
+    "Design/Chapter 7/Chapter-7-Design.md": {
+      "headings": 110,
+      "duplicate_headings": 22,
+      "bold_labels": 0,
+      "headings_without_blank_line": 0
+    },
+    "Design/The-Last-Safehouse-Design.md": {
+      "headings": 34,
+      "duplicate_headings": 0,
+      "bold_labels": 0,
+      "headings_without_blank_line": 4
+    },
+    "Design/Superseded/Superseded-Design-Sections.md": {
+      "headings": 37,
+      "duplicate_headings": 0,
+      "bold_labels": 0,
+      "headings_without_blank_line": 3
+    },
+    "docs/roadmap.md": {
+      "headings": 12,
+      "duplicate_headings": 0,
+      "bold_labels": 0,
+      "headings_without_blank_line": 0
+    },
+    "docs/decisions.md": {
+      "headings": 1,
+      "duplicate_headings": 0,
+      "bold_labels": 0,
+      "headings_without_blank_line": 0
+    },
+    "docs/playtests/README.md": {
+      "headings": 1,
+      "duplicate_headings": 0,
+      "bold_labels": 0,
+      "headings_without_blank_line": 0
+    }
+  }
+}

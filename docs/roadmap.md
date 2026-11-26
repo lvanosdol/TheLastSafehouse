@@ -24,7 +24,7 @@ The campaign target is seven chapters. Each chapter awards one development-agent
 - [x] Split-screen Learn & Try workspace defined and applied to every applicable lesson
 - [x] Standalone practice activities removed; each checkpoint is the guided practice and assessment point
 - [x] One export path thread carried through Chapter 6's records and into Chapter 7
-- [ ] Refresh `MARKDOWN-ACCESSIBILITY-AUDIT.md`; the current report covers three files from 2026-11-20
+- [x] Refresh `MARKDOWN-ACCESSIBILITY-AUDIT.md`; it now covers all seven chapters, the master record, the superseded archive, and `docs/`
 - [ ] Record the engine decision in `docs/engine-decision.md` (Game Mentor)
 
 ## Phase 1 — Project setup
