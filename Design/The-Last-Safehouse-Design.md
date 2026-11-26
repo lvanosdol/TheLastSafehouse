@@ -18,7 +18,7 @@ The app's final name and implementation remain open. Real-world use needs separa
 
 - **Full desktop experience:** Windows and macOS.
 - **Mobile experience:** Downloadable Android and iOS apps with a smaller feature set than desktop.
-- The engine has not been selected. Godot is present in the supplied project, but the rebuild should re-evaluate the engine rather than automatically inherit Manus's setup.
+- Unity was selected on 2026-11-26, with the in-game computer rendered as an embedded web UI. See `docs/engine-decision.md`. Godot is present in the supplied project but remains reference only.
 - The intended desktop experience includes Windows-style navigation and a cross-platform terminal workspace. Tools are selected according to the task: PowerShell for Windows administration, Bash for Unix-style environments, SQL for databases, Python for suitable automation/data work, and text/report formats for documentation.
 - Desktop workshop setup may teach environment isolation and Python packages later when Python is the appropriate task.
 - The mobile version should simulate environment setup rather than require terminal commands.
@@ -156,7 +156,7 @@ Each chapter's earned component arrives on a separate in-game thumb drive. The p
 
 **Status:** Updated for the IT/networking direction. Chapter 1-specific questions are maintained in Section 18; the earlier Python-only lesson, f-string, and Console Repair timer questions are superseded.
 
-- Final engine and desktop/mobile architecture.
+- The embedded-browser component and its licence, the HDRP-versus-URP split between desktop and mobile, and the IPC contract between the 3D shell and the web layer.
 - Which operating-system version the build targets, since some real wording differs between versions.
 - How to safely execute or simulate PowerShell, Bash, and any later Python/SQL practice without granting access to the player's real machine or network.
 - Exact command subsets, script-editor behavior, and equivalent-solution validation for cross-platform shell lessons.

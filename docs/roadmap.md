@@ -25,11 +25,11 @@ The campaign target is seven chapters. Each chapter awards one development-agent
 - [x] Standalone practice activities removed; each checkpoint is the guided practice and assessment point
 - [x] One export path thread carried through Chapter 6's records and into Chapter 7
 - [x] Refresh `MARKDOWN-ACCESSIBILITY-AUDIT.md`; it now covers all seven chapters, the master record, the superseded archive, and `docs/`
-- [ ] Record the engine decision in `docs/engine-decision.md` (Game Mentor)
+- [x] Record the engine decision in `docs/engine-decision.md` (Game Mentor)
 
 ## Phase 1 — Project setup
 
-- [ ] Engine evaluation and decision
+- [x] Engine evaluation and decision — Unity with an embedded web UI for the in-game computer (`docs/engine-decision.md`), pending the accessibility spike
 - [ ] Install required software
 - [ ] Scaffold the fresh game project (Builder)
 - [ ] Verify the empty project runs (Playtester)
