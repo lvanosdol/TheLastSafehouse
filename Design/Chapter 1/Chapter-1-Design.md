@@ -1040,13 +1040,38 @@ Finch is a story character and the Safehouse's holographic system, not a reward.
 - Save-state, completion, and error feedback are available as text.
 - File permission tables and installed-app lists are screen-reader compatible.
 
+## Simulation fidelity
+
+The in-game computer behaves like a real computer, not a game menu with computer-shaped buttons. Anything the player is meant to learn to do is performed through the interface they would actually use, with the labels, paths, dialogs, and messages they would actually see. A player who completes a task here should recognise the same task on their own machine.
+
+### What fidelity means
+
+- **Real interfaces.** Windows Settings, the account panel, File Explorer, folder Properties and Security, Device Manager, Services, and the security notification use their real names, tab names, field labels, and button text.
+- **Real wording for real messages.** Where the operating system supplies the wording, use it: `No bootable device`, `Bootmgr is missing`, `You don't have permission to access this folder`. Facility-specific names stay clearly fictional but are formatted like real ones, such as `SH7-DISPLAY-01` and `Safehouse7\recovery`.
+- **Real paths and formats.** Files live at plausible paths such as `C:\Safehouse7\...` with real extensions and real file-type behaviour. Configuration files use real syntax and stay short enough to read.
+- **Real sequences.** The order of steps matches the order the real task requires. The game does not skip a step, or merge two dialogs into one, to save time.
+- **Simulation is always visible.** A persistent marker states that the machine is simulated, so a beginner never mistakes the exercise for their own computer.
+
+### Where fidelity stops
+
+- **Destructive actions are blocked, not performed.** The interface looks and reads exactly as the real one would, but deleting evidence, disabling protection, or wiping a volume is refused with the explanation a careful administrator would give. The lesson is judgment, not risk.
+- **Nothing reaches the player's real machine.** No real file, account, setting, or network is touched.
+- **Accessibility is added, never substituted.** Keyboard paths, screen-reader labels, text alternatives, and reduced motion are layered onto the real interface rather than replacing it with a different model.
+- **Mobile keeps the same words.** Narrow layouts may rearrange panels, but labels, terminology, and the order of steps stay identical to desktop.
+- **Fictional systems may stay fictional.** This rule covers tasks that teach a real computer skill. Facility systems with no real-world counterpart — the Automation Core console, the Coordination Board, the Facility Response Console — keep their own interface, because there is nothing to transfer to.
+
+### Settled values
+
+- **Error and hardware names:** real operating-system wording wherever one exists; facility asset IDs such as `SH7-DISPLAY-01` for fictional equipment.
+- **Startup and configuration files:** `safehouse-core.ini`, eight to ten commented lines, plus a five- to eight-stage boot log that matches Lesson 1's timeline exactly.
+- **Door-log clue:** the entry carries an asset ID that is not the player's and is timestamped before the arrival record. The gap stays relative ("three days earlier"), never a calendar date.
+- **Accounts and permissions:** the real account panel and the folder Security tab, with **Allow** and **Deny** written out. Mobile uses the same labels in a two-pane layout.
+- **Hardware activity:** real port and component names (HDMI, DisplayPort, SATA, 24-pin ATX). Touch uses tap-select then tap-target, with a labelled component list as the keyboard path on every platform.
+- **Security alert:** the real notification layout — title, severity, affected item, **Get details**, response buttons — identical for the practice alert and the boss alert except for content.
+- **Repair safety:** power off and unplug before touching components; do not open a power supply; use an anti-static precaution, and stop if anything is unclear.
+- **Saving:** after every completed interaction that changes state, resuming at the start of the current step with prior answers kept.
+
 ## Open implementation questions
 
-- Exact fictional boot and hardware error names
-- Exact startup and configuration file contents
-- The date or source marker that distinguishes the door-log clue from the player's arrival
-- How the prepared standard account and folder permissions are presented on desktop and mobile
-- How the hardware activity adapts to the mobile version
-- Final wording for real-world repair safety guidance
-- Final illustrated layout of the simulated Windows Security alert
-- Exact save-point frequency after playtesting
+- Final wording of the repair safety note after beginner review
+- Which operating-system version the build targets, since some real wording differs between Windows versions
