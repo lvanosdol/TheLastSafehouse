@@ -114,15 +114,17 @@ RAM is temporary workspace; storage keeps files after shutdown. Common storage e
 
 ### Safety guidance
 
-Before assembly, Mara explains:
+Before assembly, a safety card appears and Mara reads it:
 
-- Real computers must be shut down and unplugged before internal work.
-- Never open a power supply because it can retain dangerous electrical charge.
-- Prevent static discharge before handling sensitive components.
-- Never force a component or connector into place.
-- Consult the equipment manual before disassembling unfamiliar hardware.
-- Some repairs should be left to qualified professionals.
-- The simulation teaches concepts and is not instructions for dismantling the player's real computer.
+> **Real-world safety**
+>
+> - Shut the computer down and unplug it before opening anything.
+> - Never open a power supply. It holds a dangerous charge even after unplugging.
+> - Discharge static by touching a grounded metal surface, or wear a strap, before handling parts.
+> - Never force a component or connector. If it does not fit easily, stop and check the manual.
+> - Leave work you are not confident in to a qualified professional.
+>
+> This simulation teaches the concepts. It is not a guide to dismantling your own computer.
 
 ### Checkpoint: Assemble and boot the computer
 
@@ -1063,9 +1065,9 @@ The in-game computer behaves like a real computer, not a game menu with computer
 - **Accounts and permissions:** the real account panel and the folder Security tab, with **Allow** and **Deny** written out. Mobile uses the same labels in a two-pane layout.
 - **Hardware activity:** real port and component names (HDMI, DisplayPort, SATA, 24-pin ATX). Touch uses tap-select then tap-target, with a labelled component list as the keyboard path on every platform.
 - **Security alert:** the real notification layout — title, severity, affected item, **Get details**, response buttons — identical for the practice alert and the boss alert except for content.
-- **Repair safety:** power off and unplug before touching components; do not open a power supply; use an anti-static precaution, and stop if anything is unclear.
+- **Repair safety:** the five-line card before the hardware activity in Lesson 1, covering power-off, the power supply, static, not forcing a connection, and leaving unfamiliar work to a professional.
 - **Saving:** after every completed interaction that changes state, resuming at the start of the current step with prior answers kept.
 
 ## Open implementation questions
 
-- Final wording of the repair safety note after beginner review
+None outstanding. Chapter 1 is ready for implementation once the campaign-level items in the master design's Section 10 are settled, chiefly the engine choice and the target operating-system version.
