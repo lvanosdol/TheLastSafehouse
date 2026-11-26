@@ -302,59 +302,63 @@ Finch opens the **Coordination Board**. It shows simulated roles, requests, curr
 
 ### Learn & Try pages
 
-The lesson stays on the left while the board appears on the right. The player can review pages during the checkpoint.
+The left pane explains each topic, and the right side keeps the same **Coordination Board** available throughout the lesson, so the player can open a role, preview what a recipient sees, follow an acknowledgement, and watch the decision log update. All roles, requests, and responses are simulated, and the board cannot open doors or change real systems. The player can move back and review pages during the checkpoint.
+
+Examples use a temporary practice response. Moving between lesson pages preserves the player's work on it, while **Reset example** returns the demonstration to its starting state without changing the checkpoint. The checkpoint begins from its own controlled snapshot of the coordination tasks.
 
 #### Page 1: Work together with clear roles
 
 A role describes a responsibility, not unlimited authority. Clear assignments help prevent essential tasks from being missed or duplicated. People may contribute to more than one task when appropriate.
 
-The player matches fictional roles to tasks such as monitoring the core, communicating with inhabitants, and preserving evidence.
+Opening the practice roster shows each role beside its assigned tasks and marks the tasks that no role has accepted.
 
 #### Page 2: Include the people affected
 
 Inhabitants can have different needs and preferences. Give them accessible information and a way to ask questions or express choices. A person's silence does not mean they consent, and one person should not automatically speak for everyone.
 
-The player reviews two simulated responses and records them separately without assuming they represent all inhabitants.
+Two practice responses open separately, and the board marks the difference between one person's preference and a preference for everyone.
 
 #### Page 3: Share information responsibly
 
 Give each recipient the information needed for their role. An authorized technician may need system status without receiving private subject records. Preserve original evidence separately from redacted copies or summaries.
 
-The player previews what a fictional technician and an inhabitant can see, then removes unrelated restricted details from each message.
+The practice preview shows what a technician and an inhabitant would each see, with the restricted details that neither needs marked as excluded.
 
 #### Page 4: Know when to escalate
 
 Escalation means seeking help or a decision from an appropriate person or team when a problem exceeds your authority, expertise, or available information. Escalating is not abandoning the task: continue the safe work you are authorized and able to do.
 
-The player chooses who should handle a simulated life-support warning and keeps monitoring the temporary hold while waiting for a response.
+The practice warning opens with three possible recipients, and the board shows which one has the authority and skills to answer it while the hold stays monitored.
 
 #### Page 5: Challenge an unsafe instruction
 
 When an instruction risks people, privacy, or evidence, pause the unsafe action, explain the concern, and seek an appropriate review. An instruction can come from someone with authority and still need to be challenged. In this story, the containment protocol is a facility safety system older than the network and runs under its own service identity, so Mara can request it as the facility's lead without any administrator rights; the player cannot assume a permissions check will block it.
 
-The player responds to a fictional request to delete an evidence copy while continuing a separate authorized safety task.
+A practice instruction to send a whole record “to save time” opens beside the restricted fields it would expose, and the board shows the safe alternative without carrying out either.
 
 #### Page 6: Record decisions and disagreements
 
 A useful decision log records the question, available evidence, responsible role, action, result, and any unresolved disagreement. Record what someone said separately from what has been verified. Documentation should not expose private details unnecessarily.
 
-The player records a decision and a differing view without editing the original evidence.
+A practice decision opens in the log with one recorded disagreement beside it, and the original evidence stays visibly unchanged.
 
 #### Page 7: Confirm handoffs and follow up
 
 Assigning a task is not the same as confirming it was accepted or completed. Track who has acknowledged a request, what remains pending, and when to follow up. If no one responds, escalate using an available appropriate channel rather than assuming success.
 
-The player reviews a simulated handoff with one acknowledged task and one pending task, then chooses a follow-up.
+A practice handoff shows one acknowledged task and one still pending, with the missing follow-up marked rather than assumed.
 
 ### Checkpoint: Coordinate the response
 
 #### Guided stage
 
-Finch shows a fictional request to erase an evidence copy to simplify a repair. The player identifies the risk, declines the destructive action, and selects an appropriate review path. Finch explains that the team can continue other safe recovery work while the question is escalated.
+Finch demonstrates the challenge on a separate request from earlier in the week: skip the independent reviewer so a repair can finish sooner. The player identifies what the shortcut would bypass, declines it, and requests review, and Finch points out that the safe work could continue while the question was escalated.
+
+The request is not the evidence-erasure instruction, and nothing from the demonstration carries into the main task.
 
 #### Main task
 
-The player uses the Coordination Board to:
+The player uses the Coordination Board to coordinate one response. The requirement is every task assigned and acknowledged, consent recorded per person, sharing limited to each role, the warning escalated and tracked to a result, the unsafe instruction challenged and recorded, and the decision log holding the disagreement and the open items.
 
 1. Assign monitoring of the temporary hold to the authorized recovery role and confirm the task is acknowledged.
 2. Arrange an accessible channel for Habitat inhabitants to ask questions and share individual preferences. Record responses separately; an unanswered request is not consent.
@@ -367,7 +371,7 @@ The board accepts equivalent safe assignments where responsibilities and authori
 
 ### Feedback and hints
 
-The board identifies unassigned work, information shared beyond a recipient's needs, pending handoffs, and unsupported assumptions about consent or authority. The player can revise choices.
+The board identifies unassigned work, information shared beyond a recipient's needs, pending handoffs, and unsupported assumptions about consent or authority, and the player can revise choices. For example, an unacknowledged handoff stays pending rather than becoming complete, sharing a whole record with a responder is blocked with an explanation, treating one inhabitant's reply as everyone's is returned to the individual responses, and assuming the platform will refuse Mara's request is corrected by the protocol's own record.
 
 Three hints point toward matching responsibilities, checking acknowledgements, and continuing safe work while escalating. They do not reveal the whole solution. Hints and retries are unlimited and penalty-free.
 
@@ -383,11 +387,11 @@ The recovery role confirms monitoring of the hold. A qualified fictional respond
 
 The temporary hold remains active. Completing the lesson does not open the Habitats, resolve the purge, or grant anyone unrestricted control.
 
-Completed activity progress saves automatically. An unfinished checkpoint stage restarts if the player leaves.
+Checkpoint progress saves after each completed stage. If the player leaves, the current stage resumes with completed answers and prior work preserved.
 
 ### Accessibility
 
-Role cards, assignments, evidence previews, acknowledgement states, and the decision log work with keyboard and screen reader. Pending and completed tasks use text labels, not color alone. Inhabitant communications provide accessible ways to respond, and the lesson has no time limit.
+Role cards, assignments, evidence previews, acknowledgement states, and the decision log work with keyboard and screen reader, without drag-only actions. Focus moves in a predictable order from the task list to the assigned role, the preview, the acknowledgement state, and the log entry, and every control has a descriptive label. Pending, acknowledged, and completed tasks are announced as text and never rely on color alone; new acknowledgements are announced when they arrive, and the log stays readable at large text sizes. Inhabitant communications provide accessible ways to respond, and the lesson has no time limit.
 
 ## Lesson 4: Capstone Decision-Making
 
@@ -408,7 +412,9 @@ Finch opens the **Recovery Planning Table**. The player uses a simulated copy of
 
 ### Learn & Try pages
 
-The lesson stays on the left while the planning table appears on the right. The player can review pages during the checkpoint.
+The left pane explains each topic, and the right side keeps the same **Recovery Planning Table** available throughout the lesson, so the player can open a status panel, preview a channel, try a rule against sample conditions, and watch a plan item change state. All systems, checks, and plans are simulated, and testing never operates a real Habitat door or alters the preserved evidence. The player can move back and review pages during the checkpoint.
+
+Examples use a temporary practice plan. Moving between lesson pages preserves the player's work on it, while **Reset example** returns the demonstration to its starting state without changing the checkpoint. The checkpoint begins from its own controlled snapshot of the Habitat 02 plan.
 
 #### Page 1: Start with people and the immediate risk
 
@@ -428,7 +434,7 @@ Not a new method. Chapter 6's loop — identify the symptom, gather evidence, fo
 
 What changes is what is at stake while it runs. People are inside the systems being tested, so a change that would be merely inconvenient in a lab can be unsafe here, and a test that disturbs a Habitat's status can delay its release. Use the same loop and choose the least disruptive test first.
 
-The player reviews a fictional communications fault and chooses a safe next test instead of changing several settings at once.
+The practice fault opens with the last test results and the settings each option would change, so the single safe next step is visible before anything runs.
 
 #### Page 4: Apply the network checks
 
@@ -436,13 +442,13 @@ The checks are the Chapter 6 set — loopback, the approved gateway, name resolu
 
 What is new is the consequence. If the communication path is down, the team cannot confirm a safe route before opening a door, so the release waits rather than proceeding on a green light elsewhere.
 
-The player checks a simulated Habitat communication channel and confirms that a test message is received and acknowledged.
+A practice Habitat's channel opens with its test message, its delivery state, and the acknowledgement that is still missing.
 
 #### Page 5: Find the right records
 
 A database can help locate the status and history needed for a decision. Select only relevant fields and use authorized, read-only access when changing data is unnecessary. A record's account name identifies the account recorded, not necessarily the person who used it.
 
-The player filters a fictional status table by Habitat and compares the result with a separate current status check.
+A practice status table opens already filtered by Habitat, with the separate current check beside it and any difference marked.
 
 #### Page 6: Review a proposed automation rule
 
@@ -454,30 +460,32 @@ The player inspects a simple simulated rule that requests a release review only 
 
 Verify that recoverable copies are available before making a risky change. Keep originals separate from working copies and AI-generated interpretations. A restore test checks recoverability; it does not prove that the contents are true.
 
-The player identifies the protected original, an authorized working copy, and a verified backup destination.
+The three copies open side by side — protected original, authorized working copy, and backup destination — with a restore test already run against the backup.
 
 #### Page 8: Limit authority and plan a handoff
 
 Give each role the access needed for its task, not unrestricted control. Important decisions may require independent review or more than one authorized participant. Document the plan, identify who will carry out each step, include how inhabitants can communicate their choices, and name who will hold authority once the crisis is over. That last question is settled only in the final scene, with the people it affects.
 
-The player reviews a proposed access plan and flags a role that has unnecessary control over both evidence and Habitat doors.
+A practice access plan shows each role's reach beside it and marks the role that holds both evidence and Habitat-door control.
 
 ### Checkpoint: Build a safe release plan
 
 #### Guided stage
 
-Finch shows a proposed rule:
+Finch demonstrates the correction on a separate rule from an earlier maintenance routine:
 
 ```text
-IF PURGE HOLD IS ACTIVE
-THEN OPEN HABITAT DOOR
+IF DOOR REQUESTED
+THEN CLOSE ALL DOORS
 ```
 
-The player identifies that the hold alone does not establish whether life support, communications, or the release plan is ready. Finch helps change the simulated rule so it **requests a review** after the listed checks, rather than automatically opening the door.
+The player sees that one request would act on every Habitat at once, and Finch helps change the rule so a single request affects only the Habitat it names and still requests review. The problem is scope, not caution.
+
+The rule is not the release rule used in the main task, and nothing from the demonstration carries into it.
 
 #### Main task
 
-The player works through a simulated plan for Habitat 02:
+The player works through a simulated plan for Habitat 02. The requirement is a plan in which every check has a recorded result or a visible pending state, the rule requests review rather than acting, no role controls both evidence and doors, and the inhabitants' responses are recorded individually.
 
 1. Review the current hold status, the inhabitant messages, and the decision log. Record known facts, open questions, and individual preferences without assuming a missing response means consent.
 2. Check the simulated life-support status and recent alert. Confirm the qualified responder's check or escalate an unresolved warning before marking that part of the plan ready.
@@ -491,7 +499,7 @@ The planning table accepts equivalent safe plans when the required checks, respo
 
 ### Feedback and hints
 
-The table explains which requirement is incomplete and allows the player to revise the plan. It distinguishes a simulated test from an actual facility action.
+The table explains which requirement is incomplete and allows the player to revise the plan. It distinguishes a simulated test from an actual facility action. For example, marking the plan ready with an unacknowledged check is refused and the pending item is named, a rule that would open a door automatically is returned to the review step, a role holding both evidence and door control is refused, and a missing inhabitant response cannot be filled in by the simulation.
 
 Three hints point toward checking the people and systems involved, preserving evidence before changes, and separating a review request from an automatic door action. They do not reveal the whole solution. Hints and retries are unlimited and penalty-free.
 
@@ -507,11 +515,11 @@ The team has a reviewed plan, but the doors remain sealed and Mara's purge has n
 >
 > **Player:** “That comes after. With them in the room.”
 
-The temporary hold remains active. Completed activity progress saves automatically; an unfinished checkpoint stage restarts if the player leaves.
+The temporary hold remains active. Checkpoint progress saves after each completed stage. If the player leaves, the current stage resumes with completed answers and prior work preserved.
 
 ### Accessibility
 
-Status panels, records, rule conditions, role permissions, and the plan work with keyboard and screen reader. Connections and dependencies have text descriptions. Pending, verified, and simulated states use text labels rather than color alone. The lesson has no time limit.
+Status panels, records, rule conditions, role permissions, and the plan work with keyboard and screen reader, without drag-only actions. Focus moves in a predictable order through the plan steps, the status panels, the rule conditions, and the role permissions, and every control has a descriptive label. Connections and dependencies have text descriptions; pending, verified, and simulated states are announced as text and never rely on color alone; new results are announced when they appear; and the plan stays readable at large text sizes. The lesson has no time limit.
 
 ## Story purpose for the lessons
 
