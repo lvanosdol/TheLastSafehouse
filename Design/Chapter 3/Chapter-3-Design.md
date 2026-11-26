@@ -1,6 +1,6 @@
 # Chapter 3 Design
 
-**Status:** Working design with six detailed database lessons and the Registry Investigation boss. Story details and implementation remain open.
+**Status:** Working design with six detailed database lessons and the Registry Investigation boss. Implementation rules are specified; story details remain open.
 **Updated:** 2026-11-25
 
 Each lesson ends with one checkpoint. Where a separate practice previously existed, it is now the checkpoint's guided first stage. Progress saves after each completed stage.
@@ -21,6 +21,31 @@ The interactive side includes:
 Selecting an example in the lesson offers **Load into editor** without running it. The player can edit and run queries, inspect the resulting rows, compare fields, reset the example, and return to the lesson. Exploration is not scored and cannot silently change the checkpoint's starting database.
 
 The checkpoint opens a controlled dataset and clearly indicates whether any player-created working statements are being carried into it. Narrow screens use **Lesson** and **Try It** tabs.
+
+### Editor and console behavior
+
+- **Tab indents.** Tab inserts four spaces at the caret and Shift+Tab removes up to four leading spaces, matching a real SQL editor. Because Tab must never trap a keyboard user, **Esc leaves the editor**, after which Tab moves focus in the normal order, and a visible **Tab inserts spaces / Tab moves focus** toggle in the editor toolbar changes the default. The choice persists for that player.
+- **Ctrl+Enter runs the statement** from anywhere in the editor, so running a query never requires leaving it.
+- The editor's status line shows these shortcuts when it first receives focus and on request.
+- **Focus order:** editor → Run → message and error area → results grid → preview panel → lesson pane.
+- **Announcements:** syntax errors name the clause needing attention and announce assertively; row counts, preview outcomes, and pass or fail results announce politely as text.
+- **Preview never applies itself.** Previewing and then closing discards the preview and keeps the statement in the editor; the data is unchanged.
+- **Undo belongs to the session.** Applied changes can be undone while the checkpoint is open. Closing the game ends the undo history and keeps the applied state saved, and the checkpoint can always be reset to its starting dataset instead.
+- **Narrow displays:** a wide table scrolls horizontally inside its own pane with the key column pinned and headers visible; cell values never wrap mid-value, and phone-width screens can switch to a row-detail view.
+
+### SQL subset and validation
+
+The simulated engine behaves like **SQLite** for everything this chapter teaches, and the validator checks the **result set, not the text**.
+
+Supported read statements: `SELECT` fields, `FROM`, `WHERE` with `=`, `<>`, `!=`, `AND`, `OR`, `IS NULL`, and `IS NOT NULL`, `ORDER BY` with `ASC` or `DESC`, and `JOIN … ON` up to the two joins Lesson 5 uses. Supported write statements: `INSERT INTO … VALUES`, `UPDATE … SET … WHERE`, and `DELETE FROM … WHERE`. These are available at every checkpoint unless a lesson says otherwise.
+
+Not supported: `GROUP BY`, aggregate functions such as `COUNT`, `DISTINCT`, `LIKE`, `BETWEEN`, `CASE`, and subqueries. An unsupported clause is rejected **by name**, for example "GROUP BY is not part of this lesson's SQL", so a player who tried something from elsewhere learns why instead of seeing a generic syntax error.
+
+Equivalent statements are accepted: any column order where the task asks for named fields, aliases, either join order when the `ON` conditions match, case-insensitive keywords and identifiers, optional semicolons, and any whitespace or line breaks. **String values stay case-sensitive**, because `'Workshop'` and `'workshop'` are different values.
+
+`ORDER BY` does not define the order of tied rows. The validator accepts any order **within a tie group**, and Lesson 3 includes one deliberate tie so the lesson can say so.
+
+`NULL` means absent or unknown. A comparison involving `NULL` excludes the row rather than erroring, `IS NULL` is the test that works, and `NULL` displays as `NULL` rather than as a blank cell or the text `'NULL'`. Booleans display as `FALSE` and `TRUE`; the lessons teach `FALSE` instead of `0`, while the validator still accepts what SQLite accepts.
 
 ## Opening scene
 
@@ -265,6 +290,8 @@ ORDER BY priority ASC;
 ```
 
 `ORDER BY` sorts the returned records. `ASC` means ascending: smaller numbers appear first. `DESC` means descending: larger numbers appear first.
+
+One demonstration query returns two devices with the same priority. The results grid groups them, and the page notes that `ORDER BY` does not decide which of two tied rows comes first.
 
 In this registry, a **smaller priority number means more urgent attention**. A priority of `1` appears before `2` when sorted ascending.
 
@@ -1023,7 +1050,7 @@ The log does not explain Echo's motive. The integrity checks establish that the 
 
 ### Feedback, hints, and bonus
 
-The boss provides two separate optional help controls. **Hint** offers Finch's progressive hints below. **Ask Mara** opens in-character conversational guidance using the current objective, written SQL, results, and error output; a clear notice explains what she can see. Mara may identify the likely issue and ask a guiding question, but she does not supply the complete solution or change records automatically.
+The boss provides two separate optional help controls. **Hint** offers Finch's progressive hints below. **Ask Mara** opens in-character conversational guidance using the current objective, written SQL, results, and error output; a clear notice explains what she can see. Mara may identify the likely issue and ask a guiding question, but she does not supply the complete solution or change records automatically. Hint is generic and escalates through three levels; Ask Mara is specific to what is on screen, because she reads the player's statement, results, and error text. Neither supplies the answer, and in the boss either one forfeits the perfect bonus.
 
 - The player can run and revise queries freely. Syntax feedback identifies what needs attention without supplying the answer.
 - **Preview** shows which records a statement would change without applying it. The player can select **Apply**, or cancel and revise the statement. Applied changes can be undone.
@@ -1090,27 +1117,18 @@ The player finds and opens the case, then adds the **Development Setup Agent** c
 
 These requirements apply to the lesson tables and checkpoints as well as the boss.
 
-- The SQL console supports keyboard-only entry and execution.
+- The SQL console supports keyboard-only entry and execution, with Ctrl+Enter running the statement.
+- Tab indents inside the editor and Esc leaves it; a toolbar toggle lets any player make Tab move focus instead, and its state is announced.
 - Focus moves predictably between the query editor, reference key, objective, results, preview, and help controls.
 - Query results use labeled column headers and announce row and column position.
 - Screen readers announce changed cells, affected-row counts, syntax errors, pass/fail checks, and preview outcomes.
 - Color is never the only indicator of changed rows, selected fields, errors, or completed objectives.
-- Wide tables can scroll horizontally, wrap, or switch to an accessible stacked view.
-- Any visual relationship diagram has a text equivalent.
+- Wide tables scroll horizontally inside their own pane with the key column pinned, headers stay visible, and values never wrap mid-value; phone-width screens offer a row-detail view.
+- The schema is available as a text list of tables, fields, key columns, and relationships, such as "devices.room_id references rooms.room_id; one room can have many devices". Any diagram is decoration over that list.
 - Preview, Apply, Cancel, Undo, Hint, and Ask Mara are keyboard accessible.
 - The SQL reference key can be collapsed and remains screen-reader accessible.
 - The untimed design preserves the player's ability to work at their own pace.
 
 ## Open implementation questions
 
-- Supported SQL subset and which equivalent statements the validator accepts
-- Whether column order, aliases, join order, capitalization, and optional semicolons are accepted
-- How ordering ties are compared
-- Exact behavior of `NULL`, `TRUE`, and `FALSE` in the simulation
-- Keyboard navigation and focus flow between the console, tables, preview, and results
-- How changed rows, syntax errors, and verification failures are announced
-- Whether undo history persists after closing the game
-- How previewed-but-unapplied changes are saved or discarded
-- How wide database tables adapt to mobile and narrow displays
-- How Ask Mara's guidance differs from Finch's Hint levels
-- Whether the chapter needs a text alternative for a visual relationship map
+None outstanding. The validator rules, editor behavior, table layout, help controls, and accessibility arrangements are all specified above and in the workspace section.
