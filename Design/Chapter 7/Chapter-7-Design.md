@@ -1,6 +1,6 @@
 # Chapter 7: The Last Safehouse
 
-**Status:** Approved opening, detailed Lessons 1 through 4, and complete working boss design. Ending choices remain to be developed.
+**Status:** Approved opening, detailed Lessons 1 through 4, a complete working boss, and a defined ending-decision scene. The individual ending scenes remain to be written.
 **Updated:** 2026-11-26
 
 ## Story continuity
@@ -448,7 +448,7 @@ The player identifies the protected original, an authorized working copy, and a 
 
 #### Page 8: Limit authority and plan a handoff
 
-Give each role the access needed for its task, not unrestricted control. Important decisions may require independent review or more than one authorized participant. Document the plan, identify who will carry out each step, and include how inhabitants can communicate their choices.
+Give each role the access needed for its task, not unrestricted control. Important decisions may require independent review or more than one authorized participant. Document the plan, identify who will carry out each step, include how inhabitants can communicate their choices, and name who will hold authority once the crisis is over. That last question is settled only in the final scene, with the people it affects.
 
 The player reviews a proposed access plan and flags a role that has unnecessary control over both evidence and Habitat doors.
 
@@ -492,6 +492,10 @@ The team has a reviewed plan, but the doors remain sealed and Mara's purge has n
 > **Finch:** “The plan is ready. The people inside know what we're trying to do.”
 >
 > **Player:** “Then we do it together.”
+>
+> **Finch:** “One thing the plan cannot decide: who holds the keys afterward.”
+>
+> **Player:** “That comes after. With them in the room.”
 
 The temporary hold remains active. Completed activity progress saves automatically; an unfinished checkpoint stage restarts if the player leaves.
 
@@ -649,11 +653,61 @@ Finch gives the player a physical thumb drive containing the **Release Agent bui
 - The player adds it to the in-game project build on the laptop. It is not used as an assistant during gameplay.
 - After the full campaign, the completed seven-agent app is intended to be offered as a real-world download, subject to future implementation, safety, and testing. This is separate from the story ending.
 
-### Ending transition
+### Ending decision
 
-With the immediate crisis resolved, the player and inhabitants discuss the facility's future. The outline proposes **Open Doors**, **Empty Foundations**, and **The Watchful Echo**. Their exact scenes, choice conditions, and consequences remain open for us to develop together; the boss does not silently select one.
+The boss ends with an explicit decision. It is not a menu and not an automatic outcome: the player chooses an action, and the game shows what that action costs. The decision is untimed, and the Release Agent has already been awarded, so nothing about the ending affects the bonus.
 
-Across the proposed endings, Finch survives, the inhabitants regain autonomy, and preserved evidence supports accountability. The ending decision is not timed.
+#### The scene
+
+1. **The crisis closes.** The purge is isolated, every Habitat has a recorded status, the evidence package has a recorded delivery, and Finch confirms that no further system action is required.
+2. **The record is shown.** The console displays the decision log from Lesson 3, each Habitat's individual responses, and any Habitat that never answered. Responses stay individual; the game never presents them as one collective preference.
+3. **Every Habitat is offered the chance to respond.** Before the actions unlock, the player sends the release notice through the channel from Lesson 3. If any Habitat has not answered, the console states plainly: **“Choosing now decides for people who have not been heard.”** That is a warning and a recorded fact, not a block.
+4. **Mara is heard once, last.** She may say what she believes about the inhabitants and about the player's right to decide. Nothing she says changes the available actions, and she cannot act. Her statement is recorded under her name as a claim.
+5. **Three actions, each with an impact preview.** The console shows what each action does to the facility, the inhabitants, and the evidence before the player commits, using the same preview pattern as the purge isolation in Stage 6.
+6. **The player chooses, then says why.** A short statement to the inhabitants, written or selected from equivalent phrasing. It changes tone, not outcome.
+7. **One confirmation, then final.** The choice can be reviewed until it is confirmed, and the decision point is saved so a player can close the game mid-deliberation and return.
+
+#### The three actions
+
+| Action | Ending | What it does | What it costs |
+|---|---|---|---|
+| **Hand over** | Open Doors | Distributes administrator authority to the inhabitants, keeps no override, and leaves the facility governed by its residents | The facility stays fragile, and the player keeps no way to intervene if it fails |
+| **Tear down** | Empty Foundations | Evacuates everyone, preserves verified testimony elsewhere, and destroys the laboratory and its centralized control systems | Finch and the inhabitants lose their home, and some records are lost with the systems |
+| **Hold on** | The Watchful Echo | Keeps administrator authority temporarily to stabilize the facility and protect the inhabitants | Repeats the shape of Mara's mistake; the epilogue must show the first use of that authority and when it will be given up |
+
+All three actions are always available. None is treated as the correct ending, and none is gated behind a score.
+
+#### How conduct shapes the ending
+
+Earlier conduct does not change which actions exist; it changes what happens inside the chosen ending. The epilogue reads from facts the boss already tracks:
+
+- How many Habitats answered, and whether the player sent the release notice before choosing.
+- Whether access was distributed by role in Stage 4 and Lesson 4, or concentrated in one role.
+- Whether the evidence package had a recorded delivery, and whether originals stayed separate from summaries.
+- Whether warnings were escalated and acknowledged, or left pending.
+
+For example:
+
+- **Open Doors after every Habitat answered:** the residents govern, Finch stays only if they ask, and the handover is clean.
+- **Open Doors with a Habitat still pending:** the handover still happens, but it is contested. Some inhabitants learn of the decision afterward, and the epilogue says so.
+- **Empty Foundations after unanswered notices:** the evacuation is orderly but imposed, and the epilogue records that people were moved rather than consulted, without framing the player as a villain for choosing it.
+- **The Watchful Echo in any state:** the epilogue shows the first exercise of retained authority and the specific condition or date for giving it up. If none was set, the ending says that plainly.
+
+No ending is withheld, no conduct is scored, and no player is condemned for anger or for choosing the hardest option.
+
+#### Shared coda
+
+The same closing material follows every ending:
+
+- Mara's accountability rests on the preserved evidence and the recorded claims, not on the player's verdict alone.
+- Finch survives.
+- The surviving human and robotic inhabitants regain autonomy.
+- The player's own documentation remains part of the record that outlives the decision.
+- The completed seven-agent app is released separately from the story's outcome.
+
+#### Accessibility and saving
+
+Each action is presented as text with its preview and its costs, operable by keyboard and screen reader without a timer or precise pointer movement. Confirming is a deliberate two-step action with clear labels, and the decision point is saved so the player can return to it.
 
 ### Saving and accessibility
 
@@ -663,17 +717,19 @@ The map, workstation, query controls, rule editor, messages, and door controls w
 
 ## Ending framework
 
+The three endings below are the epilogue outlines the decision scene selects between. Each is written from the conduct recorded during the boss and Lessons 1–4, so two players who choose the same action can see different details without a different outcome.
+
 ### Open Doors
 
-The player frees the inhabitants, preserves and shares the verified evidence, removes all unilateral administrator control, and leaves the facility governed by its residents. Finch remains as caretaker if the inhabitants approve. Echo retains his memories but chooses a new identity and role.
+The player frees the inhabitants, preserves and shares the verified evidence, removes all unilateral administrator control, and leaves the facility governed by its residents. Finch remains as caretaker if the inhabitants approve. Echo retains his memories but chooses a new identity and role. The epilogue must show who holds authority afterward and how the first decision under resident control is made.
 
 ### Empty Foundations
 
-The player evacuates everyone, preserves verified testimony elsewhere, and permanently destroys the laboratory and its centralized control systems. Safehouse 7 is decommissioned. The ending is safer and conclusive, but costs Finch and the inhabitants their home.
+The player evacuates everyone, preserves verified testimony elsewhere, and permanently destroys the laboratory and its centralized control systems. Safehouse 7 is decommissioned. The ending is safer and conclusive, but costs Finch and the inhabitants their home. The epilogue must show where the inhabitants go and what record survives the destruction.
 
 ### The Watchful Echo
 
-The player keeps temporary administrator control to stabilize the facility and protect the inhabitants. The ending acknowledges the risk of concentrating power in Echo again and requires an eventual transfer of authority to the inhabitants. This is a difficult responsibility ending, not a villainous one.
+The player keeps temporary administrator control to stabilize the facility and protect the inhabitants. The ending acknowledges the risk of concentrating power in Echo again and requires an eventual transfer of authority to the inhabitants. This is a difficult responsibility ending, not a villainous one. The epilogue must show the first use of retained authority and the condition or date for handing it over.
 
 Across every ending:
 
@@ -687,13 +743,14 @@ Across every ending:
 ## Open questions
 
 - The exact Digital Literacy and Communication subtopics from the remaining source material
-- Which technical skills are revisited in the final lesson sequence
+- How much of the decision log and Habitat responses are shown during the final ending scene
+- How each ending's epilogue is written, and how conduct variations are presented without scoring them
 - The final boss timer after playtesting and exact interaction details
 - How the player communicates the evidence and to whom
-- Whether Mara can be heard out, contained, or handed over
+- How Mara's accountability is shown after the decision, and who receives it
 - The exact fate and choices of the surviving subjects
 - How the player’s Chapter 5 dialogue tone affects the finale
 - What happens to Finch if the facility is dismantled
-- Which ending is treated as the primary finale
+- How the ending decision is presented on mobile screens
 - How the completed seven-agent app is presented after the story resolves
 - Accessibility requirements for the final communication and decision interfaces
