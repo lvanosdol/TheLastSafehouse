@@ -69,7 +69,9 @@ The **CIA triad** describes three security goals:
 
 One incident can affect more than one goal.
 
-### Guided practice: Classify one asset
+### Checkpoint: Review the gateway's assets
+
+#### Guided stage: Classify one asset
 
 Finch presents a maintenance visitor log containing a visitor name, organization, arrival time, and employee contact.
 
@@ -77,7 +79,7 @@ The player labels it **sensitive** and **potentially identifying**, then identif
 
 Feedback explains that ordinary fields can become identifying when combined. Keyboard selection, three hints, and unlimited penalty-free retries remain available.
 
-### Checkpoint: Review the gateway's assets
+#### Main task: Review the asset inventory
 
 For each asset, the player selects all applicable labels: **public**, **sensitive**, **operationally important**, and **potentially identifying**.
 
@@ -127,7 +129,7 @@ Only the inventory metadata is visible. No protected biometric record is opened 
 
 Finch records the entry and Mara's explanation in **Unresolved Records**, marking the explanation as unverified. The gateway remains offline.
 
-Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
+Progress saves after each completed checkpoint stage. If the player leaves during a stage, that stage resumes with completed answers and prior progress preserved.
 
 ### Accessibility
 
@@ -184,7 +186,9 @@ Verify unexpected requests through a separate trusted channel. Preserve suspicio
 
 Locks, badges, visitor checks, screen privacy, and secured cabinets reduce risk. A badge record shows which authorization was used, not who held the badge.
 
-### Guided practice: Name the threat
+### Checkpoint: Investigate the security incidents
+
+#### Guided stage: Name the threat
 
 The player classifies three cards:
 
@@ -194,7 +198,7 @@ The player classifies three cards:
 
 They then choose the matching defense: verify through a trusted channel, reposition the screen, or shred and securely dispose.
 
-### Checkpoint: Investigate the security incidents
+#### Main task: Investigate the incidents
 
 The player selects the concern and response for each incident:
 
@@ -238,7 +242,7 @@ Hints and retries are unlimited and penalty-free.
 
 Finch adds both the records and Mara's explanation to **Unresolved Records**, keeping evidence separate from interpretation.
 
-Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
+Progress saves after each completed checkpoint stage. If the player leaves during a stage, that stage resumes with completed answers and prior progress preserved.
 
 ### Accessibility
 
@@ -327,7 +331,9 @@ Antimalware tools can use **signatures** or behavior to detect suspicious files,
 
 **Quarantine** prevents normal use while a file is reviewed. A backup called “clean” is not trusted until checked.
 
-### Guided practice: Triage one incident
+### Checkpoint: Triage and contain the incident
+
+#### Guided stage: Triage one incident
 
 Finch presents a practice alert:
 
@@ -345,7 +351,7 @@ The player:
 
 Feedback explains that containment precedes investigation and recovery. No real traffic, malware, or equipment is used. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
-### Checkpoint: Contain the simulated incident
+#### Main task: Contain and recover
 
 The player works through a three-part incident board.
 
@@ -451,7 +457,7 @@ QUARANTINED BY: E.C.H.O_Thread_01
 
 The labels and quarantine entry establish what was recorded, not who performed each action or why. Finch adds both findings and Mara's explanation to **Unresolved Records**.
 
-Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
+Progress saves after each completed checkpoint stage. If the player leaves during a stage, that stage resumes with completed answers and prior progress preserved.
 
 ### Accessibility
 
@@ -526,7 +532,9 @@ A **standard account** has limited permissions. An **administrator account** can
 
 Systems can combine models. A **classification** describes how information must be protected. An **access control list (ACL)** identifies who may perform which actions on a resource.
 
-### Guided practice: Reasons and restrictions
+### Checkpoint: Restore secure access
+
+#### Guided stage: Reasons and restrictions
 
 Finch presents two practice cases:
 
@@ -537,7 +545,7 @@ The player also identifies that a fingerprint and facial scan are two biometric 
 
 Feedback explains that MFA counts categories, not prompts, and that authorization combines roles with restrictions. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
-### Checkpoint: Restore secure access
+#### Main task: Authenticate and assign access
 
 The player works in a fictional recovery simulator. The gateway remains offline.
 
@@ -621,7 +629,7 @@ STATUS: ACTIVE UNTIL FACILITY FAILURE
 
 The records do not establish what Mara did with the role or why the player's sign-in produced an Echo profile. Finch adds both findings and Mara's explanation to **Unresolved Records**. The protected evidence store remains sealed.
 
-Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
+Progress saves after each completed checkpoint stage. If the player leaves during a stage, that stage resumes with completed answers and prior progress preserved.
 
 ### Accessibility
 
@@ -695,7 +703,9 @@ Safer sharing means limiting information and recipients, requiring MFA, using ex
 
 A **cookie** is information a site stores in a browser. First-party cookies belong to the visited site; third-party cookies belong to another content provider. Essential cookies may support required functions; analytics and advertising are optional in this task.
 
-### Guided practice: Separate evidence from interpretation
+### Checkpoint: Reconstruct and preserve the incident
+
+#### Guided stage: Separate evidence from interpretation
 
 Finch presents three short items:
 
@@ -719,7 +729,7 @@ The player labels each item, then decides which three fields an incident auditor
 
 Feedback connects evidence limits to privacy minimization. Keyboard controls, three hints, and unlimited penalty-free retries remain available.
 
-### Checkpoint: Reconstruct and preserve the incident
+#### Main task: Build the timeline and package
 
 #### Part 1: Build the timeline
 
@@ -801,7 +811,7 @@ Finch finds records using **SUBJECT** identifiers alongside real-looking medical
 
 Finch adds the finding and Mara's explanation to **Unresolved Records**, without treating her explanation as verified. The gateway remains offline and ready for final recovery.
 
-Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
+Progress saves after each completed checkpoint stage. If the player leaves during a stage, that stage resumes with completed answers and prior progress preserved.
 
 ### Accessibility
 
