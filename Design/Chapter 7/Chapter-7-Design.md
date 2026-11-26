@@ -549,13 +549,31 @@ If it expires, the simulated workspace switches to manual recovery. The hold and
 
 The timer pauses during story scenes, the pause menu, help panels, mandatory accessibility overlays, while the game is closed, and during the final ending decision. It continues while ordinary boss sticky notes are open.
 
-**Hint** has three progressive levels. **Ask Mara** offers contextual conversation but does not change settings or evidence; her explanations remain claims. Before either opens, a warning says that using help forfeits the perfect bonus. Confirming opens help; cancelling preserves eligibility. Ordinary mistakes, retries, failed tests, and allowed undos do not forfeit it.
+**Hint** has three progressive levels and comes from Finch. Before it opens, a warning says that using help forfeits the perfect bonus; confirming opens it, and cancelling preserves eligibility.
+
+**Hear Mara** replaces the old Ask Mara control. Earlier bosses offered her as help; here she is not an ally, so the control becomes a story channel. It plays her statement on the current situation, recorded under her name as a claim, and never changes settings, evidence, access, or timing. Using it does not forfeit the perfect bonus.
+
+Ordinary mistakes, retries, failed tests, and allowed undos do not forfeit the bonus.
 
 All equipment, files, accounts, credentials, communications, code, and network operations are simulated. The protected evidence store stays sealed. Unsafe destructive actions are blocked with an explanation.
 
 ### Boss interface
 
 The **Facility Response Console** provides a text-accessible room map, current objective, timer, bonus status, Habitat and system statuses, and access to **Unresolved Records**. The player can review completed actions and move between available stations. Later controls unlock when their prerequisites are satisfied.
+
+### Mara's countermoves
+
+Mara cannot grant herself access, so she never attacks the systems directly. She works on the people and on the record instead. She acts three times, and none of her moves can be prevented by a permissions check or by withholding access.
+
+1. **A claim, not a command (Stage 6).** She submits a life-support warning that would make the player's own review rule refuse a Habitat. The console accepts it because submitting a claim needs no special rights, and the door stays blocked until the claim is checked. The player must verify it against the independent status rather than assume it or dismiss it.
+2. **A policy she still reviews (Stage 4).** The recovery teammate's access is granted under a policy Mara keeps. She narrows that policy, which withdraws the teammate's role mid-stage and halts the technical work until the player re-authorizes the same limited access through their own recovery permissions. Nothing is seized; the procedure is used.
+3. **An offer (Stage 5, after the rule is tested).** She offers to explain who the player was before the memory loss, in exchange for opening the doors without further review. Listening is allowed and costs nothing. Agreeing changes only what she says afterward, because she cannot open a door and does not control the review rule.
+
+The player could revoke her console access outright, but the console treats that as removing the record of her claims and refuses it as evidence loss. She stays able to speak and unable to act.
+
+None of the three forfeits the perfect bonus, none is bypassed by administrator rights, and all three are written into the decision log whether the player resists them or not. They do not change what the ending actions are; they change what Mara can claim afterward.
+
+The tone flags set earlier change how she says all of this, never what she does. If the player kept the Chapter 5 evidence questions open, her lines are clipped and she treats the player as an adversary; if the player put the gateway first, she sounds almost friendly while making the same three moves. If the player filed the Lesson 3 record openly, she refers to that record by name; if not, she talks around it. A sharp order to wipe the archive at the end of Chapter 6 carries the same sharpness into her opening line here. Every flag is recorded beside her claims and never changes access, timing, rewards, or the endings.
 
 ### Stage 1: Restore the recovery workstation
 
@@ -600,7 +618,9 @@ The player assigns the recovery teammate the limited access needed to perform th
 
 The player prepares a limited evidence package for an appropriate fictional recipient, keeping source records separate from AI-generated summaries. A checksum or signature verifies the applicable integrity or authenticity check; it does not prove every claim is true.
 
-**Result:** The team has a verified recovery copy and the authorized roles needed to proceed.
+Mara narrows the policy that granted the recovery teammate's access. The teammate's role is withdrawn mid-stage, and the technical work stops until the player re-authorizes the same limited access through their own recovery permissions. The interruption is recorded, nothing is lost, and no unrelated access is granted to work around it.
+
+**Result:** The team has a verified recovery copy, the authorized roles needed to proceed, and a record of the access change.
 
 ### Stage 5: Repair and test the review rule
 
@@ -616,6 +636,8 @@ The rule requests human review; it does not open a door. The player tests at lea
 
 The player also checks that a failed or incomplete test is not shown as a successful review. The game accepts equivalent correct logic. The repaired rule is tested in the simulation before the authorized team applies it.
 
+Mara offers to explain who the player was before the memory loss, in exchange for opening the doors without further review. Listening is allowed and costs nothing; agreeing changes only what she says afterward, because she cannot open a door and does not control the review rule. The offer is written into the decision log either way.
+
 **Result:** The team has a tested way to request a release review without automatically opening a Habitat.
 
 ### Stage 6: Stop the purge and coordinate the release
@@ -626,11 +648,13 @@ The containment protocol is older than the network and runs under its own servic
 
 The console shows the proposed impact before the change. The authorized recovery teammate confirms the technical step, an independent reviewer checks it, and the player verifies that the purge is no longer executing or queued. Life support and communications are checked afterward, and the action is recorded.
 
+Before the first door, Mara submits a life-support warning for Habitat 02 that would make the review rule refuse the release. The console accepts the claim, because submitting one needs no special rights, and the door stays blocked until the player checks the warning against the independent life-support status. The status contradicts the claim, the claim is marked unverified in the decision log, and the review proceeds. Dismissing the warning without checking it, or acting on it, both leave the Habitat pending.
+
 For each Habitat, the team checks its status, resolves or escalates warnings, confirms a safe route with a qualified responder, and communicates with the people inside. Door controls become available only after the relevant checks and review are complete. Opening a door gives inhabitants the **choice** to leave or remain where safe; the player does not make one decision for everyone.
 
 Individual requests and unanswered messages remain distinct. A Habitat that cannot yet be checked stays visibly pending with an assigned follow-up; it is not silently counted as cleared. The player verifies each door's actual state after an authorized release.
 
-Mara can be heard without allowing her to restart the purge or erase evidence. Her final accountability is left for the ending sequence.
+**Hear Mara** remains available through Stage 6 and the ending decision, without letting her restart the purge or erase evidence. Her final accountability is left for the ending sequence.
 
 ### Final verification
 
