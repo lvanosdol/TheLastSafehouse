@@ -5,6 +5,22 @@
 
 Each lesson ends with one checkpoint containing a guided stage and an independent task. Progress saves after each completed stage.
 
+## Learn & Try workspace
+
+Security lessons use a split-screen learning lab. Lesson guidance remains on the left; the right side exposes only the tools needed for the current topic:
+
+- Asset cards and classification labels
+- Incident and message cards
+- Network and integrity status panels
+- Malware samples and containment controls
+- Authentication and permission simulators
+- Evidence timeline
+- Redaction and secure-sharing controls
+
+The player can load a lesson example, inspect evidence, apply a choice, see its result, and reset it while reading. Examples never run automatically and exploration is not scored. All content remains simulated, and protected evidence stays unavailable unless explicitly authorized.
+
+The related checkpoint opens from a controlled security state. If exploration work is compatible with the checkpoint, the game explains what will carry forward before starting. Narrow screens use **Lesson** and **Try It** tabs.
+
 ## Opening scene
 
 After the Chapter 4 recovery, Finch reviews the Tomas and Nia log. The Coding Agent component has already been added to the in-game project build. Finch uses the recovered archive to update the facility map:

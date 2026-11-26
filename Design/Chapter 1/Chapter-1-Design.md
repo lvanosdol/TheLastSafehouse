@@ -32,6 +32,20 @@ Each lesson ends with one checkpoint. The checkpoint begins with a guided stage 
 
 The general checkpoint loop and campaign rules remain in the [master design](../The-Last-Safehouse-Design.md#3-teaching-and-checkpoint-principles).
 
+## Learn & Try workspace
+
+Lessons that use the safe simulated computer appear in a split view: lesson guidance on the left and the relevant practice environment on the right.
+
+- **Hardware lesson:** keep the 3D bench as the primary view and provide a collapsible parts-and-purpose guide rather than forcing a terminal beside it.
+- **Computing basics:** show the Workshop photograph and a four-stage input/processing/storage/output display.
+- **Windows and operating systems:** pair the lesson with the simulated desktop, Settings, and File Explorer.
+- **Files and evidence:** pair instructions with an interactive File Explorer and a visible file-properties panel.
+- **Accounts and recovery:** pair the lesson with the simulated account panel, permission table, and read-only Recovery folder.
+- **Protection:** pair the lesson with the simulated Windows Security screen and benign alert.
+- **Software:** pair the lesson with a simulated source comparison and Installed apps list.
+
+The player can load examples, navigate, inspect properties, and reset the practice view while reading. No command runs and no real file or setting changes. Checkpoints open from their own controlled state so experimentation cannot silently alter the assessed result. Narrow screens use **Lesson** and **Try It** tabs.
+
 ## Opening scene: The onsite apprenticeship
 
 The player is living an ordinary life and applies to a college Information Technology and Networking program as a beginner with no computer-repair experience.

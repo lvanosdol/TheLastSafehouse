@@ -56,6 +56,23 @@ Accept alternate valid solutions unless a specific technique is the learning obj
 
 Lesson checkpoints have unlimited retries and no penalty. Lesson hints/retries do not affect the Console Repair bonus.
 
+### Learn & Try workspace
+
+Lessons that benefit from experimentation use a split-screen learning workspace:
+
+- **Left pane:** the lesson explanation, examples, Next/Back controls, and Hint access.
+- **Right pane:** the relevant interactive tool, such as a Python editor, SQL console, file browser, permission panel, network map, or security console.
+
+On wide screens, the panes appear side by side and are independently scrollable. The divider is draggable, the lesson pane can be collapsed, and the interactive pane has a clear reset. Narrow and mobile displays use labeled **Lesson** and **Try It** tabs rather than compressed side-by-side panels.
+
+Lesson examples can be loaded into the interactive pane but never run automatically. The player chooses **Run**, edits the example, resets it, or returns to the explanation. Workspace feedback describes the result without completing the task automatically.
+
+Exploration is a safe simulation and does not send commands, execute code, access files, or change settings on the player's real computer or network. Its state also cannot silently change a checkpoint or boss: the checkpoint starts from a controlled snapshot, and the player is told when their practice state is being carried forward.
+
+The lesson workspace is not separately scored. It exists to let the player test examples while reading. The lesson checkpoint remains the guided practice and assessment point, and progress in both saves automatically.
+
+All split-screen controls must support keyboard operation, predictable focus order, readable zoom, screen-reader descriptions of each pane, and no color-only state. The interactive pane must expose the same information as text.
+
 ### Sticky notes
 
 The in-game computer includes a sticky note app. Players can create as many notes as they want for different lessons, write and edit them, highlight important text, and delete notes they no longer need. Notes appear like small sticky notes above the in-game computer screen so players can see and edit them while working. Provide keyboard access and make highlighting identifiable without relying on color alone.

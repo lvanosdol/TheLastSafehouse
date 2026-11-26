@@ -14,6 +14,19 @@ Each lesson ends with one checkpoint that provides guided coaching and an assess
 
 Checkpoint progress saves after each completed step. If the player closes and returns during a checkpoint, that step resumes with prior answers and progress preserved. Lesson sticky notes continue to save automatically, and the boss follows its separate resume rules.
 
+## Learn & Try workspace
+
+Every programming lesson uses a split-screen learning workspace on supported displays. The lesson explanation stays on the left; an editable simulated Python console and output panel appear on the right.
+
+- Selecting a lesson example offers **Load into workspace**; it does not run automatically.
+- The player can change values, run the example, read errors, and reset to the original.
+- The workspace supports the Python prompt, multi-line code, and output needed by the current lesson.
+- Example output remains separate from the lesson text and checkpoint state.
+- A checkpoint opens from a controlled starting snapshot. If the player wants to reuse exploration work, the game identifies what will carry over before beginning.
+- Narrow displays use **Lesson** and **Try It** tabs.
+
+No Python code runs on the player's real computer outside the game's simulation.
+
 ## Opening scene
 
 The next morning, the player sits down with their in-game laptop and the thumb drive Finch gave them.

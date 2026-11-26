@@ -22,6 +22,7 @@
 - [ ] Chapter 1 complete (7 focused lessons + Restoration boss)
 - [ ] Chapter 2 build (design is in `Design\Chapter 2\`)
 - [ ] Chapters 3–7: design (Story Designer), then build
+- [ ] Implement the split-screen Learn & Try workspace for applicable lessons
 - [ ] Final seven-agent app assembled with earned standard or upgraded components and offered for real-world download
 
 *Ask the Planner to expand any phase into detailed steps.*

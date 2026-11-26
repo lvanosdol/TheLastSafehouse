@@ -41,6 +41,18 @@ This provides two connected goals:
 
 The chapter should connect its eventual lessons to this recovery objective rather than treating automation as an unrelated subject. Exact lesson topics, sequence, checkpoints, and the boss remain open.
 
+## Planned Learn & Try workspace
+
+Once the lesson topics are selected, Chapter 6 should use the split-screen learning workspace documented in the master design. The expected right-side panels include:
+
+- Automation code or rule editor
+- Simulated terminal and output
+- Scheduled-job and backup-queue status
+- Log viewer
+- Recovery and restore controls
+
+Examples load without running automatically, exploration remains separate from checkpoint state, and no automation runs on the player's real computer. Narrow displays use **Lesson** and **Try It** tabs.
+
 ## Story state carried forward
 
 - The Systems Wing is accessible.

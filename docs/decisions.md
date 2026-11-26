@@ -50,6 +50,7 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-25 | Condense Chapter 5 from eight lessons to five | Keep easier security material brief while preserving detailed coverage of malware containment, identity/access, evidence, and privacy for the boss. |
 | 2026-11-25 | Merge Chapter 5 guided practices into their checkpoints | Remove duplicate screens, begin each checkpoint with guided learning, and preserve progress between its guided and main stages. |
 | 2026-11-25 | Remove standalone practice activities across Chapters 1–5 | Make each lesson checkpoint the guided practice and assessment point, reducing duplicated screens while preserving instructional support. |
+| 2026-11-25 | Use a split-screen Learn & Try workspace in applicable lessons | Let players test examples while reading, while keeping exploration isolated from checkpoint state and preventing any real code, network, or system changes. |
 | 2026-11-25 | End Chapter 5 with Mara seeing Finch's preserved evidence | Establish a visible breach in trust while keeping Mara's participation necessary and the full reveal reserved for Chapter 7. |
 | 2026-11-25 | Make the player's Chapter 5 closing response affect tone only | Preserve player agency without branching access, rewards, or the main campaign outcome. |
 | 2026-11-25 | Begin Chapter 6 at the Systems Wing automation core | Connect the practical need to restore backups and recovery services with Finch's investigation of the fragmented audit history. |

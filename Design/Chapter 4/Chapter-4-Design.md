@@ -5,6 +5,19 @@
 
 Each lesson ends with one checkpoint. Where a separate practice previously existed, it is now the checkpoint's guided first stage. Progress saves after each completed stage.
 
+## Learn & Try workspace
+
+Networking lessons use a split-screen lab. Lesson guidance appears on the left; the right side provides tabs for:
+
+- **Topology:** the current simulated network map
+- **Devices:** interfaces, addresses, roles, and configuration panels
+- **Console:** simulated commands and readable output
+- **Records:** service cards, equipment labels, and storage locations
+
+The lab is a learning copy, separate from the facility map used by the story and boss. Loading a lesson example does not run a command or change a checkpoint. The player can edit fields, run a simulated test, reset the example, and return to the lesson.
+
+The checkpoint opens its own controlled topology and clearly identifies any exploration state that may be carried forward. Wide screens show the split view; narrow screens use **Lesson** and **Try It** tabs. No real network command, scan, connection, or device configuration is performed.
+
 ## Story setup
 
 The Asset Registry identifies a backup called `ARCHIVE-09`, but its local copy is damaged. A remote copy still exists in Safehouse storage.

@@ -5,6 +5,23 @@
 
 Each lesson ends with one checkpoint. Where a separate practice previously existed, it is now the checkpoint's guided first stage. Progress saves after each completed stage.
 
+## Learn & Try workspace
+
+The database lessons use a split-screen workspace. Lesson guidance appears on the left; a simulated SQL console appears on the right.
+
+The interactive side includes:
+
+- Query editor
+- Table and field browser
+- Results grid
+- Message and error area
+- Preview panel for modifying statements
+- Reset control
+
+Selecting an example in the lesson offers **Load into editor** without running it. The player can edit and run queries, inspect the resulting rows, compare fields, reset the example, and return to the lesson. Exploration is not scored and cannot silently change the checkpoint's starting database.
+
+The checkpoint opens a controlled dataset and clearly indicates whether any player-created working statements are being carried into it. Narrow screens use **Lesson** and **Try It** tabs.
+
 ## Opening scene
 
 The Workshop is quiet again. With main power restored and the Design Agent component added to the in-game project build, the player sits down with their in-game laptop. Finch appears beside the monitoring display.
