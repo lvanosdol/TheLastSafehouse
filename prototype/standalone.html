@@ -42,6 +42,11 @@ body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
 .simulation-flag { margin: 0; font-size: 0.95rem; color: var(--ink-dim); }
 
 .text-size { display: flex; align-items: center; gap: 0.5rem; }
+
+.last-announcement {
+  margin: 0; padding: 0.4rem 1rem; font-size: 0.85rem;
+  color: var(--ink-dim); border-top: 1px solid var(--line); background: #0a1626;
+}
 .text-size button {
   font: inherit; padding: 0.25rem 0.6rem; min-width: 2.5rem;
   background: var(--surface-2); color: var(--ink);
@@ -181,6 +186,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible, a:focus-vis
       <span aria-hidden="true">◉</span> Simulated computer — nothing here affects your device
     </p>
     <div class="text-size" role="group" aria-label="Text size">
+      <button type="button" id="test-announce">Test announcement</button>
       <button type="button" id="text-smaller" aria-describedby="text-size-status">A−</button>
       <button type="button" id="text-larger" aria-describedby="text-size-status">A+</button>
       <span id="text-size-status" class="sr-only">Text size: 100 percent</span>
@@ -198,6 +204,9 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible, a:focus-vis
     <div id="taskbar-windows" class="taskbar-windows" role="group" aria-label="Open windows"></div>
   </footer>
 
+  <p class="last-announcement" aria-hidden="true">
+    Last announcement: <span id="last-announcement">none yet</span>
+  </p>
   <div id="announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
   <div id="alert-announcer" class="sr-only" role="alert" aria-live="assertive" aria-atomic="true"></div>
 
@@ -311,6 +320,7 @@ function shortName(path) {
 // ---- scripts/a11y.js ----
 const polite = document.getElementById('announcer');
 const assertive = document.getElementById('alert-announcer');
+const mirror = document.getElementById('last-announcement');
 
 /** Announce a change to screen readers. Errors use the assertive region. */
 function announce(message, { urgent = false } = {}) {
@@ -320,6 +330,8 @@ function announce(message, { urgent = false } = {}) {
   window.setTimeout(() => {
     region.textContent = message;
   }, 30);
+  // Visible mirror so a sighted tester can tell whether the app spoke at all.
+  if (mirror) mirror.textContent = (urgent ? 'ERROR: ' : '') + message;
 }
 
 const FOCUSABLE = [
@@ -854,6 +866,12 @@ function setScale(next) {
 
 document.getElementById('text-smaller').addEventListener('click', () => setScale(scale - 12));
 document.getElementById('text-larger').addEventListener('click', () => setScale(scale + 12));
+
+document.getElementById('test-announce').addEventListener('click', () => {
+  announce(
+    'This is a test announcement. If you can hear this, a screen reader is reading the page.'
+  );
+});
 
 // Announce the simulation once, after the page settles.
 window.setTimeout(() => {

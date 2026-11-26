@@ -1,5 +1,6 @@
 const polite = document.getElementById('announcer');
 const assertive = document.getElementById('alert-announcer');
+const mirror = document.getElementById('last-announcement');
 
 /** Announce a change to screen readers. Errors use the assertive region. */
 export function announce(message, { urgent = false } = {}) {
@@ -9,6 +10,8 @@ export function announce(message, { urgent = false } = {}) {
   window.setTimeout(() => {
     region.textContent = message;
   }, 30);
+  // Visible mirror so a sighted tester can tell whether the app spoke at all.
+  if (mirror) mirror.textContent = (urgent ? 'ERROR: ' : '') + message;
 }
 
 const FOCUSABLE = [

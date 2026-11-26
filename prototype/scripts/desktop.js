@@ -57,6 +57,12 @@ function setScale(next) {
 document.getElementById('text-smaller').addEventListener('click', () => setScale(scale - 12));
 document.getElementById('text-larger').addEventListener('click', () => setScale(scale + 12));
 
+document.getElementById('test-announce').addEventListener('click', () => {
+  announce(
+    'This is a test announcement. If you can hear this, a screen reader is reading the page.'
+  );
+});
+
 // Announce the simulation once, after the page settles.
 window.setTimeout(() => {
   announce(
