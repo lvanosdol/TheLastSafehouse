@@ -157,7 +157,7 @@ Examples use a temporary practice plan. Moving between lesson pages preserves th
 
 Data continuity means keeping important information available and recoverable when something goes wrong. A plan considers what needs protecting, how recently it must be backed up, and how quickly it needs to be restored.
 
-The player identifies the core configuration and audit fragments as information worth protecting.
+The planner marks the core configuration and audit fragments as information worth protecting, and shows what an unprotected copy would leave exposed.
 
 #### Page 2: Fault tolerance and disaster recovery
 
@@ -169,7 +169,7 @@ The planner shows a drive failure that the system can tolerate and a separate sc
 
 A backup is a recoverable copy used when information is lost, damaged, or changed. An archive keeps information for long-term reference or retention. An archive may itself need a backup.
 
-The player labels a recovery copy and a long-term record without changing either file.
+The practice pair opens with one recovery copy and one long-term record side by side, labelled, with neither file changed.
 
 #### Page 4: File backups and system backups
 
