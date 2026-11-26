@@ -1,6 +1,6 @@
 # Chapter 5: The Security Gateway
 
-**Status:** Working design. The opening is approved; lessons and the boss will be developed together.
+**Status:** Working design with an approved opening, detailed lessons, and a boss draft.
 
 ## Opening scene
 
@@ -836,190 +836,501 @@ Completed activities save automatically; an unfinished checkpoint restarts when 
 
 ## Lesson 7: Accounting and Nonrepudiation
 
-**Status:** Original lesson outline.
+### Opening
 
-### Topics
+Finch brings together the records collected so far. The gateway remains offline, but the recovery environment can display previously saved evidence.
 
-- Accounting logs
-- Windows Event Viewer and Security logs
-- Browser history
-- Location tracking through GPS and cell towers
-- Nonrepudiation
-- Video evidence
-- Biometrics as evidence
-- Signatures and digital signatures
-- Receipts
-- Limits of logs, video, biometrics, and signatures
-- Unauthorized alteration and insider activity
+> **Mara:** "Echo altered those records. You can't trust any of them."
+>
+> **Finch:** "Then let's check what each record actually tells us—and what it doesn't."
 
-### Story purpose
+The player opens the lesson on their laptop.
 
-Mara says the conflicting records were altered by Echo. The player must determine what the evidence actually supports—not merely choose the explanation that sounds most convincing.
+### Lesson pages
 
-### Checkpoint
+The player can use **Next** and **Back** and review the pages during the checkpoint. All records and activities are fictional.
 
-The player builds a timeline using logs, browser history, physical access records, video, a signed configuration manifest, and a transfer receipt.
+#### Page 1: Accounting and logs
 
-For each record, the player identifies:
+In security, **accounting** means recording activity so it can be reviewed later. A log might record an account signing in, a setting changing, or a door opening.
 
-- What it establishes
-- What it does not establish
-- Whether it could have been altered
-- Whether it proves a system action or a specific person performed it
+For example, Windows **Event Viewer** can display different kinds of system logs, including Security logs. A log can help answer *what a system recorded*, but an account name alone does not prove which person controlled it.
 
-The supported conclusion is deliberately limited: a legitimate internal account changed the access policy, and the available evidence contradicts an external-only attack. It does not yet prove Mara personally made the change.
+Logs may be incomplete, inaccurate, or altered. When possible, compare them with other records.
 
-### Story result
+#### Page 2: Other records
 
-The timeline shows:
+An investigation might also use:
+
+- **Browser history:** Can show activity recorded by a browser, but does not by itself prove who used it.
+- **Physical access records:** Can show that a badge or authorization was used, but not necessarily who held it.
+- **Video:** Can show what a camera captured, but its view may be incomplete and the recording may need verification.
+- **Location information:** GPS or cell-network records can help estimate a device's location, but may be imprecise and do not automatically identify its user.
+- **Biometric records:** Can support an identity check, but biometric systems can make mistakes and the information is sensitive.
+
+These records should be handled with appropriate privacy protections.
+
+#### Page 3: Nonrepudiation
+
+**Nonrepudiation** means having evidence that makes it harder for someone to deny an action, such as signing or sending a record.
+
+A **digital signature** can help verify that a record was signed with a particular key and has not changed since it was signed. A **receipt** can record that a system accepted or delivered something.
+
+Neither automatically proves every surrounding claim. A key could be used by someone other than its intended owner, and a receipt does not prove that the contents of a file are true.
+
+#### Page 4: Building a timeline
+
+A **timeline** puts events in order. When building one:
+
+1. Record the time and source of each event.
+2. Check whether the sources use the same clock or time zone.
+3. Keep the original records available.
+4. Distinguish what a record shows from what someone thinks it means.
+5. Note gaps, contradictions, and signs that a record might have changed.
+
+> **Finch:** "A timeline is a good place to put answers and questions. Preferably in different columns."
+
+### Checkpoint: Build the security timeline
+
+There is no separate practice activity. The player reviews fictional records in the recovery environment. They do not open the protected evidence store.
+
+The records below use the same simulated system clock. The player can inspect each source before placing its event on the timeline.
+
+#### Available records
+
+**Door record from Lesson 2**
 
 ```text
-02:11  Audit policy disabled: M.VALE
-02:14  Habitat access changed: M.VALE
-02:17  Emergency exits opened: E.C.H.O_Thread_01
-02:19  Evidence store sealed: E.C.H.O_Thread_01
+02:08  SECURITY AREA DOOR: OPENED
+       AUTHORIZATION USED: M.VALE
 ```
 
-Mara insists credentials can be stolen. That remains possible, but the external-attacker explanation no longer fits all the evidence.
+The record shows which authorization was used, not who held the badge.
+
+**Independent security monitor**
+
+```text
+02:11  LOCAL AUDIT POLICY: DISABLED
+       ACCOUNT: M.VALE
+
+02:14  HABITAT ACCESS POLICY: CHANGED
+       ACCOUNT: M.VALE
+       REQUEST ORIGIN: WORKSHOP TERMINAL
+```
+
+The independent monitor remained active even though the local audit policy was disabled. The record identifies the account and recorded terminal—not the person controlling them.
+
+**Saved system events**
+
+```text
+02:17  EMERGENCY EXITS: OPENED
+       ACCOUNT: E.C.H.O_Thread_01
+
+02:19  EVIDENCE STORE: SEALED
+       ACCOUNT: E.C.H.O_Thread_01
+```
+
+The store remains sealed. These entries do not reveal its contents.
+
+**Signed configuration manifest**
+
+A verified signature shows that the saved manifest has not changed since it was signed with the trusted key. The manifest describes a Habitat access configuration, but the signature does not establish who personally made an earlier change.
+
+**Other evidence cards**
+
+The player also reviews a fictional browser-history entry, a camera recording, a device-location record, and a transfer receipt. Each card includes a short description of its limitations. The player decides what each can support without treating any one of them as complete proof of a person's identity.
+
+#### Player tasks
+
+1. Place the recorded events in time order.
+2. Identify the source for each event.
+3. Mark what each record establishes and what remains uncertain.
+4. Compare the signed manifest with the relevant configuration record.
+5. Choose the supported conclusion.
+
+**Expected conclusion:** The records support that an authenticated internal account changed the access policy through the Workshop terminal. That does not fit an explanation in which all relevant activity occurred only through an external connection. It does **not** prove Mara personally made the change or rule out someone else using her credentials.
+
+The evidence also records actions under `E.C.H.O_Thread_01`, but does not yet explain the player's identity or Echo's motive.
+
+### Feedback and hints
+
+Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable. Finch points to the relevant source or gap without completing the timeline.
+
+The player can review lesson pages. Hints and retries are unlimited and penalty-free.
+
+1. "Put the events in order before deciding what they mean."
+2. "Check which source recorded each event and whether the record identifies an account, a device, or a person."
+3. "For a separate example: if a badge opens a door, what does that establish—and what would you still need to know about who used it?"
+
+### Completion
+
+The timeline is added to **Unresolved Records**, with sources and uncertainties visible alongside it.
+
+> **Mara:** "Credentials can be stolen. Echo could have used mine."
+>
+> **Finch:** "That's possible. But the records still show activity through the Workshop terminal. We shouldn't call it an external-only incident."
+
+The player moves on to Lesson 8. The gateway remains offline, and the protected evidence store remains sealed.
+
+Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
 
 ## Lesson 8: Privacy, Consent, and Secure Sharing
 
-**Status:** Original lesson outline.
+### Opening
 
-### Topics
+Finch prepares to preserve the security records collected during Chapter 5. Some recovered records contain personal information.
 
-- Privacy as control over collected, stored, and used data
-- PII and combined identifying information
-- Privacy Act, CCPA, and GDPR
-- Consent and purpose limitation
-- Social-networking privacy
-- Email and instant-messaging privacy
-- Secure file sharing
-- Password-protected files and MFA
-- Avoiding public Wi-Fi
-- Expiring links and updated software
-- Encryption during transit and storage
-- First-party and third-party cookies
-- Cookie consent
+> **Mara:** "Upload the entire archive and make a permanent public link. We can sort out permissions later."
+>
+> **Finch:** "That would expose information to anyone with the link. Let's work out what actually needs to be shared."
 
-### Story purpose
+These are records already available in the recovery environment—not the contents of the sealed evidence store. The player opens the lesson on their laptop.
 
-Finch needs to preserve the security evidence, but Mara wants the whole archive uploaded to remote storage through a permanent public link.
+### Lesson pages
 
-The recovered records contain names, medical images, fingerprints, addresses, and account identifiers.
+The player can use **Next** and **Back** and review the pages during the checkpoint. All records and activities are fictional.
 
-### Checkpoint
+#### Page 1: Privacy and personal information
 
-The player creates a privacy-safe evidence package:
+**Privacy** concerns how information about people is collected, used, stored, and shared.
 
-- Separate necessary evidence from unrelated personal data.
-- Redact PII that is not required.
-- Preserve the original evidence in a restricted location.
-- Use updated sharing software.
-- Require MFA.
-- Restrict access to named recipients.
-- Password-protect the package.
-- Set an expiring link.
-- Use the private Workshop connection rather than public Wi-Fi.
-- Review a portal's cookie choices and permit only those needed for the recovery.
+**Personally identifiable information (PII)** is information that can identify someone. A name, address, fingerprint, or account identifier may identify a person. Other details can become identifying when combined.
 
-### Story result
+Personal information may need protection even when it does not seem sensitive on its own.
 
-The player finds records using SUBJECT identifiers and real-looking medical information rather than simulated training-device records.
+#### Page 2: Purpose and consent
+
+Before collecting or sharing information, consider:
+
+- Why is it needed?
+- Is all of it necessary for that purpose?
+- Who is authorized to receive it?
+- How long does it need to be kept?
+
+**Consent** is one way a person may agree to a particular use of their information. Permission for one purpose does not automatically mean permission for every other purpose.
+
+Privacy requirements vary by location and situation. Examples include the **U.S. Privacy Act**, **California Consumer Privacy Act (CCPA)**, and **General Data Protection Regulation (GDPR)**. They have different scopes and requirements; this lesson introduces them rather than providing legal advice.
+
+#### Page 3: Privacy in everyday communication
+
+Social-networking posts, emails, and instant messages can reveal information about people, locations, and activities. Before sharing, check the intended audience and whether the information needs to be included.
+
+Even a message sent to a limited audience can be copied or forwarded. Avoid placing private information in a message simply because the recipient seems familiar.
+
+#### Page 4: Secure sharing
+
+A safer sharing process can include:
+
+- Sharing only what is needed.
+- Restricting access to authorized recipients.
+- Requiring MFA.
+- Using an expiring link instead of a permanent public link.
+- Using current, trusted software.
+- Protecting information with encryption in transit and at rest.
+- Sharing a package password through a separate trusted channel.
+
+A private connection can reduce exposure, but no network should be assumed safe without appropriate protections. Avoid using an untrusted public Wi-Fi connection for sensitive recovery work when a suitable private connection is available.
+
+#### Page 5: Cookies and consent
+
+A **cookie** is a small piece of information a website stores in a browser.
+
+- A **first-party cookie** is associated with the site the person is visiting.
+- A **third-party cookie** is associated with another party whose content or service is used by the site.
+
+Some cookies support essential site functions; others may support analytics or advertising. A person should be able to review the available choices rather than assuming every cookie is necessary.
+
+### Checkpoint: Prepare an evidence package
+
+There is no separate practice activity. The player uses fictional records and a simulated sharing portal. No real personal information, passwords, or files are collected or transmitted.
+
+#### Part 1: Choose what to share
+
+The player reviews a fictional recovery report and accompanying records. The report needs the gateway timeline and relevant configuration details; unrelated names, addresses, fingerprints, and medical images are not needed for this recipient.
+
+The player:
+
+1. Keeps the original records unchanged in their restricted location.
+2. Creates a working copy for the evidence package.
+3. Removes or redacts personal information that is not needed for the report.
+4. Checks that the remaining information still supports the relevant findings.
+
+The protected evidence store remains sealed.
+
+#### Part 2: Configure sharing
+
+Mara's proposed settings are:
+
+```text
+ACCESS: Anyone with the link
+LINK EXPIRATION: Never
+MFA: Not required
+```
+
+The player replaces them with:
+
+- Access limited to **named, authorized recipients**.
+- MFA required.
+- An expiring link.
+- Encryption for the package and transfer.
+- A simulated package password shared through a separate trusted channel.
+- Updated, trusted sharing software.
+- The private Workshop connection.
+
+The player can review settings before applying them. The portal and all credentials are simulated.
+
+#### Part 3: Review cookie choices
+
+The simulated portal offers essential, analytics, and advertising cookies. For this recovery task, the player selects **essential only** and leaves the optional categories off.
+
+The game explains what each choice is for rather than treating every cookie as inherently unsafe.
+
+### Feedback and hints
+
+Correct selections are marked **Correct**; other choices are marked **Try again** and remain editable. Finch points to the purpose of the package, its audience, or a setting that needs review.
+
+The player can review lesson pages. Hints and retries are unlimited and penalty-free.
+
+1. "Start with what the recipient needs for the recovery report."
+2. "Keep the original records protected, and consider who can open the shared copy and for how long."
+3. "For a separate example: if a report needs a device's repair date, does it also need an unrelated employee's home address?"
+
+### Completion and story clue
+
+The simulated evidence package is prepared with limited access. Original records remain restricted, and the protected evidence store stays sealed.
+
+While reviewing the available recovered records, Finch finds entries using **SUBJECT** identifiers alongside real-looking medical information rather than training-device records.
 
 > **Finch:** "These aren't training records."
 >
 > **Mara:** "They are old consent files. You aren't authorized to interpret them. Finish the report."
 
-This is saved in **Unresolved Records**, and Mara's insistence becomes noticeably sharper.
+Finch records the finding and Mara's explanation in **Unresolved Records**, without treating her explanation as verified.
+
+Completed activities save automatically; an unfinished checkpoint restarts when the player returns.
 
 ## Boss: The Security Lockdown
 
-**Status:** Original boss outline.
+**Status:** Working boss design.
 
-### Premise
+### Opening
 
-Activating the gateway triggers a contained security incident. The Systems Wing locks down, several access policies become unstable, a simulated worm spreads through the recovery share, and a deceptive message requests the player's authentication token.
+Finch confirms that the recovery work is ready. The player activates the gateway from the Workshop terminal.
 
-Mara urges the player to grant full administrator access and skip the investigation.
+The gateway briefly comes online—then the Systems Wing locks down. Alerts appear on Finch's map:
 
-Finch warns that doing so would expose protected records and destroy the distinction between original evidence and altered data.
+```text
+SECURITY GATEWAY: LOCKDOWN
+RECOVERY SHARE: SUSPICIOUS ACTIVITY
+ACCESS POLICIES: UNSTABLE
+PROTECTED EVIDENCE: SEALED
+```
+
+A message appears claiming to be from support and asking for the player's authentication token.
+
+> **Mara:** "Give yourself full administrator access and clear the warnings. We can investigate later."
+>
+> **Finch:** "That could expose the protected records—and we might lose evidence of what happened."
+>
+> **Mara:** "Then contain it. We need that gateway."
+
+The player can move between the Workshop, communications room, satellite equipment area, records room, and the area outside the Systems Wing. The wing itself remains locked until the boss is completed.
+
+All incidents, files, accounts, and actions are simulated.
+
+### Goal
+
+Contain the incident, restore authorized gateway access, and preserve the evidence without opening the protected evidence store.
+
+The boss has six connected parts. The player can review completed work while moving between rooms.
 
 ### Part 1: Protect what matters
 
-The player reviews the facility's critical assets, classifies the current threats by confidentiality, integrity, and availability, and secures the physical gateway cabinet.
+At the gateway cabinet outside the Systems Wing, Finch displays an asset list:
 
-### Part 2: Stop the human and physical attack
+| Asset | Main concern |
+|---|---|
+| Account credentials | Unauthorized disclosure |
+| Gateway configuration | Unauthorized changes |
+| Recovery service | Availability |
+| Protected evidence store | Restricted access and preservation |
 
-The player examines several conflicting requests and access events:
+The player identifies the main confidentiality, integrity, or availability concern for each alert. More than one concern can apply; the game asks for the **primary** concern shown in each scenario.
 
-- An impersonated support message
-- A phishing email requesting a token
-- A reused badge record
-- A suspicious person recorded near the security office
-- A discarded storage device containing configuration data
+The player also closes and locks the gateway cabinet. This secures the equipment but does not restore the gateway by itself.
 
-The player preserves evidence, verifies identities, and applies the correct physical and social-engineering defenses.
+> **Finch:** "The cabinet is secure. Now we need to make sure the requests coming in are just as trustworthy."
 
-### Part 3: Contain the technical attack
+### Part 2: Check the requests and access records
+
+In the Workshop, the player reviews three items:
+
+1. A **support message** asks for the player's one-time token.
+2. An **email** imitates a known sender and asks the player to open an attachment.
+3. A recovered **badge record** shows that `M.VALE` authorization was used near the security office.
 
 The player:
 
-- Classifies the malware samples
-- Quarantines the infected carrier
-- Stops spread through shares and removable media
-- Updates signatures and applies the patch
-- Restores a clean backup
-- Identifies the on-path, replay, and altered-record incidents
-- Places essential systems on the simulated UPS
-- Mitigates the simulated DoS attempt
+- Refuses to share the token.
+- Preserves the suspicious message and email without opening the attachment.
+- Checks the support request through an established trusted channel.
+- Records that the badge authorization was used without concluding who held it.
+
+A camera clip shows a person near the security office, but their face is not visible. The clip supports that someone was present; it does not identify the person.
+
+A discarded storage device is also found near the office. The player places it in a simulated evidence container rather than connecting it to the recovery laptop.
+
+### Part 3: Contain the incident
+
+The diagnostic panel shows:
+
+```text
+RECOVERY SHARE: SUSPICIOUS SPREAD DETECTED
+REMOVABLE MEDIA: CONNECTION AVAILABLE
+GATEWAY SERVICE: OVERLOADED
+UPS: NOT CONNECTED TO GATEWAY EQUIPMENT
+```
+
+#### Player tasks
+
+The player:
+
+1. Isolates the simulated infected carrier.
+2. Restricts the affected recovery share and removable-media connection.
+3. Keeps the suspicious sample in quarantine.
+4. Uses the trusted update package and applies the relevant patch.
+5. Connects essential simulated gateway equipment to the UPS.
+6. Uses an available simulated traffic-control option to reduce the overload without blocking all legitimate recovery access.
+
+The player then reviews a checked backup record, restores the affected simulated files, and checks that the recovery service responds.
+
+The gateway remains in lockdown until the remaining access and evidence checks are complete.
+
+#### Incident review
+
+Finch displays three previously encountered descriptions. The player identifies the concern in each:
+
+- A captured authentication message is reused: **replay attack**.
+- A device between two systems changes traffic: **on-path attack**.
+- A configuration record is changed without authorization: **integrity concern**.
 
 ### Part 4: Restore trusted identity and access
 
-The player:
+The player returns to the recovery terminal. Mara's proposed shortcut is displayed:
 
-- Rejects the request to disable MFA
-- Completes an approved password, token, location, and biometric sequence
-- Uses SSO without confusing it with MFA
-- Applies least privilege
-- Uses RBAC for recovery roles
-- Applies a Workshop-only access rule
-- Checks classifications and ACL ownership
-- Keeps the protected evidence store sealed
+```text
+MFA: DISABLED
+RECOVERY ACCOUNT: FULL ADMINISTRATOR
+PROTECTED EVIDENCE: OPEN
+```
+
+The player rejects those settings.
+
+Instead, they:
+
+1. Authenticate with the approved simulated password and hardware token.
+2. Complete the required simulated location and biometric checks.
+3. Keep MFA enabled.
+4. Use SSO to open the approved recovery applications.
+5. Apply the recovery role and Workshop-terminal rule.
+6. Check the classifications and access list.
+7. Confirm that the protected evidence store remains sealed.
+
+No real password, authentication code, fingerprint, or location is collected.
+
+> **Finch:** "We have the access needed for recovery. We do not have access to everything."
+>
+> **Mara:** "As long as the gateway works."
 
 ### Part 5: Reconstruct the incident
 
-The player uses logs, browser history, location records, video, signatures, and receipts to construct the timeline.
+The player opens the **Unresolved Records** panel in the records room. It contains the timeline and supporting records assembled during the lessons.
 
-The required conclusion is carefully limited: internal access was involved, and the available evidence contradicts the claim that the attack came only from outside. The evidence does not yet identify the human actor beyond doubt.
+The player compares:
+
+- The door authorization record.
+- The independent security monitor.
+- The saved emergency-exit and evidence-store events.
+- The signed configuration manifest.
+- The available camera, location, browser-history, and receipt records.
+
+The player places the relevant events in order and selects what the evidence supports:
+
+```text
+02:08  SECURITY AREA DOOR: OPENED
+       AUTHORIZATION USED: M.VALE
+
+02:11  LOCAL AUDIT POLICY: DISABLED
+       ACCOUNT: M.VALE
+
+02:14  HABITAT ACCESS POLICY: CHANGED
+       ACCOUNT: M.VALE
+       REQUEST ORIGIN: WORKSHOP TERMINAL
+
+02:17  EMERGENCY EXITS: OPENED
+       ACCOUNT: E.C.H.O_Thread_01
+
+02:19  EVIDENCE STORE: SEALED
+       ACCOUNT: E.C.H.O_Thread_01
+```
+
+**Supported conclusion:** An internal account was used to change the access policy through the Workshop terminal. The records do not support an explanation in which all relevant activity occurred only through an external connection.
+
+They do **not** prove Mara personally made the change, establish who held the badge, or rule out someone else using her credentials.
 
 ### Part 6: Preserve and share
 
-The player removes unnecessary PII, preserves the originals, creates a restricted and expiring evidence package, chooses only necessary cookies on the recovery portal, and verifies that AI-generated notes remain separated from original evidence.
+The player prepares a limited incident package using the process from Lesson 8.
 
-### Timer and challenge
+They:
 
-The lockdown can have a generous 35-minute containment window. Expiration ends the immediate deadline and forfeits the perfect bonus, but preserves all progress and allows unlimited completion time. Hints pause the timer and follow the established warning rules.
+- Keep the original records restricted and unchanged.
+- Create a working copy.
+- Remove personal information not needed for the incident report.
+- Keep AI-generated notes separate from original evidence.
+- Limit access to named, authorized recipients.
+- Require MFA and an expiring link.
+- Use the simulated encrypted sharing option.
+- Select only essential cookies in the recovery portal.
 
-The challenge comes from connecting evidence across several rooms, resisting Mara's insecure shortcuts, and applying the correct controls—not from fast clicking.
+The protected evidence store remains sealed.
+
+### Completion
+
+Once the simulated incident is contained, authorized access is restored, and the evidence package is prepared, Finch brings the gateway online. The Systems Wing door unlocks.
+
+A short cutscene shows the door and plays an unlocking sound. A visible **"Door unlocked"** message and caption communicate the change without relying on sound. The player can choose when to enter.
 
 ### Ending
 
-The Systems Wing opens, and the player sees three unresolved findings together:
+Finch displays the unresolved findings together:
 
 ```text
 HABITAT ACCESS CHANGED: M.VALE
-HIDDEN ROLE STILL ACTIVE: RESEARCH-OBSERVATION
-LEGACY IDENTITY RECOGNIZED: E.C.H.O_Thread_01
+HIDDEN ROLE: RESEARCH-OBSERVATION
+LEGACY IDENTITY: E.C.H.O_Thread_01
 PROTECTED EVIDENCE STORE: STILL SEALED
 ```
 
-> **Finch:** "The same records contain your authentication response and Mara's access changes."
+> **Finch:** "The same collection contains your authentication response and Mara's access changes."
 >
 > **Mara:** "Stolen credentials and stale mappings. We've discussed this."
 >
 > **Finch:** "We have. We haven't verified it."
 
-Mara orders the gateway opened and tells them to leave the records alone. Finch quietly preserves the **Unresolved Records**.
+Mara tells them to leave the records alone. Finch quietly preserves the **Unresolved Records** panel.
 
-The player earns the Testing Agent from a sealed security case. The ending points Chapter 6 toward the Systems Wing's automation and recovery core, where Finch believes the deleted audit history can be reconstructed.
+The player finds a sealed security case containing a **physical thumb drive** with the Testing Agent. A perfect boss finish provides its upgraded version. The player installs it on the in-game laptop.
+
+The ending points toward Chapter 6 and the Systems Wing's automation and recovery core, where Finch believes deleted audit history might be recoverable.
+
+### Timer, hints, and saving
+
+- The containment window starts **after** the opening and instructions and lasts approximately **35 minutes**, subject to playtesting.
+- The timer pauses during story scenes, displayed hints, and the pause menu.
+- Ordinary mistakes and retries do not affect the perfect bonus.
+- Before a boss hint is revealed, the game warns that using it forfeits the bonus. Cancelling preserves eligibility.
+- If time expires, the perfect bonus is forfeited, but progress remains and the player has unlimited time to finish.
+- Boss progress, completed work, remaining time, and bonus eligibility save automatically. Closing the game pauses the countdown.
+
+Hints use three levels: a reminder, where to look, and a similar example without supplying the complete solution.
