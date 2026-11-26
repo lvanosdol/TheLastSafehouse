@@ -567,6 +567,8 @@ Tab order runs through the contribution fields in position order, then the total
 
 Show one binary puzzle at a time with a **Skip** button. Skip moves past the current puzzle without solving it or counting as a Run, and a skipped puzzle re-enters at the end of the queue rather than at the front. A conversion list is always available showing all twelve with their solved or unsolved state, so the player can jump to any unsolved puzzle; when only skipped puzzles remain, the console says so and points at the list instead of offering another Skip. Skipped puzzles never block progress, solved puzzles stay solved, and partially entered answers remain when the player returns. The timer continues during puzzle navigation.
 
+**Layout and smallest display.** The smallest supported desktop display is **1280×720**. The chart is a fixed eight-column grid with the Position, Bit, Base, and Value rows; each `1`'s contribution field sits directly beneath its own column, and the total field sits immediately under the grid, so an input never scrolls away from the value it belongs to. The word bank occupies its own pane, which may scroll internally; the page itself does not scroll. Below 720 logical pixels of height the Base row collapses into a secondary line beneath Position, keeping Bit and Value visible. At 200% text scaling the panes reflow vertically and each scrolls internally, with no value or label lost. On narrow screens the Lesson and Try It tabs separate the chart from the word bank, and the tab label carries the solved count.
+
 ### Boss program
 
 The unfinished program checks saved battery readings, sets the fictional main-power status, and displays the recovered diagnostics:
@@ -690,7 +692,28 @@ Finch uses the monitor to disconnect nonessential loads and restore local chargi
 
 Inside is a thumb drive containing the Design Agent build component. Mara hands the drive to the player, who adds it to the in-game project build. The agent is not launched or used during gameplay. If the player earned the perfect boss bonus, the drive contains the upgraded Design Agent component instead; the player never receives both versions.
 
+## Playtest validation
+
+Two questions in this chapter are answered by playing it, not by deciding it. Record both in `docs/playtests/` using the standard report format.
+
+### Conversion pacing
+
+Test with at least five first-time beginners, no hints, and time the run from the first puzzle to the twelfth.
+
+**Pass:** a median at or under **twelve minutes**, with no tester above **fifteen**.
+
+**Record more than the total:** which of the twelve conversions takes longest. One slow conversion points at the chart; uniform slowness points at the entry flow.
+
+**If it fails, fix in this order:** pre-fill the Base row for the first two puzzles, add one worked example beside the first puzzle, then reduce the puzzle set to ten. Changing the thirty-minute timer is the last option, not the first, because the timer is not what is being tested.
+
+### Fit on the smallest display
+
+Verify at **1280×720** that the chart, every contribution field, the total field, and the word bank are all usable without page scrolling.
+
+**Fail if:** any contribution field scrolls away from its column, or the total field leaves the viewport while the grid is visible.
+
+Test the narrow-screen layout separately. The tab split is allowed there, but the labels, the solved count, and the unlocked-letter state must all survive it.
+
 ## Open implementation questions
 
-- First beginner playtest results: the average time for the twelve conversions, and whether it fits the twelve-minute budget
-- Whether the chart, entry fields, and word bank fit the smallest supported display without scrolling
+None outstanding. Both items above are measured during playtesting rather than decided here; the results belong in a playtest report, not in this design.
