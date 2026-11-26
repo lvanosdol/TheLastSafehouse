@@ -1109,7 +1109,7 @@ Boss progress saves automatically. If the player closes the game, they can resum
 
 An open preview closes without applying its pending change. The SQL remains saved, so the player can preview it again after returning. Already applied repairs remain saved and can be undone if necessary.
 
-### Ending and reward
+### Ending
 
 After the report appears:
 

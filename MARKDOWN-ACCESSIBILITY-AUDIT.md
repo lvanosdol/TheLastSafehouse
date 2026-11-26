@@ -23,7 +23,7 @@ Audited:
 - `docs/roadmap.md`, `docs/decisions.md`, `docs/playtests/README.md`
 - `Design/Previous Drafts/*.md` (27 archived files, checked only for blocking issues)
 
-Volume: 22,444 lines and 204,301 words across the whole scope; 8,561 lines and 83,571 words in the active set.
+Volume: 22,514 lines and 205,156 words across the whole scope; 8,631 lines and 84,426 words in the active set.
 
 ## Executive summary
 
@@ -71,9 +71,9 @@ Per-document detail for the active set:
 
 | Document | Headings | Repeated | Bold labels | Missing blank line |
 |---|---:|---:|---:|---:|
-| Chapter 1 | 102 | 23 | 4 | 0 |
-| Chapter 2 | 41 | 0 | 0 | 0 |
-| Chapter 3 | 97 | 22 | 18 | 0 |
+| Chapter 1 | 103 | 23 | 4 | 0 |
+| Chapter 2 | 42 | 0 | 0 | 0 |
+| Chapter 3 | 98 | 22 | 18 | 0 |
 | Chapter 4 | 121 | 25 | 28 | 0 |
 | Chapter 5 | 127 | 19 | 6 | 0 |
 | Chapter 6 | 136 | 34 | 0 | 0 |
@@ -205,26 +205,26 @@ The merged inventory, embedded so the next run can compute a delta without parsi
   "checks": 10,
   "volume": {
     "files": 39,
-    "lines": 22444,
-    "words": 204301
+    "lines": 22514,
+    "words": 205156
   },
   "generated": "2026-11-26",
   "template": "markdown",
   "per_file": {
     "Design/Chapter 1/Chapter-1-Design.md": {
-      "headings": 102,
+      "headings": 103,
       "duplicate_headings": 23,
       "bold_labels": 4,
       "headings_without_blank_line": 0
     },
     "Design/Chapter 2/Chapter-2-Design.md": {
-      "headings": 41,
+      "headings": 42,
       "duplicate_headings": 0,
       "bold_labels": 0,
       "headings_without_blank_line": 0
     },
     "Design/Chapter 3/Chapter-3-Design.md": {
-      "headings": 97,
+      "headings": 98,
       "duplicate_headings": 22,
       "bold_labels": 18,
       "headings_without_blank_line": 0

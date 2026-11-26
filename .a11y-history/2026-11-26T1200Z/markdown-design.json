@@ -64,26 +64,26 @@
   "checks": 10,
   "volume": {
     "files": 39,
-    "lines": 22444,
-    "words": 204301
+    "lines": 22514,
+    "words": 205156
   },
   "generated": "2026-11-26",
   "template": "markdown",
   "per_file": {
     "Design/Chapter 1/Chapter-1-Design.md": {
-      "headings": 102,
+      "headings": 103,
       "duplicate_headings": 23,
       "bold_labels": 4,
       "headings_without_blank_line": 0
     },
     "Design/Chapter 2/Chapter-2-Design.md": {
-      "headings": 41,
+      "headings": 42,
       "duplicate_headings": 0,
       "bold_labels": 0,
       "headings_without_blank_line": 0
     },
     "Design/Chapter 3/Chapter-3-Design.md": {
-      "headings": 97,
+      "headings": 98,
       "duplicate_headings": 22,
       "bold_labels": 18,
       "headings_without_blank_line": 0
