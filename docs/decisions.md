@@ -42,3 +42,5 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-25 | Reuse Chapters 4 lessons 2, 3, 5, and 6 in the archive boss | Make the final mission require device-path, storage-source, wireless, and VM knowledge rather than testing only DNS, AI, and checksums. |
 | 2026-11-25 | Add guided network practice and full accessibility rules to Chapter 4 | Prepare beginners for device, service, wireless, VM, and AI tasks and keep maps, timers, and control panels usable without vision, color, or precise pointer movement. |
 | 2026-11-25 | Distinguish the historical and live satellite windows in Chapter 4 | Keep the Lesson 1 estimate and the boss timer from appearing contradictory. |
+| 2026-11-25 | Expand all eight Chapter 5 lessons with guided practice and accessibility details | Prepare players for the larger security tasks and make evidence, permissions, authentication, and privacy controls usable without color, sound, or precise pointer input. |
+| 2026-11-25 | Keep Mara on limited policy review in Chapter 5 access assignments | Echo holds the administrator identity, so Mara cannot be assigned administrator authority. |
