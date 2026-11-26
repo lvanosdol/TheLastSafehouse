@@ -19,7 +19,7 @@ Checkpoint progress saves after each completed stage. If the player leaves, the 
 Every programming lesson uses a split-screen learning workspace on supported displays. The lesson explanation stays on the left; an editable simulated Python console and output panel appear on the right.
 
 - Selecting a lesson example offers **Load into workspace**; it does not run automatically.
-- The player can change values, run the example, read errors, and reset to the original.
+- The player can change values, run the example, read errors, and use **Reset example** to return it to its original state.
 - The workspace supports the Python prompt, multi-line code, and output needed by the current lesson.
 - Example output remains separate from the lesson text and checkpoint state.
 - A checkpoint opens from a controlled starting snapshot. If the player wants to reuse exploration work, the game identifies what will carry over before beginning.
@@ -78,6 +78,8 @@ Explain that each base entry is a power of two: for example, 2³ means multiplyi
 
 ### Checkpoint: Binary conversions
 
+The requirement is three correct decimal conversions, each shown as the sum of the position values under its `1` digits.
+
 The Workshop's monitoring console detects three devices, but an old diagnostic report displays their numeric identifiers in binary. Mara asks the player to convert the identifiers to decimal so they can be matched to the Workshop's inventory.
 
 The player converts three different eight-digit binary numbers to decimal by adding the position values under their `1` digits. Each correct answer identifies a device in the inventory, such as a temperature sensor, a door sensor, or a backup battery monitor. As each device is identified, its console entry changes from **Unidentified** to its name.
@@ -110,6 +112,8 @@ The lesson also shows two ways programs can be run: a **compiler** translates co
 **Example:** The lesson presents one example of each language type and explains what it does.
 
 ### Checkpoint: Monitoring restoration plan
+
+The requirement is a tool chosen for each task that actually produces the needed result, with the reason stated.
 
 Now that the devices are identified, Mara and Finch plan how to restore their monitoring display. Recovered files include instructions for processing sensor readings, a page describing the display's layout, stored device information to retrieve, and a low-level hardware diagnostic.
 
@@ -225,6 +229,8 @@ The battery checkpoint opens.
 
 ### Checkpoint: Workshop backup-power readout
 
+The requirement is a program that stores the location, the battery reading, and the charging state, adds the increase, and prints the expected readout.
+
 Finch asks the player to prepare a fictional readout. The Workshop's backup battery starts at **45%**, charging is **on**, and the latest reading shows a **15-point increase**. The simulated terminal presents code with missing elements for the player to type:
 
 ```python
@@ -289,6 +295,8 @@ print(water_level <= LOW_LEVEL)
 The output is `True` because the reading equals the limit. The lesson compares readings of `9`, `10`, and `11`, showing that `<=` includes the limit itself.
 
 ### Checkpoint: Backup-battery warning
+
+The requirement is a warning that prints below the limit and a normal message otherwise, with the threshold stored once as a constant.
 
 Finch asks the player to add a warning to the existing Workshop battery readout so he does not have to watch the percentage manually. The player keeps their Lesson 3 code and completes the added warning by dragging pieces from a tray into blanks, with a keyboard-accessible alternative:
 
@@ -413,6 +421,8 @@ Explain the named limit, the list, each function call and returned message, and 
 
 ### Checkpoint: Overnight battery report
 
+The requirement is a report that stores the readings in a list, decides inside a function, and prints one status line per reading through a loop.
+
 The Workshop's backup power fluctuated overnight. Finch saved several battery readings but has been checking them one at a time. He asks the player to turn the battery-warning code into a reusable program that reviews the whole list.
 
 > **Finch:** "I have last night's battery readings. I've checked the first one twelve times, but I suspect that isn't what programmers mean by efficiency."
@@ -477,6 +487,8 @@ Next, demonstrate a `NameError` with `battery = 60` followed by `print(batery)`.
 Explain that a program can run without an error and still produce a wrong result. The intended battery warning is **20% or below**; `< 20` fails at exactly 20, while `<= 20` includes it. Demonstrate testing **15%, 20%, and 60%** for a low reading, the boundary, and a normal reading.
 
 ### Checkpoint: Repair the battery report
+
+The requirement is a repaired program that produces the same correct report as the working version, with every test passing and none deleted.
 
 Finch gives the player this broken copy of the overnight report:
 

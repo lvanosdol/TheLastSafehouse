@@ -44,7 +44,7 @@ Lessons that use the safe simulated computer appear in a split view: lesson guid
 - **Protection:** pair the lesson with the simulated Windows Security screen and benign alert.
 - **Software:** pair the lesson with a simulated source comparison and Installed apps list.
 
-The player can load examples, navigate, inspect properties, and reset the practice view while reading. No command runs and no real file or setting changes. Checkpoints open from their own controlled state so experimentation cannot silently alter the assessed result. Narrow screens use **Lesson** and **Try It** tabs.
+Examples use a temporary practice workspace for each lesson. Moving between lesson pages preserves the player's work, while **Reset example** returns the demonstration to its starting values without changing the checkpoint. The player can load examples, navigate, inspect properties, and reset the practice view while reading; no command runs and no real file or setting changes. The checkpoint begins from its own controlled snapshot, so exploration cannot silently alter the assessed result. Narrow screens use **Lesson** and **Try It** tabs.
 
 ## Opening scene: The onsite apprenticeship
 
@@ -150,6 +150,8 @@ The Safehouse system chassis has its front-panel buttons and indicators preconne
 
 #### Main task: Assemble and boot the computer
 
+The requirement is a correctly assembled machine that completes POST, detects memory and storage, and starts Windows. The checkpoint inspects the resulting state rather than the order of assembly.
+
 The player must correctly match the required components to their functions, install the processor, RAM, cooler, storage, and graphics card, place the motherboard and power supply, connect the required cables, and power on the system.
 
 The checkpoint inspects the simulated placement and connection state, then runs the startup sequence.
@@ -214,6 +216,8 @@ The player reviews four actions and predicts which computing job is involved: pr
 
 #### Main task: Sort the computing jobs
 
+The requirement is four correct classifications and the correct answer about where a reopened document was stored.
+
 The player sorts four new examples:
 
 | Example | Correct job |
@@ -275,6 +279,8 @@ The lesson briefly compares operating systems across computers, phones, servers,
 The player opens a simulated system-status view containing Windows Explorer running, Settings running, the Workshop application **Not responding**, a Workshop background service **Waiting**, and a display driver **Working normally**. Each item explains what its status means and whether it is an application, service, or driver.
 
 #### Main task: Identify the failing part
+
+The requirement is a diagnostic card that names the failing component, cites the evidence for it, and rules out one alternative.
 
 The player completes a diagnostic card by:
 
@@ -356,6 +362,8 @@ Only `Logs` and `Evidence` are used in this lesson. The other folders are used i
 The player opens `Practice/Logs`, selects `sensor.log`, reads its properties, turns on visible filename extensions, and previews the file without editing it. Previewing is distinguished from editing, and the original remains unchanged.
 
 #### Main task: Create a complete evidence set
+
+The requirement is three copies in `Evidence` with all three originals still in `Logs`, every copy readable, and nothing edited.
 
 The practice folder contains `sensor.log`, `power.log`, and `display.log`. The player must:
 
@@ -470,6 +478,8 @@ No actual permissions are changed.
 
 #### Main task: Restore a practice setting safely
 
+The requirement is `practice.cfg` restored in `Practice/Settings` from the read-only copy in `Recovery`, both copies unchanged, and no permission modified.
+
 The player must:
 
 1. Sign out of the setup session.
@@ -561,6 +571,8 @@ The player chooses **Review**, confirms no threat is present, and closes the not
 
 #### Main task: Verify the protection state
 
+The requirement is each protection area confirmed from its own panel, the benign notification reviewed and closed, and no protection setting altered.
+
 The player must:
 
 1. Locate Windows Security.
@@ -619,7 +631,7 @@ Mara asks the player to install a small fictional Workshop reference tool and re
 
 **Open-source software** has source code available for review and reuse under its license. **Proprietary software** does not generally provide its source code, and use follows the publisher's license. Neither type is automatically safe or trustworthy; the player must check the publisher and source.
 
-The player compares one-time purchases, subscriptions with continuing access while payments remain active, free software with optional paid features, and product keys used to activate licensed software. A product key is not proof that a download is trustworthy.
+A pricing table shows one-time purchases, subscriptions with continuing access while payments remain active, free software with optional paid features, and product keys used to activate licensed software side by side. A product key is not proof that a download is trustworthy.
 
 Before downloading, the player checks:
 
@@ -654,6 +666,8 @@ The simulated **Installed apps** list shows application name, publisher, install
 The player reviews three fictional listings for the same application: an official publisher page, an approved app store listing, and a third-party page offering a “full unlocked version.” The player compares publisher, source, requested permissions, and licensing. The third-party listing is rejected despite appearing cheaper or more capable.
 
 #### Main task: Install and remove software safely
+
+The requirement is the official source confirmed by publisher and name, the application installed for the current user, the trial removed, and nothing else uninstalled.
 
 The player must:
 
