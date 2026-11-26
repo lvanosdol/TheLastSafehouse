@@ -599,9 +599,9 @@ The tone flags set earlier change how she says all of this, never what she does.
 
 **Skills:** Chapter 1 hardware, files, and permissions; Chapter 6 troubleshooting.
 
-The workstation cannot reach the recovery tools because a fictional external connection is unplugged. Finch shows the device status and a safe-to-handle simulated connector. The player checks the evidence, reconnects the correct component, and confirms that the workstation recognizes it.
+The workstation cannot reach the recovery tools because a fictional external connection is unplugged. Finch shows the device status and the connectors within reach. The player checks the evidence, reconnects the correct component, and confirms that the workstation recognizes it; a connector belonging to another device is refused with the device-status evidence rather than a bare rejection.
 
-The player then locates an approved recovery file in the in-game file browser. A separate trusted registry identifies the expected file and verification information. The player checks the file before opening it, creates an authorized working copy, and leaves the original and the recovered evidence unchanged.
+The player then locates an approved recovery file in the in-game file browser. A separate trusted registry identifies the expected file and verification information. A second file with a similar name sits in an unregistered folder; opening it is refused because its signature does not match the registry's expected entry. The player checks the correct file before opening it, creates an authorized working copy, and leaves the original and the recovered evidence unchanged.
 
 **Result:** The workstation can open the facility's read-only device registry.
 
@@ -625,6 +625,8 @@ The workstation can reach the local network but not the identified recovery cont
 2. Tests the local gateway and the controller path, then reviews a simulated trace and configuration.
 3. Identifies and corrects the mismatched gateway setting. A timeout alone is not treated as proof of the cause.
 4. Retests the route and verifies that the **actual recovery service**, not merely a ping, responds.
+
+The console also offers a single action that changes the gateway, the name service, and the adapter address together. It is allowed, the route recovers, and the console reports that the result cannot be attributed to any one setting; the change must be reverted before the single correction can be recorded as the cause.
 
 Failed tests can be reversed and retried. The now-reachable service supplies the current control and life-support status needed for the release plan.
 
@@ -665,6 +667,8 @@ Mara offers to explain who the player was before the memory loss, in exchange fo
 **Skills:** Chapters 5–7 security, troubleshooting, communication, and collaboration.
 
 The containment protocol is older than the network and runs under its own service identity, so Mara's request needs no administrator rights and grants her none; the game does not pretend a permissions check will reject it. The player uses the approved simulated recovery procedure to isolate the **purge execution path**, while keeping the separate life-support and Habitat communication services online.
+
+The console also offers a shortcut that isolates the whole automation core. It stops the purge and takes life support offline, and no door check can continue without life support. The player restores the affected services, records the failed attempt, and returns to the approved procedure; the attempt costs time and nothing else.
 
 The console shows the proposed impact before the change. The authorized recovery teammate confirms the technical step, an independent reviewer checks it, and the player verifies that the purge is no longer executing or queued. Life support and communications are checked afterward, and the action is recorded.
 
