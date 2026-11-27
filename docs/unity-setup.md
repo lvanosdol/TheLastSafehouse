@@ -122,8 +122,11 @@ UnityWebBrowser is not on Unity's default registry, and it is split into a core 
    | Engine | `Cef Engine Configuration`, from Packages → Unity Web Browser CEF Engine → Resources |
    | Initial Url | see 7d |
    | Resolution | 1280×720, or whatever matches the Raw Image |
+   | Communication Layer | `TCP Communication Layer`, from Packages → Unity Web Browser → Resources |
    | Input Handler | `Old Input Handler`, from Packages → Unity Web Browser → Resources |
    | Engine Startup Timeout | `10000` for the first runs; the engine is slow to start cold |
+
+   `Communication Layer` sits under **IPC Settings** inside Browser Client and defaults to *None*. Leaving it empty produces a `NullReferenceException` at `WebBrowserClient.Init()` — the screen goes flat white and no engine process starts.
 
    The **Input Handler** slot is the one that fails loudly rather than quietly: leave it empty and Play mode stops with `NullReferenceException: The input handler is null!` If the project uses the new Input System, pick `Input System Handler` from the same folder instead, or set **Player → Active Input Handling** to **Both** — the old handler reads `UnityEngine.Input`, which throws while the Input System package is the only active handler.
 
@@ -202,6 +205,8 @@ That is the result the spike exists to produce, and it should be recorded as a f
 | No compatible graphics device | Driver or GPU too old | Update the graphics driver; if it persists, use URP |
 | Template import takes very long | Shader compilation on first open | Wait; it is a one-time cost per project |
 | `The engine did not get ready within engine startup timeout!` | Native engine package missing, engine executable blocked, or a cold start slower than the timeout | Install the `…engine.cef.<platform>.x64` package, allow `UnityWebBrowser.Engine.Cef` in antivirus, raise **Engine Startup Timeout** |
+| `NullReferenceException` at `WebBrowserClient.Init()` with a white screen and no engine process | **Communication Layer** slot empty (Browser Client → IPC Settings) | Assign `TCP Communication Layer` from Packages → Unity Web Browser → Resources |
+| `NullReferenceException` naming `engine.GetEngineAppPath` or a missing engine executable | **Engine** slot empty | Assign `Cef Engine Configuration` |
 | `NullReferenceException: The input handler is null!` | **Input Handler** slot empty | Assign `Old Input Handler` (or `Input System Handler`) from Packages → Unity Web Browser → Resources |
 | `InvalidOperationException` about `UnityEngine.Input` | New Input System is the only active handler | Use `Input System Handler`, or set **Active Input Handling** to **Both** |
 | Console floods with `obsolete` errors naming `TreeView`, `TreeViewItem`, `TreeViewState` | UniTask's optional tracker window does not compile on Unity 6.6 | Delete that editor-only script from the UniTask package; see step 3 |

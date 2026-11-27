@@ -163,9 +163,12 @@ The script does three things: waits for the browser engine to start, builds the 
 
    The Raw Image now covers the whole Game view. (The `Alt+Shift` in other guides is just a shortcut that also zeroes those four offsets.)
 5. Still on the Raw Image: **Add Component** → type `Web Browser Basic` → press Enter.
-6. The new component is one section called **Web Browser Basic**, and inside it are two blocks. If **Browser Client** looks like a single collapsed line, click its header to open it — `Initial Url` is the first field inside, and that collapsed block is where the setting went missing on 2026-11-26. Fill in **two slots** (for each: click the small circle at the right of the box, type the name, press Enter):
+6. The new component is one section called **Web Browser Basic**, and inside it are two blocks. If **Browser Client** looks like a single collapsed line, click its header to open it — `Initial Url` is the first field inside, and that collapsed block is where the setting went missing on 2026-11-26. There are **three** slots to fill (for each: click the small circle at the right of the box, type the name, press Enter):
    - In the **Browser Client** block: **Engine** → `Cef Engine Configuration`
+   - In the **Browser Client** block, under **IPC Settings**: **Communication Layer** → `TCP Communication Layer`
    - In the outer part of the component: **Input Handler** → `Old Input Handler`
+
+   Each of those three, left empty, fails in a different way: no engine gives a null reference on the engine path, no communication layer gives a null reference in `Init()` and a flat white screen, and no input handler throws on start.
 7. In the same **Browser Client** block, set **Engine Startup Timeout** to `10000`. Leave **Resolution** at its default.
 8. Leave **Initial Url** alone — it still says `https://voltstro.dev`, and that is useful: if you ever see Voltstro's site appear, the browser itself is working.
    - **Or skip the script entirely:** `Initial Url` is handed to the engine as its starting address, so you can paste the page's `file:///` address straight into it and never add `LoadPrototypePage` at all. Forward slashes only, three after `file:`, for example `file:///C:/UnityProjects/SafehouseSpike/Assets/StreamingAssets/standalone.html`. The script exists only to build that address correctly for you and to survive the move from editor to build.
