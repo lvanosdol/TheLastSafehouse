@@ -179,6 +179,7 @@ If the page opens but does not move into place, or the Console says `Missing pag
 | **E** does nothing, prompt visible | `Bench Interaction` not on the same object as the box, or **Lesson Page** blank | Step 10 |
 | A browser opens showing a file-not-found page | `Assets/StreamingAssets/standalone.html` is missing | Copy `prototype/standalone.html` there, or run `unity/sync-prototype.sh` |
 | Two browser windows at Play | **Open On Start** still ticked | Step 9 |
+| A dark band on the floor in front of the bench | Usually the bench's own shadow, sometimes a stray flat cube someone made while experimenting | Click `Bench` in the Hierarchy: if the band gets an orange outline in the Scene view it is an object, and its Inspector tells you which; if nothing outlines it, it is a shadow and harmless |
 | Still frozen after closing the browser | `Closed` did not fire | Tell me; that is a real defect |
 
 ## What to send back
