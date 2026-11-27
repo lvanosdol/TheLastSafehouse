@@ -3,7 +3,7 @@
 #
 #   ./unity/sync-prototype.sh /path/to/SafehouseSpike
 #
-# Re-run after every change to prototype/standalone.html or prototype/lesson-1.html.
+# Re-run after every change to prototype/standalone.html, lesson-1.html or assembly.html.
 # Both are one self-contained file on purpose: the game opens them over file://,
 # where ES modules do not load.
 
@@ -25,7 +25,7 @@ fi
 
 mkdir -p "$target_dir"
 
-for page in standalone.html lesson-1.html; do
+for page in standalone.html lesson-1.html assembly.html; do
   source_file="$repo_root/prototype/$page"
   if [ ! -f "$source_file" ]; then
     echo "error: missing $source_file" >&2

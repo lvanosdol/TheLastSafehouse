@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<!--
+  Chapter 1, Lesson 1 — the rebuild.
+
+  Its own page, because building is not reading: the lesson and the practice sit
+  in lesson-1.html, and this is the bench once the player is ready to work. One
+  self-contained file for the same reason as the others — the game opens it over
+  file://, where ES modules do not load.
+
+  The order is not prescribed, but physics is enforced: a cooler cannot go on
+  nothing, memory cannot go in once the board is screwed down, a monitor cable
+  cannot plug into a card that is not there. Every refusal names the reason, and
+  every failure reads like the machine's real symptom.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Safehouse 7 — rebuild the computer</title>
+  <style>
+:root {
+  --bg: #0d1a2b;
+  --surface: #101d30;
+  --surface-2: #16263c;
+  --ink: #eaf1fb;
+  --ink-dim: #b8c6da;
+  --line: #34486a;
+  --focus: #ffd166;
+  --ok: #9fe0b0;
+  --danger: #ff9a9a;
+}
+
+* { box-sizing: border-box; }
+
+html { font: 100% / 1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--ink); }
+body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
+
+.skip-link {
+  position: absolute; left: 0.5rem; top: -3rem;
+  background: var(--surface-2); color: var(--ink); padding: 0.5rem 0.75rem;
+  border: 2px solid var(--focus); z-index: 50;
+}
+.skip-link:focus { top: 0.5rem; }
+
+.topbar {
+  display: flex; gap: 1rem; align-items: center; justify-content: space-between;
+  padding: 0.5rem 1rem; background: #0a1626; border-bottom: 1px solid var(--line); flex-wrap: wrap;
+}
+.simulation-flag { margin: 0; font-size: 0.95rem; color: var(--ink-dim); }
+
+.text-size { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.text-size button, .controls button {
+  font: inherit; padding: 0.35rem 0.7rem; background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 4px; cursor: pointer;
+}
+.controls button[aria-pressed="true"] { border-color: var(--focus); border-width: 2px; }
+.controls button:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.steps-nav { display: flex; gap: 0.75rem; flex-wrap: wrap; padding: 0.5rem 1rem; background: #0a1626; border-bottom: 1px solid var(--line); }
+.steps-nav a { color: var(--ink); text-decoration: underline; }
+
+main { flex: 1; padding: 1.5rem; max-width: 52rem; width: 100%; margin: 0 auto; }
+
+h1 { font-size: 1.5rem; margin: 0 0 0.5rem; }
+h2 { font-size: 1.15rem; margin: 1.75rem 0 0.5rem; }
+p { margin: 0 0 0.9rem; max-width: 44rem; }
+
+.mara { border-left: 3px solid var(--line); padding-left: 0.9rem; color: var(--ink-dim); }
+.mara .speaker { display: block; color: var(--ink); font-weight: 600; }
+
+.board { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); align-items: start; }
+@media (max-width: 48rem) { .board { grid-template-columns: minmax(0, 1fr); } }
+
+.column { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 0.8rem; }
+.column h3 { margin: 0 0 0.6rem; font-size: 1rem; }
+.cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+
+.item, .slot {
+  font: inherit; width: 100%; text-align: left; padding: 0.55rem 0.7rem;
+  background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 6px;
+}
+.item { cursor: grab; }
+.item[aria-pressed="true"] { border-color: var(--focus); border-width: 2px; }
+.item.used { display: none; }
+.slot { display: grid; gap: 0.2rem; cursor: pointer; }
+.slot .slot-name { font-weight: 600; }
+.slot .slot-filled { font-size: 0.95rem; color: var(--ink-dim); }
+.slot.filled { border-color: var(--ok); border-left-width: 4px; }
+.slot.dragover { outline: 2px dashed var(--focus); outline-offset: 2px; }
+
+.controls { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
+
+.result { border: 1px solid var(--line); border-radius: 6px; padding: 0.9rem 1rem; background: var(--surface); }
+.result h3 { margin: 0 0 0.5rem; font-size: 1rem; }
+.result pre { margin: 0 0 0.6rem; font-family: ui-monospace, Consolas, monospace; white-space: pre-wrap; }
+.result .bad { color: var(--danger); }
+.result .good { color: var(--ok); }
+
+.last-announcement { margin: 0; padding: 0.4rem 1rem; font-size: 0.85rem; color: var(--ink-dim); border-top: 1px solid var(--line); background: #0a1626; }
+
+button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+@media (prefers-contrast: more) {
+  :root { --bg: #000; --surface: #000; --surface-2: #141414; --ink: #fff; --ink-dim: #f2f2f2; --line: #fff; --focus: #ffff00; }
+  .column, .result, .topbar, .steps-nav, .last-announcement { border-color: var(--line); }
+}
+
+@media (forced-colors: active) { .column, .result { border: 1px solid CanvasText; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#build">Skip to the build</a>
+
+  <header class="topbar">
+    <p class="simulation-flag" id="simulation-flag">
+      <span aria-hidden="true">◉</span> Simulated workbench — nothing here touches a real computer
+    </p>
+    <div class="text-size" role="group" aria-label="Text size">
+      <button type="button" id="text-smaller" aria-describedby="text-size-status">A−</button>
+      <button type="button" id="text-larger" aria-describedby="text-size-status">A+</button>
+      <span id="text-size-status" class="sr-only">Text size: 100 percent</span>
+    </div>
+  </header>
+
+  <nav class="steps-nav" aria-label="Lesson sections">
+    <a href="lesson-1.html">Lesson and practice</a>
+    <a href="#parts">Parts on the bench</a>
+    <a href="#build">The build</a>
+  </nav>
+
+  <main id="build" tabindex="-1" aria-label="Rebuild the computer">
+    <h1>Rebuild the computer</h1>
+
+    <p class="lede">Nothing is prescribed here: fit what the machine will take. It will refuse
+      what is physically impossible, and it will tell you what a real one would show you when something is
+      wrong.</p>
+
+    <p class="mara" id="mara"><span class="speaker">Mara</span>
+      Take your time. Everything you need is on the bench, and nothing here can be broken.</p>
+
+    <h2 id="parts">On the bench</h2>
+    <div class="board">
+      <section class="column" aria-labelledby="have-heading">
+        <h3 id="have-heading">What you have</h3>
+        <ul class="cards" id="pool"></ul>
+      </section>
+      <section class="column" aria-labelledby="goes-heading">
+        <h3 id="goes-heading">Where it goes</h3>
+        <ul class="cards" id="targets"></ul>
+      </section>
+    </div>
+
+    <h2 id="controls-heading">Finishing</h2>
+    <div class="controls" role="group" aria-labelledby="controls-heading">
+      <button type="button" id="clips" aria-pressed="false">Close the memory clips</button>
+      <button type="button" id="switch" aria-pressed="false">Switch the power supply on</button>
+      <button type="button" id="power">Press the power button</button>
+      <button type="button" id="reset">Start the build again</button>
+    </div>
+
+    <div class="result" id="result" aria-labelledby="result-heading" hidden>
+      <h3 id="result-heading">What the machine does</h3>
+      <pre id="result-text"></pre>
+      <p class="mara" id="result-mara"></p>
+    </div>
+  </main>
+
+  <p class="last-announcement" aria-hidden="true">
+    Last announcement: <span id="last-announcement">none yet</span>
+  </p>
+  <div id="announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div id="alert-announcer" class="sr-only" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+  <script>
+(function () {
+  var polite = document.getElementById('announcer');
+  var assertive = document.getElementById('alert-announcer');
+  var mirror = document.getElementById('last-announcement');
+
+  function announce(message, options) {
+    var urgent = Boolean(options && options.urgent);
+    var region = urgent ? assertive : polite;
+    region.textContent = '';
+    window.setTimeout(function () { region.textContent = message; }, 30);
+    if (mirror) mirror.textContent = (urgent ? 'ERROR: ' : '') + message;
+  }
+
+  // Twelve things on the bench, and the places they can go. The order is the
+  // player's; the rules below are the machine's.
+  var ITEMS = [
+    { id: 'cpu', name: 'Processor', home: 'cpu-socket' },
+    { id: 'ram', name: 'Memory (RAM)', home: 'memory-slots' },
+    { id: 'cooler', name: 'Cooler', home: 'cpu-top' },
+    { id: 'fan', name: 'Fan cable', home: 'fan-header' },
+    { id: 'board', name: 'Motherboard', home: 'standoffs' },
+    { id: 'ssd', name: 'SSD', home: 'm2-slot' },
+    { id: 'psu', name: 'Power supply', home: 'psu-bay' },
+    { id: 'atx', name: '24-pin board cable', home: 'board-power' },
+    { id: 'eps', name: 'CPU power cable', home: 'cpu-power' },
+    { id: 'gpu', name: 'Graphics card', home: 'pcie-slot' },
+    { id: 'monitor', name: 'Monitor cable', home: 'gpu-port' },
+    { id: 'desk', name: 'Keyboard, mouse and mains cable', home: 'desk' }
+  ];
+
+  var TARGETS = [
+    { id: 'cpu-socket', name: 'CPU socket' },
+    { id: 'memory-slots', name: 'Memory slots' },
+    { id: 'cpu-top', name: 'Top of the processor' },
+    { id: 'fan-header', name: 'CPU fan header' },
+    { id: 'standoffs', name: 'Standoffs in the case' },
+    { id: 'm2-slot', name: 'M.2 slot' },
+    { id: 'psu-bay', name: 'Power supply bay' },
+    { id: 'board-power', name: '24-pin board power' },
+    { id: 'cpu-power', name: 'CPU power socket' },
+    { id: 'pcie-slot', name: 'PCIe slot' },
+    { id: 'gpu-port', name: 'Graphics card ports' },
+    { id: 'board-video', name: 'Motherboard video port' },
+    { id: 'desk', name: 'Case rear: mains, keyboard, mouse' }
+  ];
+
+  var placed = {};
+  var held = null;
+  var clipsClosed = false;
+  var powerOn = false;
+
+  function itemById(id) {
+    for (var i = 0; i < ITEMS.length; i += 1) if (ITEMS[i].id === id) return ITEMS[i];
+    return null;
+  }
+
+  function targetById(id) {
+    for (var i = 0; i < TARGETS.length; i += 1) if (TARGETS[i].id === id) return TARGETS[i];
+    return null;
+  }
+
+  function where(itemId) {
+    return placed[itemId] || null;
+  }
+
+  function inPlace(targetId) {
+    return Object.keys(placed).some(function (item) {
+      return placed[item] === targetId;
+    });
+  }
+
+  function nameOf(targetId) {
+    return targetById(targetId).name;
+  }
+
+  function listNames(names) {
+    if (names.length === 1) return names[0];
+    return names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
+  }
+
+  // What the machine refuses, and why. Every message names the physical reason.
+  function refusal(itemId, targetId) {
+    var item = itemById(itemId);
+    var boardIn = inPlace('standoffs');
+    var allowed = item.home === targetId || (item.id === 'monitor' && targetId === 'board-video');
+
+    if (inPlace(targetId)) return 'That place already has something in it.';
+
+    if (!allowed) {
+      return 'The ' + item.name.toLowerCase() + ' does not go there. It belongs in the ' +
+        nameOf(item.home).toLowerCase() + '.';
+    }
+
+    if (targetId === 'memory-slots' && boardIn) {
+      return 'Memory goes in while the board is still on the bench. It is screwed into the case now.';
+    }
+    if (targetId === 'cpu-top' && !where('cpu')) {
+      return 'There is no processor in the socket. The cooler has nothing to sit on.';
+    }
+    if (targetId === 'fan-header' && !where('cooler')) {
+      return 'There is no cooler to plug in yet.';
+    }
+    if (targetId === 'standoffs') {
+      var ready = [];
+      if (!where('cpu')) ready.push('the processor');
+      if (!where('ram')) ready.push('the memory');
+      if (!where('cooler')) ready.push('the cooler');
+      if (!where('fan')) ready.push('the fan cable');
+      if (ready.length) {
+        return 'The board is not ready to go in. It still needs ' + listNames(ready) + ' fitted on the bench.';
+      }
+    }
+    if (targetId === 'm2-slot' && !boardIn) {
+      return 'The M.2 slot is underneath the board. Fit the board into the case first.';
+    }
+    if ((targetId === 'board-power' || targetId === 'cpu-power' || targetId === 'pcie-slot' || targetId === 'board-video') && !boardIn) {
+      return 'The board is not in the case yet, so there is nothing there to connect.';
+    }
+    if ((targetId === 'board-power' || targetId === 'cpu-power') && !where('psu')) {
+      return 'There is no power supply in the case to run that cable from.';
+    }
+    if (targetId === 'gpu-port' && !where('gpu')) {
+      return 'There is no graphics card fitted. Its ports only exist once it is in the slot.';
+    }
+    if (targetId === 'desk' && !where('psu')) {
+      return 'There is no power supply to run the mains cable to.';
+    }
+
+    return null;
+  }
+
+  function say(text, urgent) {
+    announce(text, { urgent: urgent });
+  }
+
+  function mara(text) {
+    document.getElementById('mara').innerHTML =
+      '<span class="speaker">Mara</span> ' + text;
+  }
+
+  function place(itemId, targetId) {
+    var reason = refusal(itemId, targetId);
+    if (reason) {
+      mara(reason);
+      say(reason, true);
+      return;
+    }
+
+    delete placed[itemId];
+    placed[itemId] = targetId;
+    held = null;
+
+    refresh();
+    say(itemById(itemId).name + ' fitted to the ' + nameOf(targetId).toLowerCase() + '.');
+  }
+
+  function removeFrom(targetId) {
+    Object.keys(placed).forEach(function (itemId) {
+      if (placed[itemId] === targetId) {
+        delete placed[itemId];
+        say(itemById(itemId).name + ' taken back off the ' + nameOf(targetId).toLowerCase() + '.');
+      }
+    });
+    refresh();
+  }
+
+  function renderBoard() {
+    var pool = document.getElementById('pool');
+
+    ITEMS.forEach(function (item) {
+      var row = document.createElement('li');
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'item';
+      button.setAttribute('data-item', item.id);
+      button.setAttribute('aria-pressed', 'false');
+      button.textContent = item.name;
+
+      button.addEventListener('click', function () { pickUp(item.id); });
+
+      button.addEventListener('dragstart', function (event) {
+        held = item.id;
+        button.setAttribute('aria-pressed', 'true');
+        if (event.dataTransfer) {
+          event.dataTransfer.setData('text/plain', item.id);
+          event.dataTransfer.effectAllowed = 'move';
+        }
+      });
+
+      button.addEventListener('dragend', function () {
+        held = null;
+        button.setAttribute('aria-pressed', 'false');
+      });
+
+      row.appendChild(button);
+      pool.appendChild(row);
+    });
+
+    var list = document.getElementById('targets');
+
+    TARGETS.forEach(function (target) {
+      var row = document.createElement('li');
+      var slot = document.createElement('button');
+      slot.type = 'button';
+      slot.className = 'slot';
+      slot.setAttribute('data-target', target.id);
+
+      var name = document.createElement('span');
+      name.className = 'slot-name';
+      name.textContent = target.name;
+
+      var filled = document.createElement('span');
+      filled.className = 'slot-filled';
+      filled.textContent = 'Empty';
+
+      slot.appendChild(name);
+      slot.appendChild(filled);
+
+      slot.addEventListener('click', function () {
+        if (held) { place(held, target.id); return; }
+        if (inPlace(target.id)) { removeFrom(target.id); return; }
+        say('Nothing is picked up. Choose something from the bench first.');
+      });
+
+      slot.addEventListener('dragover', function (event) {
+        if (event.preventDefault) event.preventDefault();
+        slot.classList.add('dragover');
+      });
+
+      slot.addEventListener('dragleave', function () { slot.classList.remove('dragover'); });
+
+      slot.addEventListener('drop', function (event) {
+        if (event.preventDefault) event.preventDefault();
+        slot.classList.remove('dragover');
+        var dragged = event.dataTransfer ? event.dataTransfer.getData('text/plain') : '';
+        var itemId = dragged || held;
+        if (itemId) place(itemId, target.id);
+      });
+
+      row.appendChild(slot);
+      list.appendChild(row);
+    });
+  }
+
+  function pickUp(itemId) {
+    if (held === itemId) {
+      held = null;
+      document.querySelector('.item[data-item="' + itemId + '"]').setAttribute('aria-pressed', 'false');
+      say(itemById(itemId).name + ' put back on the bench.');
+      return;
+    }
+
+    held = itemId;
+
+    ITEMS.forEach(function (item) {
+      var button = document.querySelector('.item[data-item="' + item.id + '"]');
+      if (button) button.setAttribute('aria-pressed', item.id === itemId ? 'true' : 'false');
+    });
+
+    say(itemById(itemId).name + ' picked up. Choose where it goes, then press Enter.');
+  }
+
+  function refresh() {
+    ITEMS.forEach(function (item) {
+      var button = document.querySelector('.item[data-item="' + item.id + '"]');
+      if (button) button.classList.toggle('used', Boolean(where(item.id)));
+    });
+
+    TARGETS.forEach(function (target) {
+      var slot = document.querySelector('.slot[data-target="' + target.id + '"]');
+      if (!slot) return;
+      var contents = Object.keys(placed).filter(function (itemId) { return placed[itemId] === target.id; });
+      var filled = contents.length > 0;
+      slot.classList.toggle('filled', filled);
+      slot.querySelector('.slot-filled').textContent = filled
+        ? 'Fitted: ' + itemById(contents[0]).name
+        : 'Empty';
+    });
+
+    var clips = document.getElementById('clips');
+    clips.disabled = !where('ram') || clipsClosed;
+    clips.setAttribute('aria-pressed', clipsClosed ? 'true' : 'false');
+
+    var toggle = document.getElementById('switch');
+    toggle.disabled = !where('psu');
+    toggle.setAttribute('aria-pressed', powerOn ? 'true' : 'false');
+    toggle.textContent = powerOn ? 'Switch the power supply off' : 'Switch the power supply on';
+  }
+
+  function showResult(lines, maraText, ok) {
+    var box = document.getElementById('result');
+    box.hidden = false;
+    document.getElementById('result-text').textContent = lines.join('\n');
+    document.getElementById('result-mara').innerHTML = '<span class="speaker">Mara</span> ' + maraText;
+    box.classList.toggle('failed', !ok);
+    say(lines[0], !ok);
+  }
+
+  function fail(lines, maraText) {
+    showResult([].concat(lines), maraText, false);
+  }
+
+  function evaluate() {
+    if (!where('desk')) {
+      fail('Nothing happens. No fans, no lights.',
+        'The mains cable is still coiled on the bench. No power in, nothing out — that is rule one of every build.');
+      return;
+    }
+
+    if (!powerOn) {
+      fail('Nothing happens. No fans, no lights.',
+        'The switch on the back of the power supply is off. It catches almost everybody once.');
+      return;
+    }
+
+    if (!where('atx')) {
+      fail('No response at all.',
+        'The 24-pin cable is the board\'s main feed. Without it the board never wakes up.');
+      return;
+    }
+
+    if (!where('cpu')) {
+      fail('POST does not complete. The board holds its processor error light.',
+        'There is no processor in the socket, and the board checks for one before anything else.');
+      return;
+    }
+
+    if (!where('eps')) {
+      fail('The fans start for a second, then stop. No POST, no display.',
+        'That is the missing CPU power cable. The board has its main feed; the processor has none.');
+      return;
+    }
+
+    if (!where('ram')) {
+      fail('POST beeps: memory detection error.',
+        'There is no memory fitted, so there is nothing for the board to test.');
+      return;
+    }
+
+    if (!clipsClosed) {
+      fail('POST beeps: memory detection error.',
+        'The modules are in, but the clips are not closed. Half-seated memory is the most common build fault there is.');
+      return;
+    }
+
+    if (!where('cooler')) {
+      fail('POST starts, then the machine shuts itself down within seconds.',
+        'The processor has no cooler. A real board cuts the power rather than cook the chip.');
+      return;
+    }
+
+    if (!where('ssd')) {
+      fail(['POST: COMPLETE', 'STORAGE: NOT DETECTED', 'No boot device found.'],
+        'The machine is healthy and has nothing to start from. Windows lives on the SSD.');
+      return;
+    }
+
+    if (!where('gpu')) {
+      fail(['POST: COMPLETE', 'No display output.'],
+        'Nothing is fitted to drive a picture.');
+      return;
+    }
+
+    if (where('monitor') === 'board-video') {
+      fail(['POST: COMPLETE', 'MONITOR: NO SIGNAL'],
+        'The monitor is in the motherboard port. With a card fitted the board switches its own video off — the cable belongs in the card.');
+      return;
+    }
+
+    if (!where('monitor')) {
+      fail(['POST: COMPLETE', 'No monitor connected.'],
+        'Everything works and you cannot see it. The monitor cable is still in the box.');
+      return;
+    }
+
+    showResult(
+      ['POWER: ON', 'POST: COMPLETE', 'STORAGE: DETECTED', 'MEMORY: DETECTED', 'WINDOWS: STARTING'],
+      'That is a working computer. Windows is starting.',
+      true
+    );
+  }
+
+  document.getElementById('clips').addEventListener('click', function () {
+    clipsClosed = true;
+    refresh();
+    say('Memory clips closed. The modules are seated.');
+  });
+
+  document.getElementById('switch').addEventListener('click', function () {
+    powerOn = !powerOn;
+    refresh();
+    say(powerOn ? 'Power supply switched on. The case still has no power until the button is pressed.' : 'Power supply switched off.');
+  });
+
+  document.getElementById('power').addEventListener('click', evaluate);
+
+  document.getElementById('reset').addEventListener('click', function () {
+    placed = {};
+    held = null;
+    clipsClosed = false;
+    powerOn = false;
+    document.getElementById('result').hidden = true;
+    mara('Take your time. Everything you need is on the bench, and nothing here can be broken.');
+    refresh();
+    say('Build cleared. Everything is back on the bench.');
+  });
+
+  renderBoard();
+  refresh();
+
+  var status = document.getElementById('text-size-status');
+  var scale = 100;
+
+  function setScale(next) {
+    scale = Math.min(150, Math.max(87, next));
+    document.documentElement.style.fontSize = scale + '%';
+    status.textContent = 'Text size: ' + scale + ' percent';
+    say('Text size ' + scale + ' percent.');
+  }
+
+  document.getElementById('text-smaller').addEventListener('click', function () { setScale(scale - 12); });
+  document.getElementById('text-larger').addEventListener('click', function () { setScale(scale + 12); });
+
+  window.setTimeout(function () {
+    say('Simulated workbench. Twelve parts on the bench, thirteen places to put them. ' +
+      'It will refuse what is physically impossible and tell you why. Press Tab to begin.');
+  }, 600);
+})();
+  </script>
+</body>
+</html>

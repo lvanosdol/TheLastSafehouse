@@ -210,11 +210,15 @@ try {
   check('Fourth Tab reaches the larger text control', (await activeId()) === 'text-larger');
 
   await page.keyboard.press('Tab');
-  check('Fifth Tab reaches the safety note', (await activeId()) === 'safety-toggle');
+  const fifthHref = await page.evaluate(() => document.activeElement.getAttribute('href'));
+  check('Fifth Tab reaches the section links', fifthHref === '#safety-title', String(fifthHref));
+
+  for (let press = 0; press < 4; press += 1) await page.keyboard.press('Tab');
+  check('The links lead to the safety note', (await activeId()) === 'safety-toggle');
 
   await page.keyboard.press('Tab');
-  const sixth = await page.evaluate(() => document.activeElement.tagName.toLowerCase());
-  check('Sixth Tab reaches the first part entry in the guide', sixth === 'summary', sixth);
+  const nextStop = await page.evaluate(() => document.activeElement.tagName.toLowerCase());
+  check('Then the first part entry in the guide', nextStop === 'summary', nextStop);
 
   // ---- 5. the skip link moves focus --------------------------------------
 

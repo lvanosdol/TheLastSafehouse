@@ -63,6 +63,9 @@ body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
   border: 1px solid var(--line); border-radius: 4px; cursor: pointer;
 }
 
+.steps-nav { display: flex; gap: 0.75rem; flex-wrap: wrap; padding: 0.5rem 1rem; background: #0a1626; border-bottom: 1px solid var(--line); }
+.steps-nav a { color: var(--ink); text-decoration: underline; }
+
 main { flex: 1; padding: 1.5rem; max-width: 48rem; width: 100%; margin: 0 auto; }
 
 h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 0.75rem; }
@@ -198,6 +201,13 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     </div>
   </header>
 
+  <nav class="steps-nav" aria-label="Lesson sections">
+    <a href="#safety-title">Safety note</a>
+    <a href="#guide-heading">Parts</a>
+    <a href="#match-heading">Matching</a>
+    <a href="assembly.html">Build the computer</a>
+  </nav>
+
   <main id="bench" tabindex="-1" aria-label="Workshop workbench">
     <h1>Meet and rebuild the computer</h1>
 
@@ -268,7 +278,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     <p>Peripherals — the monitor, keyboard and mouse — come later, when you plug them in.</p>
 
     <h2>What comes next</h2>
-    <p class="pending" id="next-step">The rebuild opens here once every part is matched.</p>
+    <p class="pending" id="next-step">The rebuild is its own page: <a href="assembly.html">open the rebuild</a>.</p>
   </main>
 
   <p class="last-announcement" aria-hidden="true">
@@ -692,9 +702,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
       summary.textContent =
         right + ' of ' + PARTS.length + ' are on the right purpose. ' + mislaid;
     } else {
-      summary.textContent = 'All ' + PARTS.length + ' matched. The rebuild comes next.';
-      document.getElementById('next-step').textContent =
-        'Every part is matched. The rebuild comes next.';
+      summary.textContent = 'All ' + PARTS.length + ' matched. The rebuild is ready when you are.';
     }
 
     summary.focus();
@@ -714,9 +722,6 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     });
 
     refreshBoard();
-
-    document.getElementById('next-step').textContent =
-      'The rebuild opens here once every part is matched.';
 
     var summary = document.getElementById('match-summary');
     summary.textContent = 'Answers cleared.';

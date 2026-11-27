@@ -36,7 +36,8 @@ It drives `standalone.html` in headless Chromium with the keyboard and asserts w
 - A permission-denial dialog for the read-only file in `Recovery`.
 - A terminal that answers `dir`, `whoami`, and `help`, and rejects anything else by name.
 - Text-size controls and a persistent "simulated" marker.
-- `lesson-1.html` — the Chapter 1 workbench page: the eight parts with their purposes as a collapsible guide, keyboard-operable, with the same scaffolding as the desktop. The parts are read first, in a collapsible guide, then matched by dragging them onto their purposes — or from the keyboard, Enter to pick up, Tab to a purpose, Enter to place. Feedback names the part and the mistake, and retrying is free. The real-world safety rules sit in a note at the top of the page, visible before the first control rather than behind a dialog. The safety card, rebuild and result screen are added in later tasks.
+- `lesson-1.html` — the Chapter 1 workbench page: the eight parts with their purposes as a collapsible guide, keyboard-operable, with the same scaffolding as the desktop. The parts are read first, in a collapsible guide, then matched by dragging them onto their purposes — or from the keyboard, Enter to pick up, Tab to a purpose, Enter to place. Feedback names the part and the mistake, and retrying is free. The real-world safety rules sit in a note at the top of the page, visible before the first control rather than behind a dialog.
+- `assembly.html` — the rebuild, on its own page: twelve parts, thirteen places, physical refusals with reasons, and the four faults a real machine shows (nothing at all, fans that blip without POST, memory detection error, no signal). The safety card, rebuild and result screen are added in later tasks.
 
 ## Accessibility rules this prototype follows
 
