@@ -117,10 +117,10 @@ The script does three things: waits for the browser engine to start, builds the 
 3. Right-click the **Canvas** you just made → **UI → Raw Image**.
 4. With the Raw Image selected, look at the Inspector → **Rect Transform** → click the small anchor square → hold **Alt** and **Shift** → click the **stretch / stretch** preset (bottom right). This makes the picture fill the screen instead of sitting in a tiny square.
 5. Still on the Raw Image: **Add Component** → type `Web Browser Basic` → press Enter.
-6. In the new **Web Browser Basic** section, fill in two slots:
-   - **Engine** — click the small circle at the right of the box, search `Cef Engine Configuration`, select it.
-   - **Input Handler** — same method, search `Old Input Handler`, select it.
-7. Just below, in the **Browser Client** section, set **Engine Startup Timeout** to `10000`.
+6. The new component is one section called **Web Browser Basic**, and inside it are two blocks. Fill in **two slots** (for each: click the small circle at the right of the box, type the name, press Enter):
+   - In the **Browser Client** block: **Engine** → `Cef Engine Configuration`
+   - In the outer part of the component: **Input Handler** → `Old Input Handler`
+7. In the same **Browser Client** block, set **Engine Startup Timeout** to `10000`. Leave **Resolution** at its default.
 8. Leave **Initial Url** alone — it still says `https://voltstro.dev`, and that is useful: if you ever see Voltstro's site appear, the browser itself is working.
 9. **Add Component** → type `Load Prototype Page` → press Enter, so it is on the same Raw Image. Leave **Use Local Server** unticked.
 
