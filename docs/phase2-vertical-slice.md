@@ -33,6 +33,8 @@ For Lesson 1 that means: 3D bench as the thing the player approaches, and an acc
 **Task 7 done 2026-11-27, revised same day:** the rebuild is its own page (`prototype/assembly.html`), because the owner asked for building to be separate from reading and practice. Twelve parts go into thirteen places; the order is the player's but physics is enforced — no cooler without a processor, no memory once the board is screwed down, no cable into a card that is not fitted. Each refusal names the reason. All four diagnostics fire from their own condition and read like the machine: nothing at all with the switch off, fans that blip without CPU power, a memory detection error with the clips open, no signal with the monitor on the board. Mara explains each one in her own line.
 | 8 | Result and hand-off: `POWER: ON … WINDOWS: STARTING`, then "Workshop application: Not responding" | The lesson ends in the story beat, not a dead end |
 
+**Task 8 done 2026-11-27:** the result panel prints the POST block through `WINDOWS: STARTED` and then `WORKSHOP APPLICATION: NOT RESPONDING`, with the flicker described in text and the figure left unnamed, and links back to the lesson so the slice does not end on a dead screen.
+
 **Task 8 note:** the figure that glitches into view stays **unnamed** here — the design has "No name or message is provided yet" (`Design/Chapter 1/Chapter-1-Design.md`), and Finch introduces himself at the end of Chapter 1. Writing "Finch" into the Lesson 1 result would spend the reveal.
 | 9 | Slice playtest: keyboard only, NVDA, one tester, report written | `docs/playtests/` entry with pass/fail per task |
 

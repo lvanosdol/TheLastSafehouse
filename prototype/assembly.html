@@ -94,6 +94,9 @@ p { margin: 0 0 0.9rem; max-width: 44rem; }
 .result { border: 1px solid var(--line); border-radius: 6px; padding: 0.9rem 1rem; background: var(--surface); }
 .result h3 { margin: 0 0 0.5rem; font-size: 1rem; }
 .result pre { margin: 0 0 0.6rem; font-family: ui-monospace, Consolas, monospace; white-space: pre-wrap; }
+.epilogue { margin: 0.6rem 0 0; color: var(--ink-dim); font-style: italic; }
+.epilogue-links { margin: 0.6rem 0 0; }
+.epilogue-links a { color: var(--ink); }
 .result .bad { color: var(--danger); }
 .result .good { color: var(--ok); }
 
@@ -167,6 +170,12 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 3px s
       <h3 id="result-heading">What the machine does</h3>
       <pre id="result-text"></pre>
       <p class="mara" id="result-mara"></p>
+      <p class="epilogue" id="epilogue" hidden>
+        Then something in the room flickers — a figure, there and gone before it has a shape.
+      </p>
+      <p class="epilogue-links" id="epilogue-links" hidden>
+        <a href="lesson-1.html">Back to the lesson and practice</a>
+      </p>
     </div>
   </main>
 
@@ -477,6 +486,8 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 3px s
 
   function fail(lines, maraText) {
     showResult([].concat(lines), maraText, false);
+    document.getElementById('epilogue').hidden = true;
+    document.getElementById('epilogue-links').hidden = true;
   }
 
   function evaluate() {
@@ -553,10 +564,24 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 3px s
     }
 
     showResult(
-      ['POWER: ON', 'POST: COMPLETE', 'STORAGE: DETECTED', 'MEMORY: DETECTED', 'WINDOWS: STARTING'],
-      'That is a working computer. Windows is starting.',
+      [
+        'POWER: ON',
+        'POST: COMPLETE',
+        'STORAGE: DETECTED',
+        'MEMORY: DETECTED',
+        'WINDOWS: STARTING',
+        'WINDOWS: STARTED',
+        'WORKSHOP APPLICATION: NOT RESPONDING'
+      ],
+      'The computer is running. The Workshop application is not, and that is a different problem — '
+        + 'the kind we look at next.',
       true
     );
+
+    // The figure stays unnamed: the design withholds the name until the end of
+    // Chapter 1, and the flicker is described in text rather than animated.
+    document.getElementById('epilogue').hidden = false;
+    document.getElementById('epilogue-links').hidden = false;
   }
 
   document.getElementById('clips').addEventListener('click', function () {
@@ -579,6 +604,8 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 3px s
     clipsClosed = false;
     powerOn = false;
     document.getElementById('result').hidden = true;
+    document.getElementById('epilogue').hidden = true;
+    document.getElementById('epilogue-links').hidden = true;
     mara('Take your time. Everything you need is on the bench, and nothing here can be broken.');
     refresh();
     say('Build cleared. Everything is back on the bench.');

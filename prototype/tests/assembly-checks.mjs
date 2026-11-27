@@ -207,6 +207,25 @@ try {
   check('Moving the cable to the card gives POST and boot', /POWER: ON/.test(success) && /POST: COMPLETE/.test(success), success);
   check('The result reports storage and memory', /STORAGE: DETECTED/.test(success) && /MEMORY: DETECTED/.test(success), success);
   check('Windows starts', /WINDOWS: STARTING/.test(success), success);
+  check('Windows finishes starting', /WINDOWS: STARTED/.test(success), success);
+  check(
+    'The Workshop application is not responding',
+    /WORKSHOP APPLICATION: NOT RESPONDING/.test(success),
+    success
+  );
+
+  const beat = await page.evaluate(() => ({
+    flicker: document.getElementById('epilogue').hidden === false
+      ? document.getElementById('epilogue').textContent.replace(/\s+/g, ' ').trim()
+      : '',
+    linksShown: document.getElementById('epilogue-links').hidden === false,
+    linkBack: Boolean(document.querySelector('#epilogue-links a[href="lesson-1.html"]')),
+    named: /finch/i.test(document.body.textContent),
+  }));
+
+  check('Something flickers in the room, described in text', /flickers/i.test(beat.flicker), beat.flicker);
+  check('The figure is not named yet', beat.named === false);
+  check('The lesson does not end on a dead end', beat.linksShown && beat.linkBack);
 
   const hiddenResult = await page.$eval('#result', (el) => el.hidden);
   check('The result panel is shown, not hidden', hiddenResult === false);
@@ -286,6 +305,9 @@ try {
   await press('clips');
   await press('power');
   check('Closing the clips clears it', /WINDOWS: STARTING/.test(await resultText()), await resultText());
+
+  const beatAgain = await page.evaluate(() => document.getElementById('epilogue').hidden);
+  check('The story beat is still shown after a rebuild', beatAgain === false);
 
   // ---- the lesson still links to this page -----------------------------
 
