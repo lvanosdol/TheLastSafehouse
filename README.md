@@ -27,6 +27,14 @@ A 3D, story-driven IT and networking learning game for adult beginners. Seven ch
 
 ## Running the prototype
 
+Once GitHub Pages is enabled for this repository (**Settings → Pages → Deploy from a branch → `main` → `/ (root)`**), both pages are readable without cloning anything:
+
+- <https://lvanosdol.github.io/TheLastSafehouse/> — the preview index
+- <https://lvanosdol.github.io/TheLastSafehouse/prototype/lesson-1.html> — the workbench
+- <https://lvanosdol.github.io/TheLastSafehouse/prototype/standalone.html> — the simulated computer
+
+The root `index.html` exists only to give that site a front door; it is not part of the game.
+
 `prototype/standalone.html` is the whole thing in one file — open it in a browser. For the modular version:
 
 ```bash
