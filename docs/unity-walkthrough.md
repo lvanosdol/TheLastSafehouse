@@ -113,6 +113,22 @@ Why: Unity copies `StreamingAssets` into the finished game exactly as it is, whi
 
 **You should see:** the Inspector shows the script's source code and there is no red error in the Console. If the Console says the script failed to compile, send me the message — do not continue.
 
+### If you are saving it with Ctrl+S in the browser
+
+The file has to land **inside the Unity project**, in `<your project>\Assets\Scripts\`. A copy in `Downloads` does nothing — Unity only compiles what is under `Assets`.
+
+1. In Unity, right-click the `Scripts` folder in the Project window → **Show in Explorer**. That opens the exact folder.
+2. Click in that window's address bar and copy the path (Ctrl+C).
+3. In the browser's save dialog, paste that path into the **File name** box, add `\LoadPrototypePage.cs` on the end, and set **Save as type** to **All Files**.
+
+### Easier: skip the download entirely
+
+1. On the GitHub **Raw** page, press **Ctrl+A** then **Ctrl+C**.
+2. In Unity: right-click `Assets/Scripts` → **Create → C# Script** → name it `LoadPrototypePage` → press Enter.
+3. Double-click it to open your code editor, press **Ctrl+A** then **Ctrl+V** to replace everything, then **Ctrl+S**.
+
+Unity creates the file in the right folder with the right name and extension, so there is nothing left to get wrong.
+
 The script does three things: waits for the browser engine to start, builds the correct `file:///` address from `StreamingAssets`, and loads the page.
 
 ---
