@@ -172,6 +172,10 @@ The script does three things: waits for the browser engine to start, builds the 
 
 **You should see:** in the Hierarchy, `Canvas` and `EventSystem` (if `EventSystem` is missing, right-click in the Hierarchy → **UI → Event System** — without it, clicks and keystrokes never reach the page). In the Inspector, the Raw Image now has: Rect Transform, Canvas Renderer, Raw Image, Web Browser Basic, Load Prototype Page.
 
+### If you are using UnityWebBrowser's sample prefab instead
+
+Then you do not build a Canvas at all — a second browser surface on screen causes one of them to stay blank. The package requires a `RawImage` on the same object as the browser component (`[RequireComponent(typeof(RawImage))]` on `RawImageUwbClientManager`), so in the sample hierarchy the component is on the object **holding the Raw Image**, not on the `WebBrowser` wrapper above it. Select that object, scroll its Inspector to the bottom, and add **Load Prototype Page** beside the existing **Web Browser Basic** / **Web Browser Full** component.
+
 ---
 
 ## Step 8 — Press Play
