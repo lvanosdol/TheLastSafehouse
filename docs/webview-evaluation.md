@@ -44,3 +44,18 @@ The design already treats the computer as something the player **sits down at**,
 6. Mouse parked outside the window the whole time — keyboard only.
 
 A pass on 3 and 4 is the spike's pass condition. Anything less is a fail for that option, recorded the same way as `docs/playtests/2026-11-27-spike-unity-embedding.md`.
+
+## Option A, implemented
+
+`unity/Scripts/ComputerBrowserWindow.cs` does the plumbing: it finds Edge or Chrome, opens the page with `--app=` (chromeless, no address bar, no tabs), waits for the window handle, moves the window onto the game window's client area, and brings it to the front. `Close()` closes the browser and focuses the game again; closing the window by hand raises `Closed`, so the interaction that seated the player can stand them back up.
+
+Copy it into `Assets/Scripts/`, drop it on any object, leave `Open On Start` ticked for the first test, and press Play.
+
+Known limits, all acceptable for a spike and worth knowing before they surprise you:
+
+- **The browser is an overlay.** It cannot be partly hidden behind 3D props, because it is a separate window on top.
+- **Unity receives no input while the browser has focus.** That is the desired behaviour when the player is seated at the computer, but it means the game cannot react to keys during that time.
+- **In the editor it covers the editor**, because the editor's main window is what gets measured. In a built player it covers the game window, which is the real target.
+- **It appears in the taskbar and on alt-tab**, which a true embedded surface would not.
+- **It needs a browser installed.** Windows 11 has Edge; the component also accepts Chrome.
+

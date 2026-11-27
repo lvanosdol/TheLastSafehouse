@@ -4,7 +4,8 @@ The Unity project itself (`SafehouseSpike`) is **not** in this repository: `Libr
 
 | File | What it is |
 |---|---|
-| `Scripts/LoadPrototypePage.cs` | Loads `StreamingAssets/standalone.html` into a UnityWebBrowser surface as a correct `file:///` URL, and waits for the engine to connect first |
+| `Scripts/LoadPrototypePage.cs` | Loads `StreamingAssets/standalone.html` into a UnityWebBrowser surface as a correct `file:///` URL, and waits for the engine to connect first. Kept for reference: that surface cannot be read by a screen reader. |
+| `Scripts/ComputerBrowserWindow.cs` | Opens the page in a **real** Edge/Chrome app-mode window pinned over the game view, and returns focus to Unity when it closes. This is the accessible host. |
 | `sync-prototype.sh` | Copies `prototype/standalone.html` into the Unity project's `Assets/StreamingAssets/` |
 
 ## Use
