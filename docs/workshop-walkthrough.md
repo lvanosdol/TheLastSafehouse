@@ -138,7 +138,7 @@ The volume then reaches from `z = 0.2` to `z = 1.8`, so it is entered about a st
 ## Step 10 — The bench interaction
 
 1. Select `Bench Trigger`, **Add Component → Safehouse → Bench Interaction**.
-2. **Lesson Page**: `standalone.html` for now. `lesson-1.html` is written next; this is the one value that changes later.
+2. **Lesson Page**: `lesson-1.html`. The lesson and the rebuild are two pages, so both files must be in `Assets/StreamingAssets/` — `unity/sync-prototype.sh` copies all three. `standalone.html` was the placeholder while the lesson was being written and is no longer what the bench should open: it is the simulated computer, which is what the machine shows *after* it boots, for the lessons that come later.
 3. **Browser**: drag `Computer` from the Hierarchy into this field.
 4. Leave **Player** empty (it is found in the scene). **Interact Key** stays `E`.
 
@@ -169,7 +169,7 @@ The prompt is a label for a sighted player; everything the game needs is in the 
 
 1. **Ctrl+S**.
 2. **Play**, then click once inside the Game view.
-3. Walk forward: the prompt appears above the bench and turns to face you.
+3. Walk forward: the prompt appears above the bench and turns to face you. **E** opens the lesson; from there the lesson links to the rebuild, and the rebuild links back.
 4. Press **E**: a browser window opens over the whole editor, showing the simulated desktop.
 5. Try **W A S D E**: nothing moves behind the browser.
 6. Close the window with its own **X** (top right) or **Alt+F4**.
@@ -178,10 +178,10 @@ The prompt is a label for a sighted player; everything the game needs is in the 
 **You should see,** in the Console, in this order:
 
 ```text
-[BenchInteraction] Bench ready: page standalone.html, browser Computer, player Player.
-[BenchInteraction] Player at the bench. Press E to open standalone.html.
-[ComputerBrowserWindow] Opened file:///…/StreamingAssets/standalone.html
-[BenchInteraction] Opened standalone.html over the Workshop.
+[BenchInteraction] Bench ready: page lesson-1.html, browser Computer, player Player.
+[BenchInteraction] Player at the bench. Press E to open lesson-1.html.
+[ComputerBrowserWindow] Opened file:///…/StreamingAssets/lesson-1.html
+[BenchInteraction] Opened lesson-1.html over the Workshop.
 [ComputerBrowserWindow] Browser window closed.
 [BenchInteraction] Back in the Workshop. Press E to return to the bench.
 ```
