@@ -190,14 +190,22 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
 
     <h2>How this works</h2>
     <ol class="stages">
-      <li class="current">Match each part to what it does.</li>
+      <li class="current">Meet the parts on the bench.</li>
+      <li class="later">Match each part to what it does.</li>
       <li class="later">Read the safety card before touching anything.</li>
       <li class="later">Rebuild the computer and boot it.</li>
     </ol>
 
+    <h2 id="guide-heading">Meet the parts on the bench</h2>
+    <p>Eight parts, one at a time. Open each to read what it is for, where it connects, and one
+      thing worth knowing. Nothing to memorise: the matching comes next, and these entries stay
+      here while you do it.</p>
+    <div class="guide" id="guide" aria-labelledby="guide-heading"></div>
+
     <h2 id="match-heading">Match each part to what it does</h2>
-    <p>Pick the purpose for every part. A wrong answer costs nothing — the lesson says
-      what the mix-up was, and you try again as often as you like.</p>
+    <p>Now the same eight parts, with their purposes shuffled. Pick the purpose for every one.
+      The entries above are still there if you need them, and a wrong answer costs nothing — the
+      lesson says what the mix-up was, and you try again as often as you like.</p>
 
     <p class="match-hint" id="match-hint">Drag a part onto the purpose it belongs to. From the keyboard:
       press Enter on a part to pick it up, Tab to a purpose, press Enter again to place it.</p>
@@ -219,11 +227,6 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
       </div>
       <p class="match-summary" id="match-summary" tabindex="-1"></p>
     </form>
-
-    <h2 id="guide-heading">The parts on the bench</h2>
-    <p>Each part opens to show what it is for, where it connects, and one thing worth
-      knowing. Come back here at any point.</p>
-    <div class="guide" id="guide" aria-labelledby="guide-heading"></div>
 
     <p>Peripherals — the monitor, keyboard and mouse — come later, when you plug them in.</p>
 
@@ -692,7 +695,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
   window.setTimeout(function () {
     announce(
       'Simulated workbench. Nothing here touches a real computer. ' +
-      'Eight parts to match, then the safety card. Press Tab to begin.'
+      'Eight parts to meet, then match them to their purposes, then the safety card. Press Tab to begin.'
     );
   }, 600);
 

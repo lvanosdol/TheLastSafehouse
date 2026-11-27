@@ -211,7 +211,7 @@ try {
 
   await page.keyboard.press('Tab');
   const fifth = await page.evaluate(() => document.activeElement.tagName.toLowerCase());
-  check('Fifth Tab reaches the parts column', fifth === 'button', fifth);
+  check('Fifth Tab reaches the first part entry in the guide', fifth === 'summary', fifth);
 
   // ---- 5. the skip link moves focus --------------------------------------
 
