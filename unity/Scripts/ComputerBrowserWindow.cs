@@ -199,6 +199,15 @@ namespace Safehouse.Spike
             }
 
             SetWindowPos(handle, IntPtr.Zero, bounds.X, bounds.Y, bounds.Width, bounds.Height, SwpShowWindow);
+
+            // Windows often refuses SetForegroundWindow from a process that is not
+            // already in front, which leaves the page behind the game window. A brief
+            // topmost flip is the reliable way to raise it without leaving it pinned
+            // above everything for the rest of the session.
+            ShowWindow(handle, SwShowNormal);
+            SetWindowPos(handle, HwndTopMost, 0, 0, 0, 0, SwpNoMove | SwpNoSize | SwpNoActivate);
+            SetWindowPos(handle, HwndNoTopMost, 0, 0, 0, 0, SwpNoMove | SwpNoSize | SwpNoActivate);
+
             if (focusOnOpen)
                 SetForegroundWindow(handle);
         }
@@ -359,6 +368,16 @@ namespace Safehouse.Spike
         }
 
         private const uint SwpShowWindow = 0x0040;
+        private const uint SwpNoMove = 0x0002;
+        private const uint SwpNoSize = 0x0001;
+        private const uint SwpNoActivate = 0x0010;
+        private const int SwShowNormal = 1;
+
+        private static readonly IntPtr HwndTopMost = new IntPtr(-1);
+        private static readonly IntPtr HwndNoTopMost = new IntPtr(-2);
+
+        [DllImport("user32.dll")]
+        private static extern bool ShowWindow(IntPtr hWnd, int command);
 
         private delegate bool EnumWindowsProc(IntPtr window, IntPtr parameter);
 
