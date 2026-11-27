@@ -52,6 +52,20 @@ The project needs two files: `PlayerMove.cs` and `BenchInteraction.cs`, both fro
 
 Either way, the file names must end in `.cs`. A file called `PlayerMove.cs.txt` will be ignored by Unity — if that happens, rename it and drop the `.txt`.
 
+### The host file must be current too
+
+If the project already has `Assets/Scripts/ComputerBrowserWindow.cs` from the Phase 1 spike, it is out of date: it was written before the host could open a page by name. `BenchInteraction` calls `Open("lesson-1.html")`, so that older copy fails to compile with:
+
+```text
+error CS1501: No overload for method 'Open' takes 1 arguments
+```
+
+Replace it with the current file from `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/ComputerBrowserWindow.cs`. Drag the downloaded file onto `Assets/Scripts` and choose **Replace** when Unity asks.
+
+**Replace, do not delete.** Deleting the script inside Unity and importing it again gives it a new identity, and the `Computer` object's component would be lost with it, along with its settings. Overwriting the file keeps the component and only changes the code. It also brings the window-positioning fix recorded in `docs/playtests/2026-11-27-spike-browser-window.md`.
+
+**You should see:** no red in the Console, `Computer` still listing **Computer Browser Window** with **Open On Start** still unticked, and **Add Component** offering **Safehouse → Bench Interaction**.
+
 **You should see:** both files listed in `Assets/Scripts`. Click `PlayerMove` once and its code appears in the **Inspector** on the right. If the Console turns red with `error CS…`, copy the first red line and tell me.
 
 ## Step 2 — Turn on the new Input System
@@ -182,6 +196,7 @@ If the page opens but does not move into place, or the Console says `Missing pag
 |---|---|---|
 | **Add Component** has no **Safehouse** section | The scripts are not in the project, or did not compile | Check `Assets/Scripts` holds both `.cs` files (Step 1), then read the first red Console line |
 | `CS0246` naming `UnityEngine.InputSystem` | New Input System not installed or not active | Step 2 |
+| `CS1501: No overload for method 'Open' takes 1 arguments` | The project's `ComputerBrowserWindow.cs` is the Phase 1 copy, before `Open(page)` existed | Replace that file with the current one — Step 1, "The host file must be current too" |
 | `W` does nothing | The editor's other panels have keyboard focus | Click once inside the Game view |
 | Turning does not turn the view | Camera not a child of Player | Step 5 |
 | No prompt at the bench | Not inside the box, or the box is not a trigger | Step 8, and walk closer |
