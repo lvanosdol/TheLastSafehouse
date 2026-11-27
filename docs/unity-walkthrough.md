@@ -169,6 +169,9 @@ The script does three things: waits for the browser engine to start, builds the 
 7. In the same **Browser Client** block, set **Engine Startup Timeout** to `10000`. Leave **Resolution** at its default.
 8. Leave **Initial Url** alone — it still says `https://voltstro.dev`, and that is useful: if you ever see Voltstro's site appear, the browser itself is working.
 9. **Add Component** → type `Load Prototype Page` → press Enter, so it is on the same Raw Image. Leave **Use Local Server** unticked.
+   - **What that is:** the script you saved in step 6, `Assets/Scripts/LoadPrototypePage.cs`. Unity writes class names with spaces in its menus, so `LoadPrototypePage` appears as **Load Prototype Page**. It is the only custom script in the project — everything else in the list belongs to Unity or to the browser package.
+   - **You can also just drag the file:** drag `LoadPrototypePage.cs` from the Project window onto the Raw Image object. That adds the component without searching for it.
+   - **If it is not in the list,** the script is not compiling, and the Console is where the reason is. A file named `LoadPrototypePage.cs.txt`, a file outside `Assets`, or a compile error in the browser package will each hide it.
 
 **You should see:** in the Hierarchy, `Canvas` and `EventSystem` (if `EventSystem` is missing, right-click in the Hierarchy → **UI → Event System** — without it, clicks and keystrokes never reach the page). In the Inspector, the Raw Image now has: Rect Transform, Canvas Renderer, Raw Image, Web Browser Basic, Load Prototype Page.
 
