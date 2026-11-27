@@ -4,6 +4,22 @@ Written for someone who has not used Unity before, like `docs/unity-walkthrough.
 
 This covers tasks 1–3 of `docs/phase2-vertical-slice.md`. About 20 minutes, most of it finding things in the Inspector.
 
+## Finding the parts of the editor
+
+The steps below name these panels. If any name is unfamiliar, this is the map.
+
+| What the steps call it | Where it is |
+|---|---|
+| **Hierarchy** | Top-left panel: every object in the open scene |
+| **Scene** view | The large middle panel: the 3D view you build in |
+| **Game** view | The tab beside **Scene**: what the camera sees |
+| **Inspector** | Right-hand panel: the settings of the selected object, with its name at the top |
+| **Project** | Bottom panel: the files under `Assets` |
+| **Console** | The tab beside **Project**: errors and messages |
+| **Add Component** | The button at the *bottom* of the Inspector, once an object is selected; scroll the Inspector down if you cannot see it. The **Component** menu in the top bar does the same and has a search box |
+
+Two habits worth forming now: **Add Component applies to the object selected in the Hierarchy**, so glance at the name at the top of the Inspector before clicking; and **Ctrl+S saves the scene**, which is not automatic.
+
 ## Before you start
 
 1. Open **Unity Hub**, click **Projects**, open `SafehouseSpike`. Let it finish loading; the spinner at the bottom right must stop.
