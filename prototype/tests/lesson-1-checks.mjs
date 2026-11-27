@@ -131,6 +131,7 @@ try {
           .trim();
       }
       if (el.getAttribute('aria-label')) return el.getAttribute('aria-label').trim();
+      if (el.labels && el.labels.length) return el.labels[0].textContent.trim();
       return (el.innerText || el.value || el.getAttribute('title') || '').trim();
     };
 
@@ -210,7 +211,7 @@ try {
 
   await page.keyboard.press('Tab');
   const fifth = await page.evaluate(() => document.activeElement.tagName.toLowerCase());
-  check('Fifth Tab reaches the first part', fifth === 'summary', fifth);
+  check('Fifth Tab reaches the first purpose chooser', fifth === 'select', fifth);
 
   // ---- 5. the skip link moves focus --------------------------------------
 
@@ -280,6 +281,134 @@ try {
   await sleep(120);
   const closedAgain = await page.evaluate(() => document.querySelector('.guide details').open);
   check('The same part closes with Enter', closedAgain === false);
+
+  // ---- 9. the matching task ------------------------------------------------
+
+  const matchShape = await page.evaluate(() => {
+    const rows = Array.from(document.querySelectorAll('.match-row'));
+    return {
+      rows: rows.length,
+      labelled: rows.every((row) => {
+        const select = row.querySelector('select');
+        const label = row.querySelector('label');
+        return label && label.getAttribute('for') === select.id && label.textContent.trim().length > 2;
+      }),
+      described: rows.every((row) => {
+        const select = row.querySelector('select');
+        return select.getAttribute('aria-describedby') === row.querySelector('.feedback').id;
+      }),
+      choices: rows.every((row) => row.querySelectorAll('option').length === 9),
+    };
+  });
+
+  check('The matching task offers eight parts', matchShape.rows === 8, String(matchShape.rows));
+  check('Every purpose chooser is labelled with its part', matchShape.labelled);
+  check('Every chooser is tied to its own feedback line', matchShape.described);
+  check('Every chooser offers a blank plus all eight purposes', matchShape.choices);
+
+  // The guide and the matching must agree: read the purposes out of the guide.
+  const correct = await page.evaluate(() => {
+    const map = {};
+    document.querySelectorAll('.guide details').forEach((details) => {
+      const name = details.querySelector('summary').textContent.trim();
+      const purpose = details.querySelector('.detail-body p').textContent.trim().replace(/\.$/, '');
+      map[name] = purpose;
+    });
+    return map;
+  });
+
+  const selectFor = (partName) =>
+    page.evaluate((name) => {
+      const row = Array.from(document.querySelectorAll('.match-row')).find(
+        (candidate) => candidate.querySelector('label').textContent.trim() === name
+      );
+      return row.querySelector('select').id;
+    }, partName);
+
+  // Keyboard selection, not a mouse: arrows change the choice on a focused select.
+  await page.focus('#' + (await selectFor('RAM')));
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowDown');
+  const keyboardChoice = await page.$eval('#' + (await selectFor('RAM')), (el) => el.value);
+  check('A purpose can be chosen with the arrow keys', keyboardChoice.length > 10, keyboardChoice);
+
+  for (const [name, purpose] of Object.entries(correct)) {
+    await page.select('#' + (await selectFor(name)), purpose);
+  }
+
+  await page.focus('#match-form button[type="submit"]');
+  await page.keyboard.press('Enter');
+  await sleep(150);
+
+  const allRight = await page.evaluate(() => ({
+    summary: document.getElementById('match-summary').textContent.trim(),
+    focusedSummary: document.activeElement.id === 'match-summary',
+    next: document.getElementById('next-step').textContent.trim(),
+  }));
+  check('Eight correct answers are accepted', /All 8 matched/.test(allRight.summary), allRight.summary);
+  check('The result takes focus, so it is heard', allRight.focusedSummary);
+  check('The next step is named once the parts match', /safety card/i.test(allRight.next), allRight.next);
+
+  // One deliberate mistake: RAM given storage's purpose.
+  await page.select('#' + (await selectFor('RAM')), correct.Storage);
+  await page.focus('#match-form button[type="submit"]');
+  await page.keyboard.press('Enter');
+  await sleep(150);
+
+  const oneWrong = await page.evaluate(() => {
+    const row = Array.from(document.querySelectorAll('.match-row')).find(
+      (candidate) => candidate.querySelector('label').textContent.trim() === 'RAM'
+    );
+    return {
+      summary: document.getElementById('match-summary').textContent.trim(),
+      feedback: row.querySelector('.feedback').textContent.trim(),
+      enabled: !row.querySelector('select').disabled,
+    };
+  });
+
+  check('A wrong answer is counted', /7 of 8 match/.test(oneWrong.summary), oneWrong.summary);
+  check('The summary names the part that is wrong', /RAM needs another look/.test(oneWrong.summary), oneWrong.summary);
+  check(
+    'The wrong row names the part, the mistake and the right answer',
+    /Not yet/.test(oneWrong.feedback) && /Storage/.test(oneWrong.feedback) && /RAM:/.test(oneWrong.feedback),
+    oneWrong.feedback
+  );
+  check('A wrong answer costs nothing: the row stays editable', oneWrong.enabled);
+
+  // Correct it and resubmit: free retry.
+  await page.select('#' + (await selectFor('RAM')), correct.RAM);
+  await page.focus('#match-form button[type="submit"]');
+  await page.keyboard.press('Enter');
+  await sleep(150);
+  const retried = await page.$eval('#match-summary', (el) => el.textContent.trim());
+  check('Correcting the mistake passes without any reset', /All 8 matched/.test(retried), retried);
+
+  // A blank row is named, not silently marked wrong.
+  await page.select('#' + (await selectFor('Case')), '');
+  await page.focus('#match-form button[type="submit"]');
+  await page.keyboard.press('Enter');
+  await sleep(150);
+  const blankRow = await page.evaluate(() => ({
+    summary: document.getElementById('match-summary').textContent.trim(),
+    feedback: Array.from(document.querySelectorAll('.match-row'))
+      .find((row) => row.querySelector('label').textContent.trim() === 'Case')
+      .querySelector('.feedback').textContent.trim(),
+  }));
+  check('An unanswered part is asked for by name', /Still to choose: Case/.test(blankRow.summary), blankRow.summary);
+  check('An unanswered row says what to do', /Choose a purpose for Case/.test(blankRow.feedback), blankRow.feedback);
+
+  // Clearing starts the task over without losing the guide.
+  await page.focus('#match-reset');
+  await page.keyboard.press('Enter');
+  await sleep(150);
+  const cleared = await page.evaluate(() => ({
+    emptied: Array.from(document.querySelectorAll('.match-row select')).every((select) => select.value === ''),
+    summary: document.getElementById('match-summary').textContent.trim(),
+    guide: document.querySelectorAll('.guide details').length,
+  }));
+  check('Clearing empties every choice', cleared.emptied);
+  check('Clearing says so', /Answers cleared/.test(cleared.summary), cleared.summary);
+  check('Clearing keeps the guide', cleared.guide === 8, String(cleared.guide));
 
   // ---- 9. preferences and errors -----------------------------------------
 

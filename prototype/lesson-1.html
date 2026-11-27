@@ -9,6 +9,10 @@
   Everything the player must operate lives here, not in Unity: Unity's own UI is
   not exposed to a screen reader, and neither is a texture-based webview.
   See docs/webview-evaluation.md.
+
+  The eight parts appear twice — as a collapsible guide and as the matching
+  task — so both are rendered from one data block. Two copies of those sentences
+  would drift the first time either was edited.
 -->
 <html lang="en">
 <head>
@@ -53,8 +57,8 @@ body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
 .simulation-flag { margin: 0; font-size: 0.95rem; color: var(--ink-dim); }
 
 .text-size { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
-.text-size button {
-  font: inherit; padding: 0.25rem 0.6rem; min-width: 2.5rem;
+.text-size button, .match-actions button {
+  font: inherit; padding: 0.35rem 0.7rem;
   background: var(--surface-2); color: var(--ink);
   border: 1px solid var(--line); border-radius: 4px; cursor: pointer;
 }
@@ -72,6 +76,22 @@ p { margin: 0 0 0.9rem; max-width: 42rem; }
 .stages li { margin-bottom: 0.4rem; }
 .stages .current { color: var(--ink); font-weight: 600; }
 .stages .later { color: var(--ink-dim); }
+
+.match-list { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: 0.6rem; }
+.match-row {
+  display: grid; gap: 0.4rem; padding: 0.7rem 0.9rem;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+}
+.match-row.correct { border-color: var(--ok); border-left-width: 4px; }
+.match-row.incorrect { border-color: var(--danger); border-left-width: 4px; }
+.match-row label { font-weight: 600; }
+.match-row select {
+  font: inherit; max-width: 36rem; padding: 0.4rem 0.5rem;
+  background: #06101c; color: var(--ink); border: 1px solid var(--line); border-radius: 4px;
+}
+.match-row .feedback { margin: 0; font-size: 0.95rem; color: var(--ink-dim); max-width: 42rem; }
+.match-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0 0 1rem; }
+.match-summary { font-weight: 600; margin: 0 0 1rem; }
 
 .guide { display: grid; gap: 0.5rem; margin: 0 0 1rem; }
 details {
@@ -119,11 +139,11 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     --line: #fff;
     --focus: #ffff00;
   }
-  details, .pending, .topbar, .last-announcement { border-color: var(--line); }
+  details, .pending, .topbar, .last-announcement, .match-row { border-color: var(--line); }
 }
 
 @media (forced-colors: active) {
-  details, .pending { border: 1px solid CanvasText; }
+  details, .pending, .match-row { border: 1px solid CanvasText; }
 }
   </style>
 </head>
@@ -157,123 +177,29 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
       <li class="later">Read the safety card before touching anything.</li>
       <li class="later">Rebuild the computer and boot it.</li>
     </ol>
-    <p>The parts are laid out on the bench in front of you. Each one below can be opened to
-      read what it is for; you can come back to them at any point in the lesson.</p>
 
-    <h2>The parts on the bench</h2>
-    <p>Eight parts, one at a time. Open one to read its purpose, where it connects, and one
-      thing worth knowing.</p>
+    <h2 id="match-heading">Match each part to what it does</h2>
+    <p>Pick the purpose for every part. A wrong answer costs nothing — the lesson says
+      what the mix-up was, and you try again as often as you like.</p>
 
-    <div class="guide">
-      <details>
-        <summary>Motherboard</summary>
-        <div class="detail-body">
-          <p>Connects the components and lets them communicate.</p>
-          <dl>
-            <dt>Where it connects</dt>
-            <dd>Onto the standoffs inside the case, with everything else attached to it.</dd>
-            <dt>Worth knowing</dt>
-            <dd>Every other part on this bench ends up plugged into this board.</dd>
-          </dl>
-        </div>
-      </details>
+    <form id="match-form" aria-labelledby="match-heading" novalidate>
+      <ol class="match-list" id="match-list"></ol>
+      <div class="match-actions">
+        <button type="submit">Check my answers</button>
+        <button type="button" id="match-reset">Clear my answers</button>
+      </div>
+      <p class="match-summary" id="match-summary" tabindex="-1"></p>
+    </form>
 
-      <details>
-        <summary>Processor</summary>
-        <div class="detail-body">
-          <p>Carries out the instructions the computer is given.</p>
-          <dl>
-            <dt>Where it connects</dt>
-            <dd>Into the socket on the motherboard, under the cooling assembly.</dd>
-            <dt>Worth knowing</dt>
-            <dd>It has one correct orientation, marked by a small triangle in the corner.</dd>
-          </dl>
-        </div>
-      </details>
-
-      <details>
-        <summary>RAM</summary>
-        <div class="detail-body">
-          <p>Temporary working memory for the programs that are running.</p>
-          <dl>
-            <dt>Where it connects</dt>
-            <dd>The memory slots on the motherboard, pushed in until the clips close.</dd>
-            <dt>Worth knowing</dt>
-            <dd>Its contents are gone when the power is off. Files are kept by storage, not by RAM.</dd>
-          </dl>
-        </div>
-      </details>
-
-      <details>
-        <summary>Storage</summary>
-        <div class="detail-body">
-          <p>Keeps files after the power is off.</p>
-          <dl>
-            <dt>Where it connects</dt>
-            <dd>An SSD fits an M.2 slot on the board; a hard drive connects by cable.</dd>
-            <dt>Worth knowing</dt>
-            <dd>Windows itself lives here, which is why the computer needs it to start.</dd>
-          </dl>
-        </div>
-      </details>
-
-      <details>
-        <summary>Power supply</summary>
-        <div class="detail-body">
-          <p>Provides power to the whole system.</p>
-          <dl>
-            <dt>Where it connects</dt>
-            <dd>Feeds the board through the 24-pin cable and the processor through its own cable.</dd>
-            <dt>Worth knowing</dt>
-            <dd>It is never opened, even unplugged: it holds a dangerous charge. That is on the safety card.</dd>
-          </dl>
-        </div>
-      </details>
-
-      <details>
-        <summary>Graphics card</summary>
-        <div class="detail-body">
-          <p>Produces the picture for the monitor.</p>
-          <dl>
-            <dt>Where it connects</dt>
-            <dd>The long PCIe slot, with the monitor plugged into the card rather than the board.</dd>
-            <dt>Worth knowing</dt>
-            <dd>A monitor in the motherboard’s video port stays blank when a card is installed.</dd>
-          </dl>
-        </div>
-      </details>
-
-      <details>
-        <summary>Cooling</summary>
-        <div class="detail-body">
-          <p>Stops the components overheating.</p>
-          <dl>
-            <dt>Where it connects</dt>
-            <dd>Onto the processor, with its fan cable to the labelled header on the board.</dd>
-            <dt>Worth knowing</dt>
-            <dd>Fans starting is one of the first signs of life when the power goes on.</dd>
-          </dl>
-        </div>
-      </details>
-
-      <details>
-        <summary>Case</summary>
-        <div class="detail-body">
-          <p>Holds and protects the parts.</p>
-          <dl>
-            <dt>Where it connects</dt>
-            <dd>Everything mounts inside it. The Safehouse chassis arrives with its buttons and lights already wired.</dd>
-            <dt>Worth knowing</dt>
-            <dd>Its power button only does anything once the power supply is switched on.</dd>
-          </dl>
-        </div>
-      </details>
-    </div>
+    <h2 id="guide-heading">The parts on the bench</h2>
+    <p>Each part opens to show what it is for, where it connects, and one thing worth
+      knowing. Come back here at any point.</p>
+    <div class="guide" id="guide" aria-labelledby="guide-heading"></div>
 
     <p>Peripherals — the monitor, keyboard and mouse — come later, when you plug them in.</p>
 
     <h2>What comes next</h2>
-    <p class="pending">The parts check opens here. Until then this page shows the guide only.</p>
+    <p class="pending" id="next-step">The safety card opens once every part is matched.</p>
   </main>
 
   <p class="last-announcement" aria-hidden="true">
@@ -288,8 +214,6 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
   var assertive = document.getElementById('alert-announcer');
   var mirror = document.getElementById('last-announcement');
 
-  // Announce a change. Errors use the assertive region. A tick lets a repeated
-  // identical message be spoken again.
   function announce(message, options) {
     var urgent = Boolean(options && options.urgent);
     var region = urgent ? assertive : polite;
@@ -297,6 +221,250 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     window.setTimeout(function () { region.textContent = message; }, 30);
     if (mirror) mirror.textContent = (urgent ? 'ERROR: ' : '') + message;
   }
+
+  // The eight parts, once. The guide and the matching task are both rendered
+  // from this list, so a correction here corrects both.
+  var PARTS = [
+    {
+      id: 'motherboard',
+      name: 'Motherboard',
+      purpose: 'Connects the components and lets them communicate',
+      connects: 'Onto the standoffs inside the case, with everything else attached to it',
+      note: 'Every other part on this bench ends up plugged into this board'
+    },
+    {
+      id: 'processor',
+      name: 'Processor',
+      purpose: 'Carries out the instructions the computer is given',
+      connects: 'Into the socket on the motherboard, under the cooling assembly',
+      note: 'It has one correct orientation, marked by a small triangle in the corner'
+    },
+    {
+      id: 'ram',
+      name: 'RAM',
+      purpose: 'Temporary working memory for the programs that are running',
+      connects: 'The memory slots on the motherboard, pushed in until the clips close',
+      note: 'Its contents are gone when the power is off; files are kept by storage, not by RAM'
+    },
+    {
+      id: 'storage',
+      name: 'Storage',
+      purpose: 'Keeps files after the power is off',
+      connects: 'An SSD fits an M.2 slot on the board; a hard drive connects by cable',
+      note: 'Windows itself lives here, which is why the computer needs it to start'
+    },
+    {
+      id: 'power',
+      name: 'Power supply',
+      purpose: 'Provides power to the whole system',
+      connects: 'Feeds the board through the 24-pin cable and the processor through its own cable',
+      note: 'It is never opened, even unplugged: it holds a dangerous charge. That is on the safety card'
+    },
+    {
+      id: 'graphics',
+      name: 'Graphics card',
+      purpose: 'Produces the picture for the monitor',
+      connects: 'The long PCIe slot, with the monitor plugged into the card rather than the board',
+      note: 'A monitor in the motherboard video port stays blank when a card is installed'
+    },
+    {
+      id: 'cooling',
+      name: 'Cooling',
+      purpose: 'Stops the components overheating',
+      connects: 'Onto the processor, with its fan cable to the labelled header on the board',
+      note: 'Fans starting is one of the first signs of life when the power goes on'
+    },
+    {
+      id: 'case',
+      name: 'Case',
+      purpose: 'Holds and protects the parts',
+      connects: 'Everything mounts inside it; the Safehouse chassis arrives with its buttons and lights already wired',
+      note: 'Its power button only does anything once the power supply is switched on'
+    }
+  ];
+
+  // Offered in a fixed order, deliberately not the order of the parts, so the
+  // page is identical every time it opens and the answer cannot be read off
+  // down the list.
+  var PURPOSE_ORDER = ['storage', 'cooling', 'motherboard', 'graphics', 'processor', 'case', 'ram', 'power'];
+
+  function partById(id) {
+    for (var i = 0; i < PARTS.length; i += 1) {
+      if (PARTS[i].id === id) return PARTS[i];
+    }
+    return null;
+  }
+
+  function partForPurpose(purpose) {
+    for (var i = 0; i < PARTS.length; i += 1) {
+      if (PARTS[i].purpose === purpose) return PARTS[i];
+    }
+    return null;
+  }
+
+  function listNames(names) {
+    if (names.length === 1) return names[0];
+    return names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
+  }
+
+  function renderGuide() {
+    var guide = document.getElementById('guide');
+
+    PARTS.forEach(function (part) {
+      var details = document.createElement('details');
+      var summary = document.createElement('summary');
+      summary.textContent = part.name;
+
+      var body = document.createElement('div');
+      body.className = 'detail-body';
+
+      var purpose = document.createElement('p');
+      purpose.textContent = part.purpose + '.';
+
+      var list = document.createElement('dl');
+
+      var connectsTerm = document.createElement('dt');
+      connectsTerm.textContent = 'Where it connects';
+      var connectsValue = document.createElement('dd');
+      connectsValue.textContent = part.connects + '.';
+
+      var noteTerm = document.createElement('dt');
+      noteTerm.textContent = 'Worth knowing';
+      var noteValue = document.createElement('dd');
+      noteValue.textContent = part.note + '.';
+
+      list.appendChild(connectsTerm);
+      list.appendChild(connectsValue);
+      list.appendChild(noteTerm);
+      list.appendChild(noteValue);
+
+      body.appendChild(purpose);
+      body.appendChild(list);
+      details.appendChild(summary);
+      details.appendChild(body);
+      guide.appendChild(details);
+    });
+  }
+
+  function renderMatch() {
+    var list = document.getElementById('match-list');
+
+    PARTS.forEach(function (part) {
+      var row = document.createElement('li');
+      row.className = 'match-row';
+      row.setAttribute('data-part', part.id);
+
+      var label = document.createElement('label');
+      label.setAttribute('for', 'purpose-' + part.id);
+      label.textContent = part.name;
+
+      var select = document.createElement('select');
+      select.id = 'purpose-' + part.id;
+
+      var blank = document.createElement('option');
+      blank.value = '';
+      blank.textContent = 'Choose a purpose…';
+      select.appendChild(blank);
+
+      PURPOSE_ORDER.forEach(function (id) {
+        var option = document.createElement('option');
+        option.value = partById(id).purpose;
+        option.textContent = partById(id).purpose;
+        select.appendChild(option);
+      });
+
+      var feedback = document.createElement('p');
+      feedback.className = 'feedback';
+      feedback.id = 'feedback-' + part.id;
+      select.setAttribute('aria-describedby', feedback.id);
+
+      row.appendChild(label);
+      row.appendChild(select);
+      row.appendChild(feedback);
+      list.appendChild(row);
+    });
+  }
+
+  function rows() {
+    return Array.prototype.slice.call(document.querySelectorAll('.match-row'));
+  }
+
+  // Checks the resulting state, not the order the answers were given in. Focus
+  // moves to the summary, which is how a screen-reader player hears the result;
+  // each row keeps its own sentence for when they tab back to it.
+  function checkMatches(event) {
+    if (event) event.preventDefault();
+
+    var blank = [];
+    var wrong = [];
+    var right = 0;
+
+    rows().forEach(function (row) {
+      var part = partById(row.getAttribute('data-part'));
+      var select = row.querySelector('select');
+      var feedback = row.querySelector('.feedback');
+      var chosen = select.value;
+
+      row.classList.remove('correct', 'incorrect');
+
+      if (!chosen) {
+        blank.push(part.name);
+        feedback.textContent = 'Choose a purpose for ' + part.name + '.';
+        return;
+      }
+
+      if (chosen === part.purpose) {
+        right += 1;
+        row.classList.add('correct');
+        feedback.textContent = 'Correct. ' + part.name + ': ' + part.purpose + '.';
+        return;
+      }
+
+      var chosenPart = partForPurpose(chosen);
+      wrong.push(part.name);
+      row.classList.add('incorrect');
+      feedback.textContent =
+        'Not yet. That is what ' + chosenPart.name + ' does. ' +
+        part.name + ': ' + part.purpose + '.';
+    });
+
+    var summary = document.getElementById('match-summary');
+
+    if (blank.length > 0) {
+      summary.textContent = 'Still to choose: ' + listNames(blank) + '.';
+    } else if (wrong.length > 0) {
+      summary.textContent =
+        right + ' of ' + PARTS.length + ' match. ' + listNames(wrong) +
+        (wrong.length === 1 ? ' needs another look.' : ' need another look.');
+    } else {
+      summary.textContent = 'All ' + PARTS.length + ' matched. The safety card comes next.';
+      document.getElementById('next-step').textContent =
+        'Every part is matched. The safety card is next.';
+    }
+
+    summary.focus();
+  }
+
+  function resetMatch() {
+    rows().forEach(function (row) {
+      row.classList.remove('correct', 'incorrect');
+      row.querySelector('select').value = '';
+      row.querySelector('.feedback').textContent = '';
+    });
+
+    document.getElementById('next-step').textContent =
+      'The safety card opens once every part is matched.';
+
+    var summary = document.getElementById('match-summary');
+    summary.textContent = 'Answers cleared.';
+    summary.focus();
+  }
+
+  renderGuide();
+  renderMatch();
+
+  document.getElementById('match-form').addEventListener('submit', checkMatches);
+  document.getElementById('match-reset').addEventListener('click', resetMatch);
 
   var status = document.getElementById('text-size-status');
   var scale = 100;
@@ -320,18 +488,17 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     announce('This is a test announcement. If you can hear this, a screen reader is reading the page.');
   });
 
-  // Say what this page is, once, after it settles.
   window.setTimeout(function () {
     announce(
-      'Simulated workbench. Nothing here touches a real computer. Eight parts are on the bench; ' +
-      'open one with Enter to hear what it does.'
+      'Simulated workbench. Nothing here touches a real computer. ' +
+      'Eight parts to match, then the safety card. Press Tab to begin.'
     );
   }, 600);
 
   document.getElementById('bench').addEventListener(
     'focus',
     function () {
-      announce('Workbench. Eight parts to meet, then the safety card, then the rebuild.');
+      announce('Workbench. Match each part to its purpose, then check your answers.');
     },
     { once: true }
   );

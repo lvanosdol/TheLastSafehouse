@@ -23,6 +23,8 @@ For Lesson 1 that means: 3D bench as the thing the player approaches, and an acc
 
 **Task 4 done 2026-11-27:** `prototype/lesson-1.html` exists with the scaffolding, the eight-part guide and 28 automated checks (`cd prototype && npm test`), single-file because the host loads pages over `file://`. Tab order is asserted by the harness; the NVDA pass comes with task 9.
 | 5 | Parts matching: eight parts to their purposes, with specific feedback and a free retry | Wrong answers name the part and the mistake; no penalty |
+
+**Task 5 done 2026-11-27:** the eight parts are matched with one labelled chooser each; a wrong answer reads "Not yet. That is what Storage does. RAM: Temporary working memory…", the row stays editable, and correcting it passes without a reset. Nineteen checks cover it, on top of the twenty-eight for the shell — 47 for this page, 116 with the desktop suite.
 | 6 | Safety card: shown before assembly, dismissible, re-openable | Dialog semantics, Escape closes, focus returns |
 | 7 | Assembly: eleven placement steps, validated by resulting state not order, with the four named diagnostics | Each diagnostic fires only for its own condition; result screen shows the POST block |
 | 8 | Result and hand-off: `POWER: ON … WINDOWS: STARTING`, then "Workshop application: Not responding" | The lesson ends in the story beat, not a dead end |
