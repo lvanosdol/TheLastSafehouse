@@ -17,10 +17,10 @@ This covers tasks 1–3 of `docs/phase2-vertical-slice.md`. About 20 minutes, mo
 If the Hierarchy lists `Canvas`, `EventSystem` or `Computer`, those are left over from the Phase 1 spike: a Canvas with a Raw Image that drew the page into a texture. The game no longer draws the page itself, so none of it is used.
 
 1. Click `Canvas`, right-click → **Delete**. Do the same for `EventSystem`.
-2. Click `Computer` and look at the **Inspector**. If it says **Missing (Mono Script)**, right-click → **Delete**. If it holds real components and you meant it as the chassis placeholder, keep it and tell me what is on it.
+2. `Computer` **stays**. It carries **Computer Browser Window** — the host that opens the page in a real window — so it is doing exactly the job it should. Step 9 configures it. Only delete it if its Inspector shows **Missing (Mono Script)**, which would mean the host never made it into this scene; step 9 then adds one back.
 3. Leave `Global Volume` alone. It is the post-processing volume and does no harm.
 
-**You should see:** the Hierarchy down to Main Camera, Directional Light, Global Volume, plus whatever room geometry exists.
+**You should see:** the Hierarchy down to Main Camera, Directional Light, Global Volume, Computer, plus whatever room geometry exists.
 
 ## Step 0b — Build the room, if it is not there yet
 
@@ -119,18 +119,22 @@ This invisible box is how the game knows you are standing at the bench.
 
 ## Step 9 — The browser host
 
-1. With `Bench Trigger` selected, **Add Component →** search `Computer Browser Window`.
-2. In the new block, **untick Open On Start**. It is ticked by default, from the spike.
+The host lives on its own object, `Computer`, which is where it already is if you kept the spike's object. Keeping it separate is deliberate: the host belongs to the machine, the trigger belongs to the spot you stand in, and later interactions can point at the one host.
 
-**You should see:** the block with Page File Name `standalone.html`, Inset Percent, Use Isolated Profile, Focus On Open, Window Title Fragment, and Open On Start unticked.
+1. Select `Computer` in the Hierarchy. It should already carry **Computer Browser Window**. If it does not, **Add Component →** search `Computer Browser Window`.
+2. **Untick Open On Start.** This is the tick that has been opening the page the moment you press Play. The bench now decides when the page opens; with this left on you would get two windows, one at Play and one on **E**.
+3. Leave **Page File Name** at `standalone.html` and the rest at their defaults.
+
+**You should see:** the block with Page File Name `standalone.html`, Inset Percent, Use Isolated Profile, Focus On Open, Window Title Fragment, and Open On Start unticked. Pressing Play now opens nothing until the trigger asks.
 
 ## Step 10 — The bench interaction
 
-1. Still on `Bench Trigger`, **Add Component →** search `Bench Interaction`.
+1. Select `Bench Trigger`, **Add Component →** search `Bench Interaction`.
 2. In its **Lesson** block, set **Lesson Page** to `standalone.html` for now. `lesson-1.html` does not exist yet; it is my next task. This is the only value you will change back later.
-3. Leave **Browser**, **Player** and **Prompt** empty for the moment. The script finds the first two itself; the prompt is step 11.
+3. Drag `Computer` from the Hierarchy into the **Browser** field. Without this the bench has no host to open and the Console will say so.
+4. Leave **Player** and **Prompt** empty for the moment. The player is found in the scene; the prompt is step 11.
 
-**You should see:** Lesson Page `standalone.html`, Interact Key `E`, Face Viewer ticked.
+**You should see:** Lesson Page `standalone.html`, Browser reading `Computer (ComputerBrowserWindow)`, Interact Key `E`, Face Viewer ticked.
 
 ## Step 11 — The prompt
 
