@@ -110,6 +110,32 @@ p { margin: 0 0 0.9rem; max-width: 42rem; }
 .match-summary { font-weight: 600; margin: 0 0 1rem; }
 .match-hint { color: var(--ink-dim); font-size: 0.95rem; margin: 0 0 0.75rem; }
 
+.scrim {
+  position: fixed; inset: 0; background: rgba(4, 10, 18, 0.78);
+  display: flex; align-items: center; justify-content: center; padding: 1rem; z-index: 40;
+}
+.scrim[hidden] { display: none; }
+.dialog {
+  width: min(34rem, 96vw); max-height: 90vh; overflow: auto;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+}
+.dialog h2 {
+  margin: 0; padding: 0.8rem 1.1rem; font-size: 1.05rem;
+  background: #1d3350; border-bottom: 1px solid var(--line);
+}
+.dialog-body { padding: 1rem 1.1rem; }
+.dialog-body p { max-width: none; }
+.dialog-body ul { margin: 0 0 0.9rem; padding-left: 1.3rem; }
+.dialog-body li { margin-bottom: 0.45rem; }
+.disclaimer { color: var(--ink-dim); font-style: italic; margin: 0; }
+.dialog-actions { padding: 0 1.1rem 1rem; display: flex; justify-content: flex-end; }
+.dialog-actions button, .inline-action button {
+  font: inherit; padding: 0.45rem 0.9rem;
+  background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 4px; cursor: pointer;
+}
+.inline-action { margin: 0 0 1rem; }
+
 .guide { display: grid; gap: 0.5rem; margin: 0 0 1rem; }
 details {
   background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
@@ -232,6 +258,27 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
 
     <h2>What comes next</h2>
     <p class="pending" id="next-step">The safety card opens once every part is matched.</p>
+    <p class="inline-action"><button type="button" id="safety-open">Read the safety card</button></p>
+
+    <div class="scrim" id="safety-scrim" hidden>
+      <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="safety-title" aria-describedby="safety-intro">
+        <h2 id="safety-title">Real-world safety</h2>
+        <div class="dialog-body" id="safety-intro">
+          <p>Before you open a real computer:</p>
+          <ul>
+            <li>Shut the computer down and unplug it before opening anything.</li>
+            <li>Never open a power supply. It holds a dangerous charge even after unplugging.</li>
+            <li>Discharge static by touching a grounded metal surface, or wear a strap, before handling parts.</li>
+            <li>Never force a component or connector. If it does not fit easily, stop and check the manual.</li>
+            <li>Leave work you are not confident in to a qualified professional.</li>
+          </ul>
+          <p class="disclaimer">This simulation teaches the concepts. It is not a guide to dismantling your own computer.</p>
+        </div>
+        <div class="dialog-actions">
+          <button type="button" id="safety-close">Close the safety card</button>
+        </div>
+      </div>
+    </div>
   </main>
 
   <p class="last-announcement" aria-hidden="true">
@@ -609,6 +656,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
 
     var wrong = [];
     var right = 0;
+    var solved = false;
 
     var inPool = PARTS.filter(function (part) {
       return !isPlaced(part.id);
@@ -658,9 +706,14 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
       summary.textContent = 'All ' + PARTS.length + ' matched. The safety card comes next.';
       document.getElementById('next-step').textContent =
         'Every part is matched. The safety card is next.';
+      solved = true;
     }
 
-    summary.focus();
+    // Solving the board is the moment the safety card is due. Opening it takes
+    // focus into the dialog; otherwise the result summary keeps it so the answer
+    // is heard where the player already is.
+    if (solved) openSafetyCard(summary);
+    else summary.focus();
   }
 
   function resetMatch() {
@@ -692,6 +745,66 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
 
   document.getElementById('match-form').addEventListener('submit', checkMatches);
   document.getElementById('match-reset').addEventListener('click', resetMatch);
+
+  // The safety card. A dialog with a name, focus moved inside, Escape to close,
+  // Tab kept inside while it is open, and focus returned to whatever opened it.
+  var safetyScrim = document.getElementById('safety-scrim');
+  var safetyClose = document.getElementById('safety-close');
+  var safetyOpener = null;
+
+  function focusablesWithin(container) {
+    return Array.prototype.slice.call(
+      container.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])')
+    );
+  }
+
+  function openSafetyCard(opener) {
+    safetyOpener = opener || null;
+    safetyScrim.hidden = false;
+    safetyClose.focus();
+  }
+
+  function closeSafetyCard() {
+    safetyScrim.hidden = true;
+
+    if (safetyOpener && safetyOpener.focus) safetyOpener.focus();
+    else document.getElementById('match-summary').focus();
+
+    var next = document.getElementById('next-step');
+    if (/safety card/i.test(next.textContent)) {
+      next.textContent = 'The safety card is read. The rebuild comes next.';
+    }
+  }
+
+  safetyScrim.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeSafetyCard();
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    var items = focusablesWithin(safetyScrim);
+    if (items.length === 0) return;
+
+    var first = items[0];
+    var last = items[items.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  safetyClose.addEventListener('click', closeSafetyCard);
+
+  document.getElementById('safety-open').addEventListener('click', function (event) {
+    openSafetyCard(event.currentTarget);
+  });
 
   var status = document.getElementById('text-size-status');
   var scale = 100;

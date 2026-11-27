@@ -362,6 +362,64 @@ try {
     secondOrder.purposes.join(',')
   );
 
+  // ---- 9c. the safety card ------------------------------------------------
+
+  check('The safety card starts closed', await page.$eval('#safety-scrim', (el) => el.hidden));
+
+  await page.focus('#safety-open');
+  await page.keyboard.press('Enter');
+  await sleep(150);
+
+  const card = await page.evaluate(() => {
+    const scrim = document.getElementById('safety-scrim');
+    const dialog = scrim.querySelector('[role="dialog"]');
+    return {
+      hidden: scrim.hidden,
+      modal: dialog.getAttribute('aria-modal'),
+      labelled: dialog.getAttribute('aria-labelledby'),
+      title: document.getElementById('safety-title').textContent.trim(),
+      rules: dialog.querySelectorAll('li').length,
+      disclaimer: dialog.querySelector('.disclaimer').textContent.trim(),
+      focusInside: dialog.contains(document.activeElement),
+    };
+  });
+
+  check('The button opens the card and puts focus in it', card.hidden === false && card.focusInside);
+  check(
+    'The card is a modal dialog with a name',
+    card.modal === 'true' && card.labelled === 'safety-title' && card.title === 'Real-world safety',
+    [card.modal, card.labelled, card.title].join(' / ')
+  );
+  check('The card lists the five rules', card.rules === 5, String(card.rules));
+  check(
+    'The card says it is not a dismantling guide',
+    /not a guide to dismantling your own computer/.test(card.disclaimer),
+    card.disclaimer
+  );
+
+  for (let press = 0; press < 3; press += 1) {
+    await page.keyboard.press('Tab');
+    await sleep(40);
+  }
+  const stillInside = await page.evaluate(() =>
+    document.querySelector('[role="dialog"]').contains(document.activeElement)
+  );
+  check('Tab does not leave the open card', stillInside);
+
+  await page.keyboard.press('Escape');
+  await sleep(150);
+
+  const afterEscape = await page.evaluate(() => ({
+    hidden: document.getElementById('safety-scrim').hidden,
+    focusId: document.activeElement.id,
+  }));
+  check('Escape closes the card', afterEscape.hidden === true);
+  check(
+    'Focus returns to the control that opened the card',
+    afterEscape.focusId === 'safety-open',
+    afterEscape.focusId
+  );
+
   // ---- 10. keyboard: pick up, move, place ---------------------------------
 
   await pickUp('ram');
@@ -445,9 +503,25 @@ try {
   const solved = await page.evaluate(() => ({
     summary: document.getElementById('match-summary').textContent.trim(),
     next: document.getElementById('next-step').textContent.trim(),
+    cardOpen: document.getElementById('safety-scrim').hidden === false,
+    focusInCard: document.querySelector('[role="dialog"]').contains(document.activeElement),
   }));
   check('Eight correct placements are accepted after a mistake', /All 8 matched/.test(solved.summary), solved.summary);
+  check('Matching the last part brings up the safety card', solved.cardOpen && solved.focusInCard);
   check('The next step is named once the parts match', /safety card/i.test(solved.next), solved.next);
+
+  await page.keyboard.press('Escape');
+  await sleep(150);
+
+  const afterCard = await page.evaluate(() => ({
+    next: document.getElementById('next-step').textContent.trim(),
+    focusId: document.activeElement.id,
+  }));
+  check(
+    'Closing the card records that it was read, and returns focus',
+    /safety card is read/i.test(afterCard.next) && afterCard.focusId === 'match-summary',
+    JSON.stringify(afterCard)
+  );
 
   // ---- 14. clearing ------------------------------------------------------
 

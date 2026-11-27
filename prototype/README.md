@@ -36,7 +36,7 @@ It drives `standalone.html` in headless Chromium with the keyboard and asserts w
 - A permission-denial dialog for the read-only file in `Recovery`.
 - A terminal that answers `dir`, `whoami`, and `help`, and rejects anything else by name.
 - Text-size controls and a persistent "simulated" marker.
-- `lesson-1.html` — the Chapter 1 workbench page: the eight parts with their purposes as a collapsible guide, keyboard-operable, with the same scaffolding as the desktop. The parts are read first, in a collapsible guide, then matched by dragging them onto their purposes — or from the keyboard, Enter to pick up, Tab to a purpose, Enter to place. Feedback names the part and the mistake, and retrying is free. The safety card, rebuild and result screen are added in later tasks.
+- `lesson-1.html` — the Chapter 1 workbench page: the eight parts with their purposes as a collapsible guide, keyboard-operable, with the same scaffolding as the desktop. The parts are read first, in a collapsible guide, then matched by dragging them onto their purposes — or from the keyboard, Enter to pick up, Tab to a purpose, Enter to place. Feedback names the part and the mistake, and retrying is free. The safety card is a real modal dialog, opened when the last part is matched and re-openable at any time. The safety card, rebuild and result screen are added in later tasks.
 
 ## Accessibility rules this prototype follows
 
