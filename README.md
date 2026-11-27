@@ -16,6 +16,7 @@ A 3D, story-driven IT and networking learning game for adult beginners. Seven ch
 | `docs/playtests/` | Playtest and spike reports |
 | `docs/unity-setup.md` | Install walkthrough and free browser-component options |
 | `prototype/` | The accessible simulated computer, runnable in a browser |
+| `unity/` | Glue for the Unity spike project: the page-loader script and the StreamingAssets sync script |
 | `MARKDOWN-ACCESSIBILITY-AUDIT.md` | Latest audit of the documentation |
 
 ## Running the prototype

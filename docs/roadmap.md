@@ -30,9 +30,11 @@ The campaign target is seven chapters. Each chapter awards one development-agent
 ## Phase 1 — Project setup
 
 - [x] Engine evaluation and decision — Unity with an embedded web UI for the in-game computer (`docs/engine-decision.md`), pending the accessibility spike
-- [ ] Install required software
-- [ ] Scaffold the fresh game project (Builder)
-- [ ] Verify the empty project runs (Playtester)
+- [x] Install required software — Unity Hub, a Personal licence, an LTS editor, and Windows build support (`docs/unity-setup.md`)
+- [x] Scaffold the fresh game project (`SafehouseSpike`)
+- [x] Verify the empty project runs — the template scene plays in the Game view
+- [ ] Show `prototype/standalone.html` inside the Unity shell — in progress; UnityWebBrowser 2.2.8, steps and pitfalls in `docs/unity-setup.md` step 7
+- [ ] Repeat the reader checks across the Unity boundary and record the result in `docs/playtests/` — the gate on the engine decision
 
 ## Phase 2 — Vertical slice (Chapter 1, first lesson)
 
@@ -64,7 +66,7 @@ The campaign target is seven chapters. Each chapter awards one development-agent
 
 ## Phase 6 — Chapter 7 and endings
 
-- [ ] Detail Chapter 7's lessons, checkpoints, and final boss
+- [ ] Chapter 7 ending scenes — the three outcomes, their shared guarantees, and the final scene rules are designed (Chapter 7); the individual scenes are not written
 - [ ] Implement the three ending frameworks and the guarantees they share
 - [ ] Campaign-wide playtest against the checkpoint, hint, retry, and perfect-bonus rules
 

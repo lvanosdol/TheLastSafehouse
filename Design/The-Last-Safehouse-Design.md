@@ -1,6 +1,6 @@
 # The Last Safehouse — Working Design Record
 
-**Status:** Design complete for Chapters 1–7. Implementation has not started; the engine choice, target operating-system version, and the app's name remain open.
+**Status:** Design complete for Chapters 1–7. The engine is chosen — Unity, with the in-game computer rendered as an embedded web UI (`docs/engine-decision.md`) — and the spike project is scaffolded; implementation has not started. The target operating-system version and the app's name remain open.
 **Updated:** 2026-11-26
 **Purpose:** Serve as the main working record for the game's confirmed decisions, brainstormed drafts, and open questions. Keep it updated as planning continues.
 

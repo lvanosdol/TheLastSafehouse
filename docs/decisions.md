@@ -6,7 +6,6 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 |---|---|---|
 | 2026-11-20 | Agent team installed (`.github\agents\`) | Give Copilot specialist roles: Mentor, Planner, Story Designer, Builder, Playtester. |
 | 2026-11-20 | Fresh build; old Godot ZIP is reference-only | Per design doc Section 2: re-evaluate the engine, do not inherit the old project structure. |
-| _pending_ | Engine choice | Awaiting `docs\engine-decision.md`. |
 | 2026-11-20 | Mara replaces the separate AI tutor | Keep help within the story while preserving the learning and boss-bonus rules. |
 | 2026-11-20 | Seven development agents replace earlier chapter rewards | Each chapter unlocks one useful agent; perfect boss completion upgrades it. Version control is a shared feature. |
 | 2026-11-20 | Approve the revised Chapter 1 restoration boss | Practice the current lessons through a readable recovery checklist, preserve records, and introduce Finch and the first agent after the simulated security alert. |
@@ -79,3 +78,4 @@ Every significant project decision gets a dated entry with a one-line reason. Ne
 | 2026-11-26 | Give each Chapter 7 ending a fixed spine, varied by recorded conduct and never scored | Keep the three outcomes equal while letting consent, access, evidence, and warnings show in the detail. |
 | 2026-11-26 | Send the evidence to the inhabitants and the preserved record, and only to an outside authority the inhabitants name | Avoid the player appointing someone to judge on the inhabitants' behalf, and keep accountability resting on the evidence. |
 | 2026-11-26 | Build in Unity with the in-game computer rendered as an embedded web UI | Keep good 3D interiors and fast C# iteration while giving the simulated computer a real DOM, so screen readers and keyboard focus work as they do in a real application. |
+| 2026-11-27 | Embed the Chapter 1 page with UnityWebBrowser for the spike | Free and MIT-licensed with no native plugin to write; the risk it carries — an off-screen CEF surface that publishes no accessible tree — is itself the finding the spike exists to produce, and WebView2 stays the next test. |

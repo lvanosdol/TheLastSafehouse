@@ -38,7 +38,8 @@ macOS support is optional for this spike. Windows alone is enough to test the em
 1. Open the **Installs** tab and choose **Install Editor**.
 2. Pick the release marked **LTS**. Avoid anything labelled Tech Stream or Beta.
 3. Under **Add modules**, tick:
-   - **Windows Build Support (IL2CPP)** — so the game can be built for Windows.
+   - **Windows Build Support (Mono)** — so the game can be built for Windows *and* run the embedded browser. Do not build with IL2CPP: UnityWebBrowser starts a separate engine process through `System.Diagnostics.Process`, which IL2CPP does not support, so the browser cannot work in an IL2CPP build.
+   - **Windows Build Support (IL2CPP)** — optional, and only for later work that does not use the embedded browser.
    - **Documentation** — optional but useful.
    - **Mac Build Support (Mono)** only if macOS is still wanted.
    - Leave Android and iOS unticked for now.
@@ -65,36 +66,132 @@ The paid option is the easiest. Free ones exist, and dropping macOS widens the f
 | Option | Cost | Platforms | Link | Trade-off |
 |---|---|---|---|---|
 | **Vuplex 3D WebView** | Paid | Windows, macOS, Android, iOS, WebGL | https://developer.vuplex.com/webview/overview | Best supported, least work; costs money |
-| **UnityWebBrowser** | Free (MIT) | Windows, Linux | https://github.com/Voltstro-Studios/UnityWebBrowser | Chromium-based; self-contained but adds a large amount to the build |
+| **UnityWebBrowser** | Free (MIT) | Windows, Linux, macOS | https://github.com/Voltstro-Studios/UnityWebBrowser | Chromium-based; self-contained but adds a large amount to the build, and draws off-screen, so a screen reader gets no accessible tree from it |
 | **WebView2 wrapper** (Microsoft Edge runtime) | Free | Windows | https://learn.microsoft.com/microsoft-edge/webview2/ | Small build because Edge is already on Windows; needs a native plugin, and you write the glue |
 | **gree/unity-webview** | Free (MIT) | Android, iOS, macOS | https://github.com/gree/unity-webview | Mobile-first; not a Windows desktop answer |
 | **ZFBrowser / Embedded Browser** | Free source, historically paid | Windows, macOS | https://github.com/ZenFulcrum/EmbeddedBrowser | Check current licence and maintenance before relying on it |
 
-**Recommendation for the spike:** **WebView2** if you are comfortable adding a small native plugin, because it keeps the build small and uses the Edge runtime already installed on Windows 10 and 11. **UnityWebBrowser** if you want something self-contained that does not depend on a system runtime, and can accept a much larger build.
+**Recommendation for the spike:** **WebView2** if you are comfortable adding a small native plugin, because it keeps the build small, uses the Edge runtime already installed on Windows 10 and 11, and draws into a real window that assistive technology can attach to. **UnityWebBrowser** if you want something self-contained that does not depend on a system runtime and can accept a much larger build — but see *What UnityWebBrowser cannot prove* below before treating it as the answer, because it renders off-screen and publishes no accessible tree.
 
 **Caution:** these projects change. Check the last commit date and open issues before committing to one, and confirm the licence terms yourself rather than trusting this table.
 
 ## Step 7 - Embed the prototype
 
-Once the project opens and plays, the embedded page is the next piece. It needs one of the components above and a small amount of glue:
+This is the step that usually stalls. The instructions below are for **UnityWebBrowser 2.2.8** (MIT, current release at the time of writing) and were checked against its published docs and source on 2026-11-27. The paid Vuplex route has a shorter version of the same four moves: install, add the component, assign an engine, give it a URL.
 
-1. Import the chosen webview package into the project.
-2. Create an empty GameObject in the scene and attach the component's browser script.
-3. Point it at a local file: copy `prototype/standalone.html` into `Assets/StreamingAssets/`, or use a local address such as `http://localhost:8000/` while testing.
-4. Set the browser surface size, then enter Play mode and confirm the page appears in the Game view.
+### 7a - Install three packages, not one
 
-Nothing on the page needs changing: it is already a normal web page, and an embedded browser treats it as one.
+UnityWebBrowser is not on Unity's default registry, and it is split into a core package, an engine package, and a per-platform native package. Missing the native one is the most common failure.
+
+1. Add its registry: **Edit → Project Settings → Package Manager → Scoped Registries**, then add
+
+   | Field | Value |
+   |---|---|
+   | Name | VoltUPR |
+   | URL | `https://upr.voltstro.dev` |
+   | Scope(s) | `dev.voltstro`, `org.nuget`, `com.cysharp.unitask` |
+
+   The two extra scopes are not optional: the core package depends on `org.nuget.voltrpc` and `com.cysharp.unitask`, which the same registry mirrors. Without them the install stops with an invalid-dependencies error.
+
+2. **Window → Package Manager → My Registries**, and install all three:
+
+   | Package | ID |
+   |---|---|
+   | Unity Web Browser (core) | `dev.voltstro.unitywebbrowser` |
+   | Unity Web Browser CEF Engine | `dev.voltstro.unitywebbrowser.engine.cef` |
+   | Unity Web Browser CEF Engine (Windows x64) | `dev.voltstro.unitywebbrowser.engine.cef.win.x64` |
+
+   On Linux or macOS, use `…engine.cef.linux.x64`, `…engine.cef.macos.x64`, or `…engine.cef.macos.arm64` instead of the Windows package. The native package holds the actual `UnityWebBrowser.Engine.Cef` binaries; without it, Play mode fails with *“The engine did not get ready within engine startup timeout!”*
+
+### 7b - Two Player settings that break it silently
+
+**Edit → Project Settings → Player → Other Settings**:
+
+- **Scripting Backend: Mono.** UnityWebBrowser does not support IL2CPP because it launches a separate process with `System.Diagnostics.Process`. This only bites in a build, not in Play mode, which is why it is easy to miss.
+- **Api Compatibility Level: .NET Framework**, not *`.NET Standard 2.1`*. The standard profile does not expose `System.Diagnostics.Process` at all.
+
+### 7c - Build the surface
+
+1. Hierarchy → right-click → **UI → Canvas** (Screen Space - Overlay).
+2. Right-click the Canvas → **UI → Raw Image**, and stretch it to the frame the computer should occupy.
+3. With the Raw Image selected: **Add Component → UWB → Web Browser Basic**.
+4. In that component's **Browser Client**, fill in:
+
+   | Field | Value |
+   |---|---|
+   | Engine | `Cef Engine Configuration`, from Packages → Unity Web Browser CEF Engine → Resources |
+   | Initial Url | see 7d |
+   | Resolution | 1280×720, or whatever matches the Raw Image |
+   | Input Handler | `Old Input Handler`, from Packages → Unity Web Browser → Resources |
+   | Engine Startup Timeout | `10000` for the first runs; the engine is slow to start cold |
+
+   The **Input Handler** slot is the one that fails loudly rather than quietly: leave it empty and Play mode stops with `NullReferenceException: The input handler is null!` If the project uses the new Input System, pick `Input System Handler` from the same folder instead, or set **Player → Active Input Handling** to **Both** — the old handler reads `UnityEngine.Input`, which throws while the Input System package is the only active handler.
+
+### 7d - Point it at the page
+
+`Initial Url` takes a **URL**, not a file path. A bare `C:\Games\SafehouseSpike\Assets\StreamingAssets\standalone.html` is treated as a search term and loads a blank page; the scheme, the three slashes, and the forward slashes all matter.
+
+**Quickest first success**, which removes the path question entirely:
+
+```bash
+cd prototype
+python3 -m http.server 8000
+```
+
+then set `Initial Url` to `http://localhost:8000/standalone.html` and press Play. If `voltstro.dev` appears instead of your page, the browser itself works and only the URL is wrong — that is the useful control test, since `https://voltstro.dev` is the field's default value.
+
+**For anything that has to ship**, the page loads from `StreamingAssets` as a local file:
+
+```bash
+./unity/sync-prototype.sh /path/to/SafehouseSpike
+```
+
+which copies `prototype/standalone.html` into `Assets/StreamingAssets/`. The matching URL is
+
+```
+file:///C:/Users/you/SafehouseSpike/Assets/StreamingAssets/standalone.html
+```
+
+Hand-writing that, and keeping it correct between editor and build, is needless work, so `unity/Scripts/LoadPrototypePage.cs` generates it at runtime:
+
+1. Copy the script into `Assets/Scripts/`.
+2. Add it to the same GameObject as the browser component.
+3. Leave **Use Local Server** unticked for the build; tick it to use the http URL above while iterating.
+
+On Play it waits for the engine process to connect, then loads the page and logs the exact URL to the Console. It waits because `browserClient.LoadUrl()` throws `UwbIsNotConnectedException` if it is called before the engine reports ready.
+
+`standalone.html` needs no changes: it is one file with one inline classic script, no modules and no fetches, so `file://` is fine. The modular `prototype/index.html` is not — its ES modules require the http server.
+
+### 7e - What success looks like
+
+- One to three seconds of flat colour, then the simulated desktop.
+- A `UnityWebBrowser.Engine.Cef` process appears alongside the editor while playing.
+- Pressing Play again disposes it; a leftover process means a previous run did not shut down cleanly.
+
+### 7f - Record what the reader actually does
+
+When the page appears, do Step 8 before drawing conclusions — and read the next section first, because the expected result is not the one the spike was hoping for.
+
 
 ## Step 8 - Repeat the reader checks
 
 With the page inside Unity, repeat the checks from `prototype/ACCESSIBILITY-TEST.md`, then confirm the boundary behaves:
 
-- The screen reader still reads the page after entering Play mode.
+- The screen reader still reads the page after entering Play mode. Expect this one to fail on UnityWebBrowser, for the structural reason given in the previous section — record it either way.
 - Keyboard focus does not escape the browser surface into the Unity window while a dialog is open.
 - Escape closes the dialog rather than leaving Play mode.
 - Pausing the game and returning does not lose the page's state.
 
 If focus or the reader breaks at that boundary, that is the failure the spike exists to find, and the fallback in `docs/engine-decision.md` applies.
+
+## What UnityWebBrowser cannot prove
+
+Check the source before reading anything into a silence here. In UnityWebBrowser 2.2.8, `UwbCefRenderHandler.GetAccessibilityHandler()` returns `null`, and the browser is drawn off-screen into a `Texture2D` that is shown on a `Raw Image`. Two consequences follow, and neither is a configuration mistake:
+
+- **There is no accessible tree for a screen reader to attach to.** NVDA will most likely read nothing once the page is inside the surface, even though the same page reads correctly in Edge on the same machine. The pass condition in `docs/engine-decision.md` — a reader announcing the dialog's fields inside Unity — will probably not be met by this component.
+- **Keyboard input is gated on the pointer.** `RawImageUwbClientInputHandler` only forwards keys while the pointer is inside the Raw Image, so keyboard-only operation is not possible without a custom input handler.
+
+That is the result the spike exists to produce, and it should be recorded as a finding rather than debugged as a bug. It is also the reason the WebView2 route stays on the table: a real child window is something UIA and IAccessible can see, while an off-screen texture is not. Record both observations in `docs/playtests/`, then either test WebView2 or apply the web-first fallback in `docs/engine-decision.md`.
 
 ## Troubleshooting
 
@@ -104,7 +201,14 @@ If focus or the reader breaks at that boundary, that is the failure the spike ex
 | Editor opens but the Game view is black | HDRP on unsupported hardware | Recreate the project with the URP template |
 | No compatible graphics device | Driver or GPU too old | Update the graphics driver; if it persists, use URP |
 | Template import takes very long | Shader compilation on first open | Wait; it is a one-time cost per project |
-| Browser surface is blank | Wrong file path or missing permission | Put the page in `StreamingAssets` and use the platform's streaming path |
+| `The engine did not get ready within engine startup timeout!` | Native engine package missing, engine executable blocked, or a cold start slower than the timeout | Install the `…engine.cef.<platform>.x64` package, allow `UnityWebBrowser.Engine.Cef` in antivirus, raise **Engine Startup Timeout** |
+| `NullReferenceException: The input handler is null!` | **Input Handler** slot empty | Assign `Old Input Handler` (or `Input System Handler`) from Packages → Unity Web Browser → Resources |
+| `InvalidOperationException` about `UnityEngine.Input` | New Input System is the only active handler | Use `Input System Handler`, or set **Active Input Handling** to **Both** |
+| Invalid dependencies or missing packages on install | Registries installed without the `org.nuget` and `com.cysharp.unitask` scopes | Re-add the registry with all three scopes, then refresh the Package Manager |
+| Browser surface stays blank, Console shows no error | `Initial Url` is a file path rather than a URL | Use `file:///C:/…/standalone.html`, or `http://localhost:8000/standalone.html` |
+| `voltstro.dev` loads instead of the page | `Initial Url` left at its default | The browser works; only the URL is wrong |
+| Page renders but is stretched or cropped | Browser resolution does not match the Raw Image aspect | Set the browser resolution to the same aspect as the image |
+| Works in Play mode, blank in the build | IL2CPP, or no `UWB` folder beside the build | Build with **Mono**; confirm `<Game>_Data/UWB/` exists and the engine process is not blocked |
 | Build is very large | Chromium bundled by the webview | Accept it, or switch to the WebView2 route |
 
 ## What this does not cover
