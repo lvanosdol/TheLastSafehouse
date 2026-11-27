@@ -327,6 +327,41 @@ try {
 
   const slotText = (id) => page.$eval('.slot[data-purpose="' + id + '"]', (el) => el.textContent.trim());
 
+  // ---- 9b. the purposes are scrambled, and stay scrambled -----------------
+
+  const order = () =>
+    page.evaluate(() => ({
+      parts: Array.from(document.querySelectorAll('.part-card')).map((card) => card.getAttribute('data-part')),
+      purposes: Array.from(document.querySelectorAll('.slot')).map((slot) => slot.getAttribute('data-purpose')),
+    }));
+
+  const firstOrder = await order();
+
+  const fixedPoints = firstOrder.purposes.filter(
+    (purpose, index) => purpose === firstOrder.parts[index]
+  );
+  check(
+    'No purpose sits opposite its own part',
+    fixedPoints.length === 0,
+    'aligned: ' + fixedPoints.join(', ')
+  );
+
+  const isRotation = [1, 2, 3, 4, 5, 6, 7].some((shift) =>
+    firstOrder.purposes.every(
+      (purpose, index) => purpose === firstOrder.parts[(index + shift) % firstOrder.parts.length]
+    )
+  );
+  check('The purposes are not the parts shifted along', !isRotation);
+
+  await page.reload({ waitUntil: 'load' });
+  await sleep(700);
+  const secondOrder = await order();
+  check(
+    'A reload reorders the purposes rather than repeating them',
+    firstOrder.purposes.join(',') !== secondOrder.purposes.join(','),
+    secondOrder.purposes.join(',')
+  );
+
   // ---- 10. keyboard: pick up, move, place ---------------------------------
 
   await pickUp('ram');

@@ -315,10 +315,32 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     }
   ];
 
-  // Offered in a fixed order, deliberately not the order of the parts, so the
-  // page is identical every time it opens and the answer cannot be read off
-  // down the list.
-  var PURPOSE_ORDER = ['storage', 'cooling', 'motherboard', 'graphics', 'processor', 'case', 'ram', 'power'];
+  // The purposes are offered in a fresh order every time the page opens, and the
+  // order is rejected if any purpose would sit directly opposite its own part.
+  // Shuffling alone is not enough: a shuffle can leave one or two in place, and
+  // those are the answers a player would get for free.
+  function derangedOrder() {
+    var order = PARTS.map(function (part) {
+      return part.id;
+    });
+    var lined_up = true;
+
+    while (lined_up) {
+      for (var i = order.length - 1; i > 0; i -= 1) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var swap = order[i];
+        order[i] = order[j];
+        order[j] = swap;
+      }
+
+      lined_up = false;
+      for (var index = 0; index < order.length; index += 1) {
+        if (order[index] === PARTS[index].id) lined_up = true;
+      }
+    }
+
+    return order;
+  }
 
   function partById(id) {
     for (var i = 0; i < PARTS.length; i += 1) {
@@ -434,7 +456,8 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
 
     var list = document.getElementById('purpose-list');
 
-    PARTS.forEach(function (owner) {
+    derangedOrder().forEach(function (ownerId) {
+      var owner = partById(ownerId);
       var item = document.createElement('li');
 
       var slot = document.createElement('button');
