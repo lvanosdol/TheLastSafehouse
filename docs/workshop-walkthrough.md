@@ -190,11 +190,13 @@ The prompt is a label that appears when you stand at the bench. It is decoration
 Use **TextMeshPro**, not the old `TextMesh`. This project draws with URP, and the legacy text component relies on a built-in shader that URP usually renders as pink.
 
 1. **GameObject → 3D Object → Text - TextMeshPro**. If Unity offers to import TMP Essentials, accept.
-2. Rename it `Bench Prompt`, set **Position** `(0, 1.5, 1.1)`, and set **Scale** `(0.01, 0.01, 0.01)` — the default 1 makes a word several metres tall.
+2. Rename it `Bench Prompt`, set **Pos X** `0`, **Pos Y** `1.5`, **Pos Z** `1.1`, and set **Scale** `(0.01, 0.01, 0.01)` — the default 1 makes a word several metres tall.
 3. In the **TextMeshPro** block, set **Text** to `Press E`, **Font Size** `36`, and a light colour. Add words if you like, but keep them short: every extra word makes the line wider.
 4. Look at the Scene view: the words should sit above the bench about a metre wide. If they are huge or invisible, change only the **Scale**, all three numbers together.
 5. In the Hierarchy, untick `Bench Prompt` to hide it. The script shows it when you are close.
 6. Select `Bench Trigger` and drag `Bench Prompt` into the **Prompt** field of **Bench Interaction**.
+
+**About the fields.** A text object carries a **RectTransform**, not a Transform. Its position is labelled **Pos X**, **Pos Y**, **Pos Z**, and **Scale** is at the bottom of the same block — scroll the Inspector if you cannot see it. **Width** and **Height** only decide where the text wraps; leave them alone. If you see **Pos X** and **Pos Y** but no **Pos Z**, you used the **GameObject → UI** menu instead: that text draws on the screen rather than in the room, so delete it and use **GameObject → 3D Object → Text - TextMeshPro**.
 
 **You should see:** the prompt hidden in the Scene view, and the Prompt field reading `Bench Prompt`.
 
