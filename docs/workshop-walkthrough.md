@@ -2,7 +2,7 @@
 
 Written for someone who has not used Unity before, like `docs/unity-walkthrough.md`. Do the steps **in order**. Every step ends with a **You should see** line: if what you see is different, stop there and say so, because the later steps assume the earlier ones worked.
 
-This covers tasks 1–3 of `docs/phase2-vertical-slice.md`. About 20 minutes, most of it finding things in the Inspector.
+This covers tasks 1–3 of `docs/phase2-vertical-slice.md`. About 30–40 minutes the first time, and most of it is finding panels and reading the checkpoints rather than typing.
 
 ## Finding the parts of the editor
 
@@ -18,7 +18,7 @@ The steps below name these panels. If any name is unfamiliar, this is the map.
 | **Console** | The tab beside **Project**: errors and messages |
 | **Add Component** | The button at the *bottom* of the Inspector, once an object is selected; scroll the Inspector down if you cannot see it. The **Component** menu in the top bar does the same and has a search box |
 
-Two habits worth forming now: **Add Component applies to the object selected in the Hierarchy**, so glance at the name at the top of the Inspector before clicking; and **Ctrl+S saves the scene**, which is not automatic.
+Three habits worth forming now: **Add Component applies to the object selected in the Hierarchy**, so glance at the name at the top of the Inspector before clicking; **Ctrl+S saves the scene**, which is not automatic; and **changes made while Play mode is highlighted are thrown away when you stop it**, so leave Play before editing the scene.
 
 ## Before you start
 
@@ -30,7 +30,7 @@ Two habits worth forming now: **Add Component applies to the object selected in 
 
 ## Step 0 — Clear out the old browser surface
 
-If the Hierarchy lists `Canvas`, `EventSystem` or `Computer`, those are left over from the Phase 1 spike: a Canvas with a Raw Image that drew the page into a texture. The game no longer draws the page itself, so none of it is used.
+If the Hierarchy lists `Canvas` or `EventSystem`, those are left over from the Phase 1 spike: a Canvas with a Raw Image that drew the page into a texture. The game no longer draws the page itself, so none of it is used.
 
 1. Click `Canvas`, right-click → **Delete**. Do the same for `EventSystem`.
 2. `Computer` **stays**. It carries **Computer Browser Window** — the host that opens the page in a real window — so it is doing exactly the job it should. Step 9 configures it. Only delete it if its Inspector shows **Missing (Mono Script)**, which would mean the host never made it into this scene; step 9 then adds one back.
@@ -52,37 +52,27 @@ Then place the camera: select **Main Camera**, set **Position** `(0, 1.6, -2)` a
 
 **You should see,** in the Game view without pressing Play: floor filling the lower half, a bench-shaped slab four metres ahead and a little below the middle of the screen, spanning about a quarter of the screen's width, with the small chassis box on top of it reaching roughly the horizon line. If the bench is small and far away, or the view is still only sky, compare the numbers above with the Inspector — the camera's Position is the one that changes distance.
 
-## Step 1 — Put the two scripts in the project
+Then press **Ctrl+S**. The scene is not saved for you, and everything after this depends on it.
 
-The project needs two files: `PlayerMove.cs` and `BenchInteraction.cs`, both from the repository's `unity/Scripts` folder.
+## Step 1 — Put the three scripts in the project
 
-**If the repository is cloned on this PC:** open that folder in File Explorer, select both files, **Ctrl+C**, then click inside `Assets/Scripts` in Unity's Project panel and **Ctrl+V**.
+The project needs three files, all from the repository's `unity/Scripts` folder: `PlayerMove.cs`, `BenchInteraction.cs`, and a current `ComputerBrowserWindow.cs`.
 
-**If it is not** — likely, if all your work happens in Unity — download them from GitHub:
+1. In the **Project** panel, if there is no `Scripts` folder, right-click `Assets` → **Create → Folder** and name it `Scripts`.
+2. Get the files, whichever way matches your machine:
+   - **Repository cloned on this PC:** open `unity/Scripts` in File Explorer, select the three files, **Ctrl+C**, then click inside `Assets/Scripts` in Unity's Project panel and **Ctrl+V**.
+   - **No clone on this PC** (likely, if all your work happens in Unity): open these three pages, and on each one click the **download** arrow at the right-hand end of the file's header bar, so it saves to `Downloads` with its `.cs` name:
+     - `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/PlayerMove.cs`
+     - `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/BenchInteraction.cs`
+     - `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/ComputerBrowserWindow.cs`
+     Then drag all three out of `Downloads` onto `Assets/Scripts` in Unity.
+3. File names must end in `.cs`. `PlayerMove.cs.txt` is ignored by Unity; if that happens, rename it and drop the `.txt`.
 
-1. Open these two addresses in your browser:
-   - `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/PlayerMove.cs`
-   - `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/BenchInteraction.cs`
-2. On each page, click the **download** arrow at the right-hand end of the file's header bar. The browser saves it to `Downloads` with the right name, extension included.
-3. In Unity, open `Assets/Scripts` in the **Project** panel, then drag both files from the `Downloads` window into it.
+**One caution about the host file.** If the project already had a `ComputerBrowserWindow.cs` from the Phase 1 spike, Unity asks whether to replace it: say **Replace**. Do not delete it first — deleting a script inside Unity gives the re-imported file a new identity, and the `Computer` object then loses its component and its settings. Overwriting keeps both and changes only the code. It also brings the window-positioning fix recorded in `docs/playtests/2026-11-27-spike-browser-window.md`.
 
-Either way, the file names must end in `.cs`. A file called `PlayerMove.cs.txt` will be ignored by Unity — if that happens, rename it and drop the `.txt`.
+**You should see:** three files listed in `Assets/Scripts`; no red in the Console; `Computer` still listing **Computer Browser Window** with **Open On Start** unticked; and **Add Component** offering **Safehouse → Player Move** and **Safehouse → Bench Interaction**.
 
-### The host file must be current too
-
-If the project already has `Assets/Scripts/ComputerBrowserWindow.cs` from the Phase 1 spike, it is out of date: it was written before the host could open a page by name. `BenchInteraction` calls `Open("lesson-1.html")`, so that older copy fails to compile with:
-
-```text
-error CS1501: No overload for method 'Open' takes 1 arguments
-```
-
-Replace it with the current file from `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/ComputerBrowserWindow.cs`. Drag the downloaded file onto `Assets/Scripts` and choose **Replace** when Unity asks.
-
-**Replace, do not delete.** Deleting the script inside Unity and importing it again gives it a new identity, and the `Computer` object's component would be lost with it, along with its settings. Overwriting the file keeps the component and only changes the code. It also brings the window-positioning fix recorded in `docs/playtests/2026-11-27-spike-browser-window.md`.
-
-**You should see:** no red in the Console, `Computer` still listing **Computer Browser Window** with **Open On Start** still unticked, and **Add Component** offering **Safehouse → Bench Interaction**.
-
-**You should see:** both files listed in `Assets/Scripts`. Click `PlayerMove` once and its code appears in the **Inspector** on the right. If the Console turns red with `error CS…`, copy the first red line and tell me.
+If the Console shows `error CS1501: No overload for method 'Open' takes 1 arguments`, the host file is still the Phase 1 copy — download `ComputerBrowserWindow.cs` again and replace it.
 
 ## Step 2 — Turn on the new Input System
 
@@ -103,7 +93,7 @@ The scripts read the keyboard through Unity's new Input System. If it is not ins
 2. With it selected, look at the **Inspector** (right of the screen), at the top: the name box reads `GameObject`. Click it, type `Player`, press **Enter**.
 3. In the **Transform** block just below, set **Position** to `X 0`, `Y 0`, `Z -2`. Leave Rotation and Scale alone.
 
-**You should see:** a `Player` entry in the Hierarchy, sitting two metres behind the bench, and its Transform showing `(0, 0, -2)`.
+**You should see:** a `Player` entry in the Hierarchy, four metres in front of the bench (the bench sits at `z = 2`, the Player at `z = -2`), and its Transform showing `(0, 0, -2)`.
 
 There is nothing to see in the room, and that is not a mistake: an empty object draws nothing. No body, no cube, and in the Game view no change at all. In the Scene view it is a small icon at the selected point, which is why the next step adds a capsule you can see. In a first-person game the camera is the player.
 
@@ -123,7 +113,7 @@ The camera is the player's eyes. It must be a child of the Player, or turning th
 2. Drag **Main Camera** onto the word `Player` in the Hierarchy and release. It must land *under* Player, indented. Dragging in the Scene view does not do this; use the Hierarchy.
 3. Click **Main Camera** (now a child) and set its **Position** to `(0, 1.6, 0)` and **Rotation** to `(0, 0, 0)`. If the Player was made first and the camera was already at `(0, 1.6, -2)`, parenting has kept it in place and the Position field will already read `(0, 1.6, 0)` — that is the same place on screen, now measured from the Player.
 
-**You should see:** in the Hierarchy, `Main Camera` indented under `Player`, and in the Scene view the camera icon sitting at eye height over the Player capsule.
+**You should see:** in the Hierarchy, `Main Camera` indented under `Player`, and in the Scene view the camera icon sitting at eye height, near the top of the Player capsule.
 
 ## Step 6 — Add the walking script
 
@@ -166,7 +156,7 @@ The host lives on its own object, `Computer`, which is where it already is if yo
 2. **Untick Open On Start.** This is the tick that has been opening the page the moment you press Play. The bench now decides when the page opens; with this left on you would get two windows, one at Play and one on **E**.
 3. Leave **Page File Name** at `standalone.html` and the rest at their defaults.
 
-**You should see:** the block with Page File Name `standalone.html`, Inset Percent, Use Isolated Profile, Focus On Open, Window Title Fragment, and Open On Start unticked. Pressing Play now opens nothing until the trigger asks.
+**You should see:** under **Page**, Page File Name `standalone.html` and **Open On Start unticked**; under **Window**, Inset Percent, Use Isolated Profile, Focus On Open and Window Title Fragment at their defaults. Pressing Play now opens nothing until the trigger asks.
 
 ## Step 10 — The bench interaction
 
@@ -179,13 +169,20 @@ The host lives on its own object, `Computer`, which is where it already is if yo
 
 ## Step 11 — The prompt
 
-1. **GameObject → Create Empty**, rename it `Bench Prompt`, set **Position** `(0, 1.5, 1.1)`.
-2. **Add Component →** search `TextMesh` → **Enter**. If Unity asks to import a legacy font, accept.
-3. In the **TextMesh** block, set **Text** to `Press E to use the workbench`, **Font Size** `64`, **Character Size** `0.08`, **Anchor** `Middle Center`, and pick a light **Color**.
-4. In the Hierarchy, click the checkbox left of `Bench Prompt` to hide it in the scene. It is shown only when the player is close.
-5. Select `Bench Trigger`, and drag `Bench Prompt` from the Hierarchy into the **Prompt** field of **Bench Interaction**.
+The prompt is a label that appears when you stand at the bench. It is decoration for a sighted player — everything the game needs is in the page — so it can be plain and small.
 
-**You should see:** the TextMesh settings above; the prompt no longer drawn in the Scene view; and the Prompt field reading `Bench Prompt`.
+Use **TextMeshPro**, not the old `TextMesh`. This project draws with URP, and the legacy text component relies on a built-in shader that URP usually renders as pink.
+
+1. **GameObject → 3D Object → Text - TextMeshPro**. If Unity offers to import TMP Essentials, accept.
+2. Rename it `Bench Prompt`, set **Position** `(0, 1.5, 1.1)`, and set **Scale** `(0.01, 0.01, 0.01)` — the default 1 makes a word several metres tall.
+3. In the **TextMeshPro** block, set **Text** to `Press E`, **Font Size** `36`, and a light colour. Add words if you like, but keep them short: every extra word makes the line wider.
+4. Look at the Scene view: the words should sit above the bench about a metre wide. If they are huge or invisible, change only the **Scale**, all three numbers together.
+5. In the Hierarchy, untick `Bench Prompt` to hide it. The script shows it when you are close.
+6. Select `Bench Trigger` and drag `Bench Prompt` into the **Prompt** field of **Bench Interaction**.
+
+**You should see:** the prompt hidden in the Scene view, and the Prompt field reading `Bench Prompt`.
+
+If the words come out backwards when you first walk up in Step 12, untick **Face Viewer** on **Bench Interaction** and set `Bench Prompt`'s **Rotation** Y to `180`.
 
 ## Step 12 — The whole test
 
@@ -214,11 +211,13 @@ If the page opens but does not move into place, or the Console says `Missing pag
 |---|---|---|
 | **Add Component** has no **Safehouse** section | The scripts are not in the project, or did not compile | Check `Assets/Scripts` holds both `.cs` files (Step 1), then read the first red Console line |
 | `CS0246` naming `UnityEngine.InputSystem` | New Input System not installed or not active | Step 2 |
+| The prompt is pink or magenta | It is the legacy `TextMesh`, whose built-in shader URP does not draw properly | Delete it and use a TextMeshPro text object instead — Step 11 |
+| The prompt reads backwards | The billboard is facing the back of the text at the player | Untick **Face Viewer** on Bench Interaction and set the prompt's Rotation Y to `180` |
 | `warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete` | The script was written before Unity 6.6 deprecated that lookup; it still compiles, it is only noise | Replace `BenchInteraction.cs` with the current file — the line now uses `FindAnyObjectByType` |
-| `CS1501: No overload for method 'Open' takes 1 arguments` | The project's `ComputerBrowserWindow.cs` is the Phase 1 copy, before `Open(page)` existed | Replace that file with the current one — Step 1, "The host file must be current too" |
+| `CS1501: No overload for method 'Open' takes 1 arguments` | The project's `ComputerBrowserWindow.cs` is the Phase 1 copy, before `Open(page)` existed | Download it again and replace it — Step 1 |
 | `W` does nothing | The editor's other panels have keyboard focus | Click once inside the Game view |
 | Turning does not turn the view | Camera not a child of Player | Step 5 |
-| No prompt at the bench | Not inside the box, or the box is not a trigger | Step 8, and walk closer |
+| No prompt at the bench | Not inside the box, the box is not a trigger, or the prompt object is still unticked and not assigned | Step 8 and Step 11; walk closer |
 | **E** does nothing, prompt visible | `Bench Interaction` not on the same object as the box, or **Lesson Page** blank | Step 10 |
 | A browser opens showing a file-not-found page | `Assets/StreamingAssets/standalone.html` is missing | Copy `prototype/standalone.html` there, or run `unity/sync-prototype.sh` |
 | Two browser windows at Play | **Open On Start** still ticked | Step 9 |
