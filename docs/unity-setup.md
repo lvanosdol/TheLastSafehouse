@@ -173,7 +173,7 @@ On Play it waits for the engine process to connect, then loads the page and logs
 
 ### 7f - Record what the reader actually does
 
-When the page appears, do Step 8 before drawing conclusions — and read the next section first, because the expected result is not the one the spike was hoping for. Fill in `docs/unity-embedding-run-sheet.md` as you go; it is the record the engine decision needs.
+When the page appears, do Step 8 before drawing conclusions — and read the next section first, because the expected result is not the one the spike was hoping for. Fill in `docs/playtests/2026-11-27-spike-unity-embedding.md` as you go; it is the record the engine decision needs.
 
 
 ## Step 8 - Repeat the reader checks
@@ -194,7 +194,7 @@ Check the source before reading anything into a silence here. In UnityWebBrowser
 - **There is no accessible tree for a screen reader to attach to.** NVDA will most likely read nothing once the page is inside the surface, even though the same page reads correctly in Edge on the same machine. The pass condition in `docs/engine-decision.md` — a reader announcing the dialog's fields inside Unity — will probably not be met by this component.
 - **Keyboard input is gated on the pointer.** `RawImageUwbClientInputHandler` only forwards keys while the pointer is inside the Raw Image, so keyboard-only operation is not possible without a custom input handler.
 
-That is the result the spike exists to produce, and it should be recorded as a finding rather than debugged as a bug. It is also the reason the WebView2 route stays on the table: a real child window is something UIA and IAccessible can see, while an off-screen texture is not. Record both observations in `docs/playtests/`, then either test WebView2 or apply the web-first fallback in `docs/engine-decision.md`.
+**This was measured on 2026-11-27**, not just predicted: NVDA read the page in Edge by mouse and by Tab, and said nothing inside Unity by either route. See `docs/playtests/2026-11-27-spike-unity-embedding.md`. It is a finding about the component, not a bug to chase — and it is why the WebView2 route stays on the table: a real child window is something UIA and IAccessible can see, while an off-screen texture is not.
 
 ## Troubleshooting
 

@@ -16,7 +16,7 @@ A 3D, story-driven IT and networking learning game for adult beginners. Seven ch
 | `docs/playtests/` | Playtest and spike reports |
 | `docs/unity-walkthrough.md` | Beginner walkthrough: Unity play mode to the page inside the shell, one step at a time |
 | `docs/unity-setup.md` | Install walkthrough, UnityWebBrowser steps, and free browser-component options |
-| `docs/unity-embedding-run-sheet.md` | Recording sheet for the embedding test that closes the accessibility spike |
+| `docs/playtests/2026-11-27-spike-unity-embedding.md` | The embedding test and its result: rendering passed, the reader inside Unity did not |
 | `prototype/` | The accessible simulated computer, runnable in a browser |
 | `unity/` | Glue for the Unity spike project: the page-loader script and the StreamingAssets sync script |
 | `MARKDOWN-ACCESSIBILITY-AUDIT.md` | Latest audit of the documentation |

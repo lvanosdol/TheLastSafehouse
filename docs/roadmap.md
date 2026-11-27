@@ -33,8 +33,9 @@ The campaign target is seven chapters. Each chapter awards one development-agent
 - [x] Install required software — Unity Hub, a Personal licence, an LTS editor, and Windows build support (`docs/unity-setup.md`)
 - [x] Scaffold the fresh game project (`SafehouseSpike`)
 - [x] Verify the empty project runs — the template scene plays in the Game view
-- [x] Show `prototype/standalone.html` inside the Unity shell — rendered on 2026-11-27 with UnityWebBrowser 2.2.8 (Unity 6.6, Mono); configuration recorded in `docs/unity-embedding-run-sheet.md`
-- [ ] Repeat the reader checks across the Unity boundary and record the result in `docs/playtests/` — the gate on the engine decision; use `docs/unity-embedding-run-sheet.md`
+- [x] Show `prototype/standalone.html` inside the Unity shell — rendered on 2026-11-27 with UnityWebBrowser 2.2.8 (Unity 6.6, Mono); configuration recorded in `docs/playtests/2026-11-27-spike-unity-embedding.md`
+- [x] Repeat the reader checks across the Unity boundary — **failed:** NVDA reads the page in Edge and says nothing inside Unity, and keys are gated on the pointer. Record in `docs/playtests/2026-11-27-spike-unity-embedding.md`
+- [ ] Test WebView2 as the host for the same page, and repeat the reader checks — a real window is what assistive technology can attach to
 
 ## Phase 2 — Vertical slice (Chapter 1, first lesson)
 

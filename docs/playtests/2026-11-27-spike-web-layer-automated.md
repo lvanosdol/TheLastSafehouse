@@ -54,4 +54,4 @@ Both copies of the page (the modules under `scripts/` and the inline bundle in `
 
 ## Next
 
-`docs/unity-embedding-run-sheet.md`: build the surface, load the page, and repeat these same checks with a reader attached.
+Done the same day: the embedding test ran, and the result is in `docs/playtests/2026-11-27-spike-unity-embedding.md` — rendering passed, the reader inside Unity did not.

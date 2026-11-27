@@ -230,7 +230,7 @@ If you see something else, match it here:
 
 **Expected result:** silence. UnityWebBrowser draws the page off-screen into a picture, so there is no accessible text for a reader to find. That is the finding the spike exists to produce — it is not something you did wrong. Write down what happened either way.
 
-4. Open `docs/unity-embedding-run-sheet.md` and fill in the environment table and section **A** (does it render) and section **B** (does the reader work). Copy the Console text into the notes column.
+4. Open `docs/playtests/2026-11-27-spike-unity-embedding.md` and fill in the environment table and section **A** (does it render) and section **B** (does the reader work). Copy the Console text into the notes column.
 5. Stop Play mode.
 
 ---
