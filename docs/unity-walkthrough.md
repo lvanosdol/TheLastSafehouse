@@ -155,7 +155,13 @@ The script does three things: waits for the browser engine to start, builds the 
 1. **Save the scene first:** press **Ctrl+S**, name it `Workshop`, and save it into an `Assets/Scenes` folder.
 2. In the **Hierarchy** window (left), right-click empty space → **UI → Canvas**.
 3. Right-click the **Canvas** you just made → **UI → Raw Image**.
-4. With the Raw Image selected, look at the Inspector → **Rect Transform** → click the small anchor square → hold **Alt** and **Shift** → click the **stretch / stretch** preset (bottom right). This makes the picture fill the screen instead of sitting in a tiny square.
+4. **Make the picture fill the screen.** This is cosmetic — skip it if it fights you and the page still works, just inside a 100×100 square in the middle. To do it without any modifier keys:
+   - With the Raw Image selected, look at the top of **Rect Transform**. On its left is a small square icon, the **anchor preset** button. Click it.
+   - A grid opens: nine single squares and, along its right edge and bottom edge, four **stretch** presets.
+   - Click the **bottom-right** one — "stretch / stretch".
+   - The fields underneath change from *Pos X / Pos Y / Width / Height* to **Left / Right / Top / Bottom**. Set all four to `0` and press Enter.
+
+   The Raw Image now covers the whole Game view. (The `Alt+Shift` in other guides is just a shortcut that also zeroes those four offsets.)
 5. Still on the Raw Image: **Add Component** → type `Web Browser Basic` → press Enter.
 6. The new component is one section called **Web Browser Basic**, and inside it are two blocks. If **Browser Client** looks like a single collapsed line, click its header to open it — `Initial Url` is the first field inside, and that collapsed block is where the setting went missing on 2026-11-26. Fill in **two slots** (for each: click the small circle at the right of the box, type the name, press Enter):
    - In the **Browser Client** block: **Engine** → `Cef Engine Configuration`
