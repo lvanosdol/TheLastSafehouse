@@ -46,7 +46,7 @@
 | B4 | **View permissions**: listen to the table | Account, Read, Write, Role note announced as column headings; each row starts with its account | | This is the specific result the spike exists to obtain |
 | B5 | Escape from the dialog | Dialog closes; focus returns to **View permissions**; reader says where it went | | |
 | B6 | Escape again | Play mode continues — Escape does not stop the editor | | |
-| B7 | Complete one interaction without touching the mouse | Whole path by keyboard only | | Keyboard input may require the pointer over the surface; record whether it does |
+| B7 | Complete one interaction without touching the mouse | Whole path by keyboard only | | Keyboard input may require the pointer over the surface; record whether it does. `RawImageUwbClientInputHandler` only forwards keys after the pointer enters the Raw Image, so if Tab does nothing until the mouse is over the page, that is the finding: keyboard-only play is impossible without a custom input handler |
 
 ## How to run section B
 
@@ -55,7 +55,8 @@
 3. **Open NVDA's Speech Viewer** so everything spoken is also written down: NVDA menu → **Tools → Speech Viewer**. Copy from it into the notes column; that is far more reliable than describing sounds afterwards.
 4. **Unity test:** keep NVDA running, press Play, click once on the Game view so Unity has focus, then Tab slowly five or six times. Try to reach **Practice** and open it with Enter.
 5. **Check the reader is attached at all:** press **Insert+Tab** once. It should read the focused window's title, something like `SafehouseSpike - Workshop - …`. That confirms NVDA sees the Unity window, which is what makes silence inside the browser meaningful.
-6. Record one line per check, quoting what was spoken where possible, or writing **silence**.
+6. **Turn off mouse tracking before judging anything:** NVDA menu → **Preferences → Settings → Mouse** → untick **Enable mouse tracking**. With it on, NVDA reads whatever the pointer passes over, which hides the difference between "focus moved here" and "the mouse is here".
+7. Record one line per check, quoting what was spoken where possible, or writing **silence**.
 
 ## What a result means
 
