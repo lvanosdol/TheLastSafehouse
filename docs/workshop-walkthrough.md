@@ -117,14 +117,16 @@ The camera is the player's eyes. It must be a child of the Player, or turning th
 2. Drag **Main Camera** onto the word `Player` in the Hierarchy and release. It must land *under* Player, indented. Dragging in the Scene view does not do this; use the Hierarchy.
 3. Click **Main Camera** (now a child) and set its **Position** to `(0, 1.6, 0)` and **Rotation** to `(0, 0, 0)`. If the Player was made first and the camera was already at `(0, 1.6, -2)`, parenting has kept it in place and the Position field will already read `(0, 1.6, 0)` — that is the same place on screen, now measured from the Player.
 
-### If you have to make a new camera
+**You should see:** in the Hierarchy, `Main Camera` indented under `Player`, and in the Scene view the camera icon sitting at eye height, near the top of the Player capsule.
+
+### If you deleted the camera and need a new one
 
 1. **GameObject → Camera**. It arrives with **Camera**, **Audio Listener** and, in this URP project, **Universal Additional Camera Data**. Leave all three.
 2. Rename it `Main Camera`, then drag it onto `Player` so it is indented underneath.
 3. Set **Position** `(0, 1.6, 0)`, **Rotation** `(0, 0, 0)`, **Scale** `(1, 1, 1)`, and check the **Tag** reads `MainCamera`.
 4. Select `Player` → **Player Move** → the **View** field must be **None (Transform)**. If it still points at a deleted camera (it would read *Missing*), click it and choose **None**; the script then finds the camera under the Player.
 
-**You should see:** in the Hierarchy, `Main Camera` indented under `Player`, and in the Scene view the camera icon sitting at eye height, near the top of the Player capsule.
+**You should see:** the same result as above — `Main Camera` under `Player`, and the Game view showing the room from eye height.
 
 ## Step 6 — Add the walking script
 
