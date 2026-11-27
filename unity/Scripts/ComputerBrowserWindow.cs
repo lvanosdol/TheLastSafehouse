@@ -52,6 +52,7 @@ namespace Safehouse.Spike
         public bool IsOpen => browserProcess != null && !browserProcess.HasExited;
 
         private Process browserProcess;
+        private string openedPage;
 
         private void Start()
         {
@@ -72,8 +73,17 @@ namespace Safehouse.Spike
             }
         }
 
-        /// <summary>Opens the page in an app-mode browser window over the game view.</summary>
+        /// <summary>Opens the page configured on this component.</summary>
         public void Open()
+        {
+            Open(pageFileName);
+        }
+
+        /// <summary>
+        /// Opens a specific page. A plain file name is resolved inside
+        /// StreamingAssets; a string containing "://" is used as a URL as-is.
+        /// </summary>
+        public void Open(string page)
         {
             if (!Application.isEditor && Application.platform != RuntimePlatform.WindowsPlayer)
             {
@@ -81,10 +91,18 @@ namespace Safehouse.Spike
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(page))
+                page = pageFileName;
+
             if (IsOpen)
             {
-                BringToFront();
-                return;
+                if (openedPage == page)
+                {
+                    BringToFront();
+                    return;
+                }
+
+                Close();
             }
 
             string executable = FindBrowser();
@@ -96,11 +114,13 @@ namespace Safehouse.Spike
                 return;
             }
 
-            string pagePath = Path.Combine(Application.streamingAssetsPath, pageFileName);
-            if (!File.Exists(pagePath))
+            bool isUrl = page.Contains("://");
+            string pagePath = isUrl ? page : Path.Combine(Application.streamingAssetsPath, page);
+
+            if (!isUrl && !File.Exists(pagePath))
                 Debug.LogError($"[ComputerBrowserWindow] Missing page: {pagePath} — copy prototype/standalone.html into Assets/StreamingAssets/.");
 
-            string url = new Uri(pagePath).AbsoluteUri;
+            string url = isUrl ? page : new Uri(pagePath).AbsoluteUri;
             WinRect bounds = GameWindowBounds();
 
             string arguments =
@@ -134,6 +154,7 @@ namespace Safehouse.Spike
                 return;
             }
 
+            openedPage = page;
             Debug.Log($"[ComputerBrowserWindow] Opened {url}");
             StartCoroutine(PositionWhenReady(browserProcess, bounds));
         }
@@ -160,6 +181,7 @@ namespace Safehouse.Spike
             finally
             {
                 browserProcess = null;
+                openedPage = null;
                 FocusGameWindow();
             }
         }
