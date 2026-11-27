@@ -45,6 +45,8 @@ Nothing in those steps depends on a package. The page is the only part that need
 
 `unity/Scripts/PlayerMove.cs` and `unity/Scripts/BenchInteraction.cs` are written and compile-checked against stubs. They are not confirmed in the editor yet; the steps below are what confirms them.
 
+The same steps are written click-by-click for a first-time Unity user in `docs/workshop-walkthrough.md`. That version is the one to follow at the keyboard; this section is the reference.
+
 ### Before either script
 
 1. **Window → Package Manager → Packages: Unity Registry**, install **Input System** if it is not already in the project.

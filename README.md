@@ -2,7 +2,7 @@
 
 A 3D, story-driven IT and networking learning game for adult beginners. Seven chapters teach computer basics, operating systems, files and permissions, programming, databases, networking, security, automation, troubleshooting, and digital literacy — each chapter ending in a boss and awarding one component of a seven-agent software project the player assembles.
 
-**Status:** design complete for all seven chapters. The engine question is settled: **Unity** owns the 3D world, and the in-game computer is the accessible web layer shown in a **real browser window the game opens and positions**. Texture-based webviews (UnityWebBrowser, unity-webview, Vuplex on Windows) render the page but expose nothing to a screen reader — measured, see [`docs/webview-evaluation.md`](docs/webview-evaluation.md) — while a real window is read normally by NVDA ([`docs/playtests/2026-11-27-spike-browser-window.md`](docs/playtests/2026-11-27-spike-browser-window.md)). Chapter 1 implementation has not started; the next step is the Phase 2 vertical slice in [`docs/roadmap.md`](docs/roadmap.md). See also [`docs/engine-decision.md`](docs/engine-decision.md).
+**Status:** design complete for all seven chapters. The engine question is settled: **Unity** owns the 3D world, and the in-game computer is the accessible web layer shown in a **real browser window the game opens and positions**. Texture-based webviews (UnityWebBrowser, unity-webview, Vuplex on Windows) render the page but expose nothing to a screen reader — measured, see [`docs/webview-evaluation.md`](docs/webview-evaluation.md) — while a real window is read normally by NVDA ([`docs/playtests/2026-11-27-spike-browser-window.md`](docs/playtests/2026-11-27-spike-browser-window.md)). Chapter 1 is being built as the Phase 2 vertical slice ([`docs/phase2-vertical-slice.md`](docs/phase2-vertical-slice.md)): the walking and bench scripts are written and waiting on an editor check before the lesson page starts. See also [`docs/engine-decision.md`](docs/engine-decision.md) and [`docs/roadmap.md`](docs/roadmap.md).
 
 ## Where things are
 
@@ -15,6 +15,7 @@ A 3D, story-driven IT and networking learning game for adult beginners. Seven ch
 | `docs/decisions.md` | Dated log of every significant decision |
 | `docs/playtests/` | Playtest and spike reports |
 | `docs/unity-walkthrough.md` | Beginner walkthrough: Unity play mode to the page inside the shell, one step at a time |
+| `docs/workshop-walkthrough.md` | Beginner walkthrough: the Workshop scene, walking, and the bench opening the lesson, one step at a time |
 | `docs/webview-evaluation.md` | Why texture-based webviews cannot be read, what each alternative costs, and the test that decides |
 | `docs/phase2-vertical-slice.md` | The Phase 2 plan: nine tasks with acceptance criteria for Chapter 1 Lesson 1 |
 | `docs/handoff-phase2.md` | Self-contained brief for starting the vertical slice in a fresh task |
