@@ -77,7 +77,7 @@ The paid option is the easiest. Free ones exist, and dropping macOS widens the f
 
 ## Step 7 - Embed the prototype
 
-This is the step that usually stalls. The instructions below are for **UnityWebBrowser 2.2.8** (MIT, current release at the time of writing) and were checked against its published docs and source on 2026-11-27. The paid Vuplex route has a shorter version of the same four moves: install, add the component, assign an engine, give it a URL.
+This is the step that usually stalls. If you have not used Unity before, follow `docs/unity-walkthrough.md` instead — it is this section, one click at a time, with a "you should see" check after every step. What follows is the same procedure in reference form, for **UnityWebBrowser 2.2.8** (MIT, current release at the time of writing), checked against its published docs and source on 2026-11-27. The paid Vuplex route has a shorter version of the same four moves: install, add the component, assign an engine, give it a URL.
 
 ### 7a - Install three packages, not one
 

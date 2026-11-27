@@ -14,6 +14,7 @@ A 3D, story-driven IT and networking learning game for adult beginners. Seven ch
 | `docs/roadmap.md` | Phase-by-phase plan |
 | `docs/decisions.md` | Dated log of every significant decision |
 | `docs/playtests/` | Playtest and spike reports |
+| `docs/unity-walkthrough.md` | Beginner walkthrough: Unity play mode to the page inside the shell, one step at a time |
 | `docs/unity-setup.md` | Install walkthrough, UnityWebBrowser steps, and free browser-component options |
 | `docs/unity-embedding-run-sheet.md` | Recording sheet for the embedding test that closes the accessibility spike |
 | `prototype/` | The accessible simulated computer, runnable in a browser |

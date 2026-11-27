@@ -28,4 +28,4 @@ Leave **Use Local Server** unticked to load the page from `StreamingAssets` (the
 - **Api Compatibility Level: .NET Framework** — `.NET Standard 2.1` does not expose `System.Diagnostics.Process`.
 - The browser component's **Engine** and **Input Handler** fields both assigned; `RawImageUwbClientInputHandler` throws if the input handler is null.
 
-The full walkthrough, including the package IDs and the fields to set, is `docs/unity-setup.md` step 7.
+The full walkthrough, including the package IDs and the fields to set, is `docs/unity-setup.md` step 7. If you have not used Unity before, start with `docs/unity-walkthrough.md` instead — it is the same procedure written as ten click-by-click steps with a check after each one.
