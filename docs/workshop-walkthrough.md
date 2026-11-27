@@ -216,11 +216,15 @@ If the words come out backwards when you first walk up in Step 12, untick **Face
 **You should see,** in the Console, in this order:
 
 ```text
+[BenchInteraction] Bench ready: page standalone.html, browser Computer, player Player.
+[BenchInteraction] Player at the bench. Press E to open standalone.html.
 [ComputerBrowserWindow] Opened file:///…/StreamingAssets/standalone.html
 [BenchInteraction] Opened standalone.html over the Workshop.
 [ComputerBrowserWindow] Browser window closed.
 [BenchInteraction] Back in the Workshop. Press E to return to the bench.
 ```
+
+The first two lines are the ones that diagnose a silent bench: `Bench ready` proves the component is in the scene and knows what to open, and `Player at the bench` proves the trigger volume is being entered. `NOT FOUND` in place of `Computer` or `Player` names the reference that is missing.
 
 If the page opens but does not move into place, or the Console says `Missing page`, say so and which line appeared — that is the host's known weak spot, not something you did.
 
@@ -237,6 +241,11 @@ If the page opens but does not move into place, or the Console says `Missing pag
 | No green capsule after Step 4 | The capsule is a Scene-view gizmo: gizmos off, `Collider` unticked, or the Scene view looking elsewhere | Select `Player`, hover the Scene view, press **F**; check the **Gizmos** button at the top right. If the Inspector lists Character Controller, nothing is broken |
 | `W` does nothing | The editor's other panels have keyboard focus | Click once inside the Game view |
 | Turning does not turn the view | Camera not a child of Player | Step 5 |
+| No prompt and no **E**, and the Console never says `Player at the bench` | The game does not think you are at the bench | Is **Is Trigger** ticked on the Box Collider (unticked makes a solid invisible wall)? Is `Bench Interaction` on the same object as the Box Collider? Walk right up to the bench |
+| `Bench ready` says `browser NOT FOUND` | The **Browser** field is empty | Drag `Computer` into it — Step 10 |
+| `Bench ready` says `player NOT FOUND` | No active object in the scene carries **Player Move** | Step 6, and check the Player is ticked in the Hierarchy |
+| No `Bench ready` line at all | `Bench Interaction` is not on an active object | Step 10, and check the object is ticked |
+| Console says `Player at the bench` but still no prompt | The **Prompt** field is empty, or the prompt object is the wrong one | Step 11 |
 | No prompt at the bench | Not inside the box, the box is not a trigger, or the prompt object is still unticked and not assigned | Step 8 and Step 11; walk closer |
 | **E** does nothing, prompt visible | `Bench Interaction` not on the same object as the box, or **Lesson Page** blank | Step 10 |
 | A browser opens showing a file-not-found page | `Assets/StreamingAssets/standalone.html` is missing | Copy `prototype/standalone.html` there, or run `unity/sync-prototype.sh` |

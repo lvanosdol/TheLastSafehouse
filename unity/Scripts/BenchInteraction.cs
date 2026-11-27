@@ -49,6 +49,13 @@ namespace Safehouse.Workshop
 
             if (player == null)
                 player = FindAnyObjectByType<PlayerMove>();
+
+            // One line that says whether this component can do its job at all.
+            // It turns "nothing happens at the bench" into a named missing
+            // reference instead of a guess.
+            Debug.Log("[BenchInteraction] Bench ready: page " + lessonPage +
+                      ", browser " + (browser != null ? browser.name : "NOT FOUND") +
+                      ", player " + (player != null ? player.name : "NOT FOUND") + ".");
         }
 
         private void OnEnable()
@@ -96,6 +103,7 @@ namespace Safehouse.Workshop
 
             playerInside = true;
             RefreshPrompt();
+            Debug.Log("[BenchInteraction] Player at the bench. Press E to open " + lessonPage + ".");
         }
 
         private void OnTriggerExit(Collider other)
@@ -105,6 +113,7 @@ namespace Safehouse.Workshop
 
             playerInside = false;
             RefreshPrompt();
+            Debug.Log("[BenchInteraction] Player left the bench.");
         }
 
         private void OpenLesson()
