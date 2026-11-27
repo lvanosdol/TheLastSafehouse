@@ -47,6 +47,15 @@
 - UnityWebBrowser comes off the critical path. Once its packages are removed, the Mono-only constraint goes with it and **IL2CPP becomes available again**, which is what the Phase 7 mobile targets need.
 - The interaction to build next is the seating one: `Open()` when the player sits at the computer, `Close()` when they stand up, and handle `Closed` for a player who closes the window themselves.
 
+## Defect found after the first run
+
+`NullReferenceException` at `ComputerBrowserWindow.cs:174` in the positioning coroutine. Two ways in, both real:
+
+1. **Edge hands the page to an already-running browser instance.** The process we start exits immediately, `Update()` clears the field, and the coroutine then dereferenced a null process.
+2. **Play mode stopped while the coroutine was still polling** for a window handle — `Close()` nulls the same field.
+
+Fixed by giving the coroutine its own reference to the process, tolerating an exited process, and falling back to finding the window by title (`Window Title Fragment`, default `Safehouse`) when the page lands in a browser process we did not start. Symptom to watch for if it regresses: the page opens but the window is not moved into place.
+
 ## Known costs, recorded while they are fresh
 
 - The browser is an **overlay**: 3D props cannot occlude it. Acceptable because sitting at a computer fills the screen anyway.

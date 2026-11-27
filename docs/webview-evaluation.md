@@ -57,6 +57,7 @@ Known limits, all acceptable for a spike and worth knowing before they surprise 
 - **Unity receives no input while the browser has focus.** That is the desired behaviour when the player is seated at the computer, but it means the game cannot react to keys during that time.
 - **In the editor it covers the editor**, because the editor's main window is what gets measured. In a built player it covers the game window, which is the real target.
 - **It appears in the taskbar and on alt-tab**, which a true embedded surface would not.
+- **If Edge or Chrome is already running, it may take the page** instead of the process the game started, and then the window cannot be found by process. The component falls back to matching the window title (`Window Title Fragment`, default `Safehouse`); closing other browser windows makes it deterministic.
 - **It needs a browser installed.** Windows 11 has Edge; the component also accepts Chrome.
 
 ## Integrating it into the scene

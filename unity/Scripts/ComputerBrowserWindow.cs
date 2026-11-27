@@ -16,6 +16,7 @@ using System.Collections;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -40,6 +41,10 @@ namespace Safehouse.Spike
 
         [Tooltip("Bring the browser to the front after opening.")]
         [SerializeField] private bool focusOnOpen = true;
+
+        [Tooltip("Part of the browser window's title, used to find the window when an existing browser " +
+                 "instance takes the page instead of the process we started.")]
+        [SerializeField] private string windowTitleFragment = "Safehouse";
 
         /// <summary>Raised when the browser window closes, whether by us or by the player.</summary>
         public event Action Closed;
@@ -130,7 +135,7 @@ namespace Safehouse.Spike
             }
 
             Debug.Log($"[ComputerBrowserWindow] Opened {url}");
-            StartCoroutine(PositionWhenReady(bounds));
+            StartCoroutine(PositionWhenReady(browserProcess, bounds));
         }
 
         /// <summary>Closes the browser window and returns focus to the game.</summary>
@@ -165,34 +170,89 @@ namespace Safehouse.Spike
             else Open();
         }
 
-        private IEnumerator PositionWhenReady(WinRect bounds)
+        private IEnumerator PositionWhenReady(Process process, WinRect bounds)
         {
-            // The handle only exists once the browser has created its window.
+            // Two failure modes to survive here:
+            //  - the process exits before it makes a window (Edge hands the page to
+            //    an already-running instance), and
+            //  - Close() nulls the field while this coroutine is still looping.
+            // So never touch the shared field from inside the loop.
             float deadline = Time.realtimeSinceStartup + 10f;
+            IntPtr handle = IntPtr.Zero;
+
             while (Time.realtimeSinceStartup < deadline)
             {
-                browserProcess.Refresh();
-                IntPtr handle = browserProcess.MainWindowHandle;
+                handle = WindowHandleFor(process);
                 if (handle != IntPtr.Zero)
-                {
-                    SetWindowPos(handle, IntPtr.Zero, bounds.X, bounds.Y, bounds.Width, bounds.Height, SwpShowWindow);
-                    if (focusOnOpen)
-                        SetForegroundWindow(handle);
-                    yield break;
-                }
+                    break;
 
                 yield return new WaitForSecondsRealtime(0.1f);
             }
 
-            Debug.LogWarning(
-                "[ComputerBrowserWindow] The browser started but no window handle appeared; " +
-                "it may be behind the game window.");
+            if (handle == IntPtr.Zero)
+            {
+                Debug.LogWarning(
+                    "[ComputerBrowserWindow] Opened the page but could not find its window to position. " +
+                    "It usually means an existing browser instance took the page — close other browser " +
+                    "windows and press Play again.");
+                yield break;
+            }
+
+            SetWindowPos(handle, IntPtr.Zero, bounds.X, bounds.Y, bounds.Width, bounds.Height, SwpShowWindow);
+            if (focusOnOpen)
+                SetForegroundWindow(handle);
+        }
+
+        private IntPtr WindowHandleFor(Process process)
+        {
+            try
+            {
+                if (process != null && !process.HasExited)
+                {
+                    process.Refresh();
+                    if (process.MainWindowHandle != IntPtr.Zero)
+                        return process.MainWindowHandle;
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                // The process object was disposed or exited between the checks.
+            }
+
+            // The page may live in a browser process we did not start.
+            return FindWindowByTitle(windowTitleFragment);
+        }
+
+        private static IntPtr FindWindowByTitle(string fragment)
+        {
+            IntPtr found = IntPtr.Zero;
+
+            EnumWindows((candidate, _) =>
+            {
+                if (!IsWindowVisible(candidate))
+                    return true;
+
+                int length = GetWindowTextLength(candidate);
+                if (length == 0)
+                    return true;
+
+                var title = new StringBuilder(length + 1);
+                if (GetWindowText(candidate, title, title.Capacity) == 0)
+                    return true;
+
+                if (title.ToString().IndexOf(fragment, StringComparison.OrdinalIgnoreCase) < 0)
+                    return true;
+
+                found = candidate;
+                return false;
+            }, IntPtr.Zero);
+
+            return found;
         }
 
         private void BringToFront()
         {
-            browserProcess.Refresh();
-            IntPtr handle = browserProcess.MainWindowHandle;
+            IntPtr handle = WindowHandleFor(browserProcess);
             if (handle != IntPtr.Zero)
                 SetForegroundWindow(handle);
         }
@@ -299,6 +359,20 @@ namespace Safehouse.Spike
         }
 
         private const uint SwpShowWindow = 0x0040;
+
+        private delegate bool EnumWindowsProc(IntPtr window, IntPtr parameter);
+
+        [DllImport("user32.dll")]
+        private static extern bool EnumWindows(EnumWindowsProc callback, IntPtr parameter);
+
+        [DllImport("user32.dll")]
+        private static extern bool IsWindowVisible(IntPtr hWnd);
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        private static extern int GetWindowTextLength(IntPtr hWnd);
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        private static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
         [DllImport("user32.dll")]
         private static extern bool GetClientRect(IntPtr hWnd, out RECT rect);
