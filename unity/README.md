@@ -18,9 +18,11 @@ The Unity project itself (`SafehouseSpike`) is **not** in this repository: `Libr
 
 Then, in the Unity project:
 
-1. Copy `Scripts/ComputerBrowserWindow.cs` into `Assets/Scripts/`.
-2. Add it to any GameObject, and press Play. The page opens in its own window.
+1. Copy the scripts you need from `Scripts/` into `Assets/Scripts/`.
+2. Add `ComputerBrowserWindow` to any GameObject, and press Play. The page opens in its own window.
 3. Call `Open()` / `Close()` from the interaction that seats the player at the computer.
+
+The Workshop slice's version of step 3 is `PlayerMove.cs` plus `BenchInteraction.cs`; the click-by-click attach steps are the "Editor steps for tasks 1–3" section of `docs/phase2-vertical-slice.md`.
 
 `sync-prototype.sh` is the only step that needs a shell; on Windows it is just as easy to copy `prototype/standalone.html` into `Assets/StreamingAssets/` in File Explorer.
 
