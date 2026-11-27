@@ -205,6 +205,16 @@ If the words come out backwards when you first walk up in Step 12, untick **Face
 
 ## Step 12 — The whole test
 
+Before pressing Play, this is what the scene should contain. Check it against the Hierarchy and Inspector once; it catches every silent failure in one pass.
+
+| Select this | It should carry |
+|---|---|
+| `Main Camera` (indented under `Player`) | **Camera**, **Audio Listener**, **Universal Additional Camera Data** |
+| `Player` | **Character Controller** (Center `(0, 0.9, 0)`, Height `1.8`, Radius `0.35`), **Player Move** (Walk Speed `2.4` and the rest at their defaults) |
+| `Bench Trigger` | **Box Collider** with **Is Trigger** ticked and Size `(2.6, 1.8, 1.6)`; **Bench Interaction** with Lesson Page `standalone.html` and **Browser** = `Computer` |
+| `Computer` | **Computer Browser Window** with **Open On Start** unticked |
+| `Bench Prompt` | **TextMeshPro**, and **unticked** in the Hierarchy |
+
 1. **Ctrl+S** to save the scene.
 2. Click **Play**. Click once inside the Game view.
 3. Walk forward with **W**. A few steps in, the text appears in front of the bench and turns to face you as you move.
