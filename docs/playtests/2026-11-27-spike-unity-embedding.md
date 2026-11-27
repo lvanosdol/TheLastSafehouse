@@ -73,6 +73,8 @@ Not reached. There is no accessible boundary to test until a component exposes o
 
 Test a component whose surface is a real window, which assistive technology can attach to — **WebView2** first, since it uses the Edge runtime already present on Windows and keeps the build small. The page needs no changes for that test; only the host does.
 
+**That assumption was checked on 2026-11-27 and narrowed:** every Unity browser plugin renders to a texture on Windows, so the choice is between a real window driven by the game, a hand-written WebView2 child window, and the web-first build. See `docs/webview-evaluation.md`.
+
 ## Appendix — how to repeat this with another browser component
 
 1. Install NVDA if needed, and open **NVDA menu → Tools → Speech Viewer** so everything spoken is also written down.
