@@ -243,6 +243,7 @@ If the page opens but does not move into place, or the Console says `Missing pag
 | What you see | What it means | Fix |
 |---|---|---|
 | **Add Component** has no **Safehouse** section | The scripts are not in the project, or did not compile | Check `Assets/Scripts` holds both `.cs` files (Step 1), then read the first red Console line |
+| `The referenced script (Unknown) on this Behaviour is missing!` | A component points at a script file that was deleted and re-imported, so its identity changed. The component runs no code at all | Click each object on the checklist: any block that reads **Missing (Mono Script)** → right-click its header → **Remove Component**, then add it again with **Add Component** and set its fields. Also check `Assets/Scripts` for duplicates like `PlayerMove 1.cs`, and for red `error CS` lines, which make every script look missing |
 | `CS0246` naming `UnityEngine.InputSystem` | New Input System not installed or not active | Step 2 |
 | The prompt is pink or magenta | It is the legacy `TextMesh`, whose built-in shader URP does not draw properly | Delete it and use a TextMeshPro text object instead — Step 11 |
 | The prompt reads backwards | The billboard is facing the back of the text at the player | Untick **Face Viewer** on Bench Interaction and set the prompt's Rotation Y to `180` |
