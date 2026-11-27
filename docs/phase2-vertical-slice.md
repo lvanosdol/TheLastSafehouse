@@ -26,6 +26,8 @@ For Lesson 1 that means: 3D bench as the thing the player approaches, and an acc
 | 6 | Safety card: shown before assembly, dismissible, re-openable | Dialog semantics, Escape closes, focus returns |
 | 7 | Assembly: eleven placement steps, validated by resulting state not order, with the four named diagnostics | Each diagnostic fires only for its own condition; result screen shows the POST block |
 | 8 | Result and hand-off: `POWER: ON … WINDOWS: STARTING`, then "Workshop application: Not responding" | The lesson ends in the story beat, not a dead end |
+
+**Task 8 note:** the figure that glitches into view stays **unnamed** here — the design has "No name or message is provided yet" (`Design/Chapter 1/Chapter-1-Design.md`), and Finch introduces himself at the end of Chapter 1. Writing "Finch" into the Lesson 1 result would spend the reveal.
 | 9 | Slice playtest: keyboard only, NVDA, one tester, report written | `docs/playtests/` entry with pass/fail per task |
 
 **Status 2026-11-27:** tasks 1–3 confirmed in the editor — see `docs/playtests/2026-11-27-workshop-first-run.md`. The click-by-click version for a first-time Unity user is `docs/workshop-walkthrough.md`.
