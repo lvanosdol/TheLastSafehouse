@@ -176,6 +176,10 @@ The script does three things: waits for the browser engine to start, builds the 
 
 Then you do not build a Canvas at all — a second browser surface on screen causes one of them to stay blank. The package requires a `RawImage` on the same object as the browser component (`[RequireComponent(typeof(RawImage))]` on `RawImageUwbClientManager`), so in the sample hierarchy the component is on the object **holding the Raw Image**, not on the `WebBrowser` wrapper above it. Select that object, scroll its Inspector to the bottom, and add **Load Prototype Page** beside the existing **Web Browser Basic** / **Web Browser Full** component.
 
+If the objects in that prefab show only Rect Transform, Canvas Renderer and Raw Image — with **Add Component** as the last entry — then no browser component exists in the instance and it will never render. Before rebuilding, type `Web Browser Basic` into **Add Component**: if it appears, the package is fine and you can build the Canvas trio from steps 7.2–7.9 instead of using the prefab; if it does not appear, the package's scripts are not compiling, and the Console is where the real error is.
+
+**The deterministic option, when a prefab's wiring is unclear:** delete the prefab instance from the Hierarchy (its asset stays in `Packages`, nothing is lost), then follow 7.2–7.9 exactly. A Canvas, a Raw Image, `Web Browser Basic` with two slots filled, and `LoadPrototypePage` is the whole configuration — there is nothing else to discover.
+
 ---
 
 ## Step 8 — Press Play
