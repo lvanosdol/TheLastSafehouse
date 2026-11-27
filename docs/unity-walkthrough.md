@@ -107,6 +107,8 @@ Why: Unity copies `StreamingAssets` into the finished game exactly as it is, whi
 1. In the Project window, click **Assets** again.
 2. Right-click → **Create → Folder**. Name it `Scripts`.
 3. Copy `unity/Scripts/LoadPrototypePage.cs` from this repository into that folder.
+   - Saving straight from the browser works too: aim the save dialog at `Assets\Scripts` inside the Unity project, set **Save as type** to **All Files**, and type `LoadPrototypePage.cs` as the name. Otherwise Windows quietly saves `LoadPrototypePage.cs.txt` and Unity ignores it.
+   - The folder under `Assets` does not matter to Unity — `Scripts` is just the convention. What must match is the **file name and the class name**, so do not rename the file.
 4. Click the file once in Unity.
 
 **You should see:** the Inspector shows the script's source code and there is no red error in the Console. If the Console says the script failed to compile, send me the message — do not continue.
