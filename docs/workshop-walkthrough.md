@@ -1,12 +1,12 @@
-# Workshop walkthrough — from a scene to the bench opening the lesson
+# Workshop walkthrough — the bench, from an almost empty scene
 
-Written for someone who has not used Unity before, like `docs/unity-walkthrough.md`. Do the steps **in order**. Every step ends with a **You should see** line: if what you see is different, stop there and say so, because the later steps assume the earlier ones worked.
+Written for someone who has not used Unity before. Do the steps **in order**. Every step ends with a **You should see** line: if what you see is different, stop there and say so, because the later steps assume the earlier ones worked.
 
-This covers tasks 1–3 of `docs/phase2-vertical-slice.md`. About 30–40 minutes the first time, and most of it is finding panels and reading the checkpoints rather than typing.
+This builds tasks 1–3 of `docs/phase2-vertical-slice.md`: the room, a walkable camera, and a bench that opens the lesson page. About 40 minutes the first time.
+
+**Starting point:** the scene holds `Main Camera`, `Computer`, `Global Volume` and `Directional Light`. Everything else in this document is built from scratch.
 
 ## Finding the parts of the editor
-
-The steps below name these panels. If any name is unfamiliar, this is the map.
 
 | What the steps call it | Where it is |
 |---|---|
@@ -15,226 +15,165 @@ The steps below name these panels. If any name is unfamiliar, this is the map.
 | **Game** view | The tab beside **Scene**: what the camera sees |
 | **Inspector** | Right-hand panel: the settings of the selected object, with its name at the top |
 | **Project** | Bottom panel: the files under `Assets` |
-| **Console** | The tab beside **Project**: errors and messages |
-| **Add Component** | The button at the *bottom* of the Inspector, once an object is selected; scroll the Inspector down if you cannot see it. The **Component** menu in the top bar does the same and has a search box |
+| **Console** | The tab beside **Project**: errors, warnings and messages |
+| **Add Component** | The button at the *bottom* of the Inspector once an object is selected; the **Component** menu in the top bar does the same and has a search box |
 
-Three habits worth forming now: **Add Component applies to the object selected in the Hierarchy**, so glance at the name at the top of the Inspector before clicking; **Ctrl+S saves the scene**, which is not automatic; and **changes made while Play mode is highlighted are thrown away when you stop it**, so leave Play before editing the scene.
+Three habits: **Add Component applies to the object selected in the Hierarchy**, so glance at the Inspector's title first; **Ctrl+S saves the scene**, which is not automatic; **edits made while Play mode is highlighted are thrown away when you stop**, so leave Play before editing.
 
-## Before you start
+## Step 0 — Start from four objects
 
-1. Open **Unity Hub**, click **Projects**, open `SafehouseSpike`. Let it finish loading; the spinner at the bottom right must stop.
-2. In the **Project** window (bottom of the screen) open `Assets → Scenes` and double-click `Workshop`. The scene name appears at the top of the **Hierarchy** (left of the screen).
-3. Look at the **Hierarchy** list. If there is an object named something like `Web Browser` or `Browser`, and its Inspector shows **Missing (Mono Script)**, right-click it → **Delete**. The browser packages are gone, so that object cannot work and would confuse the next steps.
+The scene must hold exactly `Main Camera`, `Computer`, `Global Volume`, `Directional Light` before the rebuild.
 
-**You should see:** a Hierarchy containing the scene's geometry, the light and a camera — nothing with a missing script — and an empty Console (Window → General → Console, then the Clear button).
+1. **If `Main Camera` sits indented under `Player`, drag it out first** — onto the scene name `Workshop` at the top of the Hierarchy. Deleting a parent deletes its children, camera included.
+2. Delete everything else: `Player`, `Bench Trigger`, `Bench Prompt`, `Floor`, `Bench`, `Chassis`. Right-click each → **Delete**.
+3. Keep `Computer` — it carries the browser host — and `Global Volume`, which is post-processing and does no harm.
 
-## Step 0 — Clear out the old browser surface
+**You should see:** four objects in the Hierarchy, and selecting `Computer` still showing a **Computer Browser Window** component.
 
-If the Hierarchy lists `Canvas` or `EventSystem`, those are left over from the Phase 1 spike: a Canvas with a Raw Image that drew the page into a texture. The game no longer draws the page itself, so none of it is used.
+## Step 1 — The three scripts
 
-1. Click `Canvas`, right-click → **Delete**. Do the same for `EventSystem`.
-2. `Computer` **stays**. It carries **Computer Browser Window** — the host that opens the page in a real window — so it is doing exactly the job it should. Step 9 configures it. Only delete it if its Inspector shows **Missing (Mono Script)**, which would mean the host never made it into this scene; step 9 then adds one back.
-3. Leave `Global Volume` alone. It is the post-processing volume and does no harm.
+`Assets/Scripts` must hold exactly three files, with exactly these names. Unity binds a component to a file whose name matches the class, so `BenchInteraction (1).cs` or `PlayerMove.cs.txt` will not work.
 
-**You should see:** the Hierarchy down to Main Camera, Directional Light, Global Volume, Computer, plus whatever room geometry exists.
+- `PlayerMove.cs`
+- `BenchInteraction.cs`
+- `ComputerBrowserWindow.cs`
 
-## Step 0b — Build the room, if it is not there yet
+1. If a file is missing or misnamed, download it, rename it to the exact name **before** dragging it in, then drop it onto `Assets/Scripts`:
+   - `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/PlayerMove.cs`
+   - `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/BenchInteraction.cs`
+   - `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/ComputerBrowserWindow.cs`
+   The **download** arrow is at the right-hand end of the file's header bar. If Unity asks about replacing `ComputerBrowserWindow.cs`, choose **Replace** — never delete that file inside Unity, or `Computer` loses its component and its settings.
+2. Delete any duplicate or `.txt` copy in `Assets/Scripts`: right-click → **Delete**.
 
-Three primitives are all the slice needs. Menu **GameObject → 3D Object → Plane** or **Cube**, then rename the object in the Inspector name box *before* moving on, because the later steps refer to these names.
+**You should see:** three files in `Assets/Scripts`, no red `error CS` lines in the Console, and **Add Component** offering **Safehouse → Player Move** and **Safehouse → Bench Interaction**.
 
-| Object | Primitive | Position | Scale |
-|---|---|---|---|
-| `Floor` | Plane | `(0, 0, 0)` | `(0.8, 1, 0.8)` — a Plane is 10 m at scale 1, so this is 8 m × 8 m |
-| `Bench` | Cube | `(0, 1, 2)` | `(1.6, 0.1, 0.8)` |
-| `Chassis` | Cube | `(0, 1.25, 2)` | `(0.4, 0.4, 0.2)` |
+## Step 2 — The new Input System
 
-The scale numbers above assume the primitive named in the second column. A **Quad** is 1 m at scale 1 (not 10 m like a Plane), and a **Cube** has its top surface half its scale above its centre — so the same numbers give a floor a metre across, or one you start inside. If you use anything but a Plane for the floor, work out the size and height from the primitive rather than copying `(0.8, 1, 0.8)`.
+The scripts read the keyboard through Unity's new Input System.
 
-Those numbers are not arbitrary: the bench top lands at `y = 1.05` and its front face at `z = 1.6`, which is what the trigger volume in Step 8 and the prompt in Step 11 are spaced around. The chassis bottom is at `1.05` so it sits on the bench rather than hovering. The bench will look like it floats, because it is a slab with no legs; that is expected, and a pedestal Cube underneath changes nothing functionally.
+1. **Window → Package Manager → Packages: Unity Registry**, search `Input System`. If the button says **Install**, click it and answer **Yes** to the restart.
+2. **Edit → Project Settings → Player → Other Settings → Active Input Handling** must read **Both** or **Input System Package (New)**. If it reads **Input Manager (Old)**, change it, accept the restart, and reopen the scene (`Assets → Scenes → Workshop`).
 
-Then place the camera: select **Main Camera**, set **Position** `(0, 1.6, -2)` and **Rotation** `(0, 0, 0)`.
+**You should see:** the scene open again, no red errors, and `PlayerMove.cs` with no error marks in the Project panel.
 
-**You should see,** in the Game view without pressing Play: floor filling the lower half, a bench-shaped slab four metres ahead and a little below the middle of the screen, spanning about a quarter of the screen's width, with the small chassis box on top of it reaching roughly the horizon line. If the bench is small and far away, or the view is still only sky, compare the numbers above with the Inspector — the camera's Position is the one that changes distance.
+## Step 3 — Floor, Bench, Chassis
 
-Then press **Ctrl+S**. The scene is not saved for you, and everything after this depends on it.
+Menu **GameObject → 3D Object → …**, then rename each object in the Inspector's name box before moving on.
 
-## Step 1 — Put the three scripts in the project
+| Name | Primitive | Position | Rotation | Scale |
+|---|---|---|---|---|
+| `Floor` | Plane | `(0, 0, 0)` | `(0, 0, 0)` | `(0.8, 1, 0.8)` |
+| `Bench` | Cube | `(0, 1, 2)` | `(0, 0, 0)` | `(1.6, 0.1, 0.8)` |
+| `Chassis` | Cube | `(0, 1.25, 2)` | `(0, 0, 0)` | `(0.4, 0.4, 0.2)` |
 
-The project needs three files, all from the repository's `unity/Scripts` folder: `PlayerMove.cs`, `BenchInteraction.cs`, and a current `ComputerBrowserWindow.cs`.
+A Plane is 10 m at scale 1, so `0.8` gives an 8 m room. A Quad is 1 m at scale 1, so use a Plane, not a Quad. These numbers put the bench top at `y = 1.05` and its front face at `z = 1.6`, which the trigger and the prompt are spaced around — so do not move `Bench` in Z.
 
-1. In the **Project** panel, if there is no `Scripts` folder, right-click `Assets` → **Create → Folder** and name it `Scripts`.
-2. Get the files, whichever way matches your machine:
-   - **Repository cloned on this PC:** open `unity/Scripts` in File Explorer, select the three files, **Ctrl+C**, then click inside `Assets/Scripts` in Unity's Project panel and **Ctrl+V**.
-   - **No clone on this PC** (likely, if all your work happens in Unity): open these three pages, and on each one click the **download** arrow at the right-hand end of the file's header bar, so it saves to `Downloads` with its `.cs` name:
-     - `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/PlayerMove.cs`
-     - `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/BenchInteraction.cs`
-     - `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/ComputerBrowserWindow.cs`
-     Then drag all three out of `Downloads` onto `Assets/Scripts` in Unity.
-3. File names must end in `.cs`. `PlayerMove.cs.txt` is ignored by Unity; if that happens, rename it and drop the `.txt`.
+Add nothing to these three. A Plane brings a **Mesh Collider** and a Cube a **Box Collider**, and both are needed. A yellow note on the Mesh Collider about *pre-baked triangle collision* is expected and harmless.
 
-**One caution about the host file.** If the project already had a `ComputerBrowserWindow.cs` from the Phase 1 spike, Unity asks whether to replace it: say **Replace**. Do not delete it first — deleting a script inside Unity gives the re-imported file a new identity, and the `Computer` object then loses its component and its settings. Overwriting keeps both and changes only the code. It also brings the window-positioning fix recorded in `docs/playtests/2026-11-27-spike-browser-window.md`.
+Then place the camera: select `Main Camera`, **Position** `(0, 1.6, -2)`, **Rotation** `(0, 0, 0)`, **Scale** `(1, 1, 1)`, **Tag** `MainCamera`.
 
-**You should see:** three files listed in `Assets/Scripts`; no red in the Console; `Computer` still listing **Computer Browser Window** with **Open On Start** unticked; and **Add Component** offering **Safehouse → Player Move** and **Safehouse → Bench Interaction**.
+**You should see,** in the Game view without pressing Play: floor filling the lower half, the bench slab four metres ahead just below the middle and about a quarter of the frame wide, the chassis box on it reaching roughly the horizon. Then **Ctrl+S**.
 
-If the Console shows `error CS1501: No overload for method 'Open' takes 1 arguments`, the host file is still the Phase 1 copy — download `ComputerBrowserWindow.cs` again and replace it.
+## Step 4 — The Player and its body
 
-## Step 2 — Turn on the new Input System
+1. **GameObject → Create Empty**, rename it `Player`, **Position** `(0, 0, -2)`, **Rotation** `(0, 0, 0)`, **Scale** `(1, 1, 1)`.
+2. **Add Component** → `Character Controller` → **Enter**. Set **Center** `(0, 0.9, 0)`, **Radius** `0.35`, **Height** `1.8`, **Skin Width** `0.08`, **Slope Limit** `45`, **Step Offset** `0.3`.
 
-The scripts read the keyboard through Unity's new Input System. If it is not installed, they will not compile.
+An empty object draws nothing, so the room will look unchanged. Centre is what decides eye height in the next step: the capsule bottom sits at `y = 0` and its top at `1.8`.
 
-1. Menu **Window → Package Manager**.
-2. At the top left, set the dropdown to **Packages: Unity Registry**.
-3. Type `Input System` in the search box.
-4. If the button on the right says **Install**, click it. If it says **Installed**, close the window and skip to item 6.
-5. Unity asks whether to enable the new input backends and restart. Answer **Yes** and let it restart.
-6. After the restart, check **Edit → Project Settings → Player → Other Settings → Active Input Handling**. It must read **Both** or **Input System Package (New)**. If it reads **Input Manager (Old)**, change it and accept the restart.
+**You should see:** a green capsule in the Scene view with its bottom on the floor — select `Player`, hover the Scene view, press **F**. The capsule is a drawing: if **Gizmos** (top right of the Scene view) is off, you will not see it, and nothing is broken.
 
-**You should see:** after reopening the scene, the Console has no red errors, and `Assets/Scripts/PlayerMove.cs` shows no error marks in the Project window.
+## Step 5 — The camera inside the Player
 
-## Step 3 — Make the Player object
+1. Drag `Main Camera` onto `Player` in the Hierarchy so it is indented underneath.
+2. Select it: **Position** `(0, 1.6, 0)`, **Rotation** `(0, 0, 0)`. Parenting keeps the world position, so the field will probably already read `(0, 1.6, 0)` — the same place on screen, now measured from the Player.
 
-1. Menu **GameObject → Create Empty**. A new object appears at the bottom of the Hierarchy, selected.
-2. With it selected, look at the **Inspector** (right of the screen), at the top: the name box reads `GameObject`. Click it, type `Player`, press **Enter**.
-3. In the **Transform** block just below, set **Position** to `X 0`, `Y 0`, `Z -2`. Leave Rotation and Scale alone.
+**You should see:** `Main Camera` under `Player`, and the Game view unchanged.
 
-**You should see:** a `Player` entry in the Hierarchy, four metres in front of the bench (the bench sits at `z = 2`, the Player at `z = -2`), and its Transform showing `(0, 0, -2)`.
+## Step 6 — The walking script
 
-There is nothing to see in the room, and that is not a mistake: an empty object draws nothing. No body, no cube, and in the Game view no change at all. In the Scene view it is a small icon at the selected point, which is why the next step adds a capsule you can see. In a first-person game the camera is the player.
+1. Select `Player`, **Add Component → Safehouse → Player Move**.
+2. **View** must be **None (Transform)**: the script finds the camera under the Player itself.
 
-## Step 4 — Give the Player a body
+Nothing else needs typing. The values arrive from the script:
 
-1. With `Player` still selected, click **Add Component** at the bottom of the Inspector.
-2. Type `Character Controller` in the search box and press **Enter** on the first result.
-3. In the new **Character Controller** block, set **Center** to `(0, 0.9, 0)`, **Height** to `1.8`, **Radius** to `0.35`.
-
-**You should see:** a green capsule outline drawn around the Player in the **Scene** view (the large middle panel), standing on the floor rather than half sunk into it. If it looks sunk, the Center is not `(0, 0.9, 0)`.
-
-The capsule is a **gizmo** — a drawing the Scene view adds, not part of the game. It is invisible if the Scene view is looking somewhere else (select `Player`, hover the Scene view, press **F** to frame it), if the **Gizmos** button at the top right of the Scene view is off, or if `Collider` is unticked in that button's dropdown. None of those breaks anything: the component in the Inspector is what matters, and Step 7 proves it by stopping you at the bench.
-
-## Step 5 — Put the camera inside the Player
-
-The camera is the player's eyes. It must be a child of the Player, or turning the body will not turn the view.
-
-1. In the **Hierarchy**, find **Main Camera**.
-2. Drag **Main Camera** onto the word `Player` in the Hierarchy and release. It must land *under* Player, indented. Dragging in the Scene view does not do this; use the Hierarchy.
-3. Click **Main Camera** (now a child) and set its **Position** to `(0, 1.6, 0)` and **Rotation** to `(0, 0, 0)`. If the Player was made first and the camera was already at `(0, 1.6, -2)`, parenting has kept it in place and the Position field will already read `(0, 1.6, 0)` — that is the same place on screen, now measured from the Player.
-
-**You should see:** in the Hierarchy, `Main Camera` indented under `Player`, and in the Scene view the camera icon sitting at eye height, near the top of the Player capsule.
-
-### If you deleted the camera and need a new one
-
-1. **GameObject → Camera**. It arrives with **Camera**, **Audio Listener** and, in this URP project, **Universal Additional Camera Data**. Leave all three.
-2. Rename it `Main Camera`, then drag it onto `Player` so it is indented underneath.
-3. Set **Position** `(0, 1.6, 0)`, **Rotation** `(0, 0, 0)`, **Scale** `(1, 1, 1)`, and check the **Tag** reads `MainCamera`.
-4. Select `Player` → **Player Move** → the **View** field must be **None (Transform)**. If it still points at a deleted camera (it would read *Missing*), click it and choose **None**; the script then finds the camera under the Player.
-
-**You should see:** the same result as above — `Main Camera` under `Player`, and the Game view showing the room from eye height.
-
-## Step 6 — Add the walking script
-
-1. Select `Player` again.
-2. **Add Component → Safehouse → Player Move**. If **Safehouse** is not in the list, step 1 or 2 failed; check the Console.
-
-**Nothing needs typing.** The values come from the script, so the component opens with them already filled in:
-
-| Field | Value you should see | What it does |
+| Field | Value | Meaning |
 |---|---|---|
-| **Walk Speed** | `2.4` | Metres per second; crosses the whole room in about three seconds |
-| **Gravity** | `-20` | Keeps you on the floor. Stronger than real gravity so you do not float off steps |
-| **View** | empty | The camera. Leave it empty — the script finds the one under the Player |
-| **Mouse Sensitivity** | `0.12` | Degrees turned per pixel of mouse movement while the pointer is locked |
-| **Key Turn Speed** | `100` | Degrees per second with the arrow keys — the keyboard-only way to turn |
-| **Pitch Limit** | `80` | How far up or down you may look, in degrees |
-| **Lock Pointer On Start** | ticked | Hides and holds the pointer when Play starts. **Escape** gives it back |
+| Walk Speed | `2.4` | metres per second |
+| Gravity | `-20` | keeps you on the floor |
+| View | empty | the camera |
+| Mouse Sensitivity | `0.12` | degrees per pixel while the pointer is locked |
+| Key Turn Speed | `100` | degrees per second with the arrow keys |
+| Pitch Limit | `80` | how far up or down you may look |
+| Lock Pointer On Start | ticked | hides the pointer; **Escape** releases it |
 
-Change one only if Step 7 feels wrong: too fast or too slow is **Walk Speed**; a twitchy or sluggish mouse is **Mouse Sensitivity**; arrow keys that spin you is **Key Turn Speed**. If you want the shipped values back, right-click the word **Player Move** at the top of the component block and choose **Reset**.
+**You should see:** those values and no red in the Console.
 
-**You should see:** the block with those seven values, and no red in the Console.
+## Step 7 — Walk before building anything else
 
-## Step 7 — Test walking, before touching the bench
+1. **Play**, then **click once inside the Game view** — Unity ignores keys while another panel has focus.
+2. Check: **W A S D**, mouse look, **left and right arrows** turning without the mouse, **Escape** releasing the pointer, a click taking it back.
+3. Walk up to the bench: you stop against it instead of passing through. Walk back.
+4. Stop Play.
 
-1. Click the **Play** button (▶) at the top centre. The Game view takes over.
-2. **Click once inside the Game view.** Unity ignores the keyboard while the Inspector or Hierarchy has focus, so this click matters.
-3. The pointer disappears and is held in place. Check, one at a time:
-   - **W** walks forward, **S** back, **A** and **D** sideways.
-   - Moving the mouse turns and looks up and down.
-   - The **left and right arrow keys** turn without touching the mouse. This is the keyboard-only route, so it must work.
-   - **Escape** gives the pointer back; the mouse no longer turns the view.
-   - Clicking inside the Game view takes the pointer again.
-4. Walk up to the bench and back.
-5. Click **Play** again to stop.
-
-**You should see:** all of the above, and no red text in the Console. If the Console says `[PlayerMove] The camera is not parented under the Player`, redo step 5.
+**You should see:** all of that, with no red in the Console and no `[PlayerMove]` warning. If it warns that the player is *standing on nothing*, the floor is at fault, not the script. If the view drifts downwards, stop and say so rather than continuing.
 
 ## Step 8 — The trigger volume at the bench
 
-This invisible box is how the game knows you are standing at the bench.
+1. **GameObject → Create Empty**, rename it `Bench Trigger`, **Position** `(0, 0.9, 1.0)`, **Rotation** `(0, 0, 0)`.
+2. **Add Component** → `Box Collider` → **Enter**. Tick **Is Trigger**. **Center** `(0, 0, 0)`, **Size** `(2.6, 1.8, 1.6)`.
 
-1. **GameObject → Create Empty**, then rename it `Bench Trigger` (Inspector name box).
-2. Set its **Position** to `(0, 0.9, 1.0)`.
-3. **Add Component →** search `Box Collider` → **Enter**.
-4. In the **Box Collider** block, tick **Is Trigger**, and set **Size** to `(2.6, 1.8, 1.6)`.
+The volume then reaches from `z = 0.2` to `z = 1.8`, so it is entered about a step before the bench stops you.
 
-**You should see:** a green wireframe box in the Scene view, standing in front of the bench and a little on either side of it. Green, not solid — ticked **Is Trigger** is what makes it pass-through.
+**You should see:** a green wireframe box in front of the bench — select it, hover the Scene view, press **F**. An unticked **Is Trigger** is not a cosmetic mistake: it becomes an invisible wall that stops you short, and then neither the prompt nor **E** ever happens.
 
-## Step 9 — The browser host
+## Step 9 — The browser host on Computer
 
-The host lives on its own object, `Computer`, which is where it already is if you kept the spike's object. Keeping it separate is deliberate: the host belongs to the machine, the trigger belongs to the spot you stand in, and later interactions can point at the one host.
+1. Select `Computer`. It should already carry **Computer Browser Window**; add it if it does not.
+2. **Untick Open On Start.** It is ticked by default and opens a page the moment you press Play.
+3. Leave **Page File Name** at `standalone.html`.
 
-1. Select `Computer` in the Hierarchy. It should already carry **Computer Browser Window**. If it does not, **Add Component →** search `Computer Browser Window`.
-2. **Untick Open On Start.** This is the tick that has been opening the page the moment you press Play. The bench now decides when the page opens; with this left on you would get two windows, one at Play and one on **E**.
-3. Leave **Page File Name** at `standalone.html` and the rest at their defaults.
-
-**You should see:** under **Page**, Page File Name `standalone.html` and **Open On Start unticked**; under **Window**, Inset Percent, Use Isolated Profile, Focus On Open and Window Title Fragment at their defaults. Pressing Play now opens nothing until the trigger asks.
+**You should see:** under **Page**, Page File Name `standalone.html` and **Open On Start unticked**; under **Window**, Inset Percent, Use Isolated Profile, Focus On Open and Window Title Fragment at their defaults. Pressing Play opens nothing now.
 
 ## Step 10 — The bench interaction
 
-1. Select `Bench Trigger`, **Add Component →** search `Bench Interaction`.
-2. In its **Lesson** block, set **Lesson Page** to `standalone.html` for now. `lesson-1.html` does not exist yet; it is my next task. This is the only value you will change back later.
-3. Drag `Computer` from the Hierarchy into the **Browser** field. Without this the bench has no host to open and the Console will say so.
-4. Leave **Player** and **Prompt** empty for the moment. The player is found in the scene; the prompt is step 11.
+1. Select `Bench Trigger`, **Add Component → Safehouse → Bench Interaction**.
+2. **Lesson Page**: `standalone.html` for now. `lesson-1.html` is written next; this is the one value that changes later.
+3. **Browser**: drag `Computer` from the Hierarchy into this field.
+4. Leave **Player** empty (it is found in the scene). **Interact Key** stays `E`.
 
 **You should see:** Lesson Page `standalone.html`, Browser reading `Computer (ComputerBrowserWindow)`, Interact Key `E`, Face Viewer ticked.
 
 ## Step 11 — The prompt
 
-The prompt is a label that appears when you stand at the bench. It is decoration for a sighted player — everything the game needs is in the page — so it can be plain and small.
+The prompt is a label for a sighted player; everything the game needs is in the page, so it can be plain.
 
-Use **TextMeshPro**, not the old `TextMesh`. This project draws with URP, and the legacy text component relies on a built-in shader that URP usually renders as pink.
+1. **GameObject → 3D Object → Text - TextMeshPro**. If Unity offers to import TMP Essentials, accept. Do not use the legacy `TextMesh`: this project draws with URP, where it renders pink.
+2. Rename it `Bench Prompt`. It carries a **RectTransform**, so its fields are **Pos X** `0`, **Pos Y** `1.5`, **Pos Z** `1.1`, and **Scale** `(0.01, 0.01, 0.01)` at the bottom of that same block — leave the default 1 and the words are metres tall. **Width** and **Height** only decide where the text wraps; leave them.
+3. In the **TextMeshPro** block, the first field is a large box labelled **Text Input** holding `New Text`: click inside, **Ctrl+A**, type `Press E`. Set **Font Size** `36` below it. Leave the colour — white reads well in this room.
+4. Untick `Bench Prompt` in the Hierarchy. The script switches it on near the bench.
+5. Drag `Bench Prompt` into **Bench Interaction → Prompt**.
 
-1. **GameObject → 3D Object → Text - TextMeshPro**. If Unity offers to import TMP Essentials, accept.
-2. Rename it `Bench Prompt`, set **Pos X** `0`, **Pos Y** `1.5`, **Pos Z** `1.1`, and set **Scale** `(0.01, 0.01, 0.01)` — the default 1 makes a word several metres tall.
-3. Find the **TextMeshPro** component block and click its header once if it is collapsed. The first field is a large box labelled **Text Input** holding `New Text`: click inside it, select all (**Ctrl+A**), and type `Press E`. The words appear in the Scene view as you type.
-4. Just below, in **Main Settings**, set **Font Size** to `36`. Leave the colour alone — the default white reads well against the room. Longer prompts work too, but every extra word makes the line wider.
-5. Look at the Scene view: the words should sit above the bench about a metre wide. If they are huge or invisible, change only the **Scale**, all three numbers together.
-6. In the Hierarchy, untick `Bench Prompt` to hide it. The script shows it when you are close.
-7. Select `Bench Trigger` and drag `Bench Prompt` into the **Prompt** field of **Bench Interaction**.
+**You should see:** the Prompt field reading `Bench Prompt`, and the object unticked. Tick it once to look at the text in the Scene view — about a metre wide above the bench — then untick it again.
 
-**About the fields.** A text object carries a **RectTransform**, not a Transform. Its position is labelled **Pos X**, **Pos Y**, **Pos Z**, and **Scale** is at the bottom of the same block — scroll the Inspector if you cannot see it. **Width** and **Height** only decide where the text wraps; leave them alone. If you see **Pos X** and **Pos Y** but no **Pos Z**, you used the **GameObject → UI** menu instead: that text draws on the screen rather than in the room, so delete it and use **GameObject → 3D Object → Text - TextMeshPro**.
+## Step 12 — Pre-flight, then the whole test
 
-**You should see:** the prompt hidden in the Scene view, and the Prompt field reading `Bench Prompt`.
-
-If the words come out backwards when you first walk up in Step 12, untick **Face Viewer** on **Bench Interaction** and set `Bench Prompt`'s **Rotation** Y to `180`.
-
-## Step 12 — The whole test
-
-Before pressing Play, this is what the scene should contain. Check it against the Hierarchy and Inspector once; it catches every silent failure in one pass.
-
-| Select this | It should carry |
+| Select | It must carry |
 |---|---|
-| `Main Camera` (indented under `Player`) | **Camera**, **Audio Listener**, **Universal Additional Camera Data** |
-| `Player` | **Character Controller** (Center `(0, 0.9, 0)`, Height `1.8`, Radius `0.35`), **Player Move** (Walk Speed `2.4` and the rest at their defaults) |
-| `Bench Trigger` | **Box Collider** with **Is Trigger** ticked and Size `(2.6, 1.8, 1.6)`; **Bench Interaction** with Lesson Page `standalone.html` and **Browser** = `Computer` |
-| `Computer` | **Computer Browser Window** with **Open On Start** unticked |
-| `Bench Prompt` | **TextMeshPro**, and **unticked** in the Hierarchy |
+| `Main Camera` (under `Player`) | Camera, Audio Listener, Universal Additional Camera Data; Position `(0, 1.6, 0)` |
+| `Player` | Character Controller (Center `(0, 0.9, 0)`, Height `1.8`, Radius `0.35`), Player Move (View empty) |
+| `Bench Trigger` | Box Collider, **Is Trigger ticked**, Size `(2.6, 1.8, 1.6)`; Bench Interaction (Lesson Page `standalone.html`, Browser `Computer`, Prompt `Bench Prompt`) |
+| `Computer` | Computer Browser Window, **Open On Start unticked** |
+| `Bench Prompt` | TextMeshPro, unticked in the Hierarchy |
+| `Floor`, `Bench`, `Chassis` | The positions and scales from Step 3, ticked |
 
-1. **Ctrl+S** to save the scene.
-2. Click **Play**. Click once inside the Game view.
-3. Walk forward with **W**. A few steps in, the text appears in front of the bench and turns to face you as you move.
-4. Press **E**. A browser window opens over the whole editor, showing the simulated desktop.
-5. Try **W**, **A**, **S**, **D**, **E**. Nothing should move behind the browser.
-6. Close the browser window with its own **X** (top right) or **Alt+F4**. Do not press Play/Stop in Unity for this; that is behind the window anyway.
-7. The game comes back, the prompt is there again, and **E** opens the page once more. Close it and press **Play** to stop.
+1. **Ctrl+S**.
+2. **Play**, then click once inside the Game view.
+3. Walk forward: the prompt appears above the bench and turns to face you.
+4. Press **E**: a browser window opens over the whole editor, showing the simulated desktop.
+5. Try **W A S D E**: nothing moves behind the browser.
+6. Close the window with its own **X** (top right) or **Alt+F4**.
+7. The game returns with the prompt back, and **E** opens the page again. Close it and stop Play.
 
 **You should see,** in the Console, in this order:
 
@@ -247,48 +186,43 @@ Before pressing Play, this is what the scene should contain. Check it against th
 [BenchInteraction] Back in the Workshop. Press E to return to the bench.
 ```
 
-The first two lines are the ones that diagnose a silent bench: `Bench ready` proves the component is in the scene and knows what to open, and `Player at the bench` proves the trigger volume is being entered. `NOT FOUND` in place of `Computer` or `Player` names the reference that is missing.
-
-If the page opens but does not move into place, or the Console says `Missing page`, say so and which line appeared — that is the host's known weak spot, not something you did.
+`NOT FOUND` in place of `Computer` or `Player` in the first line names the field to fill. No `Bench ready` line at all means `Bench Interaction` is not on an active object.
 
 ## If something goes wrong
 
 | What you see | What it means | Fix |
 |---|---|---|
-| **Add Component** has no **Safehouse** section | The scripts are not in the project, or did not compile | Check `Assets/Scripts` holds both `.cs` files (Step 1), then read the first red Console line |
-| A script file is named `BenchInteraction (1)1.cs`, `PlayerMove (1).cs` or similar | The browser adds ` (1)` when it downloads a file that already exists in `Downloads`, and Unity binds a MonoBehaviour only to a file whose name equals its class. A mangled name is why the script reads as missing | Delete every copy whose name contains ` (1)`; re-download the file once; rename it to exactly `BenchInteraction.cs` before dragging it in. Then repair any **Missing (Mono Script)** block |
-| `The referenced script (Unknown) on this Behaviour is missing!` | A component points at a script file that was deleted and re-imported, so its identity changed. The component runs no code at all | Click each object on the checklist: any block that reads **Missing (Mono Script)** → right-click its header → **Remove Component**, then add it again with **Add Component** and set its fields. Only our three scripts can go missing: **Box Collider**, **Character Controller**, **Camera**, **Mesh Renderer** and **TextMeshPro** are built in and stay put, so do not add those again. Also check `Assets/Scripts` for duplicates like `PlayerMove 1.cs`, and for red `error CS` lines, which make every script look missing |
-| `CS0246` naming `UnityEngine.InputSystem` | New Input System not installed or not active | Step 2 |
-| The prompt is pink or magenta | It is the legacy `TextMesh`, whose built-in shader URP does not draw properly | Delete it and use a TextMeshPro text object instead — Step 11 |
-| The prompt reads backwards | The billboard is facing the back of the text at the player | Untick **Face Viewer** on Bench Interaction and set the prompt's Rotation Y to `180` |
-| `warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete` | The script was written before Unity 6.6 deprecated that lookup; it still compiles, it is only noise | Replace `BenchInteraction.cs` with the current file — the line now uses `FindAnyObjectByType` |
-| `CS1501: No overload for method 'Open' takes 1 arguments` | The project's `ComputerBrowserWindow.cs` is the Phase 1 copy, before `Open(page)` existed | Download it again and replace it — Step 1 |
-| No green capsule after Step 4 | The capsule is a Scene-view gizmo: gizmos off, `Collider` unticked, or the Scene view looking elsewhere | Select `Player`, hover the Scene view, press **F**; check the **Gizmos** button at the top right. If the Inspector lists Character Controller, nothing is broken |
-| The Mesh Collider shows "Mesh 'Plane' used by the Mesh Collider is missing pre-baked triangle collision" | Unity bakes plane collision data at runtime; a future build pipeline change only | Ignore it. It does not affect Play mode |
-| The player falls a little at Play, then stops | Normal: the character controller settles into the floor by its skin width (0.08 m) | Nothing to do |
-| The player falls through the floor and keeps going, and the Console says `[PlayerMove] The player is standing on nothing` | Nothing solid is under the player. Most often the floor is the wrong primitive for those scale numbers: a **Quad** at scale `(0.8, 1, 0.8)` is only 0.8 m across, so the player two metres back is off its edge | Select `Floor` and check for a collider. Plane at `(0.8, 1, 0.8)` = 8 m; Quad needs `(8, 1, 8)`; a Cube needs its top at y = 0, e.g. Position `(0, -0.25, 0)` scale `(8, 0.5, 8)`. A **zero in any Scale axis** collapses the collider and you fall straight through, so check those three numbers. Check the object is ticked in the Hierarchy. To split a bad floor from a bad player in one Play: stop Play, add a Cube at `(0, 0, -2)` scaled `(4, 0.2, 4)`, and Play — standing on the Cube means the floor is at fault, sinking through it means the player is |
-| `W` does nothing | The editor's other panels have keyboard focus | Click once inside the Game view |
-| Turning does not turn the view | Camera not a child of Player | Step 5 |
-| No prompt and no **E**, and the Console never says `Player at the bench` | The game does not think you are at the bench | Is **Is Trigger** ticked on the Box Collider (unticked makes a solid invisible wall)? Is `Bench Interaction` on the same object as the Box Collider? Walk right up to the bench |
-| `Bench ready` says `browser NOT FOUND` | The **Browser** field is empty | Drag `Computer` into it — Step 10 |
-| `Bench ready` says `player NOT FOUND` | No active object in the scene carries **Player Move** | Step 6, and check the Player is ticked in the Hierarchy |
-| No `Bench ready` line at all | `Bench Interaction` is not on an active object | Step 10, and check the object is ticked |
-| Console says `Player at the bench` but still no prompt | The **Prompt** field is empty, or the prompt object is the wrong one | Step 11 |
-| No prompt at the bench | Not inside the box, the box is not a trigger, or the prompt object is still unticked and not assigned | Step 8 and Step 11; walk closer |
-| **E** does nothing, prompt visible | `Bench Interaction` not on the same object as the box, or **Lesson Page** blank | Step 10 |
-| A browser opens showing a file-not-found page | `Assets/StreamingAssets/standalone.html` is missing | Copy `prototype/standalone.html` there, or run `unity/sync-prototype.sh` |
+| **Add Component** has no **Safehouse** section | The scripts are not in the project, or did not compile | Step 1, then read the first red Console line |
+| `CS0246` naming `UnityEngine.InputSystem` | New Input System missing or not active | Step 2 |
+| `CS1501: No overload for method 'Open' takes 1 arguments` | The project's `ComputerBrowserWindow.cs` predates `Open(page)` | Download it again, replace the file, Step 1 |
+| `warning CS0618: FindFirstObjectByType … is obsolete` | An older `BenchInteraction.cs` | Replace it with the current file, Step 1 |
+| A script named `BenchInteraction (1)1.cs` | The browser renames duplicate downloads; Unity cannot bind a class to a mismatched file name | Delete every copy with brackets in its name, download once, rename, Step 1 |
+| `The referenced script (Unknown) on this Behaviour is missing!` | A component points at a deleted or renamed script file; it runs no code at all | Right-click the **Missing (Mono Script)** block → **Remove Component**, add it again, restore its fields (Step 12 table) |
+| `W` does nothing | Another editor panel has keyboard focus | Click once inside the Game view |
+| Turning does not turn the view | Camera is not a child of `Player` | Step 5 |
+| No green capsule after Step 4 | It is a Scene-view drawing: gizmos off, `Collider` unticked, or the view is elsewhere | Select `Player`, press **F**, check the **Gizmos** button. If the Inspector lists Character Controller, nothing is broken |
+| The player drops a few centimetres at Play and stops | Normal: the controller settles by its skin width | Nothing to do |
+| The player falls and `Position Y` keeps dropping, Console says `[PlayerMove] The player is standing on nothing` | Nothing solid is under the player | Check `Floor` is a Plane at `(0, 0, 0)` with rotation zero and **no zero in its Scale**; check `Player` is at `(0, 0, -2)` and the controller Centre is `(0, 0.9, 0)`. To split a bad floor from a bad player: stop Play, add a Cube at `(0, 0, -2)` scaled `(4, 0.2, 4)`, Play — standing on the Cube means the floor is at fault |
+| Console: `Mesh 'Plane' … missing pre-baked triangle collision` | Unity bakes plane collision at runtime; a future build-pipeline change only | Ignore it |
+| No prompt and no **E**, and no `Player at the bench` line | The game does not think you are at the bench | Is **Is Trigger** ticked? Is `Bench Interaction` on the same object as the Box Collider? Walk right up to the bench |
+| `Bench ready` says `browser NOT FOUND` | The **Browser** field is empty | Drag `Computer` into it, Step 10 |
+| `Bench ready` says `player NOT FOUND` | No active object carries **Player Move** | Step 6; check `Player` is ticked |
+| `Player at the bench` but no text | The **Prompt** field is empty or points at the wrong object | Step 11 |
+| The prompt is pink or magenta | Legacy `TextMesh` instead of TextMeshPro, which URP does not draw properly | Delete it, Step 11 |
+| The prompt reads backwards | The billboard faces the back of the text at the player | Untick **Face Viewer** on Bench Interaction, set the prompt's Rotation Y to `180` |
+| A browser opens on a file-not-found page | `Assets/StreamingAssets/standalone.html` is missing | Copy `prototype/standalone.html` there |
 | Two browser windows at Play | **Open On Start** still ticked | Step 9 |
-| A dark band on the floor in front of the bench | Either the bench's shadow or a flat cube left on the floor | Click `Computer` and look for a **Mesh Filter** in its Inspector. A mesh means it is an object: read its Position and Scale, then move it onto the bench or remove the Mesh Filter. No mesh means it is a shadow: select `Bench` → **Mesh Renderer → Cast Shadows → Off**, or `Directional Light` → **Shadow Type → No Shadows** |
-| `TransientArtifactProvider::TryProduceTransientArtifactObject call is not allowed when transient artifacts are getting updated` | A Unity editor assert in the asset pipeline, raised while imports are refreshing (Unity issue UUM-96903). Not from this project's code and not a compile error | Ignore it. Clear the Console; the things that matter are no red `error CS` lines and the **Safehouse** components being available. If it repeats on every Play, restart the editor |
+| A dark band on the floor in front of the bench | The bench's shadow, or a stray flat Cube | Click `Computer`: a **Mesh Filter** means it is an object, so move or strip it. No mesh means it is a shadow: `Bench` → **Mesh Renderer → Cast Shadows → Off** |
+| `TransientArtifactProvider … call is not allowed when transient artifacts are getting updated` | A Unity editor assert during asset import (UUM-96903) | Ignore it; restart the editor if it repeats on every Play |
 | Still frozen after closing the browser | `Closed` did not fire | Tell me; that is a real defect |
 
 ## What to send back
 
-A screenshot of the **Game** view in Play mode standing at the bench, and these four answers:
+A screenshot of the **Game** view standing at the bench, and four answers:
 
-1. Did the prompt appear before you pressed E?
+1. Did the prompt appear before you pressed **E**?
 2. Did the page open over the game, and did NVDA read it?
-3. Did all four Console lines appear, in that order?
-4. Anything that felt wrong — speed, height, the box being too small or too large.
+3. Did the Console print the six lines in Step 12, in that order?
+4. Anything that felt wrong — speed, eye height, the trigger volume too small or too large.
 
 Then the lesson page itself starts, which is mine to write.
