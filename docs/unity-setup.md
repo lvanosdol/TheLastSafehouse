@@ -141,7 +141,7 @@ cd prototype
 python3 -m http.server 8000
 ```
 
-then set `Initial Url` to `http://localhost:8000/standalone.html` and press Play. If `voltstro.dev` appears instead of your page, the browser itself works and only the URL is wrong — that is the useful control test, since `https://voltstro.dev` is the field's default value.
+then set `Initial Url` to `http://localhost:8000/standalone.html` and press Play. If you want the plainest possible control test, use `https://example.com` instead: it is a white page with a large "Example Domain" heading, so it cannot be mistaken for a blank surface. If example.com loads, the browser and the render path work and only your page's URL is wrong.
 
 **For anything that has to ship**, the page loads from `StreamingAssets` as a local file:
 
@@ -217,7 +217,7 @@ That is the result the spike exists to produce, and it should be recorded as a f
 | Invalid dependencies or missing packages on install | Registries installed without the `org.nuget` and `com.cysharp.unitask` scopes | Re-add the registry with all three scopes, then refresh the Package Manager |
 | Browser surface stays blank, Console shows no error | `Initial Url` is a file path rather than a URL | Use `file:///C:/…/standalone.html`, or `http://localhost:8000/standalone.html` |
 | Blank screen, and you cannot tell whether the surface is drawing | The Raw Image may not be rendering at all | Set the Raw Image's **Color** to bright red and Play. Red means it draws and the page or URL is at fault; still unchanged means it is not on screen — check it sits under the Canvas, that the object is active, and that the Canvas is *Screen Space - Overlay* |
-| `voltstro.dev` loads instead of the page | `Initial Url` left at its default | The browser works; only the URL is wrong |
+| `voltstro.dev` or `example.com` loads instead of the page | A control-test URL is still in `Initial Url` | The browser works; only the URL is wrong |
 | Page renders but is stretched or cropped | Browser resolution does not match the Raw Image aspect | Set the browser resolution to the same aspect as the image |
 | Works in Play mode, blank in the build | IL2CPP, or no `UWB` folder beside the build | Build with **Mono**; confirm `<Game>_Data/UWB/` exists and the engine process is not blocked |
 | Build is very large | Chromium bundled by the webview | Accept it, or switch to the WebView2 route |
