@@ -49,6 +49,9 @@ namespace Safehouse.Workshop
         private CharacterController controller;
         private float pitch;
         private float verticalSpeed;
+        private float airborneTime;
+        private bool warnedAboutFalling;
+        private Vector3 startPosition;
         private bool inputEnabled = true;
 
         /// <summary>The camera transform, for anything that has to face the player.</summary>
@@ -59,6 +62,7 @@ namespace Safehouse.Workshop
         private void Awake()
         {
             controller = GetComponent<CharacterController>();
+            startPosition = transform.position;
 
             if (view == null)
             {
@@ -189,6 +193,42 @@ namespace Safehouse.Workshop
             verticalSpeed += gravity * Time.deltaTime;
 
             controller.Move((direction * walkSpeed + Vector3.up * verticalSpeed) * Time.deltaTime);
+
+            CheckStanding();
+        }
+
+        /// <summary>
+        /// Turns "the player is falling" into a Console line, and puts the player
+        /// back if the room has no floor under them. Placeholder geometry loses
+        /// colliders easily, and falling forever has no way out of it.
+        /// </summary>
+        private void CheckStanding()
+        {
+            if (controller.isGrounded)
+            {
+                airborneTime = 0f;
+                return;
+            }
+
+            airborneTime += Time.deltaTime;
+
+            if (airborneTime > 1.5f && !warnedAboutFalling)
+            {
+                warnedAboutFalling = true;
+                Debug.LogWarning(
+                    "[PlayerMove] The player is standing on nothing. Check that a Floor object is active, " +
+                    "carries a collider, and sits at y = 0. The Character Controller Centre should be (0, 0.9, 0).");
+            }
+
+            if (transform.position.y < startPosition.y - 10f)
+            {
+                Debug.LogWarning("[PlayerMove] Fell out of the world; returned to the start position.");
+                controller.enabled = false;
+                transform.position = startPosition;
+                verticalSpeed = 0f;
+                controller.enabled = true;
+                airborneTime = 0f;
+            }
         }
 
         private static void LockPointer()

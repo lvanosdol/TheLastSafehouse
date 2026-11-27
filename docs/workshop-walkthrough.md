@@ -48,6 +48,8 @@ Three primitives are all the slice needs. Menu **GameObject → 3D Object → Pl
 | `Bench` | Cube | `(0, 1, 2)` | `(1.6, 0.1, 0.8)` |
 | `Chassis` | Cube | `(0, 1.25, 2)` | `(0.4, 0.4, 0.2)` |
 
+The scale numbers above assume the primitive named in the second column. A **Quad** is 1 m at scale 1 (not 10 m like a Plane), and a **Cube** has its top surface half its scale above its centre — so the same numbers give a floor a metre across, or one you start inside. If you use anything but a Plane for the floor, work out the size and height from the primitive rather than copying `(0.8, 1, 0.8)`.
+
 Those numbers are not arbitrary: the bench top lands at `y = 1.05` and its front face at `z = 1.6`, which is what the trigger volume in Step 8 and the prompt in Step 11 are spaced around. The chassis bottom is at `1.05` so it sits on the bench rather than hovering. The bench will look like it floats, because it is a slab with no legs; that is expected, and a pedestal Cube underneath changes nothing functionally.
 
 Then place the camera: select **Main Camera**, set **Position** `(0, 1.6, -2)` and **Rotation** `(0, 0, 0)`.
@@ -263,7 +265,7 @@ If the page opens but does not move into place, or the Console says `Missing pag
 | `CS1501: No overload for method 'Open' takes 1 arguments` | The project's `ComputerBrowserWindow.cs` is the Phase 1 copy, before `Open(page)` existed | Download it again and replace it — Step 1 |
 | No green capsule after Step 4 | The capsule is a Scene-view gizmo: gizmos off, `Collider` unticked, or the Scene view looking elsewhere | Select `Player`, hover the Scene view, press **F**; check the **Gizmos** button at the top right. If the Inspector lists Character Controller, nothing is broken |
 | The player falls a little at Play, then stops | Normal: the character controller settles into the floor by its skin width (0.08 m) | Nothing to do |
-| The player falls through the floor and keeps going | The floor has no collider, the player starts below it, or the controller Centre is `(0, 0, 0)` instead of `(0, 0.9, 0)` | Select `Floor` and check for **Mesh Collider**; check `Floor` is at `(0, 0, 0)` scale `(0.8, 1, 0.8)` and `Player` at `(0, 0, -2)`; check the controller Centre |
+| The player falls through the floor and keeps going, and the Console says `[PlayerMove] The player is standing on nothing` | Nothing solid is under the player. Most often the floor is the wrong primitive for those scale numbers: a **Quad** at scale `(0.8, 1, 0.8)` is only 0.8 m across, so the player two metres back is off its edge | Select `Floor` and check for a collider. Plane at `(0.8, 1, 0.8)` = 8 m; Quad needs `(8, 1, 8)`; a Cube needs its top at y = 0, e.g. Position `(0, -0.25, 0)` scale `(8, 0.5, 8)`. Check the object is ticked in the Hierarchy |
 | `W` does nothing | The editor's other panels have keyboard focus | Click once inside the Game view |
 | Turning does not turn the view | Camera not a child of Player | Step 5 |
 | No prompt and no **E**, and the Console never says `Player at the bench` | The game does not think you are at the bench | Is **Is Trigger** ticked on the Box Collider (unticked makes a solid invisible wall)? Is `Bench Interaction` on the same object as the Box Collider? Walk right up to the bench |
