@@ -204,6 +204,9 @@ That is the result the spike exists to produce, and it should be recorded as a f
 | `The engine did not get ready within engine startup timeout!` | Native engine package missing, engine executable blocked, or a cold start slower than the timeout | Install the `…engine.cef.<platform>.x64` package, allow `UnityWebBrowser.Engine.Cef` in antivirus, raise **Engine Startup Timeout** |
 | `NullReferenceException: The input handler is null!` | **Input Handler** slot empty | Assign `Old Input Handler` (or `Input System Handler`) from Packages → Unity Web Browser → Resources |
 | `InvalidOperationException` about `UnityEngine.Input` | New Input System is the only active handler | Use `Input System Handler`, or set **Active Input Handling** to **Both** |
+| Console floods with `obsolete` errors naming `TreeView`, `TreeViewItem`, `TreeViewState` | UniTask's optional tracker window does not compile on Unity 6.6 | Delete that editor-only script from the UniTask package; see step 3 |
+| Unity warns four packages are unsigned | Expected for this registry | Approve them to continue |
+| The **Initial Url** field cannot be found | The nested **Browser Client** block is collapsed | Click the **Browser Client** header to expand it; or use `LoadPrototypePage.cs` and skip the field entirely |
 | Invalid dependencies or missing packages on install | Registries installed without the `org.nuget` and `com.cysharp.unitask` scopes | Re-add the registry with all three scopes, then refresh the Package Manager |
 | Browser surface stays blank, Console shows no error | `Initial Url` is a file path rather than a URL | Use `file:///C:/…/standalone.html`, or `http://localhost:8000/standalone.html` |
 | `voltstro.dev` loads instead of the page | `Initial Url` left at its default | The browser works; only the URL is wrong |

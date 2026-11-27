@@ -40,7 +40,7 @@ The browser component is not in Unity's normal package store, so you add the sto
 5. In **Scope(s)**, type `dev.voltstro` and press **Enter** (or click the small **+** beside it).
 6. Repeat for two more scopes, one at a time: `org.nuget`, then `com.cysharp.unitask`.
 
-The three scopes are not optional — the browser package depends on code hosted in the same registry, and without them the install fails with an "invalid dependencies" error.
+The three scopes are not optional — the browser package depends on code hosted in the same registry, and without them the install fails with an "invalid dependencies" error. Check the URL character by character: `upr`, not `urp`. A single swapped pair of letters here cost an evening on 2026-11-26.
 
 **You should see:** three scope entries listed under Scope(s), and no red error.
 
@@ -59,6 +59,11 @@ The three scopes are not optional — the browser package depends on code hosted
    3. **Unity Web Browser CEF Engine (Windows x64)**
 
 The third one is the big download (hundreds of megabytes) and it is the one people forget. It holds the actual browser engine.
+
+Two things that happened the first time this was tried on 2026-11-26:
+
+- **Unsigned packages:** Unity may warn that four packages are not signed. That is expected for this registry; approve them to continue.
+- **UniTask will not compile on Unity 6.6 as shipped.** The Console fills with `obsolete`-as-error messages about `TreeView`, `TreeViewItem`, and `TreeViewState` inside UniTask's editor extras. Those files are an optional tracker window, so deleting them from the UniTask package clears the errors. If you would rather not edit a package, tell me and we will change the plan instead.
 
 **You should see:** all three listed with a version number (2.2.8 or newer), the Console free of red errors, and the spinner in the bottom right finishing.
 
@@ -80,7 +85,7 @@ The third one is the big download (hundreds of megabytes) and it is the one peop
 
 **You should see:** after any restart, both dropdowns still showing the values you chose.
 
-Why: the browser runs as a separate program. The `.NET Standard` profile cannot start programs, and IL2CPP cannot either. Play mode survives both mistakes; a built game does not.
+Why: the browser runs as a separate program. The `.NET Standard` profile cannot start programs, and IL2CPP cannot either. Play mode survives both mistakes; a built game does not. Mono is fine for Windows and macOS desktop builds — it only becomes a real constraint when the mobile versions are built much later.
 
 ---
 
@@ -117,7 +122,7 @@ The script does three things: waits for the browser engine to start, builds the 
 3. Right-click the **Canvas** you just made → **UI → Raw Image**.
 4. With the Raw Image selected, look at the Inspector → **Rect Transform** → click the small anchor square → hold **Alt** and **Shift** → click the **stretch / stretch** preset (bottom right). This makes the picture fill the screen instead of sitting in a tiny square.
 5. Still on the Raw Image: **Add Component** → type `Web Browser Basic` → press Enter.
-6. The new component is one section called **Web Browser Basic**, and inside it are two blocks. Fill in **two slots** (for each: click the small circle at the right of the box, type the name, press Enter):
+6. The new component is one section called **Web Browser Basic**, and inside it are two blocks. If **Browser Client** looks like a single collapsed line, click its header to open it — `Initial Url` is the first field inside, and that collapsed block is where the setting went missing on 2026-11-26. Fill in **two slots** (for each: click the small circle at the right of the box, type the name, press Enter):
    - In the **Browser Client** block: **Engine** → `Cef Engine Configuration`
    - In the outer part of the component: **Input Handler** → `Old Input Handler`
 7. In the same **Browser Client** block, set **Engine Startup Timeout** to `10000`. Leave **Resolution** at its default.
