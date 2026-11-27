@@ -4,8 +4,8 @@ The Unity project itself (`SafehouseSpike`) is **not** in this repository: `Libr
 
 | File | What it is |
 |---|---|
-| `Scripts/LoadPrototypePage.cs` | Loads `StreamingAssets/standalone.html` into a UnityWebBrowser surface as a correct `file:///` URL, and waits for the engine to connect first. Kept for reference: that surface cannot be read by a screen reader. |
 | `Scripts/ComputerBrowserWindow.cs` | Opens the page in a **real** Edge/Chrome app-mode window pinned over the game view, and returns focus to Unity when it closes. This is the accessible host. |
+| `Archive/LoadPrototypePage.cs` | The old loader for the UnityWebBrowser surface. **Do not copy it into a project without that package** — it will not compile. See `Archive/README.md`. |
 | `sync-prototype.sh` | Copies `prototype/standalone.html` into the Unity project's `Assets/StreamingAssets/` |
 
 ## Use
@@ -16,17 +16,16 @@ The Unity project itself (`SafehouseSpike`) is **not** in this repository: `Libr
 
 Then, in the Unity project:
 
-1. Copy `Scripts/LoadPrototypePage.cs` into `Assets/Scripts/`.
-2. Add it to the same GameObject as the UWB **Web Browser Basic** component.
-3. Press Play. The Console prints the exact URL it loaded.
+1. Copy `Scripts/ComputerBrowserWindow.cs` into `Assets/Scripts/`.
+2. Add it to any GameObject, and press Play. The page opens in its own window.
+3. Call `Open()` / `Close()` from the interaction that seats the player at the computer.
 
-Leave **Use Local Server** unticked to load the page from `StreamingAssets` (the way a build works). Tick it to load `http://localhost:8000/standalone.html` from `python3 -m http.server` in `prototype/`, which is the quicker loop while editing the page.
+`sync-prototype.sh` is the only step that needs a shell; on Windows it is just as easy to copy `prototype/standalone.html` into `Assets/StreamingAssets/` in File Explorer.
 
-## Requirements the script assumes
+## What the host assumes
 
-- UnityWebBrowser 2.2.8 via the VoltUPR registry: core, CEF engine, and the CEF native package for the platform.
-- **Scripting Backend: Mono** — UWB launches a separate engine process with `System.Diagnostics.Process`, which IL2CPP does not support.
-- **Api Compatibility Level: .NET Framework** — `.NET Standard 2.1` does not expose `System.Diagnostics.Process`.
-- The browser component's **Engine** and **Input Handler** fields both assigned; `RawImageUwbClientInputHandler` throws if the input handler is null.
+- Windows, with Edge or Chrome installed. Windows 11 ships Edge.
+- `Assets/StreamingAssets/standalone.html` present.
+- Nothing else: no package, no registry, no Mono constraint. The old UnityWebBrowser requirements are in `Archive/README.md` and are no longer part of the plan.
 
 The full walkthrough, including the package IDs and the fields to set, is `docs/unity-setup.md` step 7. If you have not used Unity before, start with `docs/unity-walkthrough.md` instead — it is the same procedure written as ten click-by-click steps with a check after each one.

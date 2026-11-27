@@ -69,7 +69,7 @@ Unity shell embedding: an HDRP interior with a walkable camera, this page in an 
 Three points in the attempt above were checked against the published sources the next day.
 
 1. **Licences.** UnityWebBrowser is MIT, UniTask is MIT, and CEF is BSD-3. The GPL-3 line in the assessment belongs to VoltProjects, the static-site generator that renders the documentation site, not to any package installed in the project. Nothing in the browser stack is copyleft, so the licence is not a reason to change direction.
-2. **The URL field exists.** `WebBrowserClient` is marked `[Serializable]`, so Unity draws it in the Inspector as the nested **Browser Client** block on `Web Browser Basic` — collapsed by default, with `Initial Url` as its first field. The search failed because the block was not expanded, not because the component lacks the option. `unity/Scripts/LoadPrototypePage.cs` sets the same value in code, so the field never has to be found by hand.
+2. **The URL field exists.** `WebBrowserClient` is marked `[Serializable]`, so Unity draws it in the Inspector as the nested **Browser Client** block on `Web Browser Basic` — collapsed by default, with `Initial Url` as its first field. The search failed because the block was not expanded, not because the component lacks the option. `unity/Archive/LoadPrototypePage.cs` (archived with the UnityWebBrowser route) sets the same value in code, so the field never has to be found by hand.
 3. **Mono is a platform constraint, not a desktop blocker.** Windows and macOS desktop builds ship on Mono. IL2CPP becomes necessary when the mobile versions are built, which belongs to Phase 7 rather than to this spike.
 
 ## Note

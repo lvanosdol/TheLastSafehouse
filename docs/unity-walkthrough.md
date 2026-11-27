@@ -35,7 +35,7 @@ If you find it there, move it once, now, before building anything else:
 3. Drag the whole `SafehouseSpike` folder from `Templates` into `C:\UnityProjects`. Same drive, so the move is instant — `Library` is huge and copying would take far longer.
 4. Open Unity Hub → **Projects** → **Add** → **Add project from disk** → select `C:\UnityProjects\SafehouseSpike`.
 5. Remove the old entry from the Hub list (right-click → **Remove project from list**); that only forgets the path, it does not delete files.
-6. Open the project from the new entry and confirm your scene and `Assets/Scripts/LoadPrototypePage.cs` are still there.
+6. Open the project from the new entry and confirm your scene and `Assets/Scripts/ComputerBrowserWindow.cs` are still there.
 
 **You should see:** one project entry, at a path outside `AppData`, opening with your work intact.
 
@@ -125,7 +125,7 @@ Why: Unity copies `StreamingAssets` into the finished game exactly as it is, whi
 
 1. In the Project window, click **Assets** again.
 2. Right-click → **Create → Folder**. Name it `Scripts`.
-3. Copy `unity/Scripts/LoadPrototypePage.cs` from this repository into that folder.
+3. Copy `unity/Archive/LoadPrototypePage.cs` (archived with the UnityWebBrowser route) from this repository into that folder.
    - Saving straight from the browser works too: aim the save dialog at `Assets\Scripts` inside the Unity project, set **Save as type** to **All Files**, and type `LoadPrototypePage.cs` as the name. Otherwise Windows quietly saves `LoadPrototypePage.cs.txt` and Unity ignores it.
    - The folder under `Assets` does not matter to Unity — `Scripts` is just the convention. What must match is the **file name and the class name**, so do not rename the file.
 4. Click the file once in Unity.

@@ -157,7 +157,7 @@ which copies `prototype/standalone.html` into `Assets/StreamingAssets/`. The mat
 file:///C:/Users/you/SafehouseSpike/Assets/StreamingAssets/standalone.html
 ```
 
-Hand-writing that, and keeping it correct between editor and build, is needless work, so `unity/Scripts/LoadPrototypePage.cs` generates it at runtime:
+Hand-writing that, and keeping it correct between editor and build, is needless work, so `unity/Archive/LoadPrototypePage.cs` (archived with the UnityWebBrowser route) generates it at runtime:
 
 1. Copy the script into `Assets/Scripts/`.
 2. Add it to the same GameObject as the browser component.
