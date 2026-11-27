@@ -32,8 +32,8 @@
 | Chromeless app mode — no address bar, no tabs | **Pass** |
 | Simulated desktop renders in it | **Pass** |
 | NVDA reads the page, by Tab, inside the window Unity opened | **Pass** |
-| Window closes with Play mode | not recorded |
-| Closing the window returns focus to Unity and fires `Closed` | not verified |
+| Window closes with Play mode | **Pass** |
+| Closing the window returns focus to Unity and fires `Closed` | **Pass** — reported by the tester after the package removal |
 | Built player rather than the editor | not run |
 | Text-size controls, terminal typing, Escape inside the page | not run |
 

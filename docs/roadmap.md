@@ -3,7 +3,7 @@
 > Owned by the **Planner** agent (read-only: it drafts here in chat, the Game Mentor saves).
 > Updated as milestones are confirmed. Nothing here is final until the owner approves it.
 
-## Phase 0 — Design (current)
+## Phase 0 — Design (complete)
 
 The campaign target is seven chapters. Each chapter awards one development-agent component, with an upgraded version for a perfect boss finish; the finished seven-agent app is offered for download only after the Chapter 7 boss.
 
@@ -27,7 +27,7 @@ The campaign target is seven chapters. Each chapter awards one development-agent
 - [x] Refresh `MARKDOWN-ACCESSIBILITY-AUDIT.md`; it now covers all seven chapters, the master record, the superseded archive, and `docs/`
 - [x] Record the engine decision in `docs/engine-decision.md` (Game Mentor)
 
-## Phase 1 — Project setup
+## Phase 1 — Project setup (complete 2026-11-27)
 
 - [x] Engine evaluation and decision — Unity with an embedded web UI for the in-game computer (`docs/engine-decision.md`), pending the accessibility spike
 - [x] Install required software — Unity Hub, a Personal licence, an LTS editor, and Windows build support (`docs/unity-setup.md`)
@@ -36,10 +36,10 @@ The campaign target is seven chapters. Each chapter awards one development-agent
 - [x] Show `prototype/standalone.html` inside the Unity shell — rendered on 2026-11-27 with UnityWebBrowser 2.2.8 (Unity 6.6, Mono); configuration recorded in `docs/playtests/2026-11-27-spike-unity-embedding.md`
 - [x] Repeat the reader checks across the Unity boundary — **failed on the embedded surface:** NVDA reads the page in Edge and said nothing inside Unity, and keys were gated on the pointer. Record in `docs/playtests/2026-11-27-spike-unity-embedding.md`
 - [x] Test a real browser window as the host — **passed** on 2026-11-27: NVDA read the page inside the window Unity opened (`docs/playtests/2026-11-27-spike-browser-window.md`)
-- [ ] Wire the seating interaction: `Open()` when the player sits at the computer, `Close()` on standing up, and handle `Closed`
-- [ ] Remove UnityWebBrowser from the project — done except for the IL2CPP expectation: the option becomes selectable, but the host still needs `System.Diagnostics.Process`, so desktop stays on Mono and mobile will need its own host
+- [ ] Wire the seating interaction: `Open()` when the player sits at the computer, `Close()` on standing up, and handle `Closed` — this is the first task of Phase 2
+- [x] Remove UnityWebBrowser from the project — removed 2026-11-27; the project now carries no third-party browser packages. IL2CPP is deliberately unused: the host needs `System.Diagnostics.Process`, which IL2CPP does not support, so desktop stays on Mono and mobile will need its own host
 
-## Phase 2 — Vertical slice (Chapter 1, first lesson)
+## Phase 2 — Vertical slice (Chapter 1, first lesson) — current
 
 - [ ] Break the Chapter 1 design (`Design/Chapter 1/Chapter-1-Design.md`) into buildable tasks
 - [ ] Workshop scene and interaction skeleton
