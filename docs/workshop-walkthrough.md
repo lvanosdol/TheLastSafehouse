@@ -93,7 +93,7 @@ An empty object draws nothing, so the room will look unchanged. Centre is what d
 ## Step 6 — The walking script
 
 1. Select `Player`, **Add Component → Safehouse → Player Move**.
-2. **View** must be **None (Transform)**: the script finds the camera under the Player itself.
+2. Drag `Main Camera` from the Hierarchy into the **View** field. Leaving it empty also works — the script looks for a camera under the Player at startup — but assigning it explicitly is one less thing to get wrong, and it is what the field is for.
 
 Nothing else needs typing. The values arrive from the script:
 
@@ -200,6 +200,7 @@ The prompt is a label for a sighted player; everything the game needs is in the 
 | `The referenced script (Unknown) on this Behaviour is missing!` | A component points at a deleted or renamed script file; it runs no code at all | Right-click the **Missing (Mono Script)** block → **Remove Component**, add it again, restore its fields (Step 12 table) |
 | `W` does nothing | Another editor panel has keyboard focus | Click once inside the Game view |
 | Turning does not turn the view | Camera is not a child of `Player` | Step 5 |
+| `[PlayerMove] No camera found` | At startup no camera was under the Player, or the Console is showing a line from an earlier Play session | Clear the Console and Play again. If it returns, drag `Main Camera` into **Player Move → View** |
 | No green capsule after Step 4 | It is a Scene-view drawing: gizmos off, `Collider` unticked, or the view is elsewhere | Select `Player`, press **F**, check the **Gizmos** button. If the Inspector lists Character Controller, nothing is broken |
 | The player drops a few centimetres at Play and stops | Normal: the controller settles by its skin width | Nothing to do |
 | The player falls and `Position Y` keeps dropping, Console says `[PlayerMove] The player is standing on nothing` | Nothing solid is under the player | Check `Floor` is a Plane at `(0, 0, 0)` with rotation zero and **no zero in its Scale**; check `Player` is at `(0, 0, -2)` and the controller Centre is `(0, 0.9, 0)`. To split a bad floor from a bad player: stop Play, add a Cube at `(0, 0, -2)` scaled `(4, 0.2, 4)`, Play — standing on the Cube means the floor is at fault |
