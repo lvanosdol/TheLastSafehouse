@@ -105,6 +105,8 @@ The scripts read the keyboard through Unity's new Input System. If it is not ins
 
 **You should see:** a `Player` entry in the Hierarchy, sitting two metres behind the bench, and its Transform showing `(0, 0, -2)`.
 
+There is nothing to see in the room, and that is not a mistake: an empty object draws nothing. No body, no cube, and in the Game view no change at all. In the Scene view it is a small icon at the selected point, which is why the next step adds a capsule you can see. In a first-person game the camera is the player.
+
 ## Step 4 — Give the Player a body
 
 1. With `Player` still selected, click **Add Component** at the bottom of the Inspector.
@@ -212,6 +214,7 @@ If the page opens but does not move into place, or the Console says `Missing pag
 |---|---|---|
 | **Add Component** has no **Safehouse** section | The scripts are not in the project, or did not compile | Check `Assets/Scripts` holds both `.cs` files (Step 1), then read the first red Console line |
 | `CS0246` naming `UnityEngine.InputSystem` | New Input System not installed or not active | Step 2 |
+| `warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete` | The script was written before Unity 6.6 deprecated that lookup; it still compiles, it is only noise | Replace `BenchInteraction.cs` with the current file — the line now uses `FindAnyObjectByType` |
 | `CS1501: No overload for method 'Open' takes 1 arguments` | The project's `ComputerBrowserWindow.cs` is the Phase 1 copy, before `Open(page)` existed | Replace that file with the current one — Step 1, "The host file must be current too" |
 | `W` does nothing | The editor's other panels have keyboard focus | Click once inside the Game view |
 | Turning does not turn the view | Camera not a child of Player | Step 5 |

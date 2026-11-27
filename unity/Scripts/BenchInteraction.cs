@@ -48,7 +48,7 @@ namespace Safehouse.Workshop
                 Debug.LogError("[BenchInteraction] No ComputerBrowserWindow on this object or in Browser, so the bench cannot open the lesson.");
 
             if (player == null)
-                player = FindFirstObjectByType<PlayerMove>();
+                player = FindAnyObjectByType<PlayerMove>();
         }
 
         private void OnEnable()
