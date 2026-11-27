@@ -48,6 +48,8 @@ Three primitives are all the slice needs. Menu **GameObject → 3D Object → Pl
 | `Bench` | Cube | `(0, 1, 2)` | `(1.6, 0.1, 0.8)` |
 | `Chassis` | Cube | `(0, 1.25, 2)` | `(0.4, 0.4, 0.2)` |
 
+Those numbers are not arbitrary: the bench top lands at `y = 1.05` and its front face at `z = 1.6`, which is what the trigger volume in Step 8 and the prompt in Step 11 are spaced around. The chassis bottom is at `1.05` so it sits on the bench rather than hovering. The bench will look like it floats, because it is a slab with no legs; that is expected, and a pedestal Cube underneath changes nothing functionally.
+
 Then place the camera: select **Main Camera**, set **Position** `(0, 1.6, -2)` and **Rotation** `(0, 0, 0)`.
 
 **You should see,** in the Game view without pressing Play: floor filling the lower half, a bench-shaped slab four metres ahead and a little below the middle of the screen, spanning about a quarter of the screen's width, with the small chassis box on top of it reaching roughly the horizon line. If the bench is small and far away, or the view is still only sky, compare the numbers above with the Inspector — the camera's Position is the one that changes distance.
