@@ -115,6 +115,15 @@ p { margin: 0 0 0.9rem; max-width: 42rem; }
   border-radius: 6px; padding: 0.9rem 1.1rem; margin: 0 0 1.5rem;
 }
 .note-title { margin: 0 0 0.5rem; font-size: 1rem; }
+.note-toggle {
+  font: inherit; font-size: 1rem; font-weight: 600; color: var(--ink);
+  background: none; border: 1px solid transparent; border-radius: 4px;
+  padding: 0.15rem 0.3rem; margin-left: -0.3rem;
+  display: flex; align-items: center; gap: 0.5rem; text-align: left; cursor: pointer;
+}
+.note-toggle:hover { border-color: var(--line); }
+.note-toggle[aria-expanded="false"] .chevron { transform: rotate(-90deg); }
+.chevron { display: inline-block; transition: transform 120ms ease; }
 .note p { margin: 0 0 0.6rem; max-width: none; }
 .note ul { margin: 0 0 0.7rem; padding-left: 1.3rem; }
 .note li { margin-bottom: 0.35rem; }
@@ -199,7 +208,12 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     </p>
 
     <section class="note" aria-labelledby="safety-title">
-      <h2 id="safety-title" class="note-title">Note from Mara — real-world safety</h2>
+      <h2 id="safety-title" class="note-title">
+        <button type="button" class="note-toggle" id="safety-toggle" aria-expanded="true" aria-controls="safety-body">
+          <span class="chevron" aria-hidden="true">▾</span> Note from Mara — real-world safety
+        </button>
+      </h2>
+      <div class="note-body" id="safety-body">
       <p>Before you open a real computer:</p>
       <ul>
         <li>Shut the computer down and unplug it before opening anything.</li>
@@ -209,6 +223,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
         <li>Leave work you are not confident in to a qualified professional.</li>
       </ul>
       <p class="disclaimer">This simulation teaches the concepts. It is not a guide to dismantling your own computer.</p>
+      </div>
     </section>
 
     <h2>How this works</h2>
@@ -731,6 +746,18 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
 
   document.getElementById('text-larger').addEventListener('click', function () {
     setScale(scale + 12);
+  });
+
+  // The safety note opens on arrival and can be folded away once read. Still a
+  // button, not a hidden div, so it can be found and re-opened by keyboard.
+  var safetyToggle = document.getElementById('safety-toggle');
+  var safetyBody = document.getElementById('safety-body');
+
+  safetyToggle.addEventListener('click', function () {
+    var expanded = safetyToggle.getAttribute('aria-expanded') === 'true';
+    safetyToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    safetyBody.hidden = expanded;
+    announce(expanded ? 'Safety note collapsed.' : 'Safety note opened. Five rules for working inside a computer.');
   });
 
   document.getElementById('test-announce').addEventListener('click', function () {

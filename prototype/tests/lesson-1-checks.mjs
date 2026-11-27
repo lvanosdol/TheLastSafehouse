@@ -210,8 +210,11 @@ try {
   check('Fourth Tab reaches the larger text control', (await activeId()) === 'text-larger');
 
   await page.keyboard.press('Tab');
-  const fifth = await page.evaluate(() => document.activeElement.tagName.toLowerCase());
-  check('Fifth Tab reaches the first part entry in the guide', fifth === 'summary', fifth);
+  check('Fifth Tab reaches the safety note', (await activeId()) === 'safety-toggle');
+
+  await page.keyboard.press('Tab');
+  const sixth = await page.evaluate(() => document.activeElement.tagName.toLowerCase());
+  check('Sixth Tab reaches the first part entry in the guide', sixth === 'summary', sixth);
 
   // ---- 5. the skip link moves focus --------------------------------------
 
@@ -380,7 +383,31 @@ try {
   });
 
   check('The safety note is on the page', note.present);
-  check('The note is open, not hidden behind a control', note.visible);
+  check('The note starts open', note.visible);
+
+  const noteState = () =>
+    page.evaluate(() => ({
+      expanded: document.getElementById('safety-toggle').getAttribute('aria-expanded'),
+      bodyShown: !document.getElementById('safety-body').hidden,
+      rules: document.querySelectorAll('#safety-body li').length,
+    }));
+
+  check(
+    'The note says it is expanded to a screen reader',
+    (await noteState()).expanded === 'true' && (await noteState()).bodyShown
+  );
+
+  await page.focus('#safety-toggle');
+  await page.keyboard.press('Enter');
+  await sleep(120);
+  const collapsed = await noteState();
+  check('The note can be folded away once read', collapsed.expanded === 'false' && !collapsed.bodyShown);
+  check('Folding it away is announced', /collapsed/i.test(await page.$eval('#announcer', (el) => el.textContent)), await page.$eval('#announcer', (el) => el.textContent));
+
+  await page.keyboard.press('Enter');
+  await sleep(120);
+  const reopened = await noteState();
+  check('And opened again, with the rules intact', reopened.expanded === 'true' && reopened.bodyShown && reopened.rules === 5);
   check('The note comes before the parts', note.aboveTheParts);
   check('The note names itself', /safety/i.test(note.title), note.title);
   check('The note lists the five rules', note.rules === 5, String(note.rules));
