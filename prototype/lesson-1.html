@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<!--
+  Chapter 1, Lesson 1 — the workbench.
+
+  One file on purpose. The game opens this page from Assets/StreamingAssets over
+  file://, where ES modules do not load and every extra file is another copy to
+  keep in step. Styles and script live inline, as they do in standalone.html.
+
+  Everything the player must operate lives here, not in Unity: Unity's own UI is
+  not exposed to a screen reader, and neither is a texture-based webview.
+  See docs/webview-evaluation.md.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Safehouse 7 — meet and rebuild the computer</title>
+  <style>
+:root {
+  --bg: #0d1a2b;
+  --surface: #101d30;
+  --surface-2: #16263c;
+  --ink: #eaf1fb;
+  --ink-dim: #b8c6da;
+  --line: #34486a;
+  --focus: #ffd166;
+  --ok: #9fe0b0;
+  --danger: #ff9a9a;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font: 100% / 1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
+
+.skip-link {
+  position: absolute; left: 0.5rem; top: -3rem;
+  background: var(--surface-2); color: var(--ink); padding: 0.5rem 0.75rem;
+  border: 2px solid var(--focus); z-index: 50;
+}
+.skip-link:focus { top: 0.5rem; }
+
+.topbar {
+  display: flex; gap: 1rem; align-items: center; justify-content: space-between;
+  padding: 0.5rem 1rem; background: #0a1626; border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.simulation-flag { margin: 0; font-size: 0.95rem; color: var(--ink-dim); }
+
+.text-size { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.text-size button {
+  font: inherit; padding: 0.25rem 0.6rem; min-width: 2.5rem;
+  background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 4px; cursor: pointer;
+}
+
+main { flex: 1; padding: 1.5rem; max-width: 48rem; width: 100%; margin: 0 auto; }
+
+h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 0.75rem; }
+h2 { font-size: 1.15rem; margin: 2rem 0 0.5rem; }
+p { margin: 0 0 0.9rem; max-width: 42rem; }
+
+.lede { font-size: 1.05rem; color: var(--ink-dim); border-left: 3px solid var(--line); padding-left: 0.9rem; }
+.lede .speaker { display: block; color: var(--ink); font-weight: 600; }
+
+.stages { margin: 0 0 1rem; padding-left: 1.4rem; max-width: 42rem; }
+.stages li { margin-bottom: 0.4rem; }
+.stages .current { color: var(--ink); font-weight: 600; }
+.stages .later { color: var(--ink-dim); }
+
+.guide { display: grid; gap: 0.5rem; margin: 0 0 1rem; }
+details {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+}
+details[open] { background: var(--surface-2); }
+summary { cursor: pointer; font-weight: 600; }
+summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.detail-body { margin-top: 0.6rem; }
+.detail-body p { margin: 0 0 0.5rem; }
+.detail-body dt { font-weight: 600; color: var(--ink-dim); font-size: 0.9rem; }
+.detail-body dd { margin: 0 0 0.5rem; }
+
+.pending {
+  color: var(--ink-dim); font-style: italic;
+  border: 1px dashed var(--line); border-radius: 6px; padding: 0.75rem;
+}
+
+.last-announcement {
+  margin: 0; padding: 0.4rem 1rem; font-size: 0.85rem;
+  color: var(--ink-dim); border-top: 1px solid var(--line); background: #0a1626;
+}
+
+button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--focus); outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --bg: #000;
+    --surface: #000;
+    --surface-2: #141414;
+    --ink: #fff;
+    --ink-dim: #f2f2f2;
+    --line: #fff;
+    --focus: #ffff00;
+  }
+  details, .pending, .topbar, .last-announcement { border-color: var(--line); }
+}
+
+@media (forced-colors: active) {
+  details, .pending { border: 1px solid CanvasText; }
+}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#bench">Skip to the workbench</a>
+
+  <header class="topbar">
+    <p class="simulation-flag" id="simulation-flag">
+      <span aria-hidden="true">◉</span> Simulated workbench — nothing here touches a real computer
+    </p>
+    <div class="text-size" role="group" aria-label="Text size">
+      <button type="button" id="test-announce">Test announcement</button>
+      <button type="button" id="text-smaller" aria-describedby="text-size-status">A−</button>
+      <button type="button" id="text-larger" aria-describedby="text-size-status">A+</button>
+      <span id="text-size-status" class="sr-only">Text size: 100 percent</span>
+    </div>
+  </header>
+
+  <main id="bench" tabindex="-1" aria-label="Workshop workbench">
+    <h1>Meet and rebuild the computer</h1>
+
+    <p class="lede">
+      <span class="speaker">Mara</span>
+      “Before we put this computer back together, let’s meet its parts. You don’t need to
+      know everything yet — we’ll take them one at a time.”
+    </p>
+
+    <h2>How this works</h2>
+    <ol class="stages">
+      <li class="current">Match each part to what it does.</li>
+      <li class="later">Read the safety card before touching anything.</li>
+      <li class="later">Rebuild the computer and boot it.</li>
+    </ol>
+    <p>The parts are laid out on the bench in front of you. Each one below can be opened to
+      read what it is for; you can come back to them at any point in the lesson.</p>
+
+    <h2>The parts on the bench</h2>
+    <p>Eight parts, one at a time. Open one to read its purpose, where it connects, and one
+      thing worth knowing.</p>
+
+    <div class="guide">
+      <details>
+        <summary>Motherboard</summary>
+        <div class="detail-body">
+          <p>Connects the components and lets them communicate.</p>
+          <dl>
+            <dt>Where it connects</dt>
+            <dd>Onto the standoffs inside the case, with everything else attached to it.</dd>
+            <dt>Worth knowing</dt>
+            <dd>Every other part on this bench ends up plugged into this board.</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details>
+        <summary>Processor</summary>
+        <div class="detail-body">
+          <p>Carries out the instructions the computer is given.</p>
+          <dl>
+            <dt>Where it connects</dt>
+            <dd>Into the socket on the motherboard, under the cooling assembly.</dd>
+            <dt>Worth knowing</dt>
+            <dd>It has one correct orientation, marked by a small triangle in the corner.</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details>
+        <summary>RAM</summary>
+        <div class="detail-body">
+          <p>Temporary working memory for the programs that are running.</p>
+          <dl>
+            <dt>Where it connects</dt>
+            <dd>The memory slots on the motherboard, pushed in until the clips close.</dd>
+            <dt>Worth knowing</dt>
+            <dd>Its contents are gone when the power is off. Files are kept by storage, not by RAM.</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details>
+        <summary>Storage</summary>
+        <div class="detail-body">
+          <p>Keeps files after the power is off.</p>
+          <dl>
+            <dt>Where it connects</dt>
+            <dd>An SSD fits an M.2 slot on the board; a hard drive connects by cable.</dd>
+            <dt>Worth knowing</dt>
+            <dd>Windows itself lives here, which is why the computer needs it to start.</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details>
+        <summary>Power supply</summary>
+        <div class="detail-body">
+          <p>Provides power to the whole system.</p>
+          <dl>
+            <dt>Where it connects</dt>
+            <dd>Feeds the board through the 24-pin cable and the processor through its own cable.</dd>
+            <dt>Worth knowing</dt>
+            <dd>It is never opened, even unplugged: it holds a dangerous charge. That is on the safety card.</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details>
+        <summary>Graphics card</summary>
+        <div class="detail-body">
+          <p>Produces the picture for the monitor.</p>
+          <dl>
+            <dt>Where it connects</dt>
+            <dd>The long PCIe slot, with the monitor plugged into the card rather than the board.</dd>
+            <dt>Worth knowing</dt>
+            <dd>A monitor in the motherboard’s video port stays blank when a card is installed.</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details>
+        <summary>Cooling</summary>
+        <div class="detail-body">
+          <p>Stops the components overheating.</p>
+          <dl>
+            <dt>Where it connects</dt>
+            <dd>Onto the processor, with its fan cable to the labelled header on the board.</dd>
+            <dt>Worth knowing</dt>
+            <dd>Fans starting is one of the first signs of life when the power goes on.</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details>
+        <summary>Case</summary>
+        <div class="detail-body">
+          <p>Holds and protects the parts.</p>
+          <dl>
+            <dt>Where it connects</dt>
+            <dd>Everything mounts inside it. The Safehouse chassis arrives with its buttons and lights already wired.</dd>
+            <dt>Worth knowing</dt>
+            <dd>Its power button only does anything once the power supply is switched on.</dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <p>Peripherals — the monitor, keyboard and mouse — come later, when you plug them in.</p>
+
+    <h2>What comes next</h2>
+    <p class="pending">The parts check opens here. Until then this page shows the guide only.</p>
+  </main>
+
+  <p class="last-announcement" aria-hidden="true">
+    Last announcement: <span id="last-announcement">none yet</span>
+  </p>
+  <div id="announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div id="alert-announcer" class="sr-only" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+  <script>
+(function () {
+  var polite = document.getElementById('announcer');
+  var assertive = document.getElementById('alert-announcer');
+  var mirror = document.getElementById('last-announcement');
+
+  // Announce a change. Errors use the assertive region. A tick lets a repeated
+  // identical message be spoken again.
+  function announce(message, options) {
+    var urgent = Boolean(options && options.urgent);
+    var region = urgent ? assertive : polite;
+    region.textContent = '';
+    window.setTimeout(function () { region.textContent = message; }, 30);
+    if (mirror) mirror.textContent = (urgent ? 'ERROR: ' : '') + message;
+  }
+
+  var status = document.getElementById('text-size-status');
+  var scale = 100;
+
+  function setScale(next) {
+    scale = Math.min(150, Math.max(87, next));
+    document.documentElement.style.fontSize = scale + '%';
+    status.textContent = 'Text size: ' + scale + ' percent';
+    announce('Text size ' + scale + ' percent.');
+  }
+
+  document.getElementById('text-smaller').addEventListener('click', function () {
+    setScale(scale - 12);
+  });
+
+  document.getElementById('text-larger').addEventListener('click', function () {
+    setScale(scale + 12);
+  });
+
+  document.getElementById('test-announce').addEventListener('click', function () {
+    announce('This is a test announcement. If you can hear this, a screen reader is reading the page.');
+  });
+
+  // Say what this page is, once, after it settles.
+  window.setTimeout(function () {
+    announce(
+      'Simulated workbench. Nothing here touches a real computer. Eight parts are on the bench; ' +
+      'open one with Enter to hear what it does.'
+    );
+  }, 600);
+
+  document.getElementById('bench').addEventListener(
+    'focus',
+    function () {
+      announce('Workbench. Eight parts to meet, then the safety card, then the rebuild.');
+    },
+    { once: true }
+  );
+})();
+  </script>
+</body>
+</html>

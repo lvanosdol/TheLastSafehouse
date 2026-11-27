@@ -5,7 +5,7 @@
   "description": "Accessible simulated-computer prototype for the engine spike. No runtime dependencies.",
   "scripts": {
     "start": "python3 -m http.server 8000",
-    "test": "node tests/spike-checks.mjs"
+    "test": "node tests/spike-checks.mjs && node tests/lesson-1-checks.mjs"
   },
   "devDependencies": {
     "puppeteer-core": "^23.0.0"
