@@ -5,6 +5,8 @@ The Unity project itself (`SafehouseSpike`) is **not** in this repository: `Libr
 | File | What it is |
 |---|---|
 | `Scripts/ComputerBrowserWindow.cs` | Opens the page in a **real** Edge/Chrome app-mode window pinned over the game view, and returns focus to Unity when it closes. This is the accessible host. |
+| `Scripts/PlayerMove.cs` | First-person walking on the new Input System: WASD, mouse look, arrow keys for turning, Escape releases the pointer. |
+| `Scripts/BenchInteraction.cs` | The bench trigger: shows a prompt while the player is close, opens `lesson-1.html` on **E**, pauses walking while the page has the keyboard, and gives it back when the window closes. |
 | `Archive/LoadPrototypePage.cs` | The old loader for the UnityWebBrowser surface. **Do not copy it into a project without that package** — it will not compile. See `Archive/README.md`. |
 | `sync-prototype.sh` | Copies `prototype/standalone.html` into the Unity project's `Assets/StreamingAssets/` |
 

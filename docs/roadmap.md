@@ -41,8 +41,8 @@ The campaign target is seven chapters. Each chapter awards one development-agent
 
 ## Phase 2 — Vertical slice (Chapter 1, first lesson) — current
 
-- [ ] Break the Chapter 1 design (`Design/Chapter 1/Chapter-1-Design.md`) into buildable tasks
-- [ ] Workshop scene and interaction skeleton
+- [x] Break the Chapter 1 design (`Design/Chapter 1/Chapter-1-Design.md`) into buildable tasks — 2026-11-27, nine tasks in `docs/phase2-vertical-slice.md`
+- [ ] Workshop scene and interaction skeleton — the walk and bench scripts are written and compile-checked; the scene and the attach steps are waiting on the owner's editor
 - [ ] Split-screen workspace prototype with a simulated-only Try pane
 - [ ] Lesson 1 plus its checkpoint working end to end
 - [ ] Playtest report and fixes

@@ -40,3 +40,62 @@ For Lesson 1 that means: 3D bench as the thing the player approaches, and an acc
 3. **Approach and use.** A **Box Collider** with *Is Trigger* in front of the bench, radius about 1.5 m, and a prompt that appears while inside it. `ComputerBrowserWindow.Open("lesson-1.html")` on **E**; the `Closed` event returns the game to walking.
 
 Nothing in those steps depends on a package. The page is the only part that needs writing next, and it reuses the prototype's accessibility helpers.
+
+## Editor steps for tasks 1–3 (2026-11-27)
+
+`unity/Scripts/PlayerMove.cs` and `unity/Scripts/BenchInteraction.cs` are written and compile-checked against stubs. They are not confirmed in the editor yet; the steps below are what confirms them.
+
+### Before either script
+
+1. **Window → Package Manager → Packages: Unity Registry**, install **Input System** if it is not already in the project.
+2. **Edit → Project Settings → Player → Other Settings → Active Input Handling** = **Both** (or **Input System Package (New)**). Unity restarts.
+3. Copy both scripts from `unity/Scripts/` into `Assets/Scripts/`.
+
+No `.inputactions` asset is needed: both scripts read the keyboard and mouse directly, so there is nothing to wire in the Input Actions editor. If the Console reports `CS0246` naming `UnityEngine.InputSystem`, step 1 or 2 is not done.
+
+### Task 1 — what the scripts assume the scene contains
+
+| Object | Position | Scale | Notes |
+|---|---|---|---|
+| Floor | `(0, 0, 0)` | Plane, scale `0.8` → 8 m × 8 m | A Plane primitive is 10 m at scale 1 |
+| Bench Top | `(0, 1, 2)` | `(1.6, 0.1, 0.8)` | Cube |
+| Chassis | `(0, 1.25, 2)` | `(0.4, 0.4, 0.2)` | Cube, sits on the bench |
+| Directional Light | default rotation | — | One is enough |
+| Main Camera | child of Player | — | Local position `(0, 1.6, 0)`, rotation zero |
+
+The bench front edge is at `z = 1.6`. Nothing in the scripts depends on the floor's size, only on the bench and the player's start.
+
+### Task 2 — Player and walk
+
+1. **GameObject → Create Empty**, name `Player`, position `(0, 0, -2)`, rotation zero.
+2. **Add Component → Character Controller**, then set **Center** `(0, 0.9, 0)`, **Height** `1.8`, **Radius** `0.35`. The capsule now stands on the floor and the object's origin is at the player's feet.
+3. Drag **Main Camera** onto `Player` in the Hierarchy. Set its **local** position to `(0, 1.6, 0)` and rotation to zero. The eye is at 1.6 m, which is what makes the bench read at human scale.
+4. With `Player` selected, **Add Component → Safehouse → Player Move**.
+5. Play. The pointer locks. Check, in order: **W** walks forward, **S** back, **A**/**D** sideways; the mouse turns and looks up and down; the **left** and **right arrows** turn without touching the mouse; **Escape** releases the pointer and the mouse no longer turns the view; clicking inside the Game view takes the pointer back. Walk to the bench and back without using the mouse.
+
+If the Console says `[PlayerMove] The camera is not parented under the Player`, step 3 did not take and the view will not follow the body.
+
+### Task 3 — Approach and use
+
+1. **GameObject → Create Empty**, name `Bench Trigger`, position `(0, 0.9, 1.0)`, rotation zero.
+2. **Add Component → Box Collider**: tick **Is Trigger**, set **Size** to `(2.6, 1.8, 1.6)`. That volume reaches from `z = 0.2` to `z = 1.8`, so it is entered a step before the bench stops the player.
+3. Add **Computer Browser Window** to the same object. **Untick Open On Start** — otherwise Play opens a second window before the player has moved.
+4. Add **Bench Interaction** to the same object. Its fields:
+   - **Lesson Page**: `lesson-1.html` for the final check. Set `standalone.html` until task 4 writes the lesson page.
+   - **Browser**: leave empty; it finds the component on the same object.
+   - **Player**: leave empty; it finds the `Player` in the scene.
+   - **Interact Key**: `E`.
+   - **Prompt**: the object from the next step.
+5. **GameObject → Create Empty**, name `Bench Prompt`, position `(0, 1.5, 1.1)`. **Add Component → Mesh → TextMesh**. Unity may offer to import the legacy font — accept it. Set **Text** to `Press E to use the workbench`, **Font Size** `64`, **Character Size** `0.08`, **Anchor** `Middle Center`, and a light **Color**. Leave its rotation at zero: the script turns it to face the player.
+6. Drag `Bench Prompt` into the **Prompt** field and untick it in the Inspector so the scene starts without it.
+7. Play, walk forward, and check: the prompt appears at the bench and turns to face you; **E** opens the browser window over the game; **W A S D** do nothing while it is open; closing the window with its own X returns you to the Workshop with the prompt back and **E** opening it again.
+
+Expected Console lines: `[ComputerBrowserWindow] Opened …lesson-1.html`, then `[BenchInteraction] Opened lesson-1.html over the Workshop.`, then `[ComputerBrowserWindow] Browser window closed.` and `[BenchInteraction] Back in the Workshop. Press E to return to the bench.`
+
+### What is verified, and by whom
+
+| Check | How |
+|---|---|
+| Both scripts and `ComputerBrowserWindow.cs` compile at C# 9 against a UnityEngine and Input System shim | Compiler in this task; not a Unity build |
+| Pointer lock, walking speed, arrow-key turning, trigger size, prompt readability | Needs Play mode on the owner's machine — nothing above is a claim about how it feels |
+| `E` opens the page and `Closed` returns the player, with keyboard only | Play mode, then NVDA |
