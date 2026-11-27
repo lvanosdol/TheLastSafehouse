@@ -24,7 +24,9 @@ Build the game in **Unity** (current LTS release at project start), and render t
 
 ## Validation gate
 
-The web half of the spike is built — see `prototype/` and its `ACCESSIBILITY-TEST.md`, with results in `docs/playtests/2026-11-26-spike-web-layer.md`. **The accessible-UI half passed on 2026-11-26**: a screen reader read the permission table with its column headings, and Escape returned focus correctly. **The Unity half is partly proven:** an embedded Chromium surface rendered a live page inside Unity 6.6, but the free UnityWebBrowser stack required a Mono backend, a patched package, and manual deletion of editor files, and its components exposed no configurable URL. The screen-reader-inside-Unity test was not reached. See `docs/playtests/2026-11-26-spike-web-layer.md`.
+The web half of the spike is built — see `prototype/` and its `ACCESSIBILITY-TEST.md`, with results in `docs/playtests/2026-11-26-spike-web-layer.md`; its structural half is now covered automatically by `prototype/tests/spike-checks.mjs` (`docs/playtests/2026-11-27-spike-web-layer-automated.md`). **The accessible-UI half passed on 2026-11-26**: a screen reader read the permission table with its column headings, and Escape returned focus correctly.
+
+**The Unity half is partly proven:** on 2026-11-26 an embedded Chromium surface rendered a live page inside Unity 6.6, at the cost of a Mono backend, a patched UniTask package, and deleted editor files. The URL is not missing — it is `Browser Client → Initial Url`, a nested block that collapses in the Inspector, and it can also be set in code, which `unity/Scripts/LoadPrototypePage.cs` does so that no Inspector field is needed. **The screen-reader-inside-Unity test has not been reached yet**; `docs/unity-embedding-run-sheet.md` is the sheet that records it.
 
 1. A Unity HDRP interior with a walkable camera.
 2. An embedded web page containing the Chapter 1 mock desktop, the folder Security dialog, and one terminal command.

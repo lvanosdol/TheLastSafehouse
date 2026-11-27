@@ -172,6 +172,23 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible, a:focus-vis
   * { animation: none !important; transition: none !important; }
 }
 
+@media (prefers-contrast: more) {
+  :root {
+    --bg: #000;
+    --surface: #000;
+    --surface-2: #141414;
+    --ink: #fff;
+    --ink-dim: #f2f2f2;
+    --line: #fff;
+    --focus: #ffff00;
+    --ok: #b6f7c1;
+    --danger: #ffb3b3;
+  }
+  .topbar, .taskbar, .last-announcement, .window, .dialog, .terminal-output, table th, table td {
+    border-color: var(--line);
+  }
+}
+
 @media (forced-colors: active) {
   .window, .dialog, .terminal-output { border: 1px solid CanvasText; }
 }
@@ -510,12 +527,31 @@ function openCount() {
 // ---- scripts/apps/properties.js ----
 function showSecurity(path) {
   const file = entry(path) || {};
-  const security = file.security || {};
+  const name = shortName(path);
+  const title = name + ' — Properties';
 
   const wrap = document.createElement('div');
   const intro = document.createElement('p');
+
+  // Only the recovery file carries per-file permissions in this slice. Any
+  // other file says so plainly rather than showing a table of "Not listed"
+  // under the wrong file name.
+  if (!file.security) {
+    intro.textContent =
+      'Permissions for ' +
+      name +
+      '. This simulated file has no permissions of its own; it inherits its folder permissions, which this exercise does not model.';
+    wrap.appendChild(intro);
+
+    openModal({ title, body: wrap, actions: [{ label: 'Close' }] });
+    announce('Properties opened for ' + name + '. No per-file permissions are simulated for this file.');
+    return;
+  }
+
+  const security = file.security;
+
   intro.textContent =
-    'Permissions for ' + shortName(path) + '. Read-only in this exercise: the recovery role cannot change them.';
+    'Permissions for ' + name + '. Read-only in this exercise: the recovery role cannot change them.';
   wrap.appendChild(intro);
 
   const tableWrap = document.createElement('div');
@@ -549,12 +585,14 @@ function showSecurity(path) {
   wrap.appendChild(note);
 
   openModal({
-    title: 'practice.cfg — Properties',
+    title,
     body: wrap,
     actions: [{ label: 'Close' }],
   });
 
-  announce('Properties opened for ' + shortName(path) + '. Security tab. Read allowed, write denied for the recovery role.');
+  announce(
+    'Properties opened for ' + name + '. Security tab. Read allowed, write denied for the recovery role.'
+  );
 }
 
 function showDenial(path, action) {

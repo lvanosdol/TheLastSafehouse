@@ -3,12 +3,31 @@ import { openModal, announce } from '../a11y.js';
 
 export function showSecurity(path) {
   const file = entry(path) || {};
-  const security = file.security || {};
+  const name = shortName(path);
+  const title = name + ' — Properties';
 
   const wrap = document.createElement('div');
   const intro = document.createElement('p');
+
+  // Only the recovery file carries per-file permissions in this slice. Any
+  // other file says so plainly rather than showing a table of "Not listed"
+  // under the wrong file name.
+  if (!file.security) {
+    intro.textContent =
+      'Permissions for ' +
+      name +
+      '. This simulated file has no permissions of its own; it inherits its folder permissions, which this exercise does not model.';
+    wrap.appendChild(intro);
+
+    openModal({ title, body: wrap, actions: [{ label: 'Close' }] });
+    announce('Properties opened for ' + name + '. No per-file permissions are simulated for this file.');
+    return;
+  }
+
+  const security = file.security;
+
   intro.textContent =
-    'Permissions for ' + shortName(path) + '. Read-only in this exercise: the recovery role cannot change them.';
+    'Permissions for ' + name + '. Read-only in this exercise: the recovery role cannot change them.';
   wrap.appendChild(intro);
 
   const tableWrap = document.createElement('div');
@@ -42,12 +61,14 @@ export function showSecurity(path) {
   wrap.appendChild(note);
 
   openModal({
-    title: 'practice.cfg — Properties',
+    title,
     body: wrap,
     actions: [{ label: 'Close' }],
   });
 
-  announce('Properties opened for ' + shortName(path) + '. Security tab. Read allowed, write denied for the recovery role.');
+  announce(
+    'Properties opened for ' + name + '. Security tab. Read allowed, write denied for the recovery role.'
+  );
 }
 
 export function showDenial(path, action) {

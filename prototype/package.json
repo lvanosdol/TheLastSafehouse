@@ -2,8 +2,12 @@
   "name": "safehouse-web-layer-prototype",
   "private": true,
   "type": "module",
-  "description": "Accessible simulated-computer prototype for the engine spike. No dependencies.",
+  "description": "Accessible simulated-computer prototype for the engine spike. No runtime dependencies.",
   "scripts": {
-    "start": "python3 -m http.server 8000"
+    "start": "python3 -m http.server 8000",
+    "test": "node tests/spike-checks.mjs"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^23.0.0"
   }
 }

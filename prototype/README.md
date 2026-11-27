@@ -4,7 +4,7 @@ The accessible half of the engine spike: the simulated computer, built as real H
 
 **Easiest start:** `standalone.html` in this folder is the whole prototype in one file. Download it and double-click it — no server, no installs.
 
-This prototype exists to answer one question: **can a screen reader read the simulated desktop, and can the whole flow be completed by keyboard alone?** It is not the game. Unity will host it in an embedded browser; nothing here talks to Unity yet.
+This prototype exists to answer one question: **can a screen reader read the simulated desktop, and can the whole flow be completed by keyboard alone?** It is not the game. Unity will host it in an embedded browser; the Unity bridge is not written yet — `unity/` only loads the page into a browser surface.
 
 ## Run it
 
@@ -16,6 +16,17 @@ python3 -m http.server 8000
 ```
 
 Then open `http://localhost:8000/`.
+
+## Automated checks
+
+The structural half of `ACCESSIBILITY-TEST.md` runs without a screen reader:
+
+```bash
+npm install   # once, installs puppeteer-core
+npm test
+```
+
+It drives `standalone.html` in headless Chromium with the keyboard and asserts what a screen reader depends on: live-region text, focus order, modal focus trapping, table headers, accessible names, the denial dialog, terminal output, text-size clamping, reduced motion, and high contrast. It does not hear anything — speech, VoiceOver, and NVDA still need the manual script.
 
 ## What is here
 

@@ -34,7 +34,7 @@ The campaign target is seven chapters. Each chapter awards one development-agent
 - [x] Scaffold the fresh game project (`SafehouseSpike`)
 - [x] Verify the empty project runs — the template scene plays in the Game view
 - [ ] Show `prototype/standalone.html` inside the Unity shell — in progress; UnityWebBrowser 2.2.8, steps and pitfalls in `docs/unity-setup.md` step 7
-- [ ] Repeat the reader checks across the Unity boundary and record the result in `docs/playtests/` — the gate on the engine decision
+- [ ] Repeat the reader checks across the Unity boundary and record the result in `docs/playtests/` — the gate on the engine decision; use `docs/unity-embedding-run-sheet.md`
 
 ## Phase 2 — Vertical slice (Chapter 1, first lesson)
 

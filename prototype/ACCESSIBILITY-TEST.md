@@ -13,6 +13,8 @@ Open `http://localhost:8000/` in Chrome or Edge. Run it three times: once with *
 
 ## The script
 
+Steps 1–10 below are the manual, spoken checks. Steps 4–10's structural half now also runs automatically with `npm test` (see the README); the manual run is still required for speech, focus announcement quality, and VoiceOver.
+
 | # | Do this | Pass looks like |
 |---|---|---|
 | 1 | Load the page and wait two seconds | A polite announcement says the computer is simulated and nothing affects the real device. The visible marker is also present. |

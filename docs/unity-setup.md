@@ -170,7 +170,7 @@ On Play it waits for the engine process to connect, then loads the page and logs
 
 ### 7f - Record what the reader actually does
 
-When the page appears, do Step 8 before drawing conclusions — and read the next section first, because the expected result is not the one the spike was hoping for.
+When the page appears, do Step 8 before drawing conclusions — and read the next section first, because the expected result is not the one the spike was hoping for. Fill in `docs/unity-embedding-run-sheet.md` as you go; it is the record the engine decision needs.
 
 
 ## Step 8 - Repeat the reader checks
