@@ -196,6 +196,13 @@ If the objects in that prefab show only Rect Transform, Canvas Renderer and Raw 
 
 **You should see:** one to three seconds of flat colour, then the dark-blue simulated desktop reading "Safehouse 7 — Workshop computer".
 
+### Seeing the whole screen while you test
+
+- **Maximise the Game view:** double-click its tab. Double-click again to restore.
+- **Make Play fill the window automatically:** in the Game view's toolbar, tick **Maximize On Play**.
+- **See it at true size:** set the Game view's **Aspect** to `1920 × 1080` and **Scale** to `1x`, so the layout is exactly what a player would get rather than shrunk to fit the panel.
+- **Truly fullscreen, no Unity around it:** that is the built player — step 10 — not something the editor does.
+
 Also check:
 
 - **Console:** a line beginning `[LoadPrototypePage] Loading file:///C:/...` — that is the address it built.
