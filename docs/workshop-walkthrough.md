@@ -10,7 +10,31 @@ This covers tasks 1–3 of `docs/phase2-vertical-slice.md`. About 20 minutes, mo
 2. In the **Project** window (bottom of the screen) open `Assets → Scenes` and double-click `Workshop`. The scene name appears at the top of the **Hierarchy** (left of the screen).
 3. Look at the **Hierarchy** list. If there is an object named something like `Web Browser` or `Browser`, and its Inspector shows **Missing (Mono Script)**, right-click it → **Delete**. The browser packages are gone, so that object cannot work and would confuse the next steps.
 
-**You should see:** a Hierarchy containing the floor, the bench, the light and a camera — nothing with a missing script — and an empty Console (Window → General → Console, then the Clear button).
+**You should see:** a Hierarchy containing the scene's geometry, the light and a camera — nothing with a missing script — and an empty Console (Window → General → Console, then the Clear button).
+
+## Step 0 — Clear out the old browser surface
+
+If the Hierarchy lists `Canvas`, `EventSystem` or `Computer`, those are left over from the Phase 1 spike: a Canvas with a Raw Image that drew the page into a texture. The game no longer draws the page itself, so none of it is used.
+
+1. Click `Canvas`, right-click → **Delete**. Do the same for `EventSystem`.
+2. Click `Computer` and look at the **Inspector**. If it says **Missing (Mono Script)**, right-click → **Delete**. If it holds real components and you meant it as the chassis placeholder, keep it and tell me what is on it.
+3. Leave `Global Volume` alone. It is the post-processing volume and does no harm.
+
+**You should see:** the Hierarchy down to Main Camera, Directional Light, Global Volume, plus whatever room geometry exists.
+
+## Step 0b — Build the room, if it is not there yet
+
+Three primitives are all the slice needs. Menu **GameObject → 3D Object → Plane** or **Cube**, then rename the object in the Inspector name box *before* moving on, because the later steps refer to these names.
+
+| Object | Primitive | Position | Scale |
+|---|---|---|---|
+| `Floor` | Plane | `(0, 0, 0)` | `(0.8, 1, 0.8)` — a Plane is 10 m at scale 1, so this is 8 m × 8 m |
+| `Bench` | Cube | `(0, 1, 2)` | `(1.6, 0.1, 0.8)` |
+| `Chassis` | Cube | `(0, 1.25, 2)` | `(0.4, 0.4, 0.2)` |
+
+Then place the camera: select **Main Camera**, set **Position** `(0, 1.6, -2)` and **Rotation** `(0, 0, 0)`.
+
+**You should see,** in the Game view without pressing Play: floor filling the lower half, a bench-shaped slab about two metres ahead at hip height, and the small chassis box on top of it. If it is still only sky, compare the numbers above with the Inspector.
 
 ## Step 1 — Put the two scripts in the project
 
