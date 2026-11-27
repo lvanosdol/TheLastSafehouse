@@ -34,8 +34,10 @@ The campaign target is seven chapters. Each chapter awards one development-agent
 - [x] Scaffold the fresh game project (`SafehouseSpike`)
 - [x] Verify the empty project runs — the template scene plays in the Game view
 - [x] Show `prototype/standalone.html` inside the Unity shell — rendered on 2026-11-27 with UnityWebBrowser 2.2.8 (Unity 6.6, Mono); configuration recorded in `docs/playtests/2026-11-27-spike-unity-embedding.md`
-- [x] Repeat the reader checks across the Unity boundary — **failed:** NVDA reads the page in Edge and says nothing inside Unity, and keys are gated on the pointer. Record in `docs/playtests/2026-11-27-spike-unity-embedding.md`
-- [ ] Test WebView2 as the host for the same page, and repeat the reader checks — a real window is what assistive technology can attach to
+- [x] Repeat the reader checks across the Unity boundary — **failed on the embedded surface:** NVDA reads the page in Edge and said nothing inside Unity, and keys were gated on the pointer. Record in `docs/playtests/2026-11-27-spike-unity-embedding.md`
+- [x] Test a real browser window as the host — **passed** on 2026-11-27: NVDA read the page inside the window Unity opened (`docs/playtests/2026-11-27-spike-browser-window.md`)
+- [ ] Wire the seating interaction: `Open()` when the player sits at the computer, `Close()` on standing up, and handle `Closed`
+- [ ] Remove UnityWebBrowser once the switch is settled, restoring IL2CPP for the mobile targets
 
 ## Phase 2 — Vertical slice (Chapter 1, first lesson)
 

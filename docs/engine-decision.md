@@ -26,9 +26,13 @@ Build the game in **Unity** (current LTS release at project start), and render t
 
 The web half of the spike is built — see `prototype/` and its `ACCESSIBILITY-TEST.md`, with results in `docs/playtests/2026-11-26-spike-web-layer.md`; its structural half is now covered automatically by `prototype/tests/spike-checks.mjs` (`docs/playtests/2026-11-27-spike-web-layer-automated.md`). **The accessible-UI half passed on 2026-11-26**: a screen reader read the permission table with its column headings, and Escape returned focus correctly.
 
-**The Unity half is measured, and it failed on accessibility.** On 2026-11-26 an embedded Chromium surface rendered a live page inside Unity 6.6, at the cost of a Mono backend, a patched UniTask package, and deleted editor files. On 2026-11-27 the reader test was run: NVDA read `prototype/standalone.html` normally in Edge — with the mouse and with Tab — and said nothing at all inside Unity by either route. The same session confirmed that keys are only forwarded once the pointer enters the Raw Image. Full record: `docs/playtests/2026-11-27-spike-unity-embedding.md`.
+**The Unity half is measured. The first host failed; the second passed.**
 
-That is the spike's fail condition for the container, not for the page: the web layer is accessible, UnityWebBrowser 2.2.8 is not (it renders off-screen and returns no accessibility handler). **Next test: WebView2**, whose surface is a real window that assistive technology can attach to. The web-first fallback stays in reserve rather than being taken now, because the thing that failed is replaceable without touching the page.
+On 2026-11-26 an embedded Chromium surface rendered a live page inside Unity 6.6, at the cost of a Mono backend, a patched UniTask package, and deleted editor files. On 2026-11-27 the reader test was run: NVDA read `prototype/standalone.html` normally in Edge — with the mouse and with Tab — and said nothing at all inside Unity by either route, and keys were only forwarded once the pointer entered the Raw Image. Full record: `docs/playtests/2026-11-27-spike-unity-embedding.md`.
+
+The follow-up test replaced the texture with a **real browser window** opened and positioned by the game (`unity/Scripts/ComputerBrowserWindow.cs`). **NVDA read the page normally inside that window**, which passes the accessibility condition. Full record: `docs/playtests/2026-11-27-spike-browser-window.md`; the comparison behind the choice is `docs/webview-evaluation.md`.
+
+**Consequence:** the engine decision stands — Unity for the world, web for the simulated computer — and the container is a real browser window rather than an embedded texture. No plugin purchase is required, and the web layer is unchanged. Removing UnityWebBrowser also restores IL2CPP, which the Phase 7 mobile targets need.
 
 1. A Unity HDRP interior with a walkable camera.
 2. An embedded web page containing the Chapter 1 mock desktop, the folder Security dialog, and one terminal command.

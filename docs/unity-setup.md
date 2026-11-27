@@ -1,5 +1,7 @@
 # Unity setup for the spike
 
+> **Superseded on 2026-11-27, except steps 1–6.** The project hosts the simulated computer in a real browser window now (`unity/Scripts/ComputerBrowserWindow.cs`), because texture-based webviews expose nothing to a screen reader — see `docs/webview-evaluation.md` and `docs/playtests/2026-11-27-spike-browser-window.md`. Step 7 below is kept as the record of the UnityWebBrowser route that was tried and measured, not as the plan to follow.
+
 **Date:** 2026-11-26
 **Goal:** get Unity running and an empty project open, so the Chapter 1 web prototype can be embedded and tested.
 **Decision it serves:** `docs/engine-decision.md`

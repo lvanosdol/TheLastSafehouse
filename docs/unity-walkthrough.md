@@ -1,5 +1,7 @@
 # Unity walkthrough — from "it plays" to "my page is inside it"
 
+> **Read this first (2026-11-27):** steps 1–6 are still right — install, packages, `StreamingAssets`, scripts. **Step 7 is superseded.** An embedded webview renders the page but a screen reader cannot read it, so the project now opens the page in a real browser window instead: `unity/Scripts/ComputerBrowserWindow.cs`, explained in `docs/webview-evaluation.md`. Follow steps 1–6, then jump to the host script rather than building a Raw Image.
+
 Written for someone who has never used Unity before. Do the steps **in order**. Every step ends with a **You should see** line. If what you see is different, stop there and report it — the later steps assume the earlier ones worked.
 
 Plan on about 25 minutes, most of it downloads.
