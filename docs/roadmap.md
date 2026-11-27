@@ -37,7 +37,7 @@ The campaign target is seven chapters. Each chapter awards one development-agent
 - [x] Repeat the reader checks across the Unity boundary — **failed on the embedded surface:** NVDA reads the page in Edge and said nothing inside Unity, and keys were gated on the pointer. Record in `docs/playtests/2026-11-27-spike-unity-embedding.md`
 - [x] Test a real browser window as the host — **passed** on 2026-11-27: NVDA read the page inside the window Unity opened (`docs/playtests/2026-11-27-spike-browser-window.md`)
 - [ ] Wire the seating interaction: `Open()` when the player sits at the computer, `Close()` on standing up, and handle `Closed`
-- [ ] Remove UnityWebBrowser once the switch is settled, restoring IL2CPP for the mobile targets
+- [ ] Remove UnityWebBrowser from the project — done except for the IL2CPP expectation: the option becomes selectable, but the host still needs `System.Diagnostics.Process`, so desktop stays on Mono and mobile will need its own host
 
 ## Phase 2 — Vertical slice (Chapter 1, first lesson)
 

@@ -44,7 +44,7 @@
 ## What this means for the project
 
 - The engine decision stands: Unity for the world, web for the computer. What changed is the **host**, not the engine and not the page.
-- UnityWebBrowser comes off the critical path. Once its packages are removed, the Mono-only constraint goes with it and **IL2CPP becomes available again**, which is what the Phase 7 mobile targets need.
+- UnityWebBrowser comes off the critical path, and the Mono requirement no longer comes from it. The project stays on Mono for a different reason: `ComputerBrowserWindow` starts the browser with `System.Diagnostics.Process`, which IL2CPP does not support — so desktop remains Mono (fine for Windows and macOS), and the Phase 7 mobile targets will need their own host rather than this one.
 - The interaction to build next is the seating one: `Open()` when the player sits at the computer, `Close()` when they stand up, and handle `Closed` for a player who closes the window themselves.
 
 ## Defect found after the first run

@@ -32,7 +32,9 @@ On 2026-11-26 an embedded Chromium surface rendered a live page inside Unity 6.6
 
 The follow-up test replaced the texture with a **real browser window** opened and positioned by the game (`unity/Scripts/ComputerBrowserWindow.cs`). **NVDA read the page normally inside that window**, which passes the accessibility condition. Full record: `docs/playtests/2026-11-27-spike-browser-window.md`; the comparison behind the choice is `docs/webview-evaluation.md`.
 
-**Consequence:** the engine decision stands — Unity for the world, web for the simulated computer — and the container is a real browser window rather than an embedded texture. No plugin purchase is required, and the web layer is unchanged. Removing UnityWebBrowser also restores IL2CPP, which the Phase 7 mobile targets need.
+**Consequence:** the engine decision stands — Unity for the world, web for the simulated computer — and the container is a real browser window rather than an embedded texture. No plugin purchase is required, and the web layer is unchanged.
+
+On IL2CPP: removing UnityWebBrowser makes the option *selectable* again, but it does not make it usable for this host. `ComputerBrowserWindow` starts the browser with `System.Diagnostics.Process`, which IL2CPP does not support. Desktop therefore stays on Mono, which is fine for Windows and macOS. The mobile targets in Phase 7 will need their own host anyway — a native webview or the system browser — because neither WebView2 nor a launched Edge exists there.
 
 1. A Unity HDRP interior with a walkable camera.
 2. An embedded web page containing the Chapter 1 mock desktop, the folder Security dialog, and one terminal command.

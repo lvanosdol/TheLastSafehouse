@@ -26,6 +26,6 @@ Then, in the Unity project:
 
 - Windows, with Edge or Chrome installed. Windows 11 ships Edge.
 - `Assets/StreamingAssets/standalone.html` present.
-- Nothing else: no package, no registry, no Mono constraint. The old UnityWebBrowser requirements are in `Archive/README.md` and are no longer part of the plan.
+- Nothing else: no package and no registry. **Mono is still required**, but for a different reason now: `Process.Start` opens the browser, and IL2CPP does not support `System.Diagnostics.Process`. Desktop stays on Mono; a player build works with Mono.
 
 The full walkthrough, including the package IDs and the fields to set, is `docs/unity-setup.md` step 7. If you have not used Unity before, start with `docs/unity-walkthrough.md` instead — it is the same procedure written as ten click-by-click steps with a check after each one.
