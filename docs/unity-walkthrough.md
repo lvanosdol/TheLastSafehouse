@@ -20,6 +20,23 @@ The first open takes a while: shaders compile and the template imports. Let the 
 
 **You should see:** the Unity editor, a scene already open, and the **Play** button (▶) at the top centre.
 
+### Step 1b — Check *where* the project lives
+
+In Unity Hub, hover your project card and look at its path, or right-click `Assets` in Unity's Project window → **Show in Explorer** and read the address bar.
+
+The path must **not** contain `AppData\Roaming\UnityHub\Templates`. That folder is Unity Hub's template storage. Projects put there can be overwritten when Hub installs or updates a template, they are ignored by Hub's project list, and on a work machine with a roaming profile they get copied around at logoff — which is how projects get corrupted.
+
+If you find it there, move it once, now, before building anything else:
+
+1. **Close Unity** (Unity Hub can stay open).
+2. In File Explorer, create `C:\UnityProjects`.
+3. Drag the whole `SafehouseSpike` folder from `Templates` into `C:\UnityProjects`. Same drive, so the move is instant — `Library` is huge and copying would take far longer.
+4. Open Unity Hub → **Projects** → **Add** → **Add project from disk** → select `C:\UnityProjects\SafehouseSpike`.
+5. Remove the old entry from the Hub list (right-click → **Remove project from list**); that only forgets the path, it does not delete files.
+6. Open the project from the new entry and confirm your scene and `Assets/Scripts/LoadPrototypePage.cs` are still there.
+
+**You should see:** one project entry, at a path outside `AppData`, opening with your work intact.
+
 ---
 
 ## Step 2 — Tell Unity where the browser package lives
