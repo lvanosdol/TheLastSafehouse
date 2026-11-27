@@ -122,7 +122,21 @@ The camera is the player's eyes. It must be a child of the Player, or turning th
 1. Select `Player` again.
 2. **Add Component → Safehouse → Player Move**. If **Safehouse** is not in the list, step 1 or 2 failed; check the Console.
 
-**You should see:** a **Player Move** block with Walk Speed, Gravity, View, Mouse Sensitivity, Key Turn Speed, Pitch Limit, Lock Pointer On Start. Leave **View** empty — the script finds the camera under the Player.
+**Nothing needs typing.** The values come from the script, so the component opens with them already filled in:
+
+| Field | Value you should see | What it does |
+|---|---|---|
+| **Walk Speed** | `2.4` | Metres per second; crosses the whole room in about three seconds |
+| **Gravity** | `-20` | Keeps you on the floor. Stronger than real gravity so you do not float off steps |
+| **View** | empty | The camera. Leave it empty — the script finds the one under the Player |
+| **Mouse Sensitivity** | `0.12` | Degrees turned per pixel of mouse movement while the pointer is locked |
+| **Key Turn Speed** | `100` | Degrees per second with the arrow keys — the keyboard-only way to turn |
+| **Pitch Limit** | `80` | How far up or down you may look, in degrees |
+| **Lock Pointer On Start** | ticked | Hides and holds the pointer when Play starts. **Escape** gives it back |
+
+Change one only if Step 7 feels wrong: too fast or too slow is **Walk Speed**; a twitchy or sluggish mouse is **Mouse Sensitivity**; arrow keys that spin you is **Key Turn Speed**. If you want the shipped values back, right-click the word **Player Move** at the top of the component block and choose **Reset**.
+
+**You should see:** the block with those seven values, and no red in the Console.
 
 ## Step 7 — Test walking, before touching the bench
 
@@ -217,6 +231,7 @@ If the page opens but does not move into place, or the Console says `Missing pag
 | The prompt reads backwards | The billboard is facing the back of the text at the player | Untick **Face Viewer** on Bench Interaction and set the prompt's Rotation Y to `180` |
 | `warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete` | The script was written before Unity 6.6 deprecated that lookup; it still compiles, it is only noise | Replace `BenchInteraction.cs` with the current file — the line now uses `FindAnyObjectByType` |
 | `CS1501: No overload for method 'Open' takes 1 arguments` | The project's `ComputerBrowserWindow.cs` is the Phase 1 copy, before `Open(page)` existed | Download it again and replace it — Step 1 |
+| No green capsule after Step 4 | The capsule is a Scene-view gizmo: gizmos off, `Collider` unticked, or the Scene view looking elsewhere | Select `Player`, hover the Scene view, press **F**; check the **Gizmos** button at the top right. If the Inspector lists Character Controller, nothing is broken |
 | `W` does nothing | The editor's other panels have keyboard focus | Click once inside the Game view |
 | Turning does not turn the view | Camera not a child of Player | Step 5 |
 | No prompt at the bench | Not inside the box, the box is not a trigger, or the prompt object is still unticked and not assigned | Step 8 and Step 11; walk closer |
