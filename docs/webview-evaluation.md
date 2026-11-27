@@ -66,6 +66,18 @@ Known limits, all acceptable for a spike and worth knowing before they surprise 
 2. **Wire the interaction.** Call `Open()` when the player sits at the computer, `Close()` when they stand up, and subscribe to `Closed` so a player who closes the window themselves is returned to the game state rather than left standing in a scene that thinks they are still seated.
 3. **Uninstall UnityWebBrowser once the switch is settled.** It is no longer on the critical path and it adds hundreds of megabytes to a build. Removing it makes IL2CPP *selectable* but not usable for this host — `Process.Start`, which opens the browser, is unsupported under IL2CPP — so desktop stays on Mono and the mobile targets will need a native webview or the system browser instead. Keep the packages installed only while comparing the two hosts.
 
+## Why the project stays on Mono
+
+`ComputerBrowserWindow` opens the browser with `System.Diagnostics.Process.Start`, and **IL2CPP does not support `System.Diagnostics.Process`**. A build compiled with IL2CPP would start, run the world, and then silently fail to open the computer. Mono is the correct backend for this host and is a normal shipping choice for Windows and macOS desktop.
+
+If IL2CPP is installed but not offered in **Player Settings → Other Settings → Configuration → Scripting Backend**, the usual reasons are:
+
+- the **platform tab** at the top of Player Settings is not the one with IL2CPP support — switch to the Windows tab;
+- **Architecture** is set to `x86` (32-bit); IL2CPP needs `x86_64` or ARM64;
+- the editor was already running when the module finished installing — restart it, or use Hub → ⋯ → **Verify files**.
+
+None of that needs fixing for this project. The mobile versions in Phase 7 will need IL2CPP *and* a different host, because neither WebView2 nor a launched Edge exists on a phone.
+
 ### Removing UnityWebBrowser
 
 1. Stop Play mode and save the scene.
