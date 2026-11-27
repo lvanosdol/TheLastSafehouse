@@ -2,7 +2,7 @@
 
 A 3D, story-driven IT and networking learning game for adult beginners. Seven chapters teach computer basics, operating systems, files and permissions, programming, databases, networking, security, automation, troubleshooting, and digital literacy — each chapter ending in a boss and awarding one component of a seven-agent software project the player assembles.
 
-**Status:** design complete for all seven chapters; implementation has not started. Engine chosen: **Unity**, with the in-game computer rendered as an embedded web UI. See [`docs/engine-decision.md`](docs/engine-decision.md).
+**Status:** design complete for all seven chapters. The engine question is settled: **Unity** owns the 3D world, and the in-game computer is the accessible web layer shown in a **real browser window the game opens and positions**. Texture-based webviews (UnityWebBrowser, unity-webview, Vuplex on Windows) render the page but expose nothing to a screen reader — measured, see [`docs/webview-evaluation.md`](docs/webview-evaluation.md) — while a real window is read normally by NVDA ([`docs/playtests/2026-11-27-spike-browser-window.md`](docs/playtests/2026-11-27-spike-browser-window.md)). Chapter 1 implementation has not started; the next step is the Phase 2 vertical slice in [`docs/roadmap.md`](docs/roadmap.md). See also [`docs/engine-decision.md`](docs/engine-decision.md).
 
 ## Where things are
 
