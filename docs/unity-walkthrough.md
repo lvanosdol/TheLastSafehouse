@@ -168,6 +168,7 @@ The script does three things: waits for the browser engine to start, builds the 
    - In the outer part of the component: **Input Handler** → `Old Input Handler`
 7. In the same **Browser Client** block, set **Engine Startup Timeout** to `10000`. Leave **Resolution** at its default.
 8. Leave **Initial Url** alone — it still says `https://voltstro.dev`, and that is useful: if you ever see Voltstro's site appear, the browser itself is working.
+   - **Or skip the script entirely:** `Initial Url` is handed to the engine as its starting address, so you can paste the page's `file:///` address straight into it and never add `LoadPrototypePage` at all. Forward slashes only, three after `file:`, for example `file:///C:/UnityProjects/SafehouseSpike/Assets/StreamingAssets/standalone.html`. The script exists only to build that address correctly for you and to survive the move from editor to build.
 9. **Add Component** → type `Load Prototype Page` → press Enter, so it is on the same Raw Image. Leave **Use Local Server** unticked.
    - **What that is:** the script you saved in step 6, `Assets/Scripts/LoadPrototypePage.cs`. Unity writes class names with spaces in its menus, so `LoadPrototypePage` appears as **Load Prototype Page**. It is the only custom script in the project — everything else in the list belongs to Unity or to the browser package.
    - **You can also just drag the file:** drag `LoadPrototypePage.cs` from the Project window onto the Raw Image object. That adds the component without searching for it.
