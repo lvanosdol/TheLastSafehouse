@@ -20,11 +20,15 @@ For Lesson 1 that means: 3D bench as the thing the player approaches, and an acc
 | 2 | Move and look: WASD plus mouse look, Escape releases the pointer | Player can walk to the bench and back |
 | 3 | Approach and use: a trigger volume with a prompt, **E** opens the lesson page, closing it returns to the game | Keyboard only, no mouse click required |
 | 4 | Lesson page shell: `prototype/lesson-1.html`, same accessibility scaffolding as the prototype (skip link, polite and assertive live regions, focus rules, text size, simulated marker) | Automated checks pass on it; Tab order sound |
+
+**Task 4 done 2026-11-27:** `prototype/lesson-1.html` exists with the scaffolding, the eight-part guide and 28 automated checks (`cd prototype && npm test`), single-file because the host loads pages over `file://`. Tab order is asserted by the harness; the NVDA pass comes with task 9.
 | 5 | Parts matching: eight parts to their purposes, with specific feedback and a free retry | Wrong answers name the part and the mistake; no penalty |
 | 6 | Safety card: shown before assembly, dismissible, re-openable | Dialog semantics, Escape closes, focus returns |
 | 7 | Assembly: eleven placement steps, validated by resulting state not order, with the four named diagnostics | Each diagnostic fires only for its own condition; result screen shows the POST block |
 | 8 | Result and hand-off: `POWER: ON … WINDOWS: STARTING`, then "Workshop application: Not responding" | The lesson ends in the story beat, not a dead end |
 | 9 | Slice playtest: keyboard only, NVDA, one tester, report written | `docs/playtests/` entry with pass/fail per task |
+
+**Status 2026-11-27:** tasks 1–3 confirmed in the editor — see `docs/playtests/2026-11-27-workshop-first-run.md`. The click-by-click version for a first-time Unity user is `docs/workshop-walkthrough.md`.
 
 ## Explicitly not in the slice
 
