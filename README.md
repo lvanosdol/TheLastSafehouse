@@ -16,6 +16,8 @@ A 3D, story-driven IT and networking learning game for adult beginners. Seven ch
 | `docs/playtests/` | Playtest and spike reports |
 | `docs/unity-walkthrough.md` | Beginner walkthrough: Unity play mode to the page inside the shell, one step at a time |
 | `docs/webview-evaluation.md` | Why texture-based webviews cannot be read, what each alternative costs, and the test that decides |
+| `docs/phase2-vertical-slice.md` | The Phase 2 plan: nine tasks with acceptance criteria for Chapter 1 Lesson 1 |
+| `docs/handoff-phase2.md` | Self-contained brief for starting the vertical slice in a fresh task |
 | `docs/unity-setup.md` | Install walkthrough, UnityWebBrowser steps, and free browser-component options |
 | `docs/playtests/2026-11-27-spike-unity-embedding.md` | The embedding test and its result: rendering passed, the reader inside Unity did not |
 | `prototype/` | The accessible simulated computer, runnable in a browser |
