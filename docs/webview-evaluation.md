@@ -66,4 +66,19 @@ Known limits, all acceptable for a spike and worth knowing before they surprise 
 2. **Wire the interaction.** Call `Open()` when the player sits at the computer, `Close()` when they stand up, and subscribe to `Closed` so a player who closes the window themselves is returned to the game state rather than left standing in a scene that thinks they are still seated.
 3. **Uninstall UnityWebBrowser once the switch is settled.** It is no longer on the critical path, it adds hundreds of megabytes to a build, and it is what forced the Mono backend — without it, IL2CPP becomes available again, which is the gateway to the mobile versions in Phase 7. Keep it installed only while comparing the two hosts.
 
+### Removing UnityWebBrowser
+
+1. Stop Play mode and save the scene.
+2. In the Hierarchy, delete any object still carrying a browser component. After the packages are gone those components appear as **Missing (Mono Script)** and will not clean themselves up.
+3. **Window → Package Manager → Packages: In Project**, and remove in this order, because each depends on the one below:
+   1. `Unity Web Browser CEF Engine (Windows x64)`
+   2. `Unity Web Browser CEF Engine`
+   3. `Unity Web Browser`
+   Click **Remove** for each and let the reimport finish.
+4. UniTask and the other dependencies go with them. If any remains listed, remove it too — it exists only for UnityWebBrowser.
+5. Optional tidy-up: **Project Settings → Package Manager → Scoped Registries**, remove `VoltUPR`. It is harmless to leave, and re-adding it is the first step of reinstalling.
+6. Optional disk reclaim: delete `%LOCALAPPDATA%\Unity\cache\packages` to throw away the downloaded archives — several gigabytes for the CEF engine.
+
+**Verify:** the three packages are gone from **In Project**, the Console is clean, and Play still opens the simulated computer in its own window.
+
 
