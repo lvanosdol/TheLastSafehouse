@@ -59,3 +59,10 @@ Known limits, all acceptable for a spike and worth knowing before they surprise 
 - **It appears in the taskbar and on alt-tab**, which a true embedded surface would not.
 - **It needs a browser installed.** Windows 11 has Edge; the component also accepts Chrome.
 
+## Integrating it into the scene
+
+1. **Turn off the old surface.** Disable or delete the object carrying `Web Browser Basic`: with `ComputerBrowserWindow` in place the game would otherwise start two browsers, one of them invisible and unreadable, and the UnityWebBrowser engine process keeps running for nothing.
+2. **Wire the interaction.** Call `Open()` when the player sits at the computer, `Close()` when they stand up, and subscribe to `Closed` so a player who closes the window themselves is returned to the game state rather than left standing in a scene that thinks they are still seated.
+3. **Uninstall UnityWebBrowser once the switch is settled.** It is no longer on the critical path, it adds hundreds of megabytes to a build, and it is what forced the Mono backend — without it, IL2CPP becomes available again, which is the gateway to the mobile versions in Phase 7. Keep it installed only while comparing the two hosts.
+
+
