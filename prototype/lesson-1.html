@@ -77,21 +77,38 @@ p { margin: 0 0 0.9rem; max-width: 42rem; }
 .stages .current { color: var(--ink); font-weight: 600; }
 .stages .later { color: var(--ink-dim); }
 
-.match-list { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: 0.6rem; }
-.match-row {
-  display: grid; gap: 0.4rem; padding: 0.7rem 0.9rem;
-  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+.match-board { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); align-items: start; }
+@media (max-width: 46rem) { .match-board { grid-template-columns: minmax(0, 1fr); } }
+
+.board-column { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 0.8rem; }
+.board-column h3 { margin: 0 0 0.6rem; font-size: 1rem; }
+
+.cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+
+.part-card {
+  font: inherit; width: 100%; text-align: left; padding: 0.55rem 0.7rem;
+  background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 6px; cursor: grab;
 }
-.match-row.correct { border-color: var(--ok); border-left-width: 4px; }
-.match-row.incorrect { border-color: var(--danger); border-left-width: 4px; }
-.match-row label { font-weight: 600; }
-.match-row select {
-  font: inherit; max-width: 36rem; padding: 0.4rem 0.5rem;
-  background: #06101c; color: var(--ink); border: 1px solid var(--line); border-radius: 4px;
+.part-card[aria-pressed="true"] { border-color: var(--focus); border-width: 2px; }
+.part-card.used { display: none; }
+
+.slot {
+  font: inherit; width: 100%; text-align: left; padding: 0.55rem 0.7rem;
+  background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 6px; cursor: pointer;
+  display: grid; gap: 0.2rem;
 }
-.match-row .feedback { margin: 0; font-size: 0.95rem; color: var(--ink-dim); max-width: 42rem; }
-.match-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0 0 1rem; }
+.slot .slot-purpose { font-weight: 600; }
+.slot .slot-part { font-size: 0.95rem; color: var(--ink-dim); }
+.slot.correct { border-color: var(--ok); border-left-width: 4px; }
+.slot.incorrect { border-color: var(--danger); border-left-width: 4px; }
+.slot.dragover { outline: 2px dashed var(--focus); outline-offset: 2px; }
+.slot .feedback { margin: 0.2rem 0 0; font-size: 0.95rem; color: var(--ink-dim); font-weight: 400; }
+
+.match-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0 1rem; }
 .match-summary { font-weight: 600; margin: 0 0 1rem; }
+.match-hint { color: var(--ink-dim); font-size: 0.95rem; margin: 0 0 0.75rem; }
 
 .guide { display: grid; gap: 0.5rem; margin: 0 0 1rem; }
 details {
@@ -182,8 +199,20 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     <p>Pick the purpose for every part. A wrong answer costs nothing — the lesson says
       what the mix-up was, and you try again as often as you like.</p>
 
-    <form id="match-form" aria-labelledby="match-heading" novalidate>
-      <ol class="match-list" id="match-list"></ol>
+    <p class="match-hint" id="match-hint">Drag a part onto the purpose it belongs to. From the keyboard:
+      press Enter on a part to pick it up, Tab to a purpose, press Enter again to place it.</p>
+
+    <form id="match-form" aria-labelledby="match-heading" aria-describedby="match-hint" novalidate>
+      <div class="match-board">
+        <section class="board-column" aria-labelledby="parts-column-heading">
+          <h3 id="parts-column-heading">Parts</h3>
+          <ul class="cards" id="part-pool"></ul>
+        </section>
+        <section class="board-column" aria-labelledby="purposes-column-heading">
+          <h3 id="purposes-column-heading">Purposes</h3>
+          <ul class="cards" id="purpose-list"></ul>
+        </section>
+      </div>
       <div class="match-actions">
         <button type="submit">Check my answers</button>
         <button type="button" id="match-reset">Clear my answers</button>
@@ -346,96 +375,259 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     });
   }
 
-  function renderMatch() {
-    var list = document.getElementById('match-list');
+  // Which part sits on which purpose. Keyed by the purpose's owner, because a
+  // purpose belongs to exactly one part; the value is the part put there.
+  // `held` is the part a keyboard player has picked up.
+  var placed = {};
+  var held = null;
 
-    PARTS.forEach(function (part) {
-      var row = document.createElement('li');
-      row.className = 'match-row';
-      row.setAttribute('data-part', part.id);
-
-      var label = document.createElement('label');
-      label.setAttribute('for', 'purpose-' + part.id);
-      label.textContent = part.name;
-
-      var select = document.createElement('select');
-      select.id = 'purpose-' + part.id;
-
-      var blank = document.createElement('option');
-      blank.value = '';
-      blank.textContent = 'Choose a purpose…';
-      select.appendChild(blank);
-
-      PURPOSE_ORDER.forEach(function (id) {
-        var option = document.createElement('option');
-        option.value = partById(id).purpose;
-        option.textContent = partById(id).purpose;
-        select.appendChild(option);
-      });
-
-      var feedback = document.createElement('p');
-      feedback.className = 'feedback';
-      feedback.id = 'feedback-' + part.id;
-      select.setAttribute('aria-describedby', feedback.id);
-
-      row.appendChild(label);
-      row.appendChild(select);
-      row.appendChild(feedback);
-      list.appendChild(row);
+  function isPlaced(partId) {
+    return Object.keys(placed).some(function (key) {
+      return placed[key] === partId;
     });
   }
 
-  function rows() {
-    return Array.prototype.slice.call(document.querySelectorAll('.match-row'));
+  function slotFor(ownerId) {
+    return document.querySelector('.slot[data-purpose="' + ownerId + '"]');
   }
 
-  // Checks the resulting state, not the order the answers were given in. Focus
-  // moves to the summary, which is how a screen-reader player hears the result;
-  // each row keeps its own sentence for when they tab back to it.
+  function cardFor(partId) {
+    return document.querySelector('.part-card[data-part="' + partId + '"]');
+  }
+
+  function renderBoard() {
+    var pool = document.getElementById('part-pool');
+
+    PARTS.forEach(function (part) {
+      var item = document.createElement('li');
+      var card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'part-card';
+      card.setAttribute('data-part', part.id);
+      card.setAttribute('aria-pressed', 'false');
+      card.textContent = part.name;
+
+      card.addEventListener('click', function () {
+        pickUp(part.id);
+      });
+
+      card.addEventListener('dragstart', function (event) {
+        held = part.id;
+        card.setAttribute('aria-pressed', 'true');
+        if (event.dataTransfer) {
+          event.dataTransfer.setData('text/plain', part.id);
+          event.dataTransfer.effectAllowed = 'move';
+        }
+      });
+
+      card.addEventListener('dragend', function () {
+        held = null;
+        card.setAttribute('aria-pressed', 'false');
+      });
+
+      item.appendChild(card);
+      pool.appendChild(item);
+    });
+
+    var list = document.getElementById('purpose-list');
+
+    PARTS.forEach(function (owner) {
+      var item = document.createElement('li');
+
+      var slot = document.createElement('button');
+      slot.type = 'button';
+      slot.className = 'slot';
+      slot.setAttribute('data-purpose', owner.id);
+
+      var purpose = document.createElement('span');
+      purpose.className = 'slot-purpose';
+      purpose.textContent = owner.purpose;
+
+      var who = document.createElement('span');
+      who.className = 'slot-part';
+      who.textContent = 'Nothing matched yet';
+
+      slot.appendChild(purpose);
+      slot.appendChild(who);
+
+      var feedback = document.createElement('p');
+      feedback.className = 'feedback';
+      feedback.id = 'feedback-' + owner.id;
+
+      slot.setAttribute('aria-describedby', feedback.id);
+
+      slot.addEventListener('click', function () {
+        useSlot(owner.id);
+      });
+
+      slot.addEventListener('dragover', function (event) {
+        if (event.preventDefault) event.preventDefault();
+        slot.classList.add('dragover');
+      });
+
+      slot.addEventListener('dragleave', function () {
+        slot.classList.remove('dragover');
+      });
+
+      slot.addEventListener('drop', function (event) {
+        if (event.preventDefault) event.preventDefault();
+        slot.classList.remove('dragover');
+        var dragged = event.dataTransfer ? event.dataTransfer.getData('text/plain') : '';
+        var partId = dragged || held;
+        if (partId) place(partId, owner.id);
+      });
+
+      item.appendChild(slot);
+      item.appendChild(feedback);
+      list.appendChild(item);
+    });
+  }
+
+  function refreshBoard() {
+    PARTS.forEach(function (owner) {
+      var slot = slotFor(owner.id);
+      if (slot) {
+        var partId = placed[owner.id];
+        slot.querySelector('.slot-part').textContent = partId
+          ? 'Matched: ' + partById(partId).name
+          : 'Nothing matched yet';
+      }
+
+      var card = cardFor(owner.id);
+      if (card) card.classList.toggle('used', isPlaced(owner.id));
+    });
+  }
+
+  function pickUp(partId) {
+    var part = partById(partId);
+    var card = cardFor(partId);
+
+    if (held === partId) {
+      held = null;
+      if (card) card.setAttribute('aria-pressed', 'false');
+      announce(part.name + ' put back.');
+      return;
+    }
+
+    held = partId;
+
+    PARTS.forEach(function (other) {
+      var otherCard = cardFor(other.id);
+      if (otherCard) otherCard.setAttribute('aria-pressed', other.id === partId ? 'true' : 'false');
+    });
+
+    announce(part.name + ' picked up. Choose the purpose it belongs to, then press Enter.');
+  }
+
+  function place(partId, ownerId) {
+    var part = partById(partId);
+    var owner = partById(ownerId);
+
+    // A purpose holds one part and a part sits on one purpose, so placing
+    // either frees whatever was there before.
+    delete placed[ownerId];
+    Object.keys(placed).forEach(function (key) {
+      if (placed[key] === partId) delete placed[key];
+    });
+
+    placed[ownerId] = partId;
+    held = null;
+
+    PARTS.forEach(function (other) {
+      var card = cardFor(other.id);
+      if (card) card.setAttribute('aria-pressed', 'false');
+    });
+
+    var slot = slotFor(ownerId);
+    if (slot) {
+      slot.classList.remove('correct', 'incorrect');
+      slot.focus();
+    }
+
+    var feedback = document.getElementById('feedback-' + ownerId);
+    if (feedback) feedback.textContent = '';
+
+    refreshBoard();
+    announce(part.name + ' matched to: ' + owner.purpose + '.');
+  }
+
+  function useSlot(ownerId) {
+    var owner = partById(ownerId);
+
+    if (held) {
+      place(held, ownerId);
+      return;
+    }
+
+    var current = placed[ownerId];
+    if (current) {
+      delete placed[ownerId];
+      var slot = slotFor(ownerId);
+      slot.classList.remove('correct', 'incorrect');
+      var feedback = document.getElementById('feedback-' + ownerId);
+      if (feedback) feedback.textContent = '';
+      refreshBoard();
+      announce(partById(current).name + ' taken off and returned to the parts.');
+      slot.focus();
+      return;
+    }
+
+    announce('Nothing is picked up. Choose a part first, then a purpose.');
+  }
+
+  // Checks where the parts ended up, not the order they were placed in. Focus
+  // moves to the summary so a screen-reader player hears the result; each
+  // purpose keeps its own sentence for when they tab back to it.
   function checkMatches(event) {
     if (event) event.preventDefault();
 
-    var blank = [];
     var wrong = [];
     var right = 0;
 
-    rows().forEach(function (row) {
-      var part = partById(row.getAttribute('data-part'));
-      var select = row.querySelector('select');
-      var feedback = row.querySelector('.feedback');
-      var chosen = select.value;
+    var inPool = PARTS.filter(function (part) {
+      return !isPlaced(part.id);
+    }).map(function (part) {
+      return part.name;
+    });
 
-      row.classList.remove('correct', 'incorrect');
+    PARTS.forEach(function (owner) {
+      var slot = slotFor(owner.id);
+      var feedback = document.getElementById('feedback-' + owner.id);
+      slot.classList.remove('correct', 'incorrect');
+      if (feedback) feedback.textContent = '';
 
-      if (!chosen) {
-        blank.push(part.name);
-        feedback.textContent = 'Choose a purpose for ' + part.name + '.';
-        return;
-      }
+      if (!placed[owner.id]) return;
 
-      if (chosen === part.purpose) {
+      var partId = placed[owner.id];
+
+      if (partId === owner.id) {
         right += 1;
-        row.classList.add('correct');
-        feedback.textContent = 'Correct. ' + part.name + ': ' + part.purpose + '.';
+        slot.classList.add('correct');
+        if (feedback) feedback.textContent = 'Correct. ' + owner.name + ': ' + owner.purpose + '.';
         return;
       }
 
-      var chosenPart = partForPurpose(chosen);
+      var part = partById(partId);
       wrong.push(part.name);
-      row.classList.add('incorrect');
-      feedback.textContent =
-        'Not yet. That is what ' + chosenPart.name + ' does. ' +
-        part.name + ': ' + part.purpose + '.';
+      slot.classList.add('incorrect');
+      if (feedback) {
+        feedback.textContent =
+          'Not yet. That is ' + owner.name + '\'s job. ' + part.name + ': ' + part.purpose + '.';
+      }
     });
 
     var summary = document.getElementById('match-summary');
 
-    if (blank.length > 0) {
-      summary.textContent = 'Still to choose: ' + listNames(blank) + '.';
+    var mislaid = listNames(wrong) +
+      (wrong.length === 1 ? ' is on the wrong purpose.' : ' are on the wrong purposes.');
+
+    if (inPool.length > 0 && wrong.length > 0) {
+      summary.textContent = 'Still to place: ' + listNames(inPool) + '. ' + mislaid;
+    } else if (inPool.length > 0) {
+      summary.textContent = 'Still to place: ' + listNames(inPool) + '.';
     } else if (wrong.length > 0) {
       summary.textContent =
-        right + ' of ' + PARTS.length + ' match. ' + listNames(wrong) +
-        (wrong.length === 1 ? ' needs another look.' : ' need another look.');
+        right + ' of ' + PARTS.length + ' are on the right purpose. ' + mislaid;
     } else {
       summary.textContent = 'All ' + PARTS.length + ' matched. The safety card comes next.';
       document.getElementById('next-step').textContent =
@@ -446,11 +638,19 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
   }
 
   function resetMatch() {
-    rows().forEach(function (row) {
-      row.classList.remove('correct', 'incorrect');
-      row.querySelector('select').value = '';
-      row.querySelector('.feedback').textContent = '';
+    placed = {};
+    held = null;
+
+    PARTS.forEach(function (owner) {
+      var slot = slotFor(owner.id);
+      slot.classList.remove('correct', 'incorrect');
+      var feedback = document.getElementById('feedback-' + owner.id);
+      if (feedback) feedback.textContent = '';
+      var card = cardFor(owner.id);
+      if (card) card.setAttribute('aria-pressed', 'false');
     });
+
+    refreshBoard();
 
     document.getElementById('next-step').textContent =
       'The safety card opens once every part is matched.';
@@ -461,7 +661,8 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
   }
 
   renderGuide();
-  renderMatch();
+  renderBoard();
+  refreshBoard();
 
   document.getElementById('match-form').addEventListener('submit', checkMatches);
   document.getElementById('match-reset').addEventListener('click', resetMatch);

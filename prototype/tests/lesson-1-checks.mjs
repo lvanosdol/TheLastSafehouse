@@ -211,7 +211,7 @@ try {
 
   await page.keyboard.press('Tab');
   const fifth = await page.evaluate(() => document.activeElement.tagName.toLowerCase());
-  check('Fifth Tab reaches the first purpose chooser', fifth === 'select', fifth);
+  check('Fifth Tab reaches the parts column', fifth === 'button', fifth);
 
   // ---- 5. the skip link moves focus --------------------------------------
 
@@ -282,135 +282,163 @@ try {
   const closedAgain = await page.evaluate(() => document.querySelector('.guide details').open);
   check('The same part closes with Enter', closedAgain === false);
 
-  // ---- 9. the matching task ------------------------------------------------
+  // ---- 9. the matching board ----------------------------------------------
 
-  const matchShape = await page.evaluate(() => {
-    const rows = Array.from(document.querySelectorAll('.match-row'));
+  const board = await page.evaluate(() => {
+    const cards = Array.from(document.querySelectorAll('.part-card'));
+    const slots = Array.from(document.querySelectorAll('.slot'));
     return {
-      rows: rows.length,
-      labelled: rows.every((row) => {
-        const select = row.querySelector('select');
-        const label = row.querySelector('label');
-        return label && label.getAttribute('for') === select.id && label.textContent.trim().length > 2;
+      cards: cards.length,
+      slots: slots.length,
+      cardsNamed: cards.every((card) => card.textContent.trim().length > 2),
+      slotsNamed: slots.every((slot) => slot.querySelector('.slot-purpose').textContent.trim().length > 20),
+      described: slots.every((slot) => {
+        const id = slot.getAttribute('aria-describedby');
+        return Boolean(id) && Boolean(document.getElementById(id));
       }),
-      described: rows.every((row) => {
-        const select = row.querySelector('select');
-        return select.getAttribute('aria-describedby') === row.querySelector('.feedback').id;
-      }),
-      choices: rows.every((row) => row.querySelectorAll('option').length === 9),
+      empty: slots.every((slot) => /Nothing matched yet/.test(slot.textContent)),
     };
   });
 
-  check('The matching task offers eight parts', matchShape.rows === 8, String(matchShape.rows));
-  check('Every purpose chooser is labelled with its part', matchShape.labelled);
-  check('Every chooser is tied to its own feedback line', matchShape.described);
-  check('Every chooser offers a blank plus all eight purposes', matchShape.choices);
+  check('The board offers eight parts', board.cards === 8, String(board.cards));
+  check('The board offers eight purposes', board.slots === 8, String(board.slots));
+  check('Every part has a visible name', board.cardsNamed);
+  check('Every purpose states what it does', board.slotsNamed);
+  check('Every purpose is tied to its own feedback line', board.described);
+  check('The board starts empty', board.empty);
 
-  // The guide and the matching must agree: read the purposes out of the guide.
-  const correct = await page.evaluate(() => {
-    const map = {};
-    document.querySelectorAll('.guide details').forEach((details) => {
-      const name = details.querySelector('summary').textContent.trim();
-      const purpose = details.querySelector('.detail-body p').textContent.trim().replace(/\.$/, '');
-      map[name] = purpose;
-    });
-    return map;
-  });
-
-  const selectFor = (partName) =>
-    page.evaluate((name) => {
-      const row = Array.from(document.querySelectorAll('.match-row')).find(
-        (candidate) => candidate.querySelector('label').textContent.trim() === name
-      );
-      return row.querySelector('select').id;
-    }, partName);
-
-  // Keyboard selection, not a mouse: arrows change the choice on a focused select.
-  await page.focus('#' + (await selectFor('RAM')));
-  await page.keyboard.press('ArrowDown');
-  await page.keyboard.press('ArrowDown');
-  const keyboardChoice = await page.$eval('#' + (await selectFor('RAM')), (el) => el.value);
-  check('A purpose can be chosen with the arrow keys', keyboardChoice.length > 10, keyboardChoice);
-
-  for (const [name, purpose] of Object.entries(correct)) {
-    await page.select('#' + (await selectFor(name)), purpose);
+  async function pickUp(partId) {
+    await page.focus('.part-card[data-part="' + partId + '"]');
+    await page.keyboard.press('Enter');
+    await sleep(60);
   }
 
-  await page.focus('#match-form button[type="submit"]');
-  await page.keyboard.press('Enter');
-  await sleep(150);
+  async function dropOn(purposeId) {
+    await page.focus('.slot[data-purpose="' + purposeId + '"]');
+    await page.keyboard.press('Enter');
+    await sleep(80);
+  }
 
-  const allRight = await page.evaluate(() => ({
+  async function checkAnswers() {
+    await page.focus('#match-form button[type="submit"]');
+    await page.keyboard.press('Enter');
+    await sleep(150);
+  }
+
+  const slotText = (id) => page.$eval('.slot[data-purpose="' + id + '"]', (el) => el.textContent.trim());
+
+  // ---- 10. keyboard: pick up, move, place ---------------------------------
+
+  await pickUp('ram');
+  const pickedUp = await page.evaluate(() => ({
+    pressed: document.querySelector('.part-card[data-part="ram"]').getAttribute('aria-pressed'),
+    said: document.getElementById('announcer').textContent.trim(),
+  }));
+  check('Enter picks a part up', pickedUp.pressed === 'true');
+
+  await sleep(80);
+  const pickAnnouncement = await page.$eval('#announcer', (el) => el.textContent.trim());
+  check('Picking up is announced with what to do next', /picked up/.test(pickAnnouncement), pickAnnouncement);
+
+  await dropOn('ram');
+  check('Enter on a purpose places the part', /Matched: RAM/.test(await slotText('ram')), await slotText('ram'));
+
+  const focusAfterPlacing = await page.evaluate(() => document.activeElement.getAttribute('data-purpose'));
+  check('Focus stays on the purpose that received the part', focusAfterPlacing === 'ram', String(focusAfterPlacing));
+
+  const cardHidden = await page.evaluate(
+    () => document.querySelector('.part-card[data-part="ram"]').classList.contains('used')
+  );
+  check('A placed part leaves the pool', cardHidden);
+
+  // ---- 11. drag and drop --------------------------------------------------
+
+  const dragged = await page.evaluate(() => {
+    const card = document.querySelector('.part-card[data-part="cooling"]');
+    const slot = document.querySelector('.slot[data-purpose="cooling"]');
+    const data = new DataTransfer();
+    card.dispatchEvent(new DragEvent('dragstart', { bubbles: true, cancelable: true, dataTransfer: data }));
+    slot.dispatchEvent(new DragEvent('dragover', { bubbles: true, cancelable: true, dataTransfer: data }));
+    slot.dispatchEvent(new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: data }));
+    return slot.textContent.trim();
+  });
+  check('Dragging a part onto a purpose matches them', /Matched: Cooling/.test(dragged), dragged);
+
+  // ---- 12. a wrong answer names the mistake, and costs nothing ------------
+
+  // Take RAM off, then put it on Storage's purpose on purpose.
+  await dropOn('ram');
+  const returned = await page.evaluate(() => ({
+    text: document.querySelector('.slot[data-purpose="ram"]').textContent.trim(),
+    cardVisible: !document.querySelector('.part-card[data-part="ram"]').classList.contains('used'),
+  }));
+  check('Enter on a filled purpose returns the part', /Nothing matched yet/.test(returned.text) && returned.cardVisible, returned.text);
+
+  await pickUp('ram');
+  await dropOn('storage');
+  check('A part can be put on the wrong purpose', /Matched: RAM/.test(await slotText('storage')));
+
+  await checkAnswers();
+
+  const wrongAnswer = await page.evaluate(() => ({
     summary: document.getElementById('match-summary').textContent.trim(),
-    focusedSummary: document.activeElement.id === 'match-summary',
+    feedback: document.getElementById('feedback-storage').textContent.trim(),
+    focused: document.activeElement.id === 'match-summary',
+  }));
+
+  check('The result takes focus, so it is heard', wrongAnswer.focused);
+  check('The summary says where the mistake is', /RAM is on the wrong purpose/.test(wrongAnswer.summary), wrongAnswer.summary);
+  check(
+    'The wrong purpose names itself, the part and the part\'s real job',
+    /Not yet/.test(wrongAnswer.feedback) && /Storage's job/.test(wrongAnswer.feedback) && /RAM: Temporary working memory/.test(wrongAnswer.feedback),
+    wrongAnswer.feedback
+  );
+
+  // ---- 13. free retry, no reset ------------------------------------------
+
+  await dropOn('storage');
+  await pickUp('ram');
+  await dropOn('ram');
+
+  for (const partId of ['motherboard', 'processor', 'storage', 'power', 'graphics', 'case']) {
+    await pickUp(partId);
+    await dropOn(partId);
+  }
+
+  await checkAnswers();
+
+  const solved = await page.evaluate(() => ({
+    summary: document.getElementById('match-summary').textContent.trim(),
     next: document.getElementById('next-step').textContent.trim(),
   }));
-  check('Eight correct answers are accepted', /All 8 matched/.test(allRight.summary), allRight.summary);
-  check('The result takes focus, so it is heard', allRight.focusedSummary);
-  check('The next step is named once the parts match', /safety card/i.test(allRight.next), allRight.next);
+  check('Eight correct placements are accepted after a mistake', /All 8 matched/.test(solved.summary), solved.summary);
+  check('The next step is named once the parts match', /safety card/i.test(solved.next), solved.next);
 
-  // One deliberate mistake: RAM given storage's purpose.
-  await page.select('#' + (await selectFor('RAM')), correct.Storage);
-  await page.focus('#match-form button[type="submit"]');
-  await page.keyboard.press('Enter');
-  await sleep(150);
+  // ---- 14. clearing ------------------------------------------------------
 
-  const oneWrong = await page.evaluate(() => {
-    const row = Array.from(document.querySelectorAll('.match-row')).find(
-      (candidate) => candidate.querySelector('label').textContent.trim() === 'RAM'
-    );
-    return {
-      summary: document.getElementById('match-summary').textContent.trim(),
-      feedback: row.querySelector('.feedback').textContent.trim(),
-      enabled: !row.querySelector('select').disabled,
-    };
-  });
-
-  check('A wrong answer is counted', /7 of 8 match/.test(oneWrong.summary), oneWrong.summary);
-  check('The summary names the part that is wrong', /RAM needs another look/.test(oneWrong.summary), oneWrong.summary);
-  check(
-    'The wrong row names the part, the mistake and the right answer',
-    /Not yet/.test(oneWrong.feedback) && /Storage/.test(oneWrong.feedback) && /RAM:/.test(oneWrong.feedback),
-    oneWrong.feedback
-  );
-  check('A wrong answer costs nothing: the row stays editable', oneWrong.enabled);
-
-  // Correct it and resubmit: free retry.
-  await page.select('#' + (await selectFor('RAM')), correct.RAM);
-  await page.focus('#match-form button[type="submit"]');
-  await page.keyboard.press('Enter');
-  await sleep(150);
-  const retried = await page.$eval('#match-summary', (el) => el.textContent.trim());
-  check('Correcting the mistake passes without any reset', /All 8 matched/.test(retried), retried);
-
-  // A blank row is named, not silently marked wrong.
-  await page.select('#' + (await selectFor('Case')), '');
-  await page.focus('#match-form button[type="submit"]');
-  await page.keyboard.press('Enter');
-  await sleep(150);
-  const blankRow = await page.evaluate(() => ({
-    summary: document.getElementById('match-summary').textContent.trim(),
-    feedback: Array.from(document.querySelectorAll('.match-row'))
-      .find((row) => row.querySelector('label').textContent.trim() === 'Case')
-      .querySelector('.feedback').textContent.trim(),
-  }));
-  check('An unanswered part is asked for by name', /Still to choose: Case/.test(blankRow.summary), blankRow.summary);
-  check('An unanswered row says what to do', /Choose a purpose for Case/.test(blankRow.feedback), blankRow.feedback);
-
-  // Clearing starts the task over without losing the guide.
   await page.focus('#match-reset');
   await page.keyboard.press('Enter');
   await sleep(150);
+
   const cleared = await page.evaluate(() => ({
-    emptied: Array.from(document.querySelectorAll('.match-row select')).every((select) => select.value === ''),
     summary: document.getElementById('match-summary').textContent.trim(),
+    emptied: Array.from(document.querySelectorAll('.slot')).every((slot) => /Nothing matched yet/.test(slot.textContent)),
+    cardsBack: Array.from(document.querySelectorAll('.part-card')).every((card) => !card.classList.contains('used')),
     guide: document.querySelectorAll('.guide details').length,
   }));
-  check('Clearing empties every choice', cleared.emptied);
+
+  check('Clearing empties every purpose', cleared.emptied);
+  check('Clearing returns every part to the pool', cleared.cardsBack);
   check('Clearing says so', /Answers cleared/.test(cleared.summary), cleared.summary);
   check('Clearing keeps the guide', cleared.guide === 8, String(cleared.guide));
 
-  // ---- 9. preferences and errors -----------------------------------------
+  await page.focus('#match-form button[type="submit"]');
+  await page.keyboard.press('Enter');
+  await sleep(150);
+  const blankCheck = await page.$eval('#match-summary', (el) => el.textContent.trim());
+  check('Checking an empty board asks for every part by name', /Still to place:/.test(blankCheck) && /Motherboard/.test(blankCheck), blankCheck);
+
+  // ---- 15. preferences and errors -----------------------------------------
 
   const css = await page.$eval('style', (el) => el.textContent);
   check('Reduced motion is respected in the stylesheet', css.includes('prefers-reduced-motion'));
