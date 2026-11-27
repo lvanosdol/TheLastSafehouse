@@ -38,10 +38,19 @@ Then place the camera: select **Main Camera**, set **Position** `(0, 1.6, -2)` a
 
 ## Step 1 — Put the two scripts in the project
 
-1. In File Explorer, open this repository's `unity\Scripts` folder.
-2. Select `PlayerMove.cs` and `BenchInteraction.cs`, press **Ctrl+C**.
-3. In Unity, in the **Project** window, open `Assets`. If there is no `Scripts` folder, right-click `Assets` → **Create → Folder**, name it `Scripts`, and open it.
-4. Click once in the empty space of that folder and press **Ctrl+V**.
+The project needs two files: `PlayerMove.cs` and `BenchInteraction.cs`, both from the repository's `unity/Scripts` folder.
+
+**If the repository is cloned on this PC:** open that folder in File Explorer, select both files, **Ctrl+C**, then click inside `Assets/Scripts` in Unity's Project panel and **Ctrl+V**.
+
+**If it is not** — likely, if all your work happens in Unity — download them from GitHub:
+
+1. Open these two addresses in your browser:
+   - `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/PlayerMove.cs`
+   - `https://github.com/lvanosdol/TheLastSafehouse/blob/main/unity/Scripts/BenchInteraction.cs`
+2. On each page, click the **download** arrow at the right-hand end of the file's header bar. The browser saves it to `Downloads` with the right name, extension included.
+3. In Unity, open `Assets/Scripts` in the **Project** panel, then drag both files from the `Downloads` window into it.
+
+Either way, the file names must end in `.cs`. A file called `PlayerMove.cs.txt` will be ignored by Unity — if that happens, rename it and drop the `.txt`.
 
 **You should see:** both files listed in `Assets/Scripts`. Click `PlayerMove` once and its code appears in the **Inspector** on the right. If the Console turns red with `error CS…`, copy the first red line and tell me.
 
@@ -171,7 +180,7 @@ If the page opens but does not move into place, or the Console says `Missing pag
 
 | What you see | What it means | Fix |
 |---|---|---|
-| **Add Component** has no **Safehouse** section | The scripts did not compile | Read the first red Console line; usually the Input System step |
+| **Add Component** has no **Safehouse** section | The scripts are not in the project, or did not compile | Check `Assets/Scripts` holds both `.cs` files (Step 1), then read the first red Console line |
 | `CS0246` naming `UnityEngine.InputSystem` | New Input System not installed or not active | Step 2 |
 | `W` does nothing | The editor's other panels have keyboard focus | Click once inside the Game view |
 | Turning does not turn the view | Camera not a child of Player | Step 5 |
