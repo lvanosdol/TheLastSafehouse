@@ -105,6 +105,8 @@ There is nothing to see in the room, and that is not a mistake: an empty object 
 
 **You should see:** a green capsule outline drawn around the Player in the **Scene** view (the large middle panel), standing on the floor rather than half sunk into it. If it looks sunk, the Center is not `(0, 0.9, 0)`.
 
+The capsule is a **gizmo** — a drawing the Scene view adds, not part of the game. It is invisible if the Scene view is looking somewhere else (select `Player`, hover the Scene view, press **F** to frame it), if the **Gizmos** button at the top right of the Scene view is off, or if `Collider` is unticked in that button's dropdown. None of those breaks anything: the component in the Inspector is what matters, and Step 7 proves it by stopping you at the bench.
+
 ## Step 5 — Put the camera inside the Player
 
 The camera is the player's eyes. It must be a child of the Player, or turning the body will not turn the view.
