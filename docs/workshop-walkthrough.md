@@ -34,7 +34,7 @@ Three primitives are all the slice needs. Menu **GameObject → 3D Object → Pl
 
 Then place the camera: select **Main Camera**, set **Position** `(0, 1.6, -2)` and **Rotation** `(0, 0, 0)`.
 
-**You should see,** in the Game view without pressing Play: floor filling the lower half, a bench-shaped slab about two metres ahead at hip height, and the small chassis box on top of it. If it is still only sky, compare the numbers above with the Inspector.
+**You should see,** in the Game view without pressing Play: floor filling the lower half, a bench-shaped slab four metres ahead and a little below the middle of the screen, spanning about a quarter of the screen's width, with the small chassis box on top of it reaching roughly the horizon line. If the bench is small and far away, or the view is still only sky, compare the numbers above with the Inspector — the camera's Position is the one that changes distance.
 
 ## Step 1 — Put the two scripts in the project
 
