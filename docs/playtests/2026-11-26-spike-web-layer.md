@@ -42,6 +42,28 @@ No blocking findings. The permissions table reading with its headings is the spe
 
 Unity shell embedding: an HDRP interior with a walkable camera, this page in an embedded browser component, and the same reader checks across the boundary.
 
+## Unity half - attempt on 2026-11-26
+
+**Environment:** Unity 6.6.0 (6000.6.11f1), Windows 11, NVIDIA GTX 1650, URP template.
+
+**What was built:** project created, UnityWebBrowser 2.2.8 installed with the CEF engine and the Windows x64 native package, scripting backend switched to Mono, and the sample browser prefab placed in a scene.
+
+**Result:** the embedded browser rendered a live web page inside Unity's Game view. The rendering path works.
+
+**Obstacles encountered, in order:**
+
+1. Editor installed without `UnityPackageManager.exe`; reinstalling restored it.
+2. The URP project template failed to decompress twice; the project was created another way.
+3. The package registry URL was entered as `urp.voltstro.dev` instead of `upr.voltstro.dev`, and the `org.nuget` scope was missing, so packages could not resolve.
+4. Four packages were unsigned and needed manual approval.
+5. UniTask 2.5.10 is incompatible with Unity 6.6: `TreeViewState`, `TreeViewItem`, and `TreeView` became obsolete-as-error. Resolved by editing the embedded package and deleting the optional tracker window files.
+6. UnityWebBrowser requires the Mono scripting backend; IL2CPP is unsupported.
+7. The sample ships prefabs but no scene, and both the template and the sample scene are named `SampleScene`, which caused repeated confusion.
+
+**Unresolved:** no URL field was found on the browser components. The engine object expects a Browser Client reference that the sample prefab wires internally; hand assembly with `WebBrowser Basic` plus `Web UI Controls` did not complete. The screen-reader-inside-Unity test was therefore not reached.
+
+**Assessment:** rendering is proven, configuration friction is high, and Mono plus GPL-3 remain blockers for shipping. Before any further work on the free stack, price Vuplex, which provides a configurable URL and supports IL2CPP.
+
 ## Note
 
 This report covers one tester's session on one machine. It confirms the approach is viable; it does not replace the formal pass with recorded versions and more than one tester.
