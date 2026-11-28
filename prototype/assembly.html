@@ -100,6 +100,7 @@ p { margin: 0 0 0.9rem; max-width: 44rem; }
 .result .bad { color: var(--danger); }
 .result .good { color: var(--ok); }
 
+.window-size { margin-left: 1.5rem; color: var(--ink-dim); }
 .last-announcement { margin: 0; padding: 0.4rem 1rem; font-size: 0.85rem; color: var(--ink-dim); border-top: 1px solid var(--line); background: #0a1626; }
 
 button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
@@ -181,6 +182,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 3px s
 
   <p class="last-announcement" aria-hidden="true">
     Last announcement: <span id="last-announcement">none yet</span>
+    <span class="window-size" id="window-size"></span>
   </p>
   <div id="announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
   <div id="alert-announcer" class="sr-only" role="alert" aria-live="assertive" aria-atomic="true"></div>
@@ -617,6 +619,17 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 3px s
 
   renderBoard();
   refresh();
+
+  // The viewport, for playtest reports: layout faults are only reproducible if
+  // the size they happened at is written down. Hidden from the reader, which has
+  // no use for it.
+  function showWindowSize() {
+    var readout = document.getElementById('window-size');
+    if (readout) readout.textContent = 'Window: ' + window.innerWidth + ' x ' + window.innerHeight;
+  }
+
+  showWindowSize();
+  window.addEventListener('resize', showWindowSize);
 
   var status = document.getElementById('text-size-status');
   var scale = 100;
