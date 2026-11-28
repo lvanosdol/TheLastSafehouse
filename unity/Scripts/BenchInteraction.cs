@@ -130,23 +130,17 @@ namespace Safehouse.Workshop
                 return;
             }
 
-            // Movement off before the window opens. The browser takes keyboard
-            // focus immediately, and a key held at that moment would otherwise
-            // still read as pressed when the player comes back.
-            if (player != null)
-                player.SetInputEnabled(false);
-
+            // Movement is deliberately NOT switched off. Unity receives no
+            // keystrokes while the browser window has focus, so the pause was
+            // never needed — and gating it on spotting the window close meant a
+            // single missed detection froze the player for good. Two playtests
+            // ended that way. The page can take the screen without the game
+            // needing to know when it gives it back.
             SetPromptVisible(false);
             browser.Open(lessonPage);
 
-            // If no browser could be started (no Edge or Chrome, or a broken
-            // path), give the controls straight back instead of leaving the
-            // player frozen in front of a bench they cannot leave.
             if (!browser.IsOpen)
             {
-                if (player != null)
-                    player.SetInputEnabled(true);
-
                 RefreshPrompt();
                 return;
             }
@@ -161,7 +155,9 @@ namespace Safehouse.Workshop
         /// </summary>
         private void RestoreControlsIfPageGone()
         {
-            if (player == null || player.InputEnabled || PageOpen)
+            // Nothing disables the controls now, so this only fires if something
+            // else did — kept as a safety net, not as the mechanism.
+            if (player == null || player.InputEnabled)
                 return;
 
             Debug.Log("[BenchInteraction] Controls returned to the Workshop.");

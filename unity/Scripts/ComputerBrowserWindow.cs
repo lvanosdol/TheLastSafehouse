@@ -58,7 +58,6 @@ namespace Safehouse.Spike
         // profile, a task manager, or Edge keeping itself resident. Watching the
         // process alone leaves the game believing the page is still open, so the
         // window is what gets watched.
-        private float openedAt;
         private float nextWindowCheck;
         private IntPtr browserWindow;
 
@@ -185,7 +184,6 @@ namespace Safehouse.Spike
             }
 
             openedPage = page;
-            openedAt = Time.realtimeSinceStartup;
             nextWindowCheck = 0f;
             browserWindow = IntPtr.Zero;
             Debug.Log($"[ComputerBrowserWindow] Opened {url}");
