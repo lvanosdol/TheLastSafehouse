@@ -72,6 +72,7 @@ h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 0.75rem; }
 h2 { font-size: 1.15rem; margin: 2rem 0 0.5rem; }
 p { margin: 0 0 0.9rem; max-width: 42rem; }
 
+.page-intro { color: var(--ink-dim); margin: 0 0 1.2rem; }
 .lede { font-size: 1.05rem; color: var(--ink-dim); border-left: 3px solid var(--line); padding-left: 0.9rem; }
 .lede .speaker { display: block; color: var(--ink); font-weight: 600; }
 
@@ -211,6 +212,9 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
   <main id="bench" tabindex="-1" aria-label="Workshop workbench">
     <h1>Meet and rebuild the computer</h1>
 
+    <p class="page-intro" id="page-intro">Simulated workbench — nothing here touches a real computer.
+      Meet the eight parts, match each one to its purpose, then rebuild the computer on its own page.</p>
+
     <p class="lede">
       <span class="speaker">Mara</span>
       “Before we put this computer back together, let’s meet its parts. You don’t need to
@@ -278,7 +282,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     <p>Peripherals — the monitor, keyboard and mouse — come later, when you plug them in.</p>
 
     <h2>What comes next</h2>
-    <p class="pending" id="next-step">The rebuild is its own page: <a href="assembly.html">open the rebuild</a>.</p>
+    <p class="pending" id="next-step">The rebuild opens once every part is matched.</p>
   </main>
 
   <p class="last-announcement" aria-hidden="true">
@@ -694,15 +698,18 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     var mislaid = listNames(wrong) +
       (wrong.length === 1 ? ' is on the wrong purpose.' : ' are on the wrong purposes.');
 
+    var count = right + ' of ' + PARTS.length + ' are on the right purpose. ';
+
     if (inPool.length > 0 && wrong.length > 0) {
-      summary.textContent = 'Still to place: ' + listNames(inPool) + '. ' + mislaid;
+      summary.textContent = count + 'Still to place: ' + listNames(inPool) + '. ' + mislaid;
     } else if (inPool.length > 0) {
-      summary.textContent = 'Still to place: ' + listNames(inPool) + '.';
+      summary.textContent = count + 'Still to place: ' + listNames(inPool) + '.';
     } else if (wrong.length > 0) {
-      summary.textContent =
-        right + ' of ' + PARTS.length + ' are on the right purpose. ' + mislaid;
+      summary.textContent = count + mislaid;
     } else {
       summary.textContent = 'All ' + PARTS.length + ' matched. The rebuild is ready when you are.';
+      document.getElementById('next-step').innerHTML =
+        'The rebuild is its own page: <a href="assembly.html">open the rebuild</a>.';
     }
 
     summary.focus();
@@ -724,6 +731,9 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     refreshBoard();
 
     var summary = document.getElementById('match-summary');
+    document.getElementById('next-step').textContent =
+      'The rebuild opens once every part is matched.';
+
     summary.textContent = 'Answers cleared.';
     summary.focus();
   }
@@ -768,14 +778,6 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
   document.getElementById('test-announce').addEventListener('click', function () {
     announce('This is a test announcement. If you can hear this, a screen reader is reading the page.');
   });
-
-  window.setTimeout(function () {
-    announce(
-      'Simulated workbench. Nothing here touches a real computer. ' +
-      'The note at the top has the real-world safety rules. ' +
-      'Eight parts to meet, then match them to their purposes, then the rebuild. Press Tab to begin.'
-    );
-  }, 600);
 
   document.getElementById('bench').addEventListener(
     'focus',

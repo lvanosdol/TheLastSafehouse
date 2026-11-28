@@ -103,16 +103,15 @@ try {
 
   // ---- 1. what the page says about itself --------------------------------
 
-  check(
-    'Load announces a simulated workbench',
-    /Simulated workbench\. Nothing here touches a real computer\./.test(await polite()),
-    JSON.stringify(await polite())
-  );
+  const intro = await page.$eval('#page-intro', (el) => el.textContent.replace(/\s+/g, ' ').trim());
+  check('What the page is sits in the page, not in a timed announcement', /Simulated workbench/.test(intro), intro);
+  check('The introduction names the three stages', /meet/i.test(intro) && /match/i.test(intro) && /rebuild/i.test(intro), intro);
+  check('Nothing is announced on load to collide with the reader', (await polite()) === '', await polite());
   check(
     'The visible simulation marker is present in text',
     (await page.$eval('#simulation-flag', (el) => el.textContent)).includes('nothing here touches a real computer')
   );
-  check('The visible mirror shows the last message', (await mirror()).includes('Simulated workbench'));
+  check('The announcement mirror starts empty', (await mirror()).includes('none yet'), await mirror());
 
   // ---- 2. structure -------------------------------------------------------
 
@@ -421,6 +420,13 @@ try {
     note.disclaimer
   );
 
+  const gate = await page.evaluate(() => ({
+    offeredEarly: Boolean(document.querySelector('#next-step a[href="assembly.html"]')),
+    offeredInNav: Boolean(document.querySelector('.steps-nav a[href="assembly.html"]')),
+  }));
+  check('The rebuild is not offered before the practice is done', gate.offeredEarly === false);
+  check('The rebuild is still reachable from the navigation', gate.offeredInNav);
+
   // ---- 10. keyboard: pick up, move, place ---------------------------------
 
   await pickUp('ram');
@@ -482,6 +488,7 @@ try {
 
   check('The result takes focus, so it is heard', wrongAnswer.focused);
   check('The summary says where the mistake is', /RAM is on the wrong purpose/.test(wrongAnswer.summary), wrongAnswer.summary);
+  check('The summary always counts what is right, not only when finished', /of 8 are on the right purpose/.test(wrongAnswer.summary), wrongAnswer.summary);
   check(
     'The wrong purpose names itself, the part and the part\'s real job',
     /Not yet/.test(wrongAnswer.feedback) && /Storage's job/.test(wrongAnswer.feedback) && /RAM: Temporary working memory/.test(wrongAnswer.feedback),
@@ -509,6 +516,7 @@ try {
   check('Eight correct placements are accepted after a mistake', /All 8 matched/.test(solved.summary), solved.summary);
   check('The result takes focus, so it is heard', solved.focused);
   check('The next step is named once the parts match', /rebuild/i.test(solved.next), solved.next);
+  check('The rebuild link appears only once the practice is done', await page.evaluate(() => Boolean(document.querySelector('#next-step a[href="assembly.html"]'))));
 
   // ---- 14. clearing ------------------------------------------------------
 

@@ -74,6 +74,16 @@ namespace Safehouse.Workshop
 
         private void Update()
         {
+            // Self-heal. Relying on Closed alone left a playtester unable to move
+            // after shutting the page, because the event never arrived. As soon
+            // as the host reports no window, the controls come back regardless of
+            // which event did or did not fire.
+            if (player != null && !player.InputEnabled && !PageOpen)
+            {
+                player.SetInputEnabled(true);
+                RefreshPrompt();
+            }
+
             if (!playerInside || PageOpen)
                 return;
 

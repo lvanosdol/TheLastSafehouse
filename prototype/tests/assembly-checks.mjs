@@ -182,6 +182,7 @@ try {
 
   await press('power');
   check('With the switch off, pressing the button does nothing', /Nothing happens/.test(await resultText()), await resultText());
+  check('The result is read where focus lands, and only once', await page.evaluate(() => document.activeElement.id === 'result'));
 
   await press('switch');
   await press('power');

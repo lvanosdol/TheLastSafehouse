@@ -166,7 +166,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 3px s
       <button type="button" id="reset">Start the build again</button>
     </div>
 
-    <div class="result" id="result" aria-labelledby="result-heading" hidden>
+    <div class="result" id="result" aria-labelledby="result-heading" tabindex="-1" hidden>
       <h3 id="result-heading">What the machine does</h3>
       <pre id="result-text"></pre>
       <p class="mara" id="result-mara"></p>
@@ -481,7 +481,11 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 3px s
     document.getElementById('result-text').textContent = lines.join('\n');
     document.getElementById('result-mara').innerHTML = '<span class="speaker">Mara</span> ' + maraText;
     box.classList.toggle('failed', !ok);
-    say(lines[0], !ok);
+
+    // Focus the panel rather than also announcing the same sentence: a live
+    // region plus the visible text read the line twice, and a polite update with
+    // no focus change was missed entirely.
+    box.focus();
   }
 
   function fail(lines, maraText) {
