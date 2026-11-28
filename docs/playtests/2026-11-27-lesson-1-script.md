@@ -74,17 +74,18 @@ Start NVDA before opening the page. Read the Speech Viewer, not just the sound, 
 Copy this into `docs/playtests/YYYY-MM-DD-lesson-1.md` and fill it in.
 
 ```markdown
-# Lesson 1 playtest — <11/27/2026>
+# Lesson 1 playtest — <YYYY-MM-DD>
 
 **Tester:**
 **Run:** A (keyboard, no reader) / B (NVDA, version …)
 **Reached the pages via:** the game / the browser link
-**Environment:** Windows …, Edge/Chrome …, NVDA …, 1280×720
+**Environment:** Windows …, Edge/Chrome …, NVDA …, 1280x720
 
 ## Results
 
 | # | Expected | What actually happened | Pass/Fail |
 |---|---|---|---|
+<<<<<<< HEAD
 | A1 | The prompt appears as you approach, the page opens over the game, and pointer is free | Exactly as expected | Pass |
 | A2 | A skip link appears at the top left | exactly as expected | Pass |
 | A3 | Every stop shows a visible focus outline, and nothing is skipped that is needed | exactly as expected | Pass |
@@ -111,6 +112,32 @@ Copy this into `docs/playtests/YYYY-MM-DD-lesson-1.md` and fill it in.
 | B10 | "Nothing happens. No fans, no lights." spoken as an error, with the no-response line visible | It does say what it is supposed to, but the response that is visible also says, "Nothing happens. No fans, no lights." | Fail |
 | B11 | Each POST line is readable, the not-responding line is read, and the flicker sentence is read | Nothing is read when it powers on | Fail |
 | B12 | The new size is announced, and no text runs off the side of the window | Exactly as expected | Pass |
+=======
+| A1 | | | |
+| A2 | | | |
+| A3 | | | |
+| A4 | | | |
+| A5 | | | |
+| A6 | | | |
+| A7 | | | |
+| A8 | | | |
+| A9 | | | |
+| A10 | | | |
+| A11 | | | |
+| A12 | | | |
+| B1 | | | |
+| B2 | | | |
+| B3 | | | |
+| B4 | | | |
+| B5 | | | |
+| B6 | | | |
+| B7 | | | |
+| B8 | | | |
+| B9 | | | |
+| B10 | | | |
+| B11 | | | |
+| B12 | | | |
+>>>>>>> bd5c33cfb58266bb2ac47031586ac74889672bb7
 
 ## What failed
 
@@ -122,12 +149,18 @@ When you exit out of the lesson, it does not hand back off to Unity. The player 
 
 ## Fixes, in priority order
 
+<<<<<<< HEAD
 1.B1
 2.B2
 3.B4
 4.B7
 5.B10
 6.B11
+=======
+1.
+```
+>>>>>>> bd5c33cfb58266bb2ac47031586ac74889672bb7
+
 
 ## How to judge a failure
 
