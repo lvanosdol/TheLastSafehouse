@@ -51,3 +51,7 @@ sysinfo.txt
 *.aab
 *.unitypackage
 crashlytics-build.properties
+
+# Local C# compile-check toolchain (see unity/README.md)
+.dotnet/
+.unity-stub/

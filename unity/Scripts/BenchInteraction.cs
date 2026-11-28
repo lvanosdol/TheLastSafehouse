@@ -78,11 +78,7 @@ namespace Safehouse.Workshop
             // after shutting the page, because the event never arrived. As soon
             // as the host reports no window, the controls come back regardless of
             // which event did or did not fire.
-            if (player != null && !player.InputEnabled && !PageOpen)
-            {
-                player.SetInputEnabled(true);
-                RefreshPrompt();
-            }
+            RestoreControlsIfPageGone();
 
             if (!playerInside || PageOpen)
                 return;
@@ -156,6 +152,27 @@ namespace Safehouse.Workshop
             }
 
             Debug.Log("[BenchInteraction] Opened " + lessonPage + " over the Workshop.");
+        }
+
+        /// <summary>
+        /// Two things can mean the player is back: the host reporting no window,
+        /// or the game window regaining focus. Either is enough, and logging when
+        /// it happens is what turns "it did not come back" into a Console fact.
+        /// </summary>
+        private void RestoreControlsIfPageGone()
+        {
+            if (player == null || player.InputEnabled || PageOpen)
+                return;
+
+            Debug.Log("[BenchInteraction] Controls returned to the Workshop.");
+            player.SetInputEnabled(true);
+            RefreshPrompt();
+        }
+
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            if (hasFocus)
+                RestoreControlsIfPageGone();
         }
 
         private void OnPageClosed()

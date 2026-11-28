@@ -212,8 +212,8 @@ try {
   const fifthHref = await page.evaluate(() => document.activeElement.getAttribute('href'));
   check('Fifth Tab reaches the section links', fifthHref === '#safety-title', String(fifthHref));
 
-  for (let press = 0; press < 4; press += 1) await page.keyboard.press('Tab');
-  check('The links lead to the safety note', (await activeId()) === 'safety-toggle');
+  for (let press = 0; press < 3; press += 1) await page.keyboard.press('Tab');
+  check('The section links are followed by the safety note', (await activeId()) === 'safety-toggle');
 
   await page.keyboard.press('Tab');
   const nextStop = await page.evaluate(() => document.activeElement.tagName.toLowerCase());
@@ -420,12 +420,15 @@ try {
     note.disclaimer
   );
 
-  const gate = await page.evaluate(() => ({
-    offeredEarly: Boolean(document.querySelector('#next-step a[href="assembly.html"]')),
-    offeredInNav: Boolean(document.querySelector('.steps-nav a[href="assembly.html"]')),
-  }));
+  const gate = await page.evaluate(() => {
+    const navLink = document.querySelector('.steps-nav a[href="assembly.html"]');
+    return {
+      offeredEarly: Boolean(document.querySelector('#next-step a[href="assembly.html"]')),
+      navHidden: Boolean(navLink) && navLink.hasAttribute('hidden'),
+    };
+  });
   check('The rebuild is not offered before the practice is done', gate.offeredEarly === false);
-  check('The rebuild is still reachable from the navigation', gate.offeredInNav);
+  check('The rebuild stays out of the navigation until the practice is done', gate.navHidden);
 
   // ---- 10. keyboard: pick up, move, place ---------------------------------
 
@@ -443,8 +446,12 @@ try {
   await dropOn('ram');
   check('Enter on a purpose places the part', /Matched: RAM/.test(await slotText('ram')), await slotText('ram'));
 
-  const focusAfterPlacing = await page.evaluate(() => document.activeElement.getAttribute('data-purpose'));
-  check('Focus stays on the purpose that received the part', focusAfterPlacing === 'ram', String(focusAfterPlacing));
+  const focusAfterPlacing = await page.evaluate(() => document.activeElement.getAttribute('data-part'));
+  check(
+    'Focus moves to the next part, so matching is Enter, Enter',
+    focusAfterPlacing === 'motherboard',
+    String(focusAfterPlacing)
+  );
 
   const cardHidden = await page.evaluate(
     () => document.querySelector('.part-card[data-part="ram"]').classList.contains('used')
@@ -516,7 +523,17 @@ try {
   check('Eight correct placements are accepted after a mistake', /All 8 matched/.test(solved.summary), solved.summary);
   check('The result takes focus, so it is heard', solved.focused);
   check('The next step is named once the parts match', /rebuild/i.test(solved.next), solved.next);
-  check('The rebuild link appears only once the practice is done', await page.evaluate(() => Boolean(document.querySelector('#next-step a[href="assembly.html"]'))));
+  check(
+    'The rebuild link appears only once the practice is done',
+    await page.evaluate(() => Boolean(document.querySelector('#next-step a[href="assembly.html"]')))
+  );
+  check(
+    'And it appears in the navigation at the same time',
+    await page.evaluate(() => {
+      const navLink = document.querySelector('.steps-nav a[href="assembly.html"]');
+      return Boolean(navLink) && !navLink.hasAttribute('hidden');
+    })
+  );
 
   // ---- 14. clearing ------------------------------------------------------
 

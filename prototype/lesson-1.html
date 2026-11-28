@@ -207,7 +207,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     <a href="#safety-title">Safety note</a>
     <a href="#guide-heading">Parts</a>
     <a href="#match-heading">Matching</a>
-    <a href="assembly.html">Build the computer</a>
+    <a href="assembly.html" id="nav-build" hidden>Build the computer</a>
     <span class="window-size" id="window-size" aria-hidden="true"></span>
   </nav>
 
@@ -447,6 +447,10 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
 
       body.appendChild(purpose);
       body.appendChild(list);
+      details.addEventListener('toggle', function () {
+        if (details.open) announce(part.name + ': ' + part.purpose + '.');
+      });
+
       details.appendChild(summary);
       details.appendChild(body);
       guide.appendChild(details);
@@ -595,7 +599,17 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
       if (otherCard) otherCard.setAttribute('aria-pressed', other.id === partId ? 'true' : 'false');
     });
 
-    announce(part.name + ' picked up. Choose the purpose it belongs to, then press Enter.');
+    var openSlot = null;
+    PARTS.forEach(function (owner) {
+      if (!openSlot && !placed[owner.id]) openSlot = slotFor(owner.id);
+    });
+
+    if (openSlot) {
+      openSlot.focus();
+      announce(part.name + ' picked up. Choose the purpose it belongs to, then press Enter.');
+    } else {
+      announce(part.name + ' picked up. Every purpose is taken; press Enter on a purpose to swap.');
+    }
   }
 
   function place(partId, ownerId) {
@@ -627,7 +641,19 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     if (feedback) feedback.textContent = '';
 
     refreshBoard();
-    announce(part.name + ' matched to: ' + owner.purpose + '.');
+
+    var next = null;
+    PARTS.forEach(function (candidate) {
+      if (!next && !isPlaced(candidate.id)) next = candidate;
+    });
+
+    var nextCard = next ? cardFor(next.id) : null;
+    if (nextCard) nextCard.focus();
+
+    announce(
+      part.name + ' matched to: ' + owner.purpose + '.' +
+      (next ? ' Next: ' + next.name + '. Press Enter to pick it up.' : ' That is all eight.')
+    );
   }
 
   function useSlot(ownerId) {
@@ -661,6 +687,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     if (event) event.preventDefault();
 
     var wrong = [];
+    var rightNames = [];
     var right = 0;
 
     var inPool = PARTS.filter(function (part) {
@@ -681,6 +708,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
 
       if (partId === owner.id) {
         right += 1;
+        rightNames.push(owner.name);
         slot.classList.add('correct');
         if (feedback) feedback.textContent = 'Correct. ' + owner.name + ': ' + owner.purpose + '.';
         return;
@@ -700,7 +728,8 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     var mislaid = listNames(wrong) +
       (wrong.length === 1 ? ' is on the wrong purpose.' : ' are on the wrong purposes.');
 
-    var count = right + ' of ' + PARTS.length + ' are on the right purpose. ';
+    var count = right + ' of ' + PARTS.length + ' are on the right purpose.' +
+      (rightNames.length ? ' Right: ' + listNames(rightNames) + '.' : '') + ' ';
 
     if (inPool.length > 0 && wrong.length > 0) {
       summary.textContent = count + 'Still to place: ' + listNames(inPool) + '. ' + mislaid;
@@ -712,6 +741,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
       summary.textContent = 'All ' + PARTS.length + ' matched. The rebuild is ready when you are.';
       document.getElementById('next-step').innerHTML =
         'The rebuild is its own page: <a href="assembly.html">open the rebuild</a>.';
+      document.getElementById('nav-build').hidden = false;
     }
 
     summary.focus();
@@ -735,6 +765,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     var summary = document.getElementById('match-summary');
     document.getElementById('next-step').textContent =
       'The rebuild opens once every part is matched.';
+    document.getElementById('nav-build').hidden = true;
 
     summary.textContent = 'Answers cleared.';
     summary.focus();
