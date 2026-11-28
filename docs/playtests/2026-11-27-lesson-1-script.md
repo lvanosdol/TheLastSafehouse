@@ -86,7 +86,7 @@ Copy this into `docs/playtests/YYYY-MM-DD-lesson-1.md` and fill it in.
 | # | Expected | What actually happened | Pass/Fail |
 |---|---|---|---|
 | A1 | The prompt appears as you approach, the page opens over the game, and pointer is free | Exactly as expected | Pass |
-| A2 | A skip link appears at the top right | exactly as expected | Pass |
+| A2 | A skip link appears at the top left | exactly as expected | Pass |
 | A3 | Every stop shows a visible focus outline, and nothing is skipped that is needed | exactly as expected | Pass |
 | A4 | The note folds away; enter again and it comes back | exactly as expected | Pass |
 | A5 | Each opens and closes without losing place | exactly as expected | Pass |
@@ -99,33 +99,35 @@ Copy this into `docs/playtests/YYYY-MM-DD-lesson-1.md` and fill it in.
 | A12 | Text grows, nothing overlaps or is cut off, and the last line is readable | exactly as expected | Pass |
 | 
 
-| B1 | | | |
-| B2 | | | |
-| B3 | | | |
-| B4 | | | |
-| B5 | | | |
-| B6 | | | |
-| B7 | | | |
-| B8 | | | |
-| B9 | | | |
-| B10 | | | |
-| B11 | | | |
-| B12 | | | |
+| B1 | Within a second: a polite announcement that the workbench is simulated, the safety rules are in a note, and there are eight parts to meet  | Sometimes it starts reading like it is supposed to, but then will start jumping around. Other times it will start with reading all of the headers and the elements "Heading: Build" | Fail |
+| B2 | "Skip to the workbench, link" | Tab takes you to where the reader is reading | Fail |
+| B3 | "Safety note collapsed" is spoken, and the state is announced as collapsed | Exactly as expected | Pass |
+| B4 | The part's name, then its purpose, where it connects and one thing worth knowing — each read as separate lines, not one run-on | It says the part's name, when you press Enter, it will only say "Collapsed" or "Expanded" without reading the rest | Fail |
+| B5 | " picked up. Choose the purpose it belongs to, then press Enter." | Exactly as expected | Pass |
+| B6 | 	The purpose it was matched to is spoken, and focus stays on that purpose | Exactly as expected | Pass |
+| B7 | 	The summary says how many are right and which part is wrong; the wrong purpose, when tabbed to, reads "Not yet. That is 's job…" | It says how many are left to do and which one is wrong, but not how many are right | Fail |
+| B8 | "All 8 matched…", focus lands on the summary, and the rebuild link is reachable by Tab | Exactly as expected | Pass |
+| B9 | The refusal is spoken as an error, and it names the processor | Exactly as expected | Pass |
+| B10 | "Nothing happens. No fans, no lights." spoken as an error, with the no-response line visible | It does say what it is supposed to, but the response that is visible also says, "Nothing happens. No fans, no lights." | Fail |
+| B11 | Each POST line is readable, the not-responding line is read, and the flicker sentence is read | Nothing is read when it powers on | Fail |
+| B12 | The new size is announced, and no text runs off the side of the window | Exactly as expected | Pass |
 
 ## What failed
 
-Step number, what was announced or shown, and what you expected. One line each.
+Step numbers B1, B2, B4, B7, B10, and B11 failed. Explained above
 
 ## Beginner's view
 
-Where you hesitated, what you would have done next without being told, and whether the
-build felt like a computer or like a quiz.
+When you exit out of the lesson, it does not hand back off to Unity. The player will no longer move. Also, the rebuild link is always visible in the "What's next" box, even before you are done with the practice.
 
 ## Fixes, in priority order
 
-1.
-2.
-```
+1.B1
+2.B2
+3.B4
+4.B7
+5.B10
+6.B11
 
 ## How to judge a failure
 
