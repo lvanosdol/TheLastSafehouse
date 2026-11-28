@@ -40,7 +40,7 @@ For Lesson 1 that means: 3D bench as the thing the player approaches, and an acc
 **Task 8 note:** the figure that glitches into view stays **unnamed** here — the design has "No name or message is provided yet" (`Design/Chapter 1/Chapter-1-Design.md`), and Finch introduces himself at the end of Chapter 1. Writing "Finch" into the Lesson 1 result would spend the reveal.
 | 9 | Slice playtest: keyboard only, NVDA, one tester, report written | `docs/playtests/` entry with pass/fail per task |
 
-**Task 9 complete 2026-11-27.** Keyboard run 12/12; NVDA run found eight faults, all fixed and re-verified, including the hand-off. One step (B5/B6) needs a pass on the final build. See `docs/playtests/2026-11-27-lesson-1.md`.
+**Task 9 complete 2026-11-27.** Keyboard run 12/12; NVDA run found eight faults, all fixed and re-verified, including the hand-off and the focus flow. The slice is keyboard-complete and NVDA-verified. See `docs/playtests/2026-11-27-lesson-1.md`.
 
 **Task 9, both runs done 2026-11-27** — report: `docs/playtests/2026-11-27-lesson-1.md`. Run A passed twelve of twelve without a mouse. Run B, with NVDA, failed six of twelve, and five of those were real faults in the page: a timed load announcement that raced the reader, a summary that counted only when finished, a failure line read twice, a result nobody announced, and a hand-off that depended on one event. All five are fixed; the sixth was the script expecting a disclosure to read its own contents. **A re-run of B1, B2, B7, B10 and B11 is what turns this into verified.**
 
