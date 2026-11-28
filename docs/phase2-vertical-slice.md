@@ -38,6 +38,8 @@ For Lesson 1 that means: 3D bench as the thing the player approaches, and an acc
 **Task 8 note:** the figure that glitches into view stays **unnamed** here — the design has "No name or message is provided yet" (`Design/Chapter 1/Chapter-1-Design.md`), and Finch introduces himself at the end of Chapter 1. Writing "Finch" into the Lesson 1 result would spend the reveal.
 | 9 | Slice playtest: keyboard only, NVDA, one tester, report written | `docs/playtests/` entry with pass/fail per task |
 
+**Task 9, Run A passed 2026-11-27** (keyboard only, twelve of twelve) — report: `docs/playtests/2026-11-27-lesson-1.md`. **Run B, with NVDA, is outstanding**, and it is the only thing between this slice and being able to say it is screen-reader-verified.
+
 **Task 9 script ready 2026-11-27:** `docs/playtests/2026-11-27-lesson-1-script.md` — two runs (keyboard only, then NVDA), twelve steps each, what to listen for verbatim, pass criteria, a report template, and which failures are decisive.
 
 **Status 2026-11-27:** tasks 1–3 confirmed in the editor — see `docs/playtests/2026-11-27-workshop-first-run.md`. The click-by-click version for a first-time Unity user is `docs/workshop-walkthrough.md`.

@@ -74,31 +74,29 @@ Start NVDA before opening the page. Read the Speech Viewer, not just the sound, 
 Copy this into `docs/playtests/YYYY-MM-DD-lesson-1.md` and fill it in.
 
 ```markdown
-# Lesson 1 playtest — <11/27/2026>
+# Lesson 1 playtest — <YYYY-MM-DD>
 
 **Tester:**
 **Run:** A (keyboard, no reader) / B (NVDA, version …)
 **Reached the pages via:** the game / the browser link
-**Environment:** Windows …, Edge/Chrome …, NVDA …, 1280×720
+**Environment:** Windows …, Edge/Chrome …, NVDA …, 1280x720
 
 ## Results
 
 | # | Expected | What actually happened | Pass/Fail |
 |---|---|---|---|
-| A1 | The prompt appears as you approach, the page opens over the game, and pointer is free | Exactly as expected | Pass |
-| A2 | A skip link appears at the top right | exactly as expected | Pass |
-| A3 | Every stop shows a visible focus outline, and nothing is skipped that is needed | exactly as expected | Pass |
-| A4 | The note folds away; enter again and it comes back | exactly as expected | Pass |
-| A5 | Each opens and closes without losing place | exactly as expected | Pass |
-| A6 | The purpose shows "Matched: ..." and the part leaves the bench | exactly as expected | Pass |
-| A7 | Each wrong purpose says what is wrong; nothing is locked; you can fix both | exactly as expected | Pass |
-| A8 | The matching reports all eight matched, and the build page opens | exactly as expected | Pass |
-| A9 | Both are refused with a reason, and nothing is misplaced | exactly as expected | Pass |
-| A10 | The POST block appears, then WORKSHOP APPLICATION: NOT RESPONDING, then the flicker line | exactly as expected | Pass |
-| A11 | It returns, with the lesson still usable | exactly as expected | Pass |
-| A12 | Text grows, nothing overlaps or is cut off, and the last line is readable | exactly as expected | Pass |
-| 
-
+| A1 | | | |
+| A2 | | | |
+| A3 | | | |
+| A4 | | | |
+| A5 | | | |
+| A6 | | | |
+| A7 | | | |
+| A8 | | | |
+| A9 | | | |
+| A10 | | | |
+| A11 | | | |
+| A12 | | | |
 | B1 | | | |
 | B2 | | | |
 | B3 | | | |
@@ -124,8 +122,8 @@ build felt like a computer or like a quiz.
 ## Fixes, in priority order
 
 1.
-2.
 ```
+
 
 ## How to judge a failure
 
