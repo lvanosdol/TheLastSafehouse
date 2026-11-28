@@ -18,6 +18,7 @@ A 3D, story-driven IT and networking learning game for adult beginners. Seven ch
 | `docs/workshop-walkthrough.md` | Beginner walkthrough: the Workshop scene, walking, and the bench opening the lesson, one step at a time |
 | `docs/webview-evaluation.md` | Why texture-based webviews cannot be read, what each alternative costs, and the test that decides |
 | `docs/phase2-vertical-slice.md` | The Phase 2 plan: nine tasks with acceptance criteria for Chapter 1 Lesson 1 |
+| `docs/rebuild-redesign.md` | Plan for replacing the rebuild's two-column board with a machine you put parts into |
 | `docs/handoff-phase2.md` | Self-contained brief for starting the vertical slice in a fresh task |
 | `docs/unity-setup.md` | Install walkthrough, UnityWebBrowser steps, and free browser-component options |
 | `docs/playtests/2026-11-27-spike-unity-embedding.md` | The embedding test and its result: rendering passed, the reader inside Unity did not |
