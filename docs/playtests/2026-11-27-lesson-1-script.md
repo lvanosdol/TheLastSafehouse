@@ -51,11 +51,11 @@ Start NVDA before opening the page. Read the Speech Viewer, not just the sound, 
 | B1 | Load the lesson page | Within a second: a polite announcement that the workbench is simulated, the safety rules are in a note, and there are eight parts to meet |
 | B2 | Press **Tab** once | "Skip to the workbench, link" |
 | B3 | **Tab** to the safety note and press **Enter** | "Safety note collapsed" is spoken, and the state is announced as collapsed |
-| B4 | **Tab** to the first part, press **Enter**, then read with the **arrow keys** | The part's name and "expanded"; the purpose, where it connects and the note are then readable with the arrow keys. A disclosure announces its state, not its contents — that is the expected behaviour, not a fault |
-| B5 | **Tab** to a part in the matching, press **Enter** | "<part> picked up. Choose the purpose it belongs to, then press Enter." |
-| B6 | **Tab** to a purpose and press **Enter** | The purpose it was matched to is spoken, and focus stays on that purpose |
+| B4 | **Tab** to the first part, press **Enter**, then read with the **arrow keys** | Opening it also speaks its name and purpose | The part's name and "expanded"; the purpose, where it connects and the note are then readable with the arrow keys. A disclosure announces its state, not its contents — that is the expected behaviour, not a fault |
+| B5 | **Tab** to a part in the matching, press **Enter** | "<part> picked up. Choose the purpose it belongs to, then press Enter." — and focus has moved to the first purpose that is still empty, so no Tab is needed |
+| B6 | Press **Enter** on a purpose | The purpose it was matched to is spoken, then "Next: <part>", and focus has moved to the next part on the bench — so the whole matching is Enter, Enter, Enter |
 | B7 | Put one part somewhere wrong and press **Check my answers** | The summary says how many are right and which part is wrong; the wrong purpose, when tabbed to, reads "Not yet. That is <part>'s job…" |
-| B8 | Solve all eight and check | "All 8 matched…", focus lands on the summary, and the rebuild link is reachable by Tab |
+| B8 | Solve all eight and check | "All 8 matched…", focus lands on the summary, and **only now** does the rebuild link appear — in the box under it and in the navigation bar |
 | B9 | On the build page, try the cooler first | The refusal is spoken as an error, and it names the processor |
 | B10 | Press the power button with the switch off | "Nothing happens. No fans, no lights." spoken as an error, with the no-response line visible |
 | B11 | Finish the build and press the power button | Each POST line is readable, the not-responding line is read, and the flicker sentence is read |
