@@ -44,8 +44,8 @@ The campaign target is seven chapters. Each chapter awards one development-agent
 - [x] Break the Chapter 1 design (`Design/Chapter 1/Chapter-1-Design.md`) into buildable tasks — 2026-11-27, nine tasks in `docs/phase2-vertical-slice.md`
 - [x] Workshop scene and interaction skeleton — 2026-11-27: walking, the bench trigger, the prompt and **E** opening the page all run in the editor (`docs/playtests/2026-11-27-workshop-first-run.md`)
 - [ ] Split-screen workspace prototype with a simulated-only Try pane
-- [ ] Lesson 1 plus its checkpoint working end to end
-- [ ] Playtest report and fixes
+- [x] Lesson 1 plus its checkpoint working end to end — 2026-11-27: bench → lesson → practice → rebuild → result, played by the owner. The build interaction is to be redesigned (it read as a quiz), which is the next slice's first task
+- [x] Playtest report and fixes — 2026-11-27: keyboard and NVDA runs, eight findings, all fixed and re-verified (`docs/playtests/2026-11-27-lesson-1.md`)
 
 ## Phase 3 — Chapter 1 complete
 
