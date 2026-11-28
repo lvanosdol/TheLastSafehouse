@@ -142,6 +142,12 @@ The volume then reaches from `z = 0.2` to `z = 1.8`, so it is entered about a st
 3. **Browser**: drag `Computer` from the Hierarchy into this field.
 4. Leave **Player** empty (it is found in the scene). **Interact Key** stays `E`.
 
+> **Testing shortcut.** `Lesson Page` also accepts a URL. During development, set it to
+> `https://lvanosdol.github.io/TheLastSafehouse/prototype/lesson-1.html` and the game always opens the
+> current page: no copying into `StreamingAssets`, and no chance of testing last night's copy. The page's
+> own links are relative, so the build page resolves on the same site. It needs an internet connection, so
+> the finished game should ship local files; this is for testing.
+
 **You should see:** Lesson Page `standalone.html`, Browser reading `Computer (ComputerBrowserWindow)`, Interact Key `E`, Face Viewer ticked.
 
 ## Step 11 — The prompt
