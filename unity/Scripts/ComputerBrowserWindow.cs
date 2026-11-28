@@ -54,6 +54,14 @@ namespace Safehouse.Spike
         private Process browserProcess;
         private string openedPage;
 
+        // A browser process can outlive its window — other windows in the same
+        // profile, a task manager, or Edge keeping itself resident. Watching the
+        // process alone leaves the game believing the page is still open, so the
+        // window is what gets watched.
+        private float openedAt;
+        private float nextWindowCheck;
+        private int missingWindowChecks;
+
         private void Start()
         {
             if (openOnStart)
@@ -67,10 +75,37 @@ namespace Safehouse.Spike
 
             if (browserProcess.HasExited)
             {
-                browserProcess = null;
-                Debug.Log("[ComputerBrowserWindow] Browser window closed.");
-                Closed?.Invoke();
+                NotifyClosed();
+                return;
             }
+
+            if (Time.realtimeSinceStartup < nextWindowCheck)
+                return;
+
+            nextWindowCheck = Time.realtimeSinceStartup + 0.5f;
+
+            // Give a fresh window time to exist before trusting its absence.
+            if (Time.realtimeSinceStartup - openedAt < 2f)
+                return;
+
+            if (FindWindowByTitle(windowTitleFragment) != IntPtr.Zero)
+            {
+                missingWindowChecks = 0;
+                return;
+            }
+
+            missingWindowChecks++;
+            if (missingWindowChecks >= 2)
+                NotifyClosed();
+        }
+
+        private void NotifyClosed()
+        {
+            browserProcess = null;
+            openedPage = null;
+            missingWindowChecks = 0;
+            Debug.Log("[ComputerBrowserWindow] Browser window closed.");
+            Closed?.Invoke();
         }
 
         /// <summary>Opens the page configured on this component.</summary>
@@ -155,6 +190,9 @@ namespace Safehouse.Spike
             }
 
             openedPage = page;
+            openedAt = Time.realtimeSinceStartup;
+            nextWindowCheck = 0f;
+            missingWindowChecks = 0;
             Debug.Log($"[ComputerBrowserWindow] Opened {url}");
             StartCoroutine(PositionWhenReady(browserProcess, bounds));
         }
@@ -182,6 +220,7 @@ namespace Safehouse.Spike
             {
                 browserProcess = null;
                 openedPage = null;
+                missingWindowChecks = 0;
                 FocusGameWindow();
             }
         }

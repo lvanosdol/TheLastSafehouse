@@ -209,7 +209,7 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
     <a href="#guide-heading">Parts</a>
     <a href="#match-heading">Matching</a>
     <a href="assembly.html" id="nav-build" hidden>Build the computer</a>
-    <span class="build-stamp" aria-hidden="true">lesson page v5 · 2026-11-27</span>
+    <span class="build-stamp" aria-hidden="true">lesson page v6 · 2026-11-27</span>
     <span class="window-size" id="window-size" aria-hidden="true"></span>
   </nav>
 
@@ -601,9 +601,11 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
       if (otherCard) otherCard.setAttribute('aria-pressed', other.id === partId ? 'true' : 'false');
     });
 
+    // The purposes are shuffled, so "first empty" must mean first as displayed:
+    // landing halfway down the list reads as being dropped at random.
     var openSlot = null;
-    PARTS.forEach(function (owner) {
-      if (!openSlot && !placed[owner.id]) openSlot = slotFor(owner.id);
+    Array.prototype.slice.call(document.querySelectorAll('.slot')).forEach(function (slot) {
+      if (!openSlot && !placed[slot.getAttribute('data-purpose')]) openSlot = slot;
     });
 
     if (openSlot) {
