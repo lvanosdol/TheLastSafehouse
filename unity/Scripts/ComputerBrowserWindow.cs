@@ -60,7 +60,7 @@ namespace Safehouse.Spike
         // window is what gets watched.
         private float openedAt;
         private float nextWindowCheck;
-        private int missingWindowChecks;
+        private IntPtr browserWindow;
 
         private void Start()
         {
@@ -79,23 +79,18 @@ namespace Safehouse.Spike
                 return;
             }
 
+            if (browserWindow == IntPtr.Zero)
+                return;
+
             if (Time.realtimeSinceStartup < nextWindowCheck)
                 return;
 
-            nextWindowCheck = Time.realtimeSinceStartup + 0.5f;
+            nextWindowCheck = Time.realtimeSinceStartup + 0.25f;
 
-            // Give a fresh window time to exist before trusting its absence.
-            if (Time.realtimeSinceStartup - openedAt < 2f)
-                return;
-
-            if (FindWindowByTitle(windowTitleFragment) != IntPtr.Zero)
-            {
-                missingWindowChecks = 0;
-                return;
-            }
-
-            missingWindowChecks++;
-            if (missingWindowChecks >= 2)
+            // The window we positioned is the only one worth asking about. The
+            // process can outlive it, and matching by title can find the game's
+            // own window or an Explorer folder instead.
+            if (!IsWindow(browserWindow))
                 NotifyClosed();
         }
 
@@ -103,7 +98,7 @@ namespace Safehouse.Spike
         {
             browserProcess = null;
             openedPage = null;
-            missingWindowChecks = 0;
+            browserWindow = IntPtr.Zero;
             Debug.Log("[ComputerBrowserWindow] Browser window closed.");
             Closed?.Invoke();
         }
@@ -192,7 +187,7 @@ namespace Safehouse.Spike
             openedPage = page;
             openedAt = Time.realtimeSinceStartup;
             nextWindowCheck = 0f;
-            missingWindowChecks = 0;
+            browserWindow = IntPtr.Zero;
             Debug.Log($"[ComputerBrowserWindow] Opened {url}");
             StartCoroutine(PositionWhenReady(browserProcess, bounds));
         }
@@ -220,7 +215,7 @@ namespace Safehouse.Spike
             {
                 browserProcess = null;
                 openedPage = null;
-                missingWindowChecks = 0;
+                browserWindow = IntPtr.Zero;
                 FocusGameWindow();
             }
         }
@@ -259,6 +254,8 @@ namespace Safehouse.Spike
                 yield break;
             }
 
+            browserWindow = handle;
+
             SetWindowPos(handle, IntPtr.Zero, bounds.X, bounds.Y, bounds.Width, bounds.Height, SwpShowWindow);
 
             // Windows often refuses SetForegroundWindow from a process that is not
@@ -293,12 +290,15 @@ namespace Safehouse.Spike
             return FindWindowByTitle(windowTitleFragment);
         }
 
-        private static IntPtr FindWindowByTitle(string fragment)
+        private static IntPtr FindWindowByTitle(string fragment, IntPtr ignore = default)
         {
             IntPtr found = IntPtr.Zero;
 
             EnumWindows((candidate, _) =>
             {
+                if (candidate == ignore)
+                    return true;
+
                 if (!IsWindowVisible(candidate))
                     return true;
 
@@ -447,6 +447,9 @@ namespace Safehouse.Spike
 
         [DllImport("user32.dll")]
         private static extern bool IsWindowVisible(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        private static extern bool IsWindow(IntPtr hWnd);
 
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         private static extern int GetWindowTextLength(IntPtr hWnd);
