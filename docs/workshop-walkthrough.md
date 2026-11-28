@@ -214,6 +214,7 @@ The prompt is a label for a sighted player; everything the game needs is in the 
 | A browser opens on a file-not-found page | `Assets/StreamingAssets/standalone.html` is missing | Copy `prototype/standalone.html` there |
 | Two browser windows at Play | **Open On Start** still ticked | Step 9 |
 | A dark band on the floor in front of the bench | The bench's shadow, or a stray flat Cube | Click `Computer`: a **Mesh Filter** means it is an object, so move or strip it. No mesh means it is a shadow: `Bench` → **Mesh Renderer → Cast Shadows → Off** |
+| `Unable to use UDP port 56458 for VS/Unity messaging` | The Visual Studio Editor package could not claim its port for script-open and debugger attach — usually a second Unity instance or a leftover process holds it | Ignore it. It does not affect compiling or Play mode. Close other editor instances or restart Unity if script-open stops working |
 | `TransientArtifactProvider … call is not allowed when transient artifacts are getting updated` | A Unity editor assert during asset import (UUM-96903) | Ignore it; restart the editor if it repeats on every Play |
 | Still frozen after closing the browser | `Closed` did not fire | Tell me; that is a real defect |
 
